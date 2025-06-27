@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\User;
-use App\Models\Bookings;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -35,11 +34,34 @@ class AdminController extends Controller
     public function adminDashboard()
     {
         $userCount = User::count();
-        $BookingCount = Bookings::count(); // If you use a separate model/table
-        // $blogCount = Blog::count();
-        return view('admin.dashboard', compact('userCount', 'BookingCount'));
+      
+        return view('admin.dashboard', compact('userCount'));
     }
 
+
+public function showChangePasswordForm()
+{
+    return view('admin.change-password');
+}
+
+public function changePassword(Request $request)
+{
+    $request->validate([
+        'current_password' => 'required',
+        'new_password' => 'required|string|min:8|confirmed',
+    ]);
+
+    $admin = Auth::guard('admin')->user();
+
+    if (!Hash::check($request->current_password, $admin->password)) {
+        return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+    }
+
+    $admin->password = Hash::make($request->new_password);
+    $admin->save();
+
+    return back()->with('success', 'Password changed successfully.');
+}
 
     
 

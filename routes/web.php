@@ -82,10 +82,9 @@ Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.logi
 Route::middleware('admin.auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
 
-    Route::get('bookings', [BookingManageController::class, 'index'])->name('booking.list');
-    Route::patch('bookings/{booking}', [BookingManageController::class, 'updateStatus'])->name('bookinglist.update');
-
-
+     Route::get('admin/change-password', [AdminController::class, 'showChangePasswordForm'])->name('admin.change-password.form');
+    Route::post('admin/change-password', [AdminController::class, 'changePassword'])->name('admin.change-password');
+    
     Route::get('/users', [UserController::class, 'userdetail'])->name('userdetail');
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('useredit');
     Route::post('/users/{id}', [UserController::class, 'update'])->name('userupdate');
