@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ProductController;
 
 
 
@@ -60,14 +62,7 @@ Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.
 Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');   
 
     
-   Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
-   Route::get('/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
-   Route::post('/bookings/store', [BookingController::class, 'store'])->name('bookings.store');
-   Route::get('/bookings/{booking}/edit', [BookingController::class, 'edit'])->name('bookings.edit');
-   Route::put('/bookings/{booking}', [BookingController::class, 'update'])->name('bookings.update');
-   Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
-
-
+  
    Route::get('payment', [PaymentController::class, 'payment'])->name('payment');
    Route::post('payment-store', [PaymentController::class, 'paymentStore'])->name('payment.store');
 
@@ -90,12 +85,21 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
     Route::post('/users/{id}', [UserController::class, 'update'])->name('userupdate');
     Route::delete('users/{id}', [UserController::class, 'destroy'])->name('userdestroy');
 
-    Route::get('blogs', [BlogController::class, 'index'])->name('blogs.index');
-    Route::get('blogs/create', [BlogController::class, 'create'])->name('blogs.create');
-    Route::post('blogs', [BlogController::class, 'store'])->name('blogs.store');
-    Route::get('blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
-    Route::put('blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
-    Route::delete('blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+     Route::get('blogs', [BlogController::class, 'index'])->name('blogs.list');
+     Route::get('blogs/create', [BlogController::class, 'create'])->name('blogs.addblog');
+     Route::post('blogs', [BlogController::class, 'store'])->name('blogs.store');
+     Route::get('blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+     Route::put('blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+     Route::delete('blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
     
+ Route::get('products', [ProductController::class, 'index'])->name('products.index');
+    Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    
+
+     
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 });

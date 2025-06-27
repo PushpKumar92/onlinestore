@@ -12,7 +12,7 @@
                         <i class="fas fa-users text-primary"></i>
                     </div>
                     <div>
-                        <p>Total Contact User</p>
+                        <p>Total Users</p>
                         <h5>5</h5>
                     </div>
                 </div>
@@ -26,6 +26,32 @@
                     </div>
                     <div>
                         <p>Total Blog Post</p>
+                        <h5>5</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3">
+                        <i class="fas fa-store text-info"></i>
+                    </div>
+                    <div>
+                        <p>Total Vendor</p>
+                        <h5>5</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3">
+                        <i class="fas fa-shopping-cart text-info"></i>
+                    </div>
+                    <div>
+                        <p>Total Orders</p>
                         <h5>5</h5>
                     </div>
                 </div>
