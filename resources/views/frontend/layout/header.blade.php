@@ -8,9 +8,9 @@
                     <li><a href="{{ route('faq') }}">Support</a></li>
                 </div>
                 <div class="header-contact d-none d-lg-block">
-                    <a href="#">
+                    <a href="tel:+91 967-5700-765">
                         <span>Need help? Call us:</span>
-                        <span class="contact-number">+ 00645 4568</span>
+                        <span class="contact-number">+91 967-5700-765</span>
                     </a>
                 </div>
             </div>
@@ -254,7 +254,6 @@
                             </a>
                             <ul class="submenu dropdown-menu" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" href="{{ route('user.profile') }}">My Profile</a></li>
-                                <li><a class="dropdown-item" href="{{ route('bookings.index') }}">My Booking</a></li>
                                 <li><a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a></li>
                             </ul>
                         </div>

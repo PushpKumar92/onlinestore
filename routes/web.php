@@ -29,7 +29,7 @@ Route::get('/privacy', [MainController::class, 'privacy'])->name('privacy');
 Route::get('/terms', [MainController::class, 'terms'])->name('terms');
 Route::get('/faq', [MainController::class, 'faq'])->name('faq');
 Route::get('/wishlist', [MainController::class, 'wishlist'])->name('wishlist');
-Route::get('/card', [MainController::class, 'card'])->name('card');
+Route::get('/cart', [MainController::class, 'card'])->name('card');
 Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
 Route::get('/compaire', [MainController::class, 'compaire'])->name('compaire');
 Route::get('/blog', [MainController::class, 'blog'])->name('blog');
@@ -52,7 +52,14 @@ Route::middleware('user.auth')->prefix('user')->group(function () {
     Route::get('/profile', [UserController::class, 'showProfile'])->name('user.profile');
     Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('user.profile.edit');
     Route::post('/profile/update', [UserController::class, 'updateProfile'])->name('user.profile.update');
-   
+    Route::post('/user/update-password', [UserController::class, 'updatePassword'])->name('user.update.password');
+
+Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');   
+
+    
    Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
    Route::get('/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
    Route::post('/bookings/store', [BookingController::class, 'store'])->name('bookings.store');

@@ -829,32 +829,34 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-6">
                                     <div class="form-section">
-                                        <form action="#">
+                                        <form action="{{ route('user.update.password') }}" method="POST">
+                                            @csrf
                                             <div class="currentpass form-item">
                                                 <label for="currentpass" class="form-label">Current Password*</label>
                                                 <input type="password" class="form-control" id="currentpass"
-                                                    placeholder="******">
+                                                    name="current_password" required placeholder="******">
                                             </div>
                                             <div class="password form-item">
-                                                <label for="pass" class="form-label">Password*</label>
-                                                <input type="password" class="form-control" id="pass"
-                                                    placeholder="******">
+                                                <label for="pass" class="form-label">New Password*</label>
+                                                <input type="password" class="form-control" id="pass" name="password"
+                                                    required placeholder="******">
                                             </div>
                                             <div class="re-password form-item">
                                                 <label for="repass" class="form-label">Re-enter Password*</label>
                                                 <input type="password" class="form-control" id="repass"
-                                                    placeholder="******">
+                                                    name="password_confirmation" required placeholder="******">
+                                            </div>
+                                            <div class="form-btn mt-3">
+                                                <button type="submit" class="shop-btn">Update Password</button>
+                                                <a href="#" class="shop-btn cancel-btn">Cancel</a>
                                             </div>
                                         </form>
-                                        <div class="form-btn">
-                                            <a href="#" class="shop-btn">Upldate Password</a>
-                                            <a href="#" class="shop-btn cancel-btn">Cancel</a>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="reset-img text-end">
-                                        <img src="./assets/images/homepage-one/reset.webp" alt="reset">
+                                        <img src="{{asset('assets/images/homepage-one/reset.webp')}}" alt="reset">
                                     </div>
                                 </div>
                             </div>
