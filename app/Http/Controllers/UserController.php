@@ -1,0 +1,157 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use DB;
+Use Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    public function showRegistrationForm()
+    {
+        
+        return view('frontend.profile.register');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'mobile' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6'
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->mobile = $request->mobile;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('login')->with('success', 'Registered successfully! Please login.');
+    }
+    public function showLoginForm()
+    {
+        return view('frontend.profile.login');
+    }
+
+    public function login(Request $request)
+{
+    $request->validate([
+        'login' => 'required',
+        'password' => 'required',
+    ]);
+
+    $loginType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'mobile';
+
+    // Check if user exists
+    $userExists = \App\Models\User::where($loginType, $request->login)->exists();
+
+    if (!$userExists) {
+        return back()->withErrors(['login' => 'This account is not registered.']);
+    }
+
+    $credentials = [
+        $loginType => $request->login,
+        'password' => $request->password,
+    ];
+
+    if (Auth::guard('user')->attempt($credentials)) {
+        return redirect()->route('index');
+    }
+
+    return back()->withErrors(['login' => 'Invalid credentials.']);
+}
+
+
+   
+    public function logout()
+    {
+        Auth::guard('user')->logout();
+        return redirect()->route('index');
+    }
+    
+
+    public function showProfile()
+{
+    $user = Auth::guard('user')->user();
+    return view('frontend.profile.userprofile', compact('user'));
+}
+
+public function editProfile()
+{
+    $user = Auth::guard('user')->user();
+    return view('frontend.profile.editprofile', compact('user'));
+}
+
+public function updateProfile(Request $request)
+{
+    $user = Auth::guard('user')->user();
+
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email,' . $user->id,
+        'mobile' => 'nullable|string|max:20',
+        'profile_image' => 'nullable|image|max:2048',
+    ]);
+
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->mobile = $request->mobile;
+ // Upload directly to public/profile_images
+ if ($request->hasFile('profile_image')) {
+    // Delete old image if exists
+    if ($user->profile_image && File::exists(public_path('profile_images/' . $user->profile_image))) {
+        File::delete(public_path('profile_images/' . $user->profile_image));
+    }
+
+    $image = $request->file('profile_image');
+    $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+    // Move the image to public/profile_images
+    $image->move(public_path('profile_images'), $imageName);
+
+    // Save filename in DB
+    $user->profile_image = $imageName;
+}
+
+$user->save();
+
+
+    return redirect()->route('user.profile')->with('success', 'Profile updated successfully!');
+}
+
+
+
+public function userdetail()
+{
+    $users = User::all();
+    return view('admin.user.userdetail', compact('users'));
+}
+
+public function edit($id)
+{
+    $user = User::findOrFail($id);
+    return view('admin.user.edit', compact('user'));
+}
+
+public function update(Request $request, $id)
+{
+    $user = User::findOrFail($id);
+    $user->update($request->only(['name', 'email']));
+    return redirect()->route('userdetail')->with('success', 'User updated successfully.');
+}
+
+public function destroy($id)
+{
+    $user = User::findOrFail($id);
+    $user->delete();
+    return redirect()->route('userdetail')->with('success', 'User deleted successfully.');
+}
+}
