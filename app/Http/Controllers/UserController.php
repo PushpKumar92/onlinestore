@@ -94,38 +94,42 @@ public function updateProfile(Request $request)
 {
     $user = Auth::guard('user')->user();
 
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email,' . $user->id,
-        'mobile' => 'nullable|string|max:20',
-        'profile_image' => 'nullable|image|max:2048',
+     $request->validate([
+        'name'     => 'required|string|max:255',
+        'email'          => 'required|email|unique:users,email,' . $user->id,
+        'mobile'         => 'nullable|string|max:20',
+        'country'        => 'nullable|string|max:100',
+        'address'        => 'nullable|string|max:255',
+        'city'           => 'nullable|string|max:100',
+        'pinocde'            => 'nullable|string|max:20',
+        'profile_image'  => 'nullable|image|max:2048',
     ]);
 
+    // Save user data
     $user->name = $request->name;
-    $user->email = $request->email;
-    $user->mobile = $request->mobile;
- // Upload directly to public/profile_images
- if ($request->hasFile('profile_image')) {
-    // Delete old image if exists
-    if ($user->profile_image && File::exists(public_path('profile_images/' . $user->profile_image))) {
-        File::delete(public_path('profile_images/' . $user->profile_image));
+    $user->email      = $request->email;
+    $user->mobile     = $request->mobile;
+    $user->country    = $request->country;
+    $user->address    = $request->address;
+    $user->city       = $request->city;
+    $user->pincode        = $request->pincode;
+
+    if ($request->hasFile('profile_image')) {
+        if ($user->profile_image && File::exists(public_path('profile_images/' . $user->profile_image))) {
+            File::delete(public_path('profile_images/' . $user->profile_image));
+        }
+
+        $image = $request->file('profile_image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('profile_images'), $imageName);
+        $user->profile_image = $imageName;
     }
 
-    $image = $request->file('profile_image');
-    $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-    // Move the image to public/profile_images
-    $image->move(public_path('profile_images'), $imageName);
-
-    // Save filename in DB
-    $user->profile_image = $imageName;
-}
-
-$user->save();
-
+    $user->save();
 
     return redirect()->route('user.profile')->with('success', 'Profile updated successfully!');
 }
+
 
 
 
