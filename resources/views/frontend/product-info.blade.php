@@ -21,54 +21,67 @@
                                 </div>
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide slider-top-img">
-                                      <img src="{{ asset('assets/images/homepage-one/product-img/product-img-14.webp') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-14.webp') }}"
+                                            alt="product-img">
 
                                     </div>
                                     <div class="swiper-slide slider-top-img">
-                                     <img src="{{ asset('assets/images/homepage-one/product-img/product-img-1.webp') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-1.webp') }}"
+                                            alt="product-img">
 
                                     </div>
                                     <div class="swiper-slide slider-top-img">
-                                       <img src="{{ asset('assets/images/homepage-one/product-img/product-img-2.webp') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-2.webp') }}"
+                                            alt="product-img">
 
                                     </div>
                                     <div class="swiper-slide slider-top-img">
-                                     <img src="{{ asset('assets/images/homepage-one/product-img/product-img-3.webp') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-3.webp') }}"
+                                            alt="product-img">
 
                                     </div>
                                     <div class="swiper-slide slider-top-img">
-                                      <img src="{{ asset('assets/images/homepage-one/product-img/product-img-1.webp') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-1.webp') }}"
+                                            alt="product-img">
 
                                     </div>
                                     <div class="swiper-slide slider-top-img">
-                                      <img src="{{ asset('assets/images/homepage-one/product-img/product-img-2.webp') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-2.webp') }}"
+                                            alt="product-img">
 
                                     </div>
                                     <div class="swiper-slide slider-top-img">
-                                      <img src="{{ asset('assets/images/homepage-one/product-img/product-img-1.webp') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-1.webp') }}"
+                                            alt="product-img">
 
                                     </div>
                                     <div class="swiper-slide slider-top-img">
-                                         <img src="{{ asset('assets/images/homepage-one/product-img/product-img-1.webp') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-1.webp') }}"
+                                            alt="product-img">
                                     </div>
                                     <div class="swiper-slide slider-top-img">
-                                       <img src="{{ asset('assets/images/homepage-one/product-img/product-img-2.webp') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-2.webp') }}"
+                                            alt="product-img">
                                     </div>
                                     <div class="swiper-slide slider-top-img">
-                                         <img src="{{ asset('assets/images/homepage-one/product-img/product-img-3.webp') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-3.webp') }}"
+                                            alt="product-img">
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper product-bottom">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide slider-bottom-img">
-                                         <img src="{{ asset('assets/images/homepage-one/product-img/product-img-16.png') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-16.png') }}"
+                                            alt="product-img">
                                     </div>
                                     <div class="swiper-slide slider-bottom-img">
-                           <img src="{{ asset('assets/images/homepage-one/product-img/product-img-17.png') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-17.png') }}"
+                                            alt="product-img">
                                     </div>
                                     <div class="swiper-slide slider-bottom-img">
-                                         <img src="{{ asset('assets/images/homepage-one/product-img/product-slider-img-1.webp') }}" alt="product-img">
+                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-slider-img-1.webp') }}"
+                                            alt="product-img">
                                     </div>
 
                                 </div>
@@ -108,7 +121,7 @@
                                     <div class="toggle-btn">
                                         <span class="toggle-btn2"></span>
                                         <span class="chevron">
-                                       <i class="fas fa-chevron-down" style="color: #222222; font-size: 11px;"></i>
+                                            <i class="fas fa-chevron-down" style="color: #222222; font-size: 11px;"></i>
 
                                         </span>
                                     </div>
@@ -149,7 +162,7 @@
                                     </div>
                                     <div class="wishlist">
                                         <span>
-                                        <i class="fas fa-heart" style="color: #797979; font-size: 24px;"></i>
+                                            <i class="fas fa-heart" style="color: #797979; font-size: 24px;"></i>
 
                                         </span>
                                     </div>
@@ -402,7 +415,7 @@
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('card')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
                             </div>
                         </div>
                     </div>
@@ -458,7 +471,7 @@
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('card')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
                             </div>
                         </div>
                     </div>
@@ -514,7 +527,7 @@
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('card')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
                             </div>
                         </div>
                     </div>
@@ -570,7 +583,7 @@
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('card')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
                             </div>
                         </div>
                     </div>

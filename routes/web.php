@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 
 
@@ -48,6 +49,8 @@ Route::get('/seller-sidebar', [MainController::class, 'sellerSidebar'])->name('s
 Route::get('/empty-wishlist', [MainController::class, 'emptyWishlist'])->name('empty.wishlist');
 Route::get('/flash-sale', [MainController::class, 'flashSale'])->name('flash.sale');
 
+Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::post('user/add-to-cart/{id}', [CartController::class, 'add'])->name('cart.add');
 
 Route::middleware('user.auth')->prefix('user')->group(function () {
    

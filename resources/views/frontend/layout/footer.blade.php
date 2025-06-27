@@ -115,7 +115,7 @@
                           <div class="footer-link order-link">
                               <ul>
                                   <li><a href="{{ route('order') }}">Track Order</a></li>
-                                  <li><a href="{{ route('card') }}">Delivery & Returns</a></li>
+                                  <li><a href="{{ route('cart') }}">Delivery & Returns</a></li>
                                   <li><a href="{{ route('about') }}">Warranty</a></li>
                               </ul>
 

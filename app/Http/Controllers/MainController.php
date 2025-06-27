@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class MainController extends Controller
 {
     // Home Page
     public function index() {
-        return view('frontend.index');
+            $products = Product::all();
+        return view('frontend.index', compact('products'));
     }
 
     // Static Pages

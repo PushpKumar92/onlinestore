@@ -23,12 +23,18 @@ public function create()
 public function store(Request $request)
 {
     $request->validate([
-        'name' => 'required',
+        'name' => 'required|string|max:255',
+        'description' => 'required|string',
         'price' => 'required|numeric',
-        'image' => 'nullable|image|mimes:jpg,jpeg,png',
+        'quantity' => 'required|integer',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
     ]);
 
-    $product = new Product($request->except('image'));
+    $product = new Product();
+    $product->name = $request->name;
+    $product->description = $request->description;
+    $product->price = $request->price;
+    $product->quantity = $request->quantity;
 
     if ($request->hasFile('image')) {
         $image = $request->file('image');
@@ -47,26 +53,36 @@ public function edit(Product $product)
     return view('admin.products.edit', compact('product'));
 }
 
+
 public function update(Request $request, Product $product)
 {
     $request->validate([
         'name' => 'required',
         'price' => 'required|numeric',
-        'image' => 'nullable|image|mimes:jpg,jpeg,png',
+        'quantity' => 'required|integer',
+        'description' => 'required|string',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
     ]);
 
+    // Handle image upload
     if ($request->hasFile('image')) {
-        // Delete old image
         if ($product->image && File::exists(public_path('uploads/products/' . $product->image))) {
             File::delete(public_path('uploads/products/' . $product->image));
         }
+
         $image = $request->file('image');
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('uploads/products'), $imageName);
         $product->image = $imageName;
     }
 
-    $product->update($request->except('image'));
+    // Update other fields
+    $product->name = $request->name;
+    $product->description = $request->description;
+    $product->price = $request->price;
+    $product->quantity = $request->quantity;
+
+    $product->save();
 
     return redirect()->route('products.index')->with('success', 'Product updated successfully');
 }

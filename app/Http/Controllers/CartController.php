@@ -6,25 +6,32 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function addToCart(Request $request, $productId)
-{
-    $product = Product::findOrFail($productId);
-    $cart = session()->get('cart', []);
+     public function cart() {
+        return view('frontend.cart');
+    }
+    public function add(Request $request)
+    {
+         $productId = $request->input('product_id');
 
-    if (isset($cart[$productId])) {
-        $cart[$productId]['quantity']++;
-    } else {
-        $cart[$productId] = [
-            "name" => $product->name,
-            "price" => $product->price,
-            "quantity" => 1,
-            "image" => $product->image
-        ];
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$product->id])) {
+            $cart[$product->id]['quantity']++;
+        } else {
+            $cart[$product->id] = [
+                "name" => $product->name,
+                "price" => $product->price,
+                "image" => $product->image,
+                "quantity" => 1
+            ];
+        }
+
+        session()->put('cart', $cart);
+
+        return response()->json(['success' => 'Product added to cart!']);
     }
 
-    session()->put('cart', $cart);
-    return redirect()->back()->with('success', 'Product added to cart!');
-}
+
 public function update(Request $request, $id)
 {
     $cart = session()->get('cart');

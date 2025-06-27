@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('card')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
                             </div>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('card')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
                             </div>
                         </div>
                     </div>
@@ -195,7 +195,7 @@
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('card')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
                             </div>
                         </div>
                     </div>
@@ -252,7 +252,7 @@
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('card')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
                             </div>
                         </div>
                     </div>
@@ -309,7 +309,7 @@
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('card')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
                             </div>
                         </div>
                     </div>
@@ -366,7 +366,7 @@
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('card')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
                             </div>
                         </div>
                     </div>
