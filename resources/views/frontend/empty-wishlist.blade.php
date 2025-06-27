@@ -11,7 +11,7 @@
             </div>
             <div class="blog-item" data-aos="fade-up">
                 <div class="cart-img">
-                    <img src="./assets/images/homepage-one/empty-wishlist.webp" alt="">
+                  <img src="{{ asset('assets/images/homepage-one/product-img/empty-wishlist.webp') }}" alt="img">
                 </div>
                 <div class="cart-content">
                     <p class="content-title">Empty! You don’t Cart any Products </p>
