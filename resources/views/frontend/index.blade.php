@@ -4,9 +4,6 @@
 <main class="main-content">
     <!--------------- hero-section --------------->
 
-
-
-    <h1 class="main heading" style="font-size:40px">this is heading one</h1>
     <section id="hero" class="hero">
         <div class="swiper hero-swiper">
             <div class="swiper-wrapper hero-wrapper">
