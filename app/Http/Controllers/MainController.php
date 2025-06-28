@@ -101,8 +101,4 @@ class MainController extends Controller
     public function emptyWishlist() {
         return view('frontend.empty-wishlist');
     }
-
-    public function compaire() {
-        return view('frontend.compaire');
-    }
 }

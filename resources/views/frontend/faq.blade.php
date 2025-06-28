@@ -33,7 +33,7 @@
                                         Do you offer international shipping?
                                     </span>
                                     <span class="plus">
-                                        <i class="fa-solid fa-plus" style="font-size: 25px; color: #AE1C9A;"></i>
+                                        <i class="fa-solid fa-plus" style="font-size: 25px; color: #00674f;"></i>
                                     </span>
                                     <span class="minus">
                                         <i class="fa-solid fa-minus" style="font-size: 25px; color:white;"></i>
@@ -61,7 +61,7 @@
                                         What is your return policy?
                                     </span>
                                   <span class="plus">
-                                        <i class="fa-solid fa-plus" style="font-size: 25px; color: #AE1C9A;"></i>
+                                        <i class="fa-solid fa-plus" style="font-size: 25px; color: #00674f;"></i>
                                     </span>
                                  <span class="minus">
                                         <i class="fa-solid fa-minus" style="font-size: 25px; color:white;"></i>
@@ -89,7 +89,7 @@
                                         What payment methods do you accept?
                                     </span>
                                    <span class="plus">
-                                        <i class="fa-solid fa-plus" style="font-size: 25px; color: #AE1C9A;"></i>
+                                        <i class="fa-solid fa-plus" style="font-size: 25px; color: #00674f;"></i>
                                     </span>
                                     <span class="minus">
                                         <i class="fa-solid fa-minus" style="font-size: 25px; color:white;"></i>
@@ -116,7 +116,7 @@
                                         How can I track my order?
                                     </span>
                                      <span class="plus">
-                                        <i class="fa-solid fa-plus" style="font-size: 25px; color: #AE1C9A;"></i>
+                                        <i class="fa-solid fa-plus" style="font-size: 25px; color: #00674f;"></i>
                                     </span>
                                    <span class="minus">
                                         <i class="fa-solid fa-minus" style="font-size: 25px; color:white;"></i>
@@ -143,7 +143,7 @@
                                         How do I place an order on your website?
                                     </span>
                                   <span class="plus">
-                                        <i class="fa-solid fa-plus" style="font-size: 25px; color: #AE1C9A;"></i>
+                                        <i class="fa-solid fa-plus" style="font-size: 25px; color: #00674f;"></i>
                                     </span>
                                    <span class="minus">
                                         <i class="fa-solid fa-minus" style="font-size: 25px; color:white;"></i>

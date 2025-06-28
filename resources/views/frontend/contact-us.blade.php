@@ -35,7 +35,7 @@
                                                     <div class="wrapper-img">
                                                         <span>
                                                             <i class="fa-solid fa-phone-volume"
-                                                                style="font-size: 50px; color: #AE1C9A;"></i>
+                                                                style="font-size: 50px; color: #00674f;"></i>
                                                         </span>
 
                                                     </div>
@@ -52,7 +52,7 @@
                                                 <div class="wrapper-img">
                                                     <span>
                                                         <i class="fa-solid fa-envelope"
-                                                            style="font-size: 50px; color: #AE1C9A;"></i>
+                                                            style="font-size: 50px; color: #00674f;"></i>
                                                     </span>
                                                 </div>
                                                 <div class="wrapper-content">
@@ -66,7 +66,7 @@
                                                 <div class="contact-address">
                                                     <div class="address-icon">
                                                         <i class="fa-solid fa-location-dot"
-                                                            style="font-size: 50px; color: #AE1C9A;"></i>
+                                                            style="font-size: 50px; color: #00674f;"></i>
                                                     </div>
                                                     <div class="address-content">
                                                         <h5 class="wrapper-heading">Address</h5>

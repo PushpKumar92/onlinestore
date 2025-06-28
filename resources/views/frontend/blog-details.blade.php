@@ -29,7 +29,7 @@
                             <div class="wrapper-data">
                                 <div class="admin wrapper-item">
                                     <span class="icon">
-                                        <i class="fas fa-user" style="color: #AE1C9A; font-size: 15px;"></i>
+                                        <i class="fas fa-user" style="color: #00674f; font-size: 15px;"></i>
                                     </span>
                                     <span class="text">
                                         By Admin
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="comments wrapper-item">
                                     <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         Comments
@@ -129,7 +129,7 @@
                                         <input type="text" placeholder="search">
                                         <span class="icon">
                                             <i class="fa-solid fa-magnifying-glass"
-                                                style="color: #AE1C9A; font-size: 20px;"></i>
+                                                style="color: #00674f; font-size: 20px;"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -150,7 +150,7 @@
                                                 <div class="admin wrapper-item">
                                                     <span class="icon">
                                                         <i class="fas fa-calendar-alt"
-                                                            style="color: #AE1C9A; font-size: 15px;"></i>
+                                                            style="color: #00674f; font-size: 15px;"></i>
                                                     </span>
 
                                                     <span class="text">
@@ -173,7 +173,7 @@
                                                 <div class="admin wrapper-item">
                                                                 <span class="icon">
                                                         <i class="fas fa-calendar-alt"
-                                                            style="color: #AE1C9A; font-size: 15px;"></i>
+                                                            style="color: #00674f; font-size: 15px;"></i>
                                                     </span>
                                                     <span class="text">
                                                         02 October 2023
@@ -195,7 +195,7 @@
                                                 <div class="admin wrapper-item">
                                                                 <span class="icon">
                                                         <i class="fas fa-calendar-alt"
-                                                            style="color: #AE1C9A; font-size: 15px;"></i>
+                                                            style="color: #00674f; font-size: 15px;"></i>
                                                     </span>
                                                     <span class="text">
                                                         02 October 2023

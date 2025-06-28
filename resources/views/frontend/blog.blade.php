@@ -30,7 +30,7 @@
                             <div class="wrapper-data">
                                 <div class="admin wrapper-item">
                                     <span class="icon">
-                                        <i class="fas fa-user" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fas fa-user" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         By Admin
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="comments wrapper-item">
                                     <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         Comments
@@ -54,7 +54,7 @@
                             <a href="#" class="shop-btn">
                                 Learn More
                                    <span>
-                                     <i class="fa-solid fa-arrow-right" style="color:#AE1C9A ;font-size:20px;"></i>
+                                     <i class="fa-solid fa-arrow-right" style="color:#00674f ;font-size:20px;"></i>
                                 </span>
                             </a>
                         </div>
@@ -69,7 +69,7 @@
                             <div class="wrapper-data">
                                 <div class="admin wrapper-item">
                                     <span class="icon">
-                                        <i class="fas fa-user" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fas fa-user" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         By Admin
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="comments wrapper-item">
                                     <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         Comments
@@ -93,7 +93,7 @@
                             <a href="{{ route('blog.details')}}" class="shop-btn">
                                 Learn More
                                    <span>
-                                     <i class="fa-solid fa-arrow-right" style="color:#AE1C9A ;font-size:20px;"></i>
+                                     <i class="fa-solid fa-arrow-right" style="color:#00674f ;font-size:20px;"></i>
                                 </span>
                             </a>
                         </div>
@@ -108,7 +108,7 @@
                             <div class="wrapper-data">
                                 <div class="admin wrapper-item">
                                     <span class="icon">
-                                        <i class="fas fa-user" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fas fa-user" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         By Admin
@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="comments wrapper-item">
                                     <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         Comments
@@ -130,7 +130,7 @@
                             <a href="#" class="shop-btn">
                                 Learn More
                                    <span>
-                                     <i class="fa-solid fa-arrow-right" style="color:#AE1C9A ;font-size:20px;"></i>
+                                     <i class="fa-solid fa-arrow-right" style="color:#00674f ;font-size:20px;"></i>
                                 </span>
                             </a>
                         </div>
@@ -145,7 +145,7 @@
                             <div class="wrapper-data">
                                 <div class="admin wrapper-item">
                                     <span class="icon">
-                                        <i class="fas fa-user" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fas fa-user" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         By Admin
@@ -153,7 +153,7 @@
                                 </div>
                                 <div class="comments wrapper-item">
                                     <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         Comments
@@ -167,7 +167,7 @@
                             <a href="#" class="shop-btn">
                                 Learn More
                                    <span>
-                                     <i class="fa-solid fa-arrow-right" style="color:#AE1C9A ;font-size:20px;"></i>
+                                     <i class="fa-solid fa-arrow-right" style="color:#00674f ;font-size:20px;"></i>
                                 </span>
                             </a>
                         </div>
@@ -182,7 +182,7 @@
                             <div class="wrapper-data">
                                 <div class="admin wrapper-item">
                                     <span class="icon">
-                                        <i class="fas fa-user" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fas fa-user" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         By Admin
@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="comments wrapper-item">
                                     <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         Comments
@@ -204,7 +204,7 @@
                             <a href="#" class="shop-btn">
                                 Learn More
                                    <span>
-                                     <i class="fa-solid fa-arrow-right" style="color:#AE1C9A ;font-size:20px;"></i>
+                                     <i class="fa-solid fa-arrow-right" style="color:#00674f ;font-size:20px;"></i>
                                 </span>
                             </a>
                         </div>
@@ -219,7 +219,7 @@
                             <div class="wrapper-data">
                                 <div class="admin wrapper-item">
                                     <span class="icon">
-                                        <i class="fas fa-user" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fas fa-user" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         By Admin
@@ -227,7 +227,7 @@
                                 </div>
                                 <div class="comments wrapper-item">
                                     <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #AE1C9A; font-size: 20px;"></i>
+                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
                                     </span>
                                     <span class="text">
                                         Comments
@@ -243,7 +243,7 @@
                             <a href="#" class="shop-btn">
                                 Learn More
                                 <span>
-                                     <i class="fa-solid fa-arrow-right" style="color:#AE1C9A ;font-size:20px;"></i>
+                                     <i class="fa-solid fa-arrow-right" style="color:#00674f ;font-size:20px;"></i>
                                 </span>
                               
                             </a>

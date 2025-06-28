@@ -277,7 +277,7 @@
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
-                                                        style="font-size: 20px; color: #AE1C9A;"></i>
+                                                        style="font-size: 20px; color: #00674f;"></i>
                                                 </span>
 
 
@@ -337,7 +337,7 @@
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
-                                                        style="font-size: 20px; color: #AE1C9A;"></i>
+                                                        style="font-size: 20px; color: #00674f;"></i>
                                                 </span>
 
 
@@ -397,7 +397,7 @@
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
-                                                        style="font-size: 20px; color: #AE1C9A;"></i>
+                                                        style="font-size: 20px; color: #00674f;"></i>
                                                 </span>
 
 
@@ -457,7 +457,7 @@
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
-                                                        style="font-size: 20px; color: #AE1C9A;"></i>
+                                                        style="font-size: 20px; color: #00674f;"></i>
                                                 </span>
 
 
@@ -517,7 +517,7 @@
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
-                                                        style="font-size: 20px; color: #AE1C9A;"></i>
+                                                        style="font-size: 20px; color: #00674f;"></i>
                                                 </span>
 
 
@@ -577,7 +577,7 @@
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
-                                                        style="font-size: 20px; color: #AE1C9A;"></i>
+                                                        style="font-size: 20px; color: #00674f;"></i>
                                                 </span>
 
 
@@ -643,7 +643,7 @@
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
-                                                        style="font-size: 20px; color: #AE1C9A;"></i>
+                                                        style="font-size: 20px; color: #00674f;"></i>
                                                 </span>
 
 
@@ -704,7 +704,7 @@
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
-                                                        style="font-size: 20px; color: #AE1C9A;"></i>
+                                                        style="font-size: 20px; color: #00674f;"></i>
                                                 </span>
 
 
@@ -765,7 +765,7 @@
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
-                                                        style="font-size: 20px; color: #AE1C9A;"></i>
+                                                        style="font-size: 20px; color: #00674f;"></i>
                                                 </span>
 
 
@@ -826,7 +826,7 @@
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
-                                                        style="font-size: 20px; color: #AE1C9A;"></i>
+                                                        style="font-size: 20px; color: #00674f;"></i>
                                                 </span>
 
 
@@ -887,7 +887,7 @@
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
-                                                        style="font-size: 20px; color: #AE1C9A;"></i>
+                                                        style="font-size: 20px; color: #00674f;"></i>
                                                 </span>
 
 
@@ -948,7 +948,7 @@
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
-                                                        style="font-size: 20px; color: #AE1C9A;"></i>
+                                                        style="font-size: 20px; color: #00674f;"></i>
                                                 </span>
 
 
