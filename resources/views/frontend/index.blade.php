@@ -71,7 +71,6 @@
                                     <span class="wrapper-inner-title">& Make New</span> Fusion.
                                 </h4>
                                 <a href="{{ route('product.sidebar')}}" class="shop-btn">Shop Now
-
                                 </a>
                             </div>
                         </div>
@@ -327,15 +326,10 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
-                                    </a>
+
                                 </div>
                             </div>
                             <div class="product-info">
@@ -421,18 +415,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -476,18 +464,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -532,18 +514,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -589,18 +565,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -660,18 +630,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -716,18 +680,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -772,18 +730,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -828,18 +780,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -884,18 +830,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -940,18 +880,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -1098,18 +1032,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -1154,18 +1082,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -1210,18 +1132,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -1266,18 +1182,12 @@
                                     <a href="{{ route('wishlist')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #AE1C9A;"></i>
+                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
                                         </span>
 
 
                                     </a>
-                                    <a href="{{ route('compaire')}}" class="compaire cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-sync-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-                                    </a>
                                 </div>
                             </div>
                             <div class="product-info">

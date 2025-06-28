@@ -37,7 +37,7 @@
                             <ul>
                                 <li>
                                     <span
-                                        style="display: inline-flex; align-items: center; justify-content: center; width: 25px; height: 25px; background-color: #AE1C9A; border-radius: 50%;">
+                                        style="display: inline-flex; align-items: center; justify-content: center; width: 25px; height: 25px; background-color: #00674f; border-radius: 50%;">
                                         <i class="fas fa-arrow-right" style="color: white; font-size: 12px;"></i>
                                     </span>
 
@@ -46,7 +46,7 @@
                                 </li>
                                 <li>
                                     <span
-                                        style="display: inline-flex; align-items: center; justify-content: center; width: 25px; height: 25px; background-color: #AE1C9A; border-radius: 50%;">
+                                        style="display: inline-flex; align-items: center; justify-content: center; width: 25px; height: 25px; background-color: #00674f; border-radius: 50%;">
                                         <i class="fas fa-arrow-right" style="color: white; font-size: 12px;"></i>
                                     </span>
 
@@ -54,7 +54,7 @@
                                 </li>
                                 <li>
                                     <span
-                                        style="display: inline-flex; align-items: center; justify-content: center; width: 25px; height: 25px; background-color: #AE1C9A; border-radius: 50%;">
+                                        style="display: inline-flex; align-items: center; justify-content: center; width: 25px; height: 25px; background-color: #00674f; border-radius: 50%;">
                                         <i class="fas fa-arrow-right" style="color: white; font-size: 12px;"></i>
                                     </span>
 
@@ -85,7 +85,7 @@
             <div class="about-wrapper">
                 <div class="wrapper-img">
                     <span>
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #AE1C9A;"></i>
+                        <i class="fas fa-file-alt" style="font-size: 48px; color: #00674f;"></i>
                     </span>
 
                 </div>
@@ -100,7 +100,7 @@
             </div>
             <div class="about-wrapper">
                 <div class="wrapper-img">
-                    <span style="color: #AE1C9A; font-size: 48px;">
+                    <span style="color: #00674f; font-size: 48px;">
 
                         <i class="fa-solid fa-file-invoice-dollar"></i>
                     </span>
@@ -116,7 +116,7 @@
             </div>
             <div class="about-wrapper">
                 <div class="wrapper-img">
-                    <span style="color: #AE1C9A; font-size: 48px;">
+                    <span style="color: #00674f; font-size: 48px;">
                         <i class="fa-solid fa-truck"></i>
                     </span>
                 </div>
@@ -136,7 +136,7 @@
 <div class="about-promotion">
     <a href="assets/images/homepage-one/about/advertrisement-vedio.mp4" target="_blank" class="about-btn">
         <span>
-            <i class="fas fa-play-circle" style="color: #AE1C9A; font-size: 38px;"></i>
+            <i class="fas fa-play-circle" style="color: #00674f; font-size: 38px;"></i>
         </span>
 
     </a>
@@ -373,7 +373,7 @@
                             <div class="wrapper-data">
                                 <div class="admin wrapper-item">
                                     <span class="icon">
-                                        <i class="fas fa-user" style="color: #AE1C9A; font-size: 15px;"></i>
+                                        <i class="fas fa-user" style="color: #00674f; font-size: 15px;"></i>
                                     </span>
                                     <span class="text">
                                         By Admin
@@ -381,7 +381,7 @@
                                 </div>
                                 <div class="comments wrapper-item">
                                     <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #AE1C9A; font-size: 15px;"></i>
+                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 15px;"></i>
                                     </span>
                                     <span class="text">
                                         Comments
@@ -396,7 +396,7 @@
                             <a href="{{ route('blog.details') }}" class="shop-btn">
                                 Learn More
                                 <span>
-                                    <i class="fas fa-chevron-right" style="color: #AE1C9A; font-size: 11px;"></i>
+                                    <i class="fas fa-chevron-right" style="color: #00674f; font-size: 11px;"></i>
                                 </span>
                             </a>
                         </div>
@@ -411,7 +411,7 @@
                             <div class="wrapper-data">
                                 <div class="admin wrapper-item">
                                     <span class="icon">
-                                        <i class="fas fa-user" style="color: #AE1C9A; font-size: 15px;"></i>
+                                        <i class="fas fa-user" style="color: #00674f; font-size: 15px;"></i>
                                     </span>
                                     <span class="text">
                                         By Admin
@@ -419,7 +419,7 @@
                                 </div>
                                 <div class="comments wrapper-item">
                                     <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #AE1C9A; font-size: 15px;"></i>
+                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 15px;"></i>
                                     </span>
                                     <span class="text">
                                         Comments
@@ -435,7 +435,7 @@
                             <a href="{{ route('blog.details') }}" class="shop-btn">
                                 Learn More
                                 <span>
-                                    <i class="fas fa-chevron-right" style="color: #AE1C9A; font-size: 11px;"></i>
+                                    <i class="fas fa-chevron-right" style="color: #00674f; font-size: 11px;"></i>
                                 </span>
                             </a>
                         </div>
@@ -450,7 +450,7 @@
                             <div class="wrapper-data">
                                 <div class="admin wrapper-item">
                                     <span class="icon">
-                                        <i class="fas fa-user" style="color: #AE1C9A; font-size: 15px;"></i>
+                                        <i class="fas fa-user" style="color: #00674f; font-size: 15px;"></i>
                                     </span>
                                     <span class="text">
                                         By Admin
@@ -458,7 +458,7 @@
                                 </div>
                                 <div class="comments wrapper-item">
                                     <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #AE1C9A; font-size: 15px;"></i>
+                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 15px;"></i>
                                     </span>
                                     <span class="text">
                                         Comments
@@ -474,7 +474,7 @@
                             <a href="{{ route('blog.details') }}" class="shop-btn">
                                 Learn More
                                 <span>
-                                    <i class="fas fa-chevron-right" style="color: #AE1C9A; font-size: 11px;"></i>
+                                    <i class="fas fa-chevron-right" style="color: #00674f; font-size: 11px;"></i>
                                 </span>
                             </a>
                         </div>

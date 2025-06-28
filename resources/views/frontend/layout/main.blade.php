@@ -44,6 +44,7 @@
 
     <!-- Custom Additional JS -->
     <script src="{{ asset('js/shopus.js') }}"></script>
+<<<<<<< HEAD
     <script>
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function(e) {
@@ -69,6 +70,9 @@
     });
     </script>
 
+=======
+      
+>>>>>>> 7aeeba0aac2e6dc3b6f082c2d9f9aa4318d0f50d
 </body>
 
 </html>

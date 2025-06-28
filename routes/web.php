@@ -33,7 +33,6 @@ Route::get('/terms', [MainController::class, 'terms'])->name('terms');
 Route::get('/faq', [MainController::class, 'faq'])->name('faq');
 Route::get('/wishlist', [MainController::class, 'wishlist'])->name('wishlist');
 Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
-Route::get('/compaire', [MainController::class, 'compaire'])->name('compaire');
 Route::get('/blog', [MainController::class, 'blog'])->name('blog');
 Route::get('/blog-details', [MainController::class, 'blogDetails'])->name('blog.details');
 Route::get('/create-account', [MainController::class, 'createAccount'])->name('create.account');
