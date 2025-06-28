@@ -96,7 +96,7 @@
                     .then(response => response.json())
                     .then(data => {
                         row.querySelector('.item-total').textContent = '₹' + data
-                        .item_total;
+                            .item_total;
                         document.getElementById('cart-total').textContent = data.cart_total;
                     });
             });
