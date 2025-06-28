@@ -44,14 +44,22 @@
     <!-- Custom Additional JS -->
     <script src="{{ asset('js/shopus.js') }}"></script>
 
+<<<<<<< HEAD
    <script>
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', function (e) {
+=======
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function(e) {
+>>>>>>> 4ca7f28fcd5213fcb163b5fc37c9692c639ded9f
                 e.preventDefault();
                 const url = this.getAttribute('href');
 
                 fetch(url, {
+<<<<<<< HEAD
                     method: 'GET',
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
@@ -73,6 +81,27 @@
 </script>
 
 
+=======
+                        method: 'GET',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert('Product added to cart!');
+                        // Optionally update cart count or UI here
+                    })
+                    .catch(error => {
+                        console.error('Error adding to cart:', error);
+                        alert('Failed to add to cart');
+                    });
+            });
+        });
+    });
+    </script>
+>>>>>>> 4ca7f28fcd5213fcb163b5fc37c9692c639ded9f
 </body>
 
 </html>
