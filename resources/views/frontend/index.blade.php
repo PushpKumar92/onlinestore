@@ -374,16 +374,21 @@
                             @endforeach
 
                             <div class="product-cart-btn">
-                                <button class="product-btn add-to-cart" data-id="{{ $product->id }}">Add To
-                                    Cart</button>
+                                <a href="{{ route('cart.add', ['id' => $product->id]) }}"
+                                    class="product-btn add-to-cart">
+                                    Add To Cart
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
+                 <div class="col-lg-3 col-sm-6">
                         <div class="product-wrapper" data-aos="fade-up">
+                            @foreach ($products as $product)
                             <div class="product-img">
-                                <img src="{{ asset('assets/images/homepage-one/product-img/product-img-2.webp') }}"
-                                    alt="product-img">
+                                <img src="{{ asset('uploads/products/' . $product->image) }}" alt="{{ $product->name }}"
+                                    style="width: 100%; height: 100%;">
+
+
 
                                 <div class="product-cart-items">
                                     <a href="#" class="cart cart-item">
@@ -421,25 +426,41 @@
                                         <i class="fas fa-star"></i>
                                     </span>
                                 </div>
+
                                 <div class="product-description">
-                                    <a href="{{ route('product.info')}}" class="product-details">Feminine Wrap Blouse
+                                    <a href="{{ route('product.info', $product->id) }}" class="product-details">
+                                        {{ $product->name }}
                                     </a>
                                     <div class="price">
-                                        <span class="price-cut">$9.99</span>
-                                        <span class="new-price">$6.99</span>
+                                        @if($product->discount_price)
+                                        <span class="price-cut">₹{{ $product->discount_price }}</span>
+                                        @endif
+
+
+                                        <span class="new-price">₹{{ $product->price }}</span>
+
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
+
                             <div class="product-cart-btn">
-                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart.add', ['id' => $product->id]) }}"
+                                    class="product-btn add-to-cart">
+                                    Add To Cart
+                                </a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <div class="product-wrapper" data-aos="fade-up">
+                            @foreach ($products as $product)
                             <div class="product-img">
-                                <img src="{{ asset('assets/images/homepage-one/product-img/product-img-3.webp') }}"
-                                    alt="Product Image">
+                                <img src="{{ asset('uploads/products/' . $product->image) }}" alt="{{ $product->name }}"
+                                    style="width: 100%; height: 100%;">
+
+
+
                                 <div class="product-cart-items">
                                     <a href="#" class="cart cart-item">
                                         <span
@@ -476,25 +497,41 @@
                                         <i class="fas fa-star"></i>
                                     </span>
                                 </div>
+
                                 <div class="product-description">
-                                    <a href="{{ route('product.info')}}" class="product-details">Trendy Bucket Hat
+                                    <a href="{{ route('product.info', $product->id) }}" class="product-details">
+                                        {{ $product->name }}
                                     </a>
                                     <div class="price">
-                                        <span class="price-cut">$18.99</span>
-                                        <span class="new-price">$10.99</span>
+                                        @if($product->discount_price)
+                                        <span class="price-cut">₹{{ $product->discount_price }}</span>
+                                        @endif
+
+
+                                        <span class="new-price">₹{{ $product->price }}</span>
+
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
+
                             <div class="product-cart-btn">
-                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart.add', ['id' => $product->id]) }}"
+                                    class="product-btn add-to-cart">
+                                    Add To Cart
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
+                     <div class="col-lg-3 col-sm-6">
                         <div class="product-wrapper" data-aos="fade-up">
+                            @foreach ($products as $product)
                             <div class="product-img">
-                                <img src="{{ asset('assets/images/homepage-one/product-img/product-img-4.webp') }}"
-                                    alt="Product Image">
+                                <img src="{{ asset('uploads/products/' . $product->image) }}" alt="{{ $product->name }}"
+                                    style="width: 100%; height: 100%;">
+
+
+
                                 <div class="product-cart-items">
                                     <a href="#" class="cart cart-item">
                                         <span
@@ -531,17 +568,29 @@
                                         <i class="fas fa-star"></i>
                                     </span>
                                 </div>
+
                                 <div class="product-description">
-                                    <a href="{{ route('product.info')}}" class="product-details">Boho Maxi Dress
+                                    <a href="{{ route('product.info', $product->id) }}" class="product-details">
+                                        {{ $product->name }}
                                     </a>
                                     <div class="price">
-                                        <span class="price-cut">$20.99</span>
-                                        <span class="new-price">$10.99</span>
+                                        @if($product->discount_price)
+                                        <span class="price-cut">₹{{ $product->discount_price }}</span>
+                                        @endif
+
+
+                                        <span class="new-price">₹{{ $product->price }}</span>
+
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
+
                             <div class="product-cart-btn">
-                                <a href="{{ route('cart')}}" class="product-btn">Add To Cart</a>
+                                <a href="{{ route('cart.add', ['id' => $product->id]) }}"
+                                    class="product-btn add-to-cart">
+                                    Add To Cart
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -44,28 +44,34 @@
     <!-- Custom Additional JS -->
     <script src="{{ asset('js/shopus.js') }}"></script>
 
-    <script>
-    $(document).on('click', '.add-to-cart', function(e) {
-        e.preventDefault();
+   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const url = this.getAttribute('href');
 
-        const productId = $(this).data('id');
-
-        $.ajax({
-            url: "{{ route('cart.add') }}",
-            method: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                product_id: productId
-            },
-            success: function(response) {
-                alert(response.success);
-            },
-            error: function() {
-                alert('Something went wrong.');
-            }
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Product added to cart!');
+                    // Optionally update cart count or UI here
+                })
+                .catch(error => {
+                    console.error('Error adding to cart:', error);
+                    alert('Failed to add to cart');
+                });
+            });
         });
     });
-    </script>
+</script>
+
 
 </body>
 
