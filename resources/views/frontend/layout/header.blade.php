@@ -111,7 +111,7 @@
                         </a>
                     </div>
                     <div class="header-cart">
-                        <a href="{{ route('cart') }}" class="cart-item">
+                        <a href="{{ route('cart.show')}}" class="cart-item">
                             <span>
                                 <svg width="35" height="28" viewBox="0 0 35 28" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -234,7 +234,7 @@
                                     <h5 class="wrapper-title">$60</h5>
                                 </div>
                                 <div class="cart-btn">
-                                    <a href="{{ route('cart') }}" class="shop-btn view-btn">View Cart</a>
+                                    <a href="{{ route('cart.show')}}" class="shop-btn view-btn">View Cart</a>
                                     <a href="{{ route('checkout') }}" class="shop-btn checkout-btn">Checkout Now</a>
                                 </div>
                             </div>
@@ -286,7 +286,7 @@
             <a href="{{ route('index') }}" class="mobile-header-logo">
                 <img src="./assets/images/logos/logo.webp" alt="logo">
             </a>
-            <a href="{{ route('cart') }}" class="header-cart cart-item">
+            <a href="{{ route('cart.show')}}" class="header-cart cart-item">
                 <span>
                     <svg width="35" height="28" viewBox="0 0 35 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -976,9 +976,9 @@
                             <a href="{{ route('product.sidebar') }}">
                                 <span class="list-text">Shop</span>
                                 <span>
-                                       <span>
-                                    <i class="fa-solid fa-plus" style="color:white; font-size=18px;"></i>
-                                </span>
+                                    <span>
+                                        <i class="fa-solid fa-plus" style="color:white; font-size=18px;"></i>
+                                    </span>
                                 </span>
                             </a>
                             <div class="shop-menu">

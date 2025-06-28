@@ -32,7 +32,6 @@ Route::get('/privacy', [MainController::class, 'privacy'])->name('privacy');
 Route::get('/terms', [MainController::class, 'terms'])->name('terms');
 Route::get('/faq', [MainController::class, 'faq'])->name('faq');
 Route::get('/wishlist', [MainController::class, 'wishlist'])->name('wishlist');
-Route::get('/cart', [MainController::class, 'card'])->name('card');
 Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
 Route::get('/compaire', [MainController::class, 'compaire'])->name('compaire');
 Route::get('/blog', [MainController::class, 'blog'])->name('blog');
@@ -49,8 +48,12 @@ Route::get('/seller-sidebar', [MainController::class, 'sellerSidebar'])->name('s
 Route::get('/empty-wishlist', [MainController::class, 'emptyWishlist'])->name('empty.wishlist');
 Route::get('/flash-sale', [MainController::class, 'flashSale'])->name('flash.sale');
 
-Route::get('/cart', [CartController::class, 'cart'])->name('cart');
-Route::post('user/add-to-cart/{id}', [CartController::class, 'add'])->name('cart.add');
+// Cart routes
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+Route::post('user/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/user/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
+
 
 Route::middleware('user.auth')->prefix('user')->group(function () {
    
@@ -59,10 +62,10 @@ Route::middleware('user.auth')->prefix('user')->group(function () {
     Route::post('/profile/update', [UserController::class, 'updateProfile'])->name('user.profile.update');
     Route::post('/user/update-password', [UserController::class, 'updatePassword'])->name('user.update.password');
 
-Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
-Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');   
+// Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+// Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+// Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+// Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');   
 
     
   

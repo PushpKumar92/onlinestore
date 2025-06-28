@@ -3,61 +3,65 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+
 
 class CartController extends Controller
 {
-     public function cart() {
-        return view('frontend.cart');
-    }
-    public function add(Request $request)
+ // Show cart page
+    public function showCart()
     {
-         $productId = $request->input('product_id');
-
         $cart = session()->get('cart', []);
+        return view('frontend.cart', compact('cart'));
+    }
 
-        if (isset($cart[$product->id])) {
-            $cart[$product->id]['quantity']++;
-        } else {
-            $cart[$product->id] = [
-                "name" => $product->name,
-                "price" => $product->price,
-                "image" => $product->image,
-                "quantity" => 1
-            ];
-        }
+  public function addToCart($id, Request $request)
+    {
+       $product = Product::findOrFail($id);
+
+    $cart = session()->get('cart', []);
+
+    $cart[$id] = [
+        'name' => $product->name,
+        'quantity' => isset($cart[$id]) ? $cart[$id]['quantity'] + 1 : 1,
+        'price' => $product->price,
+        'image' => 'uploads/products/' . $product->image, // ✅ Correct image path
+    ];
+
+    session()->put('cart', $cart);
+
+    return redirect()->back()->with('success', 'Product added to cart!');
+}
+public function update(Request $request)
+{
+    if ($request->id && $request->quantity) {
+        $cart = session()->get('cart');
+
+        $cart[$request->id]['quantity'] = $request->quantity;
 
         session()->put('cart', $cart);
 
-        return response()->json(['success' => 'Product added to cart!']);
-    }
-
-
-public function update(Request $request, $id)
-{
-    $cart = session()->get('cart');
-
-    if ($request->action == 'increase') {
-        $cart[$id]['quantity']++;
-    } elseif ($request->action == 'decrease') {
-        $cart[$id]['quantity']--;
-        if ($cart[$id]['quantity'] < 1) {
-            unset($cart[$id]);
+        $item_total = $cart[$request->id]['price'] * $cart[$request->id]['quantity'];
+        $cart_total = 0;
+        foreach ($cart as $item) {
+            $cart_total += $item['price'] * $item['quantity'];
         }
-    }
 
-    session()->put('cart', $cart);
-    return redirect()->back();
+        return response()->json([
+            'item_total' => $item_total,
+            'cart_total' => $cart_total
+        ]);
+    }
 }
 public function remove($id)
 {
     $cart = session()->get('cart');
-    unset($cart[$id]);
-    session()->put('cart', $cart);
-    return redirect()->back();
-}
-public function clear()
-{
-    session()->forget('cart');
-    return redirect()->back();
+
+    if (isset($cart[$id])) {
+        unset($cart[$id]);
+        session()->put('cart', $cart);
+    }
+
+    return redirect()->route('cart.show')->with('success', 'Product removed from cart!');
 }
 }

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Online shopping</title>
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -43,65 +44,31 @@
 
     <!-- Custom Additional JS -->
     <script src="{{ asset('js/shopus.js') }}"></script>
-
-<<<<<<< HEAD
-   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function (e) {
-=======
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function(e) {
->>>>>>> 4ca7f28fcd5213fcb163b5fc37c9692c639ded9f
-                e.preventDefault();
-                const url = this.getAttribute('href');
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            let productId = this.getAttribute('data-id');
 
-                fetch(url, {
-<<<<<<< HEAD
-                    method: 'GET',
+            fetch(`/user/add-to-cart/${productId}`, {
+                    method: 'POST',
                     headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
+                        'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
+                    },
+                    body: JSON.stringify({})
                 })
                 .then(response => response.json())
                 .then(data => {
-                    alert('Product added to cart!');
-                    // Optionally update cart count or UI here
+                    alert(data.success || "Added to cart");
                 })
                 .catch(error => {
-                    console.error('Error adding to cart:', error);
-                    alert('Failed to add to cart');
+                    console.error('Error:', error);
                 });
-            });
-        });
-    });
-</script>
-
-
-=======
-                        method: 'GET',
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert('Product added to cart!');
-                        // Optionally update cart count or UI here
-                    })
-                    .catch(error => {
-                        console.error('Error adding to cart:', error);
-                        alert('Failed to add to cart');
-                    });
-            });
         });
     });
     </script>
->>>>>>> 4ca7f28fcd5213fcb163b5fc37c9692c639ded9f
+
 </body>
 
 </html>
