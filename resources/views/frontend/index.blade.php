@@ -374,8 +374,11 @@
                             @endforeach
 
                             <div class="product-cart-btn">
-                                <button class="product-btn add-to-cart" data-id="{{ $product->id }}">Add To
-                                    Cart</button>
+                                <a href="{{ route('cart.add', ['id' => $product->id]) }}"
+                                    class="product-btn add-to-cart">
+                                    Add To Cart
+                                </a>
+                                          
                             </div>
                         </div>
                     </div>
