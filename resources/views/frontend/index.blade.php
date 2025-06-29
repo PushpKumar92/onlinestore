@@ -327,66 +327,85 @@
     <!--------------- arrival-section--------------->
     <section class="product arrival">
         <div class="container">
-            <div class="section-title">
-                <h5>NEW ARRIVALS</h5>
-                <a href="{{ route('product.sidebar')}}" class="view">View All</a>
+            <div class="section-title d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">NEW ARRIVALS</h5>
+                <a href="{{ route('product.sidebar') }}" class="view btn btn-link">View All</a>
             </div>
+
             <div class="arrival-section">
-                <div class="row g-5">
+                <div class="row g-4">
+                    <div id="cart-alert"
+                        style="display:none; position: fixed; top: 20px; right: 20px; background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000;">
+                        Product added to cart successfully!
+                    </div>
+
                     @foreach ($products as $product)
+                    @php
+                    $price = $product->price;
+                    $discount = $product->discount ?? 0;
+                    $hasDiscount = $discount > 0;
+                    $discountedPrice = $hasDiscount ? round($price - ($price * $discount / 100), 2) : $price;
+                    @endphp
+
                     <div class="col-lg-3 col-sm-6">
                         <div class="product-wrapper" data-aos="fade-up">
-                            <div class="product-img">
+                            <div class="product-img position-relative">
+
+                                {{-- Discount Badge --}}
+                                @if($hasDiscount)
+                                <span
+                                    class="discount-badge position-absolute top-0 start-0 bg-danger text-white px-2 py-1 rounded-end">
+                                    {{ $discount }}% OFF
+                                </span>
+                                @endif
+
                                 <img src="{{ asset('uploads/products/' . $product->image) }}" alt="{{ $product->name }}"
-                                    style="width: 100%; height: 100%;">
-                                <div class="product-cart-items">
+                                    class="img-fluid w-100" style="object-fit: cover; height: 300px;">
+
+                                <div class="product-cart-items position-absolute bottom-0 end-0 p-2 d-flex gap-2">
                                     <a href="#" class="cart cart-item">
                                         <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-arrows-alt" style="font-size: 20px; color: #181818;"></i>
+                                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
+                                            style="width: 40px; height: 40px;">
+                                            <i class="fas fa-arrows-alt text-dark"></i>
                                         </span>
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
+                                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
+                                            style="width: 40px; height: 40px;">
+                                            <i class="fas fa-heart text-success"></i>
                                         </span>
                                     </a>
-
                                 </div>
                             </div>
-                            <div class="product-info">
-                                <div class="ratings">
-                                    <span class="text-warning">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </span>
-                                </div>
+
+                            <div class="product-info mt-3">
                                 <div class="product-description">
-                                    <a href="{{ route('product.info', $product->id) }}" class="product-details">
+                                    <a href="{{ route('product.info', $product->id) }}"
+                                        class="product-details fw-bold text-dark d-block mb-2">
                                         {{ $product->name }}
                                     </a>
+
                                     <div class="price">
-                                        @if($product->discount_price)
-                                        <span class="price-cut">₹{{ $product->discount_price }}</span>
+                                        @if($hasDiscount)
+                                        <span class="new-price text-success fw-bold me-2">₹{{ $discountedPrice }}</span>
+                                        <span class="price-cut text-muted"><del>₹{{ $price }}</del></span>
+                                        @else
+                                        <span class="new-price text-dark fw-bold">₹{{ $price }}</span>
                                         @endif
-                                        <span class="new-price">₹{{ $product->price }}</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="product-cart-btn">
-                                <button class="product-btn add-to-cart" data-id="{{ $product->id }}">Add to
-                                    Cart</button>
+                            <div class="product-cart-btn text-center mt-3">
+                                <button class="product-btn add-to-cart" data-id="{{ $product->id }}">
+                                    Add to Cart
+                                </button>
                             </div>
                         </div>
                     </div>
                     @endforeach
-
-
 
                 </div>
             </div>
@@ -435,7 +454,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -484,7 +503,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -534,7 +553,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -585,7 +604,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -650,7 +669,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -700,7 +719,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -750,7 +769,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -800,7 +819,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -850,7 +869,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -900,7 +919,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -1052,7 +1071,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -1102,7 +1121,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -1152,7 +1171,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -1202,7 +1221,7 @@
 
 
                                     </a>
-                                    <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>

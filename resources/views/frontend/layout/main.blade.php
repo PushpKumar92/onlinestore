@@ -44,35 +44,12 @@
 
     <!-- Custom Additional JS -->
     <script src="{{ asset('js/shopus.js') }}"></script>
-<<<<<<< HEAD
-    <script>
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            let productId = this.getAttribute('data-id');
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-            fetch(`/user/add-to-cart/${productId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({})
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert(data.success || "Added to cart");
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
-    });
+
+    <script src="{{asset('js/pushp.js')}}">
+
     </script>
-
-=======
-      
->>>>>>> 7aeeba0aac2e6dc3b6f082c2d9f9aa4318d0f50d
 </body>
 
 </html>

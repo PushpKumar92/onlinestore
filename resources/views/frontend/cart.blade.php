@@ -3,7 +3,7 @@
 
 <main class="main-content">
 
-    <!--------------- blog-title-section ---------------->
+    <!-- Title Section -->
     <section class="blog about-blog">
         <div class="container">
             <div class="blog-bradcrum">
@@ -16,93 +16,103 @@
             </div>
         </div>
     </section>
-    <!--------------- blog-title-section-end ---------------->
-    @if (session('success'))
+
+    {{-- Remove all session popups as requested --}}
+    {{-- @if (session('success'))
     <div class="alert alert-success text-center">{{ session('success') }}</div>
-    @endif
+    @endif --}}
 
     @if(session('cart'))
-    <div class="container my-4 mb-5">
-        <div class="table-responsive">
-            <table class="table table-bordered align-middle">
-                <thead class="table-light">
-                    <tr>
-                        <th scope="col">Product</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Subtotal</th>
-                        <th scope="col">Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php $total = 0 @endphp
-                    @foreach(session('cart') as $id => $details)
-                    @php $subtotal = $details['price'] * $details['quantity'] @endphp
-                    @php $total += $subtotal @endphp
-                    <tr>
-                        <td>
-                            <img src="{{ asset($details['image'] ?? 'uploads/products/default.jpg') }}"
-                                alt="{{ $details['name'] ?? 'Product' }}" width="60" height="60"
-                                class="img-thumbnail" />
-                        </td>
-                        <td>
-                            <input type="number" value="{{ $details['quantity'] }}"
-                                class="form-control quantity update-cart" min="1" />
-                        </td>
-                        <td>₹{{ $details['price'] }}</td>
-                        <td class="item-total">₹{{ $details['price'] * $details['quantity'] }}</td>
-                        <td>
-                            <form method="POST" action="{{ route('cart.remove', $id) }}">
-                                @csrf
-                                <button class="btn btn-danger btn-sm">Remove</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="text-end">
-                <h4>Total: ₹{{ number_format($total, 2) }}</h4>
-                <a href="{{ route('checkout') }}" class="btn btn-success mt-3">Proceed to Checkout</a>
+    <div class="container py-5 mb-5">
+        <div class="row g-4">
+            @php $total = 0; @endphp
+            @foreach(session('cart') as $id => $details)
+            @php
+            $price = $details['price'] ?? 0;
+            $discount = isset($details['discount']) ? (float) $details['discount'] : 0;
+            $discountedPrice = $discount > 0 ? round($price - ($price * $discount / 100), 2) : $price;
+            $subtotal = $discountedPrice * $details['quantity'];
+            $total += $subtotal;
+            @endphp
+
+            <div class="col-12 border rounded p-3 d-flex flex-wrap align-items-center justify-content-between gap-3"
+                data-id="{{ $id }}">
+
+                <div class="d-flex gap-3 align-items-center flex-wrap">
+                    {{-- Image with fallback --}}
+                    @if(!empty($details['image']) && file_exists(public_path('uploads/products/' . $details['image'])))
+                    <img src="{{ asset('uploads/products/' . $details['image']) }}"
+                        alt="{{ $details['name'] ?? 'Product Image' }}"
+                        style="width: 80px; height: 80px; object-fit: cover;">
+                    @else
+                    <img src="{{ asset('images/no-image.png') }}" alt="No Image"
+                        style="width: 80px; height: 80px; object-fit: cover;">
+                    @endif
+
+                    <div>
+                        <h5>{{ $details['name'] ?? 'No name available' }}</h5>
+                        <p class="text-muted mb-1">{{ $details['description'] ?? 'No description' }}</p>
+
+                        @php
+                        $price = $details['original_price'];
+                        $finalPrice = $details['price'];
+                        $discount = $details['discount'];
+                        $subtotal = $finalPrice * $details['quantity'];
+                        $total += $subtotal;
+                        @endphp
+
+                        <p class="mb-0">
+                            Price:
+                            @if($discount > 0)
+                            <span style="color:red; font-weight:bold;">₹{{ number_format($finalPrice, 2) }}</span>
+                            <small><del>₹{{ number_format($price, 2) }}</del></small>
+                            <span class="text-success">({{ $discount }}% OFF)</span>
+                            @else
+                            ₹{{ number_format($finalPrice, 2) }}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+
+                <tr class="cart-item-row" data-id="{{ $id }}">
+                    <td>
+                        <!-- Quantity Buttons -->
+                        <div class="input-group quantity-wrapper" style="width: 130px;">
+                            <button class="btn btn-outline-secondary btn-decrease" type="button"
+                                data-id="{{ $id }}">−</button>
+                            <span class="form-control text-center quantity-display"
+                                id="quantity-{{ $id }}">{{ $details['quantity'] }}</span>
+                            <button class="btn btn-outline-secondary btn-increase" type="button"
+                                data-id="{{ $id }}">+</button>
+                        </div>
+                    </td>
+
+                </tr>
+                {{-- Subtotal and Remove --}}
+                <div>
+                    <p class="fw-semibold mb-1">Subtotal: <span
+                            class="item-total">₹{{ number_format($subtotal, 2) }}</span></p>
+                    <form method="POST" action="{{ route('cart.remove', $id) }}">
+                        @csrf
+                        <button class="btn btn-sm btn-danger">Remove</button>
+                    </form>
+                </div>
             </div>
+            @endforeach
+        </div>
+
+        <div class="text-end mt-4">
+            <h4>Total: ₹<span id="cart-total">{{ number_format($total, 2) }}</span></h4>
+            <a href="{{ route('checkout') }}" class="btn btn-primary py-3 me-3 mt-3">Proceed to Checkout</a>
+            <a href="{{ route('index') }}" class="btn btn-secondary py-3 mt-3">Continue Shopping</a>
         </div>
     </div>
     @else
-    <div class="container text-center my-5 mb-5">
+    <div class="container text-center mb-5">
         <p class="fs-4">🛒 Your cart is empty!</p>
-        <a href="{{ route('shop') }}" class="btn btn-primary mt-3">Continue Shopping</a>
+        <a href="{{ route('index') }}" class="btn btn-primary mt-3">Continue Shopping</a>
     </div>
     @endif
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.update-cart').forEach(function(input) {
-            input.addEventListener('change', function() {
-                const row = this.closest('tr');
-                const id = row.getAttribute('data-id');
-                const quantity = this.value;
-
-                fetch("{{ route('cart.update') }}", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                        },
-                        body: JSON.stringify({
-                            id: id,
-                            quantity: quantity
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        row.querySelector('.item-total').textContent = '₹' + data
-                        .item_total;
-                        document.getElementById('cart-total').textContent = data.cart_total;
-                    });
-            });
-        });
-    });
-    </script>
 
 
 </main>

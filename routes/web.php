@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\WatchlistController;
 
 
 
@@ -31,7 +32,6 @@ Route::get('/product-info', [MainController::class, 'productInfo'])->name('produ
 Route::get('/privacy', [MainController::class, 'privacy'])->name('privacy');
 Route::get('/terms', [MainController::class, 'terms'])->name('terms');
 Route::get('/faq', [MainController::class, 'faq'])->name('faq');
-Route::get('/wishlist', [MainController::class, 'wishlist'])->name('wishlist');
 Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
 Route::get('/blog', [MainController::class, 'blog'])->name('blog');
 Route::get('/blog-details', [MainController::class, 'blogDetails'])->name('blog.details');
@@ -53,6 +53,11 @@ Route::post('user/add-to-cart/{id}', [CartController::class, 'addToCart'])->name
 Route::post('/user/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
 
+//watch list 
+  Route::get('/watchlist', [WatchlistController::class, 'index'])->name('watchlist.index');
+    Route::post('/watchlist/add/{id}', [WatchlistController::class, 'add'])->name('watchlist.add');
+    Route::get('/watchlist/remove/{id}', [WatchlistController::class, 'remove'])->name('watchlist.remove');
+    Route::get('/watchlist/count', [WatchlistController::class, 'count'])->name('watchlist.count');
 
 Route::middleware('user.auth')->prefix('user')->group(function () {
    

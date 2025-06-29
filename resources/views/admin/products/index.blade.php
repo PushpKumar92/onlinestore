@@ -8,7 +8,9 @@
             <th>ID</th>
             <th>Image</th>
             <th>Name</th>
+            <th>Description</th>
             <th>Price</th>
+            <th>Discount</th> <!-- New Discount Column -->
             <th>Quantity</th>
             <th>Actions</th>
         </tr>
@@ -26,7 +28,9 @@
                 @endif
             </td>
             <td>{{ $product->name }}</td>
+            <td>{{ $product->description }}</td>
             <td>{{ $product->price }}</td>
+            <td>{{ $product->discount ?? '0%' }}</td> <!-- Display Discount -->
             <td>{{ $product->quantity }}</td>
             <td>
                 <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
