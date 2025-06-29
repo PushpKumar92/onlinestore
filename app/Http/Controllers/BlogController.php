@@ -33,7 +33,7 @@ class BlogController extends Controller
         'meta_title' => 'nullable|string|max:255',
         'meta_description' => 'nullable|string',
         'meta_tags' => 'nullable|string|max:255',
-        'status' => 'required|in:0,1',
+
     ]);
 
     $data = $request->only([
@@ -42,7 +42,7 @@ class BlogController extends Controller
         'meta_title',
         'meta_description',
         'meta_tags',
-        'status'
+   
     ]);
 
     if ($request->hasFile('image')) {

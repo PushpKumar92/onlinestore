@@ -10,7 +10,6 @@ class Blog extends Model
          'title',
     'content',
     'image',
-    'status',
     'meta_title',
     'meta_description',
     'meta_tags',

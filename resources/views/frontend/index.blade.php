@@ -16,7 +16,12 @@
                                     </h5>
                                     <h1 class="wrapper-details">Fashion Collection
                                         Summer Sale</h1>
-                                    <a href="{{ route('product.sidebar')}}" class="shop-btn">Shop Now</a>
+                                    <a href="{{ route('product.sidebar')}}" class="shop-btn">Shop Now
+                                        <span>
+                                            <i class="fa-solid fa-greater-than"></i>
+
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -31,7 +36,12 @@
                                     </h5>
                                     <h1 class="wrapper-details">Fashion Collection
                                         Summer Sale</h1>
-                                    <a href="#" class="shop-btn">Shop Now</a>
+                                    <a href="#" class="shop-btn">Shop Now
+                                        <span>
+                                            <i class="fa-solid fa-greater-than"></i>
+
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +56,12 @@
                                     </h5>
                                     <h1 class="wrapper-details">Fashion Collection
                                         Summer Sale</h1>
-                                    <a href="#" class="shop-btn">Shop Now</a>
+                                    <a href="#" class="shop-btn">Shop Now
+                                        <span>
+                                            <i class="fa-solid fa-greater-than"></i>
+
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -71,6 +86,10 @@
                                     <span class="wrapper-inner-title">& Make New</span> Fusion.
                                 </h4>
                                 <a href="{{ route('product.sidebar')}}" class="shop-btn">Shop Now
+                                    <span>
+                                        <i class="fa-solid fa-greater-than"></i>
+
+                                    </span>
                                 </a>
                             </div>
                         </div>
@@ -85,6 +104,10 @@
                                     Products
                                 </h4>
                                 <a href="{{ route('product.sidebar')}}" class="shop-btn">Shop Now
+                                    <span>
+                                        <i class="fa-solid fa-greater-than"></i>
+
+                                    </span>
                                 </a>
                             </div>
                         </div>
@@ -1229,13 +1252,10 @@
                                 </h4>
                                 <a href="{{ route('product.sidebar')}}" class="shop-btn">Shop Now
                                     <span>
-                                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="1.45312" y="0.914062" width="9.25346" height="2.05632"
-                                                transform="rotate(45 1.45312 0.914062)" />
-                                            <rect x="8" y="7.45703" width="9.25346" height="2.05632"
-                                                transform="rotate(135 8 7.45703)" />
-                                        </svg>
+                                        <span>
+                                            <i class="fa-solid fa-greater-than"></i>
+
+                                        </span>
                                     </span>
                                 </a>
                             </div>
@@ -1252,13 +1272,7 @@
                                 </h4>
                                 <a href="{{ route('product.sidebar')}}" class="shop-btn">Shop Now
                                     <span>
-                                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="1.45312" y="0.914062" width="9.25346" height="2.05632"
-                                                transform="rotate(45 1.45312 0.914062)" />
-                                            <rect x="8" y="7.45703" width="9.25346" height="2.05632"
-                                                transform="rotate(135 8 7.45703)" />
-                                        </svg>
+                                        <i class="fa-solid fa-greater-than"></i>
                                     </span>
                                 </a>
                             </div>

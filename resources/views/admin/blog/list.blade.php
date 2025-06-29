@@ -36,7 +36,7 @@
                         @endif
                     </td>
                     <td class="fw-semibold">{{ $blog->title }}</td>
-                    <td class="d-none d-md-table-cell">{{ \Illuminate\Support\Str::limit($blog->content, 100) }}</td>
+                    <td class="d-none d-md-table-cell" style="width:280px;">{{ $blog->content }}</td>
                     <td class="text-nowrap">{{ $blog->created_at->format('d M, Y') }}</td>
                     <td class="text-center">
                         <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-sm btn-primary me-1 mb-1"
