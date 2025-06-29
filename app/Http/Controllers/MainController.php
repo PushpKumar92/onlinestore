@@ -93,10 +93,6 @@ class MainController extends Controller
         return view('frontend.order');
     }
 
-    // Wishlist & Compare Pages
-    public function wishlist() {
-        return view('frontend.wishlist');
-    }
 
     public function emptyWishlist() {
         return view('frontend.empty-wishlist');
