@@ -220,7 +220,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                            <a href="{{ route('watchlist.index')}}" class="favourite cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
@@ -274,7 +274,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                            <a href="{{ route('watchlist.index')}}" class="favourite cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
@@ -328,7 +328,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                            <a href="{{ route('watchlist.index')}}" class="favourite cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
@@ -382,7 +382,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                            <a href="{{ route('watchlist.index')}}" class="favourite cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
@@ -436,7 +436,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                            <a href="{{ route('watchlist.index')}}" class="favourite cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
@@ -490,7 +490,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                            <a href="{{ route('watchlist.index')}}" class="favourite cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
@@ -550,7 +550,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                            <a href="{{ route('watchlist.index')}}" class="favourite cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
@@ -604,7 +604,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                            <a href="{{ route('watchlist.index')}}" class="favourite cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
@@ -658,7 +658,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                            <a href="{{ route('watchlist.index')}}" class="favourite cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
@@ -712,7 +712,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                            <a href="{{ route('watchlist.index')}}" class="favourite cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
@@ -766,7 +766,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                            <a href="{{ route('watchlist.index')}}" class="favourite cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"
@@ -820,7 +820,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('wishlist')}}" class="favourite cart-item">
+                                            <a href="{{ route('watchlist.index')}}" class="favourite cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-heart"

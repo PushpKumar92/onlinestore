@@ -103,14 +103,14 @@
 
         <div class="text-end mt-4">
             <h4>Total: ₹<span id="cart-total">{{ number_format($total, 2) }}</span></h4>
-            <a href="{{ route('checkout') }}" class="btn btn-primary py-3 me-3 mt-3">Proceed to Checkout</a>
-            <a href="{{ route('index') }}" class="btn btn-secondary py-3 mt-3">Continue Shopping</a>
+            <a href="{{ route('checkout') }}" class="shop-btn py-3 me-3 mt-3">Proceed to Checkout</a>
+            <a href="{{ route('index') }}" class="shop-btn py-3 mt-3">Continue Shopping</a>
         </div>
     </div>
     @else
     <div class="container text-center mb-5">
-        <p class="fs-4">🛒 Your cart is empty!</p>
-        <a href="{{ route('index') }}" class="btn btn-primary mt-3">Continue Shopping</a>
+        <h2 class="fs-4">🛒 Your cart is empty!</h2>
+        <a href="{{ route('index') }}" class="shop-btn mt-3">Continue Shopping</a>
     </div>
     @endif
 

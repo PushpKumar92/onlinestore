@@ -481,6 +481,8 @@
    }
  }
 
+
+
  .blog-item,
  .cart-content {
    display: flex;
@@ -3607,8 +3609,6 @@
  .blog-details .wrapper-img {
    height: 45.7rem;
  }
-
-<<<<<<< HEAD
  .blog-details .wrapper-img img {
    object-fit: cover;
  }
@@ -3754,6 +3754,9 @@
    .review-form .review-inner-form {
      flex-direction: column;
    }
+ }
+ .blog{
+  height:auto;
  }
 
  .blog-post-section {
@@ -5877,7 +5880,7 @@
  .dropdown-menu a:hover {
    background-color: #f5f5f5;
  }
-=======
+
 .dropdown-menu a:hover {
     background-color: #f5f5f5;
 }
@@ -5898,4 +5901,3 @@
 .fa-heart.added {
     color: red; /* after added */
 }
->>>>>>> eb0b904d3c35d92e3e2b725eb8d0aeb7c4ba8028

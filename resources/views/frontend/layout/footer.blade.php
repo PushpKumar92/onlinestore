@@ -25,101 +25,6 @@
                                         stroke-miterlimit="10" stroke-linecap="square" />
                                 </svg>
 
-<<<<<<< HEAD
-                              </span>
-                          </div>
-                          <div class="service-content">
-                              <h5 class="service-info service-title">Free Shipping</h5>
-                              <p class="service-info service-details">When ordering over $100</p>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                      <div class="service-wrapper free-shipping">
-                          <div class="service-img">
-                              <span>
-                                  <svg width="32" height="37" viewBox="0 0 32 34" fill="none"
-                                      xmlns="http://www.w3.org/2000/svg">
-                                      <path
-                                          d="M31 17.4492C31 25.6992 24.25 32.4492 16 32.4492C7.75 32.4492 1 25.6992 1 17.4492C1 9.19922 7.75 2.44922 16 2.44922C21.85 2.44922 26.95 5.74922 29.35 10.6992"
-                                          stroke="#F9FFFB" stroke-width="2" stroke-miterlimit="10" />
-                                      <path d="M30.7 2L29.5 10.85L20.5 9.65" stroke="#F9FFFB" stroke-width="2"
-                                          stroke-miterlimit="10" stroke-linecap="square" />
-                                  </svg>
-                              </span>
-                          </div>
-                          <div class="service-content">
-                              <h5 class="service-info service-title">Free Return</h5>
-                              <p class="service-info service-details">Get Return within 30 days</p>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                      <div class="service-wrapper free-shipping">
-                          <div class="service-img">
-                              <span>
-                                  <svg width="32" height="37" viewBox="0 0 32 38" fill="none"
-                                      xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M22.6654 18.668H9.33203V27.0013H22.6654V18.668Z" stroke="#F9FFFB"
-                                          stroke-width="2" stroke-miterlimit="10" stroke-linecap="square" />
-                                      <path
-                                          d="M12.668 18.6654V13.6654C12.668 11.832 14.168 10.332 16.0013 10.332C17.8346 10.332 19.3346 11.832 19.3346 13.6654V18.6654"
-                                          stroke="#F9FFFB" stroke-width="2" stroke-miterlimit="10"
-                                          stroke-linecap="square" />
-                                      <path
-                                          d="M31 22C31 30.3333 24.3333 37 16 37C7.66667 37 1 30.3333 1 22V5.33333L16 2L31 5.33333V22Z"
-                                          stroke="#F9FFFB" stroke-width="2" stroke-miterlimit="10"
-                                          stroke-linecap="square" />
-                                  </svg>
-                              </span>
-                          </div>
-                          <div class="service-content">
-                              <h5 class="service-info service-title">Secure Payment</h5>
-                              <p class="service-info service-details">100% Secure Online Payment</p>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                      <div class="service-wrapper free-shipping">
-                          <div class="service-img">
-                              <span>
-                                  <svg width="32" height="37" viewBox="0 0 32 35" fill="none"
-                                      xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M7 13H5.5C2.95 13 1 11.05 1 8.5V1H7" stroke="#F9FFFB" stroke-width="2"
-                                          stroke-miterlimit="10" />
-                                      <path d="M25 13H26.5C29.05 13 31 11.05 31 8.5V1H25" stroke="#F9FFFB"
-                                          stroke-width="2" stroke-miterlimit="10" />
-                                      <path d="M16 28V22" stroke="#F9FFFB" stroke-width="2" stroke-miterlimit="10" />
-                                      <path d="M16 22C11.05 22 7 17.95 7 13V1H25V13C25 17.95 20.95 22 16 22Z"
-                                          stroke="#F9FFFB" stroke-width="2" stroke-miterlimit="10"
-                                          stroke-linecap="square" />
-                                      <path d="M25 34H7C7 30.7 9.7 28 13 28H19C22.3 28 25 30.7 25 34Z" stroke="#F9FFFB"
-                                          stroke-width="2" stroke-miterlimit="10" stroke-linecap="square" />
-                                  </svg>
-                              </span>
-                          </div>
-                          <div class="service-content">
-                              <h5 class="service-info service-title">Best Quality</h5>
-                              <p class="service-info service-details">Original Product Guarenteed</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="footer-section">
-              <div class="row gy-5">
-                  <div class="col-lg-3 col-sm-6">
-                      <div class="footer-order">
-                          <div class="logo">
-                              <img src=" {{ asset('assets/images/logos/footer-logo.webp') }}" alt="logo">
-                          </div>
-                          <div class="footer-link order-link">
-                              <ul>
-                                  <li><a href="{{ route('order') }}">Track Order</a></li>
-                                  <li><a href="{{ route('cart.show')}}">Delivery & Returns</a></li>
-                                  <li><a href="{{ route('about') }}">Warranty</a></li>
-                              </ul>
-=======
                             </span>
                         </div>
                         <div class="service-content">
@@ -213,7 +118,6 @@
                                 <li><a href="{{ route('cart.show')}}">Delivery & Returns</a></li>
                                 <li><a href="{{ route('about') }}">Warranty</a></li>
                             </ul>
->>>>>>> eb0b904d3c35d92e3e2b725eb8d0aeb7c4ba8028
 
                         </div>
 
