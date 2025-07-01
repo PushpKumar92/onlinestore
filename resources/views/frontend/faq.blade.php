@@ -20,7 +20,7 @@
     <section class="faq product footer-padding">
         <div class="container">
             <div class="row gy-5">
-                <div class="col-lg-6">
+                <div class="col">
                     <div class="faq-accordion accordion accordion-flush" id="accordionFlushExample"
                         data-aos="fade-right">
                         <h5>Frequently Asked Questions</h5>
@@ -164,7 +164,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <!-- <div class="col-lg-6">
                     <div class="question-section login-section " data-aos="fade-left">
                         <div class="review-form">
                             <h5 class="comment-title">Have Any Question</h5>
@@ -192,7 +192,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

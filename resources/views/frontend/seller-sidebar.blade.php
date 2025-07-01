@@ -282,7 +282,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('compaire')}}" class="compaire cart-item">
+                                            <a href="" class="compaire cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-sync-alt"
@@ -342,7 +342,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('compaire')}}" class="compaire cart-item">
+                                            <a href="" class="compaire cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-sync-alt"
@@ -402,7 +402,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('compaire')}}" class="compaire cart-item">
+                                            <a href="" class="compaire cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-sync-alt"
@@ -437,7 +437,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6">
+                            <div class="col-lg-4 col-md-6">
                                 <div class="product-wrapper" data-aos="fade-up">
                                     <div class="product-img">
                                         <img src="{{ asset('assets/images/homepage-one/product-img/product-img-5.webp') }}"
@@ -462,7 +462,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('compaire')}}" class="compaire cart-item">
+                                            <a href="" class="compaire cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-sync-alt"
@@ -522,7 +522,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('compaire')}}" class="compaire cart-item">
+                                            <a href="" class="compaire cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-sync-alt"
@@ -582,7 +582,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('compaire')}}" class="compaire cart-item">
+                                            <a href="" class="compaire cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-sync-alt"
@@ -648,7 +648,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('compaire')}}" class="compaire cart-item">
+                                            <a href="" class="compaire cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-sync-alt"
@@ -709,7 +709,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('compaire')}}" class="compaire cart-item">
+                                            <a href="" class="compaire cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-sync-alt"
@@ -770,7 +770,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('compaire')}}" class="compaire cart-item">
+                                            <a href="" class="compaire cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-sync-alt"
@@ -831,7 +831,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('compaire')}}" class="compaire cart-item">
+                                            <a href="" class="compaire cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-sync-alt"
@@ -892,7 +892,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('compaire')}}" class="compaire cart-item">
+                                            <a href="" class="compaire cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-sync-alt"
@@ -953,7 +953,7 @@
 
 
                                             </a>
-                                            <a href="{{ route('compaire')}}" class="compaire cart-item">
+                                            <a href="" class="compaire cart-item">
                                                 <span
                                                     style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                                     <i class="fas fa-sync-alt"

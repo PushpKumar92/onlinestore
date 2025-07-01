@@ -23,5 +23,4 @@
     <!--------------- wishlist-section-end---------------->
 
 </main>
-
 @endsection

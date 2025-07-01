@@ -8,6 +8,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WatchlistController;
+use App\Http\Controllers\VendorController;
 
 
 
@@ -41,7 +42,6 @@ Route::get('/sellers', [MainController::class, 'sellers'])->name('sellers');
 Route::get('/user-profile', [MainController::class, 'userProfile'])->name('user.profile');
 Route::get('/contact-us', [MainController::class, 'contactUs'])->name('contact.us');
 Route::get('/empty-card', [MainController::class, 'emptyCard'])->name('empty.card');
-Route::get('/becomevendor', [MainController::class, 'becomevendor'])->name('becomevendor');
 Route::get('/product-sidebar', [MainController::class, 'productSidebar'])->name('product.sidebar');
 Route::get('/seller-sidebar', [MainController::class, 'sellerSidebar'])->name('seller.sidebar');
 Route::get('/empty-wishlist', [MainController::class, 'emptyWishlist'])->name('empty.wishlist');
@@ -108,8 +108,13 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
     Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
-    
 
+    
+Route::get('/admin/vendors', [VendorController::class, 'showPendingVendors'])->name('admin.vendors');
+Route::post('/admin/vendors/approve/{id}', [VendorController::class, 'approveVendor'])->name('admin.vendor.approve');
      
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
+Route::get('/vendor/register', [VendorController::class, 'register'])->name('vendor.register');
+Route::post('/vendor/register', [VendorController::class, 'registerSubmit'])->name('vendor.register.submit');
+Route::post('/vendor/login', [VendorController::class, 'login'])->name('vendor.login');

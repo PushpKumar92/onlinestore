@@ -67,13 +67,9 @@ class MainController extends Controller
         return view('frontend.create-account');
     }
 
-    public function becomevendor() {
-        return view('frontend.becomevendor');
-    }
-
     // User Pages
     public function userProfile() {
-        return view('frontend.user-profile');
+        return view('frontend.userprofile');
     }
 
     // Cart & Order Pages

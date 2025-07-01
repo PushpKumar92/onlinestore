@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{{ asset('css/aos-3.0.0.css') }}">
     <link rel="stylesheet" href="{{ asset('css/swiper10-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nouislider.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css.map') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 

@@ -109,7 +109,7 @@
     </div>
     @else
     <div class="container text-center mb-5">
-        <h2 class="fs-4">🛒 Your cart is empty!</h2>
+        <h2 class="fw-6">🛒 Your cart is empty!</h2>
         <a href="{{ route('index') }}" class="shop-btn mt-3">Continue Shopping</a>
     </div>
     @endif
