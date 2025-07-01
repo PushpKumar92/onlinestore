@@ -370,7 +370,7 @@
                                             <i class="fas fa-arrows-alt text-dark"></i>
                                         </span>
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
                                             style="width: 40px; height: 40px;">
@@ -454,7 +454,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -503,7 +503,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -553,7 +553,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -604,7 +604,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -669,7 +669,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -719,7 +719,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -769,7 +769,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -819,7 +819,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -869,7 +869,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -919,7 +919,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -1071,7 +1071,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -1121,7 +1121,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -1171,7 +1171,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
@@ -1221,7 +1221,7 @@
 
 
                                     </a>
-                                    <a href="{{route('watchlist.index')}}" class="favourite cart-item">
+                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>

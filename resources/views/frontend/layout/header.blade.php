@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="header-favourite">
-                        <a href="{{ route('watchlist.index') }}">
+                        <a href="{{ route('wishlist.index') }}">
                             <i class="fa fa-heart"></i>
                             <span id="watchlist-badge" class="badge bg-danger">Watchlist</span>
                         </a>
@@ -135,7 +135,7 @@
                 <div class="header-top">
                     <div class="header-cart ">
                         <div class="header-favourite">
-                            <a href="{{route('watchlist.index')}}" class="cart-item">
+                            <a href="{{route('wishlist.index')}}" class="cart-item">
                                 <span>
                                     <svg width="35" height="27" viewBox="0 0 35 27" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
