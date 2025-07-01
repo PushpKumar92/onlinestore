@@ -7,8 +7,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+<<<<<<< HEAD
 use App\Http\Controllers\WatchlistController;
 use App\Http\Controllers\VendorController;
+=======
+use App\Http\Controllers\WishlistController;
+>>>>>>> 6589440962acfed3c2c91c67e41c7041edebdab5
 
 
 
@@ -54,10 +58,10 @@ Route::post('/user/cart/remove/{id}', [CartController::class, 'remove'])->name('
 Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
 
 //watch list 
-  Route::get('/watchlist', [WatchlistController::class, 'index'])->name('watchlist.index');
-    Route::post('/watchlist/add/{id}', [WatchlistController::class, 'add'])->name('watchlist.add');
-    Route::get('/watchlist/remove/{id}', [WatchlistController::class, 'remove'])->name('watchlist.remove');
-    Route::get('/watchlist/count', [WatchlistController::class, 'count'])->name('watchlist.count');
+ Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+Route::get('/wishlist/add/{id}', [WishlistController::class, 'add'])->name('wishlist.add');
+Route::get('/wishlist/remove/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+Route::get('/wishlist/count', [WishlistController::class, 'count'])->name('wishlist.count');
 
 Route::middleware('user.auth')->prefix('user')->group(function () {
    

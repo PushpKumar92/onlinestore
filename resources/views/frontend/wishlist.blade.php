@@ -22,7 +22,7 @@
     <div class="container mt-5" style="margin-bottom:80px">
         <h2>Your Watchlist</h2>
         <div class="row">
-            @forelse($watchlistItems as $item)
+            @forelse($wishlistItems as $item)
             @php
             $product = isset($item->product) ? $item->product : $item; // support both logged-in and guest
             @endphp
