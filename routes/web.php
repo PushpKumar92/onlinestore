@@ -7,12 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
-<<<<<<< HEAD
-use App\Http\Controllers\WatchlistController;
-use App\Http\Controllers\VendorController;
-=======
 use App\Http\Controllers\WishlistController;
->>>>>>> 6589440962acfed3c2c91c67e41c7041edebdab5
 
 
 
