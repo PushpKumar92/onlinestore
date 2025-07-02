@@ -756,7 +756,7 @@
                                 <span class="list-text">Home</span>
                             </a>
                         <li>
-                            <li>
+                        <li>
                             <a href="{{ route('product.sidebar') }}">
                                 <span class="list-text">shop</span>
                             </a>
@@ -799,12 +799,32 @@
                         </li>
                     </ul>
                 </div>
-                <div class="header-vendor-btn">
-                    <a href="{{ route('vendor.register') }}" class="shop-btn">Become Vendor</a>
+                    <div class="header-vendor-btn">
+                        @if(Auth::guard('vendor')->check())
+                        @php
+                        $vendor = Auth::guard('vendor')->vendor();
+                        @endphp
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle" id="userDropdown" role="button">
+                                <img src="{{ asset('profile_images/' . $user->profile_image) }}" alt="Profile"
+                                    style="width:30px; height:30px; border-radius:50%; object-fit:cover;">
+                                {{ $vendor->name }}
+
+                            </a>
+                            <ul class="submenu dropdown-menu" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="{{ route('user.profile') }}">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a></li>
+                            </ul>
+                        </div>
+                        @else
+                        <li>
+                            <a href="{{ route('vendor.register') }}" class="shop-btn">Become Vendor</a>
+                        </li>
+                        @endif
 
 
-                    </a>
-                </div>
+                        </a>
+                    </div>
             </div>
         </div>
     </div>

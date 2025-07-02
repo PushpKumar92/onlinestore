@@ -8,6 +8,9 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\VendorController;
+   
+
 
 
 
@@ -117,3 +120,7 @@ Route::post('/admin/vendors/approve/{id}', [VendorController::class, 'approveVen
 Route::get('/vendor/register', [VendorController::class, 'register'])->name('vendor.register');
 Route::post('/vendor/register', [VendorController::class, 'registerSubmit'])->name('vendor.register.submit');
 Route::post('/vendor/login', [VendorController::class, 'login'])->name('vendor.login');
+
+
+
+

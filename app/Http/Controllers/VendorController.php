@@ -74,5 +74,10 @@ class VendorController extends Controller
 
         return back()->with('success', 'Vendor approved successfully!');
     }
+      public function index()
+    {
+        $vendors = Vendor::orderBy('created_at', 'desc')->get();
+        return view('admin.vendors.approval', compact('vendors'));
+    }
 }
 
