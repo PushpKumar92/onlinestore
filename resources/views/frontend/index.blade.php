@@ -1,7 +1,8 @@
 @extends('frontend.layout.main')
 @section('content')
 
-<main class="main-content">
+<h1 class="abx" style="font-size:6rem;">this is my home</h1>
+<main class=" main-content">
     <!--------------- hero-section --------------->
 
     <section id="hero" class="hero">
@@ -864,7 +865,7 @@
     </section>
     <!--------------- top-sell-section-end--------------->
 
-  
+
     <!--------------- weekly-section--------------->
     <section class="product weekly-sale">
         <div class="container">
