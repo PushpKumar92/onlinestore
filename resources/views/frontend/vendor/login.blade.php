@@ -1,0 +1,55 @@
+@extends('frontend.layout.main')
+@section('content')
+
+@if($errors->any())
+<div style="color: red;">{{ $errors->first() }}</div>
+@endif
+
+@if(session('message'))
+<div>{{ session('message') }}</div>
+@endif
+
+<main class="main-content">
+    <section class="blog about-blog">
+        <div class="container">
+            <div class="blog-bradcrum">
+                <span><a href="{{ route('index')}}">Home</a></span>
+                <span class="devider">/</span>
+                <span><a href="#">Vendor Login</a></span>
+            </div>
+            <div class="blog-heading about-heading">
+                <h1 class="heading">Vendor Login</h1>
+            </div>
+        </div>
+    </section>
+
+    <div class="form-wrapper">
+        <div class="form-section">
+            <form action="{{ route('vendor.login.submit') }}" method="POST">
+                @csrf
+                <div class="form-grid">
+                    <div class="form-label-group">
+                        <label>Email</label>
+                        <input name="email" type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-label-group">
+                        <label>Password</label>
+                        <input name="password" type="password" placeholder="Password" required>
+                    </div>
+                </div>
+                <button type="submit">Login</button>
+
+                <!-- Optional link back to registration -->
+                <div style="margin-top: 15px;">
+                    Don't have an account? <a href="{{ route('vendor.register') }}">Register now</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="vendorimage-section">
+            <img src="{{ asset('assets/images/homepage-one/vendor image.jpeg') }}" alt="Login Illustration">
+        </div>
+    </div>
+</main>
+
+@endsection

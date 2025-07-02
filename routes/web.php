@@ -112,15 +112,16 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
     Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
     
-Route::get('/admin/vendors', [VendorController::class, 'showPendingVendors'])->name('admin.vendors');
-Route::post('/admin/vendors/approve/{id}', [VendorController::class, 'approveVendor'])->name('admin.vendor.approve');
+
+Route::get('vendors', [VendorController::class, 'index'])->name('admin.index');
+Route::get('vendors/pending', [VendorController::class, 'showPendingVendors'])->name('admin.vendors');
+Route::post('vendors/approve/{id}', [VendorController::class, 'approveVendor'])->name('admin.vendor.approve');
+ Route::post('/vendors/{id}/decline', [VendorController::class, 'decline'])->name('admin.vendor.decline');
      
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
 Route::get('/vendor/register', [VendorController::class, 'register'])->name('vendor.register');
 Route::post('/vendor/register', [VendorController::class, 'registerSubmit'])->name('vendor.register.submit');
-Route::post('/vendor/login', [VendorController::class, 'login'])->name('vendor.login');
-
-
-
-
+Route::get('/vendor/login', [VendorController::class, 'showvendorlogin'])->name('vendor.login');
+Route::post('/vendor/login', [VendorController::class, 'login'])->name('vendor.login.submit');
+Route::get('/sellers', [VendorController::class, 'showVendor'])->name('sellers');

@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li>
-                <a class="nav-link text-white" href="{{route('admin.vendors')}}">
+                <a class="nav-link text-white" href="{{route('admin.index')}}">
                     <i class="fas fa-store text-warning me-2"></i> Vendor
                 </a>
             </li>
