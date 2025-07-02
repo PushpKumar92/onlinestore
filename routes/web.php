@@ -112,16 +112,11 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
     Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
     
-<<<<<<< HEAD
-Route::get('vendors', [VendorController::class, 'showPendingVendors'])->name('admin.vendors');
-Route::post('vendors/approve/{id}', [VendorController::class, 'approveVendor'])->name('admin.vendor.approve');
-=======
 
 Route::get('vendors', [VendorController::class, 'index'])->name('admin.index');
 Route::get('vendors/pending', [VendorController::class, 'showPendingVendors'])->name('admin.vendors');
 Route::post('vendors/approve/{id}', [VendorController::class, 'approveVendor'])->name('admin.vendor.approve');
  Route::post('/vendors/{id}/decline', [VendorController::class, 'decline'])->name('admin.vendor.decline');
->>>>>>> 0161bf082f917d3a69b95e68b08af608df7c13ff
      
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 });

@@ -1,7 +1,5 @@
 @extends('frontend.layout.main')
 @section('content')
-
-<h1 class="abx" style="font-size:6rem;">this is my home</h1>
 <main class=" main-content">
     <!--------------- hero-section --------------->
 

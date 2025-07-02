@@ -27,20 +27,21 @@
         <div class="form-section">
             <form action="{{ route('vendor.login.submit') }}" method="POST">
                 @csrf
-                <div class="form-grid">
+                <div>
                     <div class="form-label-group">
-                        <label>Email</label>
-                        <input name="email" type="email" placeholder="Email" required>
+                        <label for="email">Email</label><br>
+                        <input name="email" type="email" id="email" placeholder="Email" required>
                     </div>
                     <div class="form-label-group">
-                        <label>Password</label>
-                        <input name="password" type="password" placeholder="Password" required>
+                        <label for="password">Password</label><br>
+                        <input name="password" type="password" id="password" placeholder="Password" required>
                     </div>
                 </div>
+
                 <button type="submit">Login</button>
 
                 <!-- Optional link back to registration -->
-                <div style="margin-top: 15px;">
+                <div class="here">
                     Don't have an account? <a href="{{ route('vendor.register') }}">Register now</a>
                 </div>
             </form>

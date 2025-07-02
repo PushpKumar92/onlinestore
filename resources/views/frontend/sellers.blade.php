@@ -43,13 +43,7 @@
                                         <span>
                                             <i class="fa-regular fa-message" style="color:black; font-size:18px;"></i>
                                         </span>
-<<<<<<< HEAD
-                                        <span class="inner-text">
-                                            cacixi5247@corylan. 
-                                        </span>
-=======
                                         <span class="inner-text">{{ $vendor->email }}</span>
->>>>>>> 0161bf082f917d3a69b95e68b08af608df7c13ff
                                     </div>
                                     <div class="address tel">
                                         <span>
