@@ -2092,7 +2092,7 @@
 
  .product-description .tab-item .review-wrapper .wrapper .wrapper-aurthor {
    display: flex;
-   flex-direction: row;
+   flex-direction: row; 
    align-items: center;
    justify-content: space-between;
    gap: 0px;
@@ -2317,295 +2317,247 @@
    text-align: center;
    margin-bottom: 0;
  }
+.blogs-wrapper {
+  border: none;
+  border-radius: 0;
+  height: auto;
+}
+.blogs-wrapper:hover {
+  border: none;
+}
+.blogs-wrapper:hover img {
+  transform: scale(1.1);
+}
+.blogs-wrapper .wrapper-img {
+  overflow: hidden;
+}
+.blogs-wrapper .wrapper-img img {
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s;
+}
+.blogs-wrapper .wrapper-info {
+  padding: 2rem 3rem;
+}
+.blogs-wrapper .wrapper-info .wrapper-data {
+  display: flex;
+  align-items: center;
+  gap: 4.2rem;
+  margin-bottom: 1rem;
+}
+.blogs-wrapper .wrapper-info .wrapper-data .wrapper-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.blogs-wrapper .wrapper-info .wrapper-data .wrapper-item .text {
+  font-size: 1.4rem;
+  color: #797979;
+}
+.blogs-wrapper .wrapper-info .wrapper-details {
+  font-style: 2.6rem;
+}
+.blogs-wrapper .shop-btn {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-radius: 3rem;
+  display: inline-block;
+  background: transparent;
+  font-size: 1.8rem;
+  font-weight: 500;
+  position: relative;
+  color: #00674f;
+  font-family: "Inter", sans-serif;
+  transition: all 0.3s;
+  overflow: unset;
+}
+.blogs-wrapper .shop-btn::after {
+  content: " ";
+  width: 0%;
+  height: 100%;
+  background: #232532;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
+  top: 0;
+  z-index: -3;
+}
+.blogs-wrapper .shop-btn svg {
+  fill: #FFFFFF;
+  transition: all 0.5s;
+}
+.blogs-wrapper .shop-btn span {
+  margin-left: 8px;
+  font-size: 1.5rem;
+  z-index: 1;
+  transition: all 0.4s ease-in-out;
+}
+.blogs-wrapper .shop-btn:hover {
+  color: #FFFFFF;
+  background-color: transparent;
+}
+.blogs-wrapper .shop-btn:hover::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+}
+.blogs-wrapper .shop-btn:hover svg {
+  fill: #FFFFFF;
+  transform: translate(5px);
+}
+.blogs-wrapper .shop-btn:hover span {
+  color: #FFFFFF;
+}
+.blogs-wrapper .shop-btn:hover {
+  color: #00674f;
+}
+.blogs-wrapper .shop-btn::after {
+  display: none;
+}
 
- .blogs-wrapper {
-   border: none;
-   border-radius: 0;
-   height: auto;
- }
+.blog-details {
+  margin-top: 2.5rem;
+  background: #f8f8f8;
+}
+.blog-details .row>* {
+  --bs-gutter-x: 3rem;
+}
+.blog-details hr {
+  margin: 3rem 0;
+}
+.blog-details .wrapper-img {
+  height: 45.7rem;
+}
+.blog-details .wrapper-img img {
+  object-fit: cover;
+}
+.blog-details .blog-details-heading {
+  margin-top: 2rem;
+}
+.blog-details .blogs-form-section .social-item {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.blog-details .blogs-form-section .social-item a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: #00674f;
+  transition: all 0.2s;
+  border: 1px solid #00674f;
+}
+.blog-details .blogs-form-section .social-item a svg {
+  fill: #FFFFFF;
+}
+.blog-details .blogs-form-section .social-item a:hover {
+  border-radius: 20%;
+  background: #FFFFFF;
+}
+.blog-details .blogs-form-section .social-item a:hover svg {
+  fill: #00674f;
+}
 
- .blogs-wrapper:hover {
-   border: none;
- }
+@media (max-width:767px) {
+  .blog-details .blogs-wrapper .wrapper-info {
+    padding: 2rem 0;
+  }
+  .blog-details .blogs-wrapper .wrapper-details {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+.review-form {
+  margin-top: 4rem;
+}
 
- .blogs-wrapper:hover img {
-   transform: scale(1.1);
- }
+.review-form .comment-title {
+  margin-bottom: 3rem;
+}
 
- .blogs-wrapper .wrapper-img {
-   overflow: hidden;
- }
+.review-form .form-control,
+.review-form .form-select {
+  border: 1px solid rgba(174, 28, 154, 0.08);
+  box-shadow: none;
+  color: #232532;
+}
 
- .blogs-wrapper .wrapper-img img {
-   width: 100%;
-   height: 100%;
-   transition: all 0.3s;
- }
+.review-form .form-control::placeholder,
+.review-form .form-select::placeholder,
+.review-form input::placeholder,
+.review-form textarea::placeholder,
+.review-form select::placeholder {
+  color: #797979;
+  font-family: "Jost", sans-serif;
+  font-size: 1.4rem;
+}
 
- .blogs-wrapper .wrapper-info {
-   padding: 2rem 3rem;
- }
+.review-form label {
+  font-family: "Jost", sans-serif;
+  font-size: 1.5rem;
+  color: #797979;
+  margin-bottom: 0.5rem;
+}
 
- .blogs-wrapper .wrapper-info .wrapper-data {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: flex-start;
-   gap: 4.2rem;
-   margin-bottom: 1rem;
- }
+.review-form .review-inner-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
 
- .blogs-wrapper .wrapper-info .wrapper-data .wrapper-item {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: flex-start;
-   gap: 7px;
- }
+.review-form .review-inner-form .review-form-name {
+  margin-bottom: 2rem;
+  width: 100%;
+}
 
- .blogs-wrapper .wrapper-info .wrapper-data .wrapper-item .text {
-   font-size: 1.4rem;
-   color: #797979;
- }
+.review-form input {
+  height: 5rem;
+}
 
- .blogs-wrapper .wrapper-info .wrapper-details {
-   font-style: 2.6rem;
- }
+.review-form input,
+.review-form textarea,
+.review-form select {
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+}
 
- .blogs-wrapper .shop-btn {
-   margin: 0;
-   padding: 0;
-   margin: 0;
-   text-align: center;
-   border-radius: 3rem;
-   display: inline-block;
-   background: transparent;
-   font-size: 1.8rem;
-   font-weight: 500;
-   position: relative;
-   color: #00674f;
-   font-family: "Inter", sans-serif;
-   transition: all 0.3s;
-   overflow: hidden;
-   overflow: unset;
- }
+.review-form textarea {
+  padding: 3rem;
+}
 
- .blogs-wrapper .shop-btn::after {
-   content: " ";
-   width: 0%;
-   height: 100%;
-   background: #232532;
-   position: absolute;
-   transition: all 0.4s ease-in-out;
-   right: 0;
-   top: 0;
-   z-index: -3;
- }
+.review-form .review-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+}
 
- .blogs-wrapper .shop-btn svg {
-   fill: #FFFFFF;
-   transition: all 0.5s;
- }
+.review-form .review-btn .shop-btn {
+  border-radius: unset;
+  width: 30rem;
+}
 
- .blogs-wrapper .shop-btn span {
-   margin-left: 8px;
-   font-size: 1.5rem;
-   width: 100%;
-   z-index: 1;
-   transition: all 0.4s ease-in-out;
- }
+.review-form .review-btn .shop-btn::after {
+  display: none;
+}
 
- .blogs-wrapper .shop-btn:hover {
-   color: #FFFFFF;
-   background-color: transparent;
- }
+@media (max-width: 767px) {
+  .review-form .comment-title {
+    font-size: 2rem;
+  }
+  .review-form .review-inner-form {
+    flex-direction: column;
+  }
+}
 
- .blogs-wrapper .shop-btn:hover::after {
-   right: auto;
-   left: 0;
-   width: 100%;
- }
-
- .blogs-wrapper .shop-btn:hover svg {
-   fill: currentColor;
-   fill: #FFFFFF;
-   transform: translate(5px);
- }
-
- .blogs-wrapper .shop-btn:hover span {
-   color: #FFFFFF;
- }
-
- .blogs-wrapper .shop-btn:hover {
-   color: #00674f;
- }
-
- .blogs-wrapper .shop-btn::after {
-   display: none;
- }
-
- .blog-details {
-   margin-top: 2.5rem;
-   background: #f8f8f8;
- }
-
- .blog-details .row>* {
-   --bs-gutter-x: 3rem;
- }
-
- .blog-details hr {
-   margin: 3rem 0;
- }
-
- .blog-details .wrapper-img {
-   height: 45.7rem;
- }
- .blog-details .wrapper-img img {
-   object-fit: cover;
- }
-
- .blog-details .blog-details-heading {
-   margin-top: 2rem;
- }
-
- .blog-details .blogs-form-section .social-item {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: flex-start;
-   gap: 2rem;
- }
-
- .blog-details .blogs-form-section .social-item a {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: center;
-   gap: 0px;
-   width: 3.5rem;
-   height: 3.5rem;
-   border-radius: 50%;
-   background: #00674f;
-   transition: all 0.2s;
-   border: 1px solid #00674f;
- }
-
- .blog-details .blogs-form-section .social-item a svg {
-   fill: currentColor;
-   fill: #FFFFFF;
- }
-
- .blog-details .blogs-form-section .social-item a:hover {
-   border-radius: 20%;
-   background: #FFFFFF;
- }
-
- .blog-details .blogs-form-section .social-item a:hover svg {
-   fill: #00674f;
- }
-
- @media (max-width:767px) {
-   .blog-details .blogs-wrapper .wrapper-info {
-     padding: 2rem 0;
-   }
-
-   .blog-details .blogs-wrapper .wrapper-details {
-     display: -webkit-box;
-     /* -webkit-line-clamp: 3; */
-     -webkit-box-orient: vertical;
-     overflow: hidden;
-   }
- }
-
- .review-form {
-   margin-top: 4rem;
- }
-
- .review-form .comment-title {
-   margin-bottom: 3rem;
- }
-
- .review-form .form-control,
- .review-form .form-select {
-   border: 1px solid rgba(174, 28, 154, 0.08);
-   box-shadow: none;
-   color: #232532;
- }
-
- .review-form .form-control::placeholder,
- .review-form .form-select::placeholder {
-   color: #797979;
- }
-
- .review-form label {
-   font-family: "Jost", sans-serif;
-   font-size: 1.5rem;
-   color: #797979;
-   margin-bottom: 0.5rem;
- }
-
- .review-form .review-inner-form {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: space-between;
-   gap: 2rem;
- }
-
- .review-form .review-inner-form .review-form-name {
-   margin-bottom: 2rem;
-   width: 100%;
- }
-
- .review-form input {
-   height: 5rem;
- }
-
- .review-form input,
- .review-form textarea,
- .review-form select {
-   padding: 1rem 2rem;
-   font-size: 1.4rem;
- }
-
- .review-form input::placeholder,
- .review-form textarea::placeholder,
- .review-form select::placeholder {
-   color: #797979;
-   font-family: "Jost", sans-serif;
-   font-size: 1.4rem;
- }
-
- .review-form textarea {
-   padding: 3rem;
- }
-
- .review-form .review-btn {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: flex-end;
-   gap: 0px;
- }
-
- .review-form .review-btn .shop-btn {
-   border-radius: unset;
-   width: 30rem;
- }
-
- .review-form .review-btn .shop-btn::after {
-   display: none;
- }
-
- @media (max-width:767px) {
-   .review-form .comment-title {
-     font-size: 2rem;
-   }
-
-   .review-form .review-inner-form {
-     flex-direction: column;
-   }
- }
  .blog{
   height:auto;
  }
@@ -3209,15 +3161,17 @@
 
 .faq-accordion .accordion-body {
   padding: 2rem 1.5rem;
-  background-color: #fefefe;
+  background-color: #00674f;
   border-radius: 0 0 0.5rem 0.5rem;
+  color: #fefefe;
+
 }
 
 .faq-accordion .accordion-body .paragraph {
   font-size: 1.5rem;
   font-weight: 400;
   line-height: 2.3rem;
-  color: #333;
+  color: #fefefe;
 }
 
 .question-section {
@@ -4495,7 +4449,6 @@
     flex-direction: column;
 
 }
-
 /* Labels */
 .form-label-group label {
     font-weight: 500;
@@ -4511,6 +4464,7 @@
     border-radius: 8px;
     font-size: 14px;
     transition: border-color 0.3s ease;
+    width: 100%;
 }
 
 .form-label-group input:focus {
@@ -4537,7 +4491,16 @@ form button[type="submit"] {
 form button[type="submit"]:hover {
     background-color: #004d3b;
 }
+.here{
+  margin-top: 3rem;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
 
+}
+.here a{
+  color: #00674f !important;
+}
 /* Right image section */
 .vendorimage-section {
     flex: 1;
@@ -4556,9 +4519,24 @@ form button[type="submit"]:hover {
     height: auto;
     border-radius: 10px;
 }
+/* vendor form responsive */
+/* @media (max-width: 992px) {
+    .form-grid {
+        display: block;
+        width: 100%;
+    }
 
-/* Responsive */
-@media screen and (max-width: 768px) {
+    .form-label-group {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .form-label-group.p-img {
+        display: none;
+    }
+} */
+
+ @media(max-width: 768px) {
     .form-wrapper {
         flex-direction: column;
         padding: 20px;
@@ -4570,7 +4548,10 @@ form button[type="submit"]:hover {
     .vendorimage-section {
         margin-top: 20px;
     }
-}
+    .vendorimage-section {
+        display: none;
+    }
+}   
 /* footer semisection */
 
   .semi-footer {
@@ -4626,7 +4607,6 @@ form button[type="submit"]:hover {
   background-color: #0077b5;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .column {
     flex: 1 1 100%;
@@ -4644,4 +4624,4 @@ form button[type="submit"]:hover {
   text-align: center;
   align-items: center;
 }
-/* SECTION END  */
+/* SECTION END  */ 

@@ -1,6 +1,5 @@
 @extends('frontend.layout.main')
 @section('content')
-
 <main class=" main-content">
     <!--------------- hero-section --------------->
 

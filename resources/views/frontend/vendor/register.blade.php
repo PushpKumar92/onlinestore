@@ -59,8 +59,8 @@
                         <input name="password_confirmation" type="password" placeholder="Confirm Password" required>
                     </div>
 
-                    <div class="form-label-group">
-                        <label>Profile Image</label>
+                    <div class="form-label-group p-img">
+                        <label class="">Profile Image</label>
                         <input type="file" name="profile_image" accept="image/*" class="form-control">
                     </div>
                 </div>
@@ -68,11 +68,10 @@
                 <button type="submit">Register</button>
 
                 <!-- Login Redirect -->
-                <div style="margin-top: 15px;">
+                <div class="here">
                     Already have an account? <a href="{{ route('vendor.login') }}">Login here</a>
                 </div>
             </form>
-
         </div>
 
         <!-- Image Section -->
