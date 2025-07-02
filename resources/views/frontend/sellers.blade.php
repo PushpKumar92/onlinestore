@@ -41,7 +41,7 @@
                                             <i class="fa-regular fa-message" style="color:black; font-size:18px;"></i>
                                         </span>
                                         <span class="inner-text">
-                                            cacixi5247@corylan.com
+                                            cacixi5247@corylan. 
                                         </span>
                                     </div>
                                     <div class="address tel">

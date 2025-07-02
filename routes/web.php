@@ -89,8 +89,8 @@ Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.logi
 Route::middleware('admin.auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
 
-     Route::get('admin/change-password', [AdminController::class, 'showChangePasswordForm'])->name('admin.change-password.form');
-    Route::post('admin/change-password', [AdminController::class, 'changePassword'])->name('admin.change-password');
+     Route::get('change-password', [AdminController::class, 'showChangePasswordForm'])->name('admin.change-password.form');
+    Route::post('change-password', [AdminController::class, 'changePassword'])->name('admin.change-password');
     
     Route::get('/users', [UserController::class, 'userdetail'])->name('userdetail');
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('useredit');
@@ -112,11 +112,12 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
     Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
     
-Route::get('/admin/vendors', [VendorController::class, 'showPendingVendors'])->name('admin.vendors');
-Route::post('/admin/vendors/approve/{id}', [VendorController::class, 'approveVendor'])->name('admin.vendor.approve');
+Route::get('vendors', [VendorController::class, 'showPendingVendors'])->name('admin.vendors');
+Route::post('vendors/approve/{id}', [VendorController::class, 'approveVendor'])->name('admin.vendor.approve');
      
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
+
 Route::get('/vendor/register', [VendorController::class, 'register'])->name('vendor.register');
 Route::post('/vendor/register', [VendorController::class, 'registerSubmit'])->name('vendor.register.submit');
 Route::post('/vendor/login', [VendorController::class, 'login'])->name('vendor.login');

@@ -42,7 +42,7 @@
                     <input name="address" placeholder="Address">
                 </div>
 
-                <div class="form-label-group">
+                <div class="form-label-group"> 
                     <label>Shop Name</label>
                     <input name="shop_name" placeholder="Shop Name">
                 </div>
