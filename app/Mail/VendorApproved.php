@@ -2,56 +2,25 @@
 
 namespace App\Mail;
 
+use App\Models\Vendor;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class VendorApproved extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-  public function __construct($vendor)
-{
-    $this->vendor = $vendor;
-}
-public function build()
-{
-    return $this->subject('Your Vendor Account Has Been Approved')
-                ->view('emails.vendor_approved');
-}
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
+    public $vendor;
+
+    public function __construct(Vendor $vendor)
     {
-        return new Envelope(
-            subject: 'Vendor Approved',
-        );
+        $this->vendor = $vendor;
     }
 
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
+    public function build()
     {
-        return new Content(
-            view: 'view.name',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
+        return $this->subject('Your Vendor Account has been Approved')
+            ->view('frontend.vendor.vendor_approve');
     }
 }

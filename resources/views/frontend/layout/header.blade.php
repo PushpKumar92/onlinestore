@@ -773,7 +773,7 @@
                                 <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
                                 <li><a href="{{ route('faq') }}">FAQ</a></li>
                                 <li><a href="{{ route('product.sidebar') }}">Shop Category Icon</a></li>
-                                <li><a href="{{ route('product.sidebar') }}">Shop List View</a></li>
+                                <li><a href="{{ route('sellers') }}">Vendor</a></li>
                             </ul>
 
                         </li>
@@ -799,32 +799,12 @@
                         </li>
                     </ul>
                 </div>
-                    <div class="header-vendor-btn">
-                        @if(Auth::guard('vendor')->check())
-                        @php
-                        $vendor = Auth::guard('vendor')->vendor();
-                        @endphp
-                        <div class="dropdown">
-                            <a href="#" class="dropdown-toggle" id="userDropdown" role="button">
-                                <img src="{{ asset('profile_images/' . $user->profile_image) }}" alt="Profile"
-                                    style="width:30px; height:30px; border-radius:50%; object-fit:cover;">
-                                {{ $vendor->name }}
+                <div class="header-vendor-btn">
 
-                            </a>
-                            <ul class="submenu dropdown-menu" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="{{ route('user.profile') }}">My Profile</a></li>
-                                <li><a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a></li>
-                            </ul>
-                        </div>
-                        @else
-                        <li>
-                            <a href="{{ route('vendor.register') }}" class="shop-btn">Become Vendor</a>
-                        </li>
-                        @endif
+                    <a href="{{ route('vendor.register') }}" class="shop-btn">Become Vendor</a>
 
+                </div>
 
-                        </a>
-                    </div>
             </div>
         </div>
     </div>
