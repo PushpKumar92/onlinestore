@@ -1,8 +1,10 @@
 @extends('frontend.layout.main')
 @section('content')
 
-@if(session('message'))
-<div class="alert alert-success alert2">{{ session('message') }}</div>
+@if (session('message'))
+    <div class="alert alert-success custom-alert">
+        {{ session('message') }}
+    </div>
 @endif
 
 <main class="main-content">
@@ -65,7 +67,7 @@
                     </div>
                 </div>
 
-                <button type="submit">Register</button>
+                <button type="submit" class="mt-5 p-3">Register</button>
 
                 <!-- Login Redirect -->
                 <div class="here">

@@ -4365,7 +4365,6 @@
    position: relative;
    display: inline-block;
  }
-
  .dropdown .dropdown-menu {
    display: none;
    position: absolute;
@@ -4416,10 +4415,13 @@
 .fa-heart.added {
     color: red; 
 }
-.alert2{
-  font-size: 18px;
+.custom-alert {
+  color: #000;
+  font-size: 1.6rem; 
   text-align: center;
-  font-weight: 600;
+  font-family: 'Jost', sans-serif;
+  padding: 1rem 2rem;
+  border-radius: 0.4rem;
 }
 /* VENDOR REGISTER SECTION START */
 /* Wrapper for form and image */
@@ -4480,9 +4482,9 @@
 
 /* Submit button */
 form button[type="submit"] {
-    margin-top: 25px;
+    /* margin-top: 25px; */
     width: 100%;
-    padding: 12px;
+    padding: 8px;
     background-color: #00674f;
     color: #fff;
     border: none;

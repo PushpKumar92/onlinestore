@@ -2,7 +2,7 @@
 @section('content')
 
 @if($errors->any())
-<div style="color: red;">{{ $errors->first() }}</div>
+<div style="color: red; font-size:22px; text-align:center;">{{ $errors->first() }}</div>
 @endif
 
 @if(session('message'))
@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-                <button type="submit">Login</button>
+                <button type="submit" class="mt-5">Login</button>
 
                 <!-- Optional link back to registration -->
                 <div class="here">
