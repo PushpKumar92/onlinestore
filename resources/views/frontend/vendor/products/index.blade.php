@@ -1,4 +1,4 @@
-@extends('admin.layout.main')
+@extends('frontend.vendor.layout.main')
 @section('content')
 <h2>Product List</h2>
 <a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>

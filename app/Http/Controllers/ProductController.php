@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -10,18 +11,20 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('category')->get(); // include category
         return view('frontend.vendor.products.index', compact('products'));
     }
 
     public function create()
     {
-        return view('frontend.vendor.products.create');
+        $categories = Category::all(); // fetch all categories
+        return view('frontend.vendor.products.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
@@ -31,10 +34,11 @@ class ProductController extends Controller
         ]);
 
         $product = new Product();
+        $product->category_id = $request->category_id; // ✅ Save category
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
-        $product->discount = $request->discount; // ✅ Add discount
+        $product->discount = $request->discount;
         $product->quantity = $request->quantity;
 
         if ($request->hasFile('image')) {
@@ -51,12 +55,14 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return view('frontend.vendor.products.edit', compact('product'));
+        $categories = Category::all(); // ✅ send categories to the edit form
+        return view('frontend.vendor.products.edit', compact('product', 'categories'));
     }
 
     public function update(Request $request, Product $product)
     {
         $request->validate([
+            'category_id' => 'required|exists:categories,id',
             'name' => 'required',
             'price' => 'required|numeric',
             'discount' => 'nullable|string|max:10',
@@ -65,7 +71,6 @@ class ProductController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
         ]);
 
-        // Handle image upload
         if ($request->hasFile('image')) {
             if ($product->image && File::exists(public_path('uploads/products/' . $product->image))) {
                 File::delete(public_path('uploads/products/' . $product->image));
@@ -77,11 +82,11 @@ class ProductController extends Controller
             $product->image = $imageName;
         }
 
-        // Update fields
+        $product->category_id = $request->category_id; // ✅ update category
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
-        $product->discount = $request->discount; // ✅ Add discount
+        $product->discount = $request->discount;
         $product->quantity = $request->quantity;
 
         $product->save();

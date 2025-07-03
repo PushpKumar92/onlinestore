@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\CategoryController;
    
 
 
@@ -104,12 +105,17 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
      Route::put('blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
      Route::delete('blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
     
- 
+  Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
-Route::get('vendors', [VendorController::class, 'index'])->name('admin.index');
-Route::get('vendors/pending', [VendorController::class, 'showPendingVendors'])->name('admin.vendors');
-Route::post('vendors/approve/{id}', [VendorController::class, 'approveVendor'])->name('admin.vendor.approve');
- Route::post('/vendors/{id}/decline', [VendorController::class, 'decline'])->name('admin.vendor.decline');
+    Route::get('vendors', [VendorController::class, 'index'])->name('admin.index');
+    Route::get('vendors/pending', [VendorController::class, 'showPendingVendors'])->name('admin.vendors');
+    Route::post('vendors/approve/{id}', [VendorController::class, 'approveVendor'])->name('admin.vendor.approve');
+    Route::post('/vendors/{id}/decline', [VendorController::class, 'decline'])->name('admin.vendor.decline');
      
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
