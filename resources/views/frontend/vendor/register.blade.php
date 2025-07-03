@@ -2,7 +2,7 @@
 @section('content')
 
 @if(session('message'))
-<div class="alert alert-success">{{ session('message') }}</div>
+<div class="alert alert-success alert2">{{ session('message') }}</div>
 @endif
 
 <main class="main-content">

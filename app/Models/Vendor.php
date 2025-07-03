@@ -18,9 +18,9 @@ class Vendor extends Authenticatable
         'name',
         'email',
         'mobile',
-        'address',        // ✅ Add this
-        'shop_name',      // ✅ Add this
-        'shop_url',       // ✅ Add this
+        'address',       
+        'shop_name',      
+        'shop_url',       
         'profile_image',
         'password',
         'is_approved',

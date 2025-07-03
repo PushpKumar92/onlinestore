@@ -4409,12 +4409,17 @@
     z-index: 10;
 }
 .fa-heart {
-    color: #888; /* default gray */
+    color: #888;
     transition: color 0.3s ease;
 }
 
 .fa-heart.added {
-    color: red; /* after added */
+    color: red; 
+}
+.alert2{
+  font-size: 18px;
+  text-align: center;
+  font-weight: 600;
 }
 /* VENDOR REGISTER SECTION START */
 /* Wrapper for form and image */
