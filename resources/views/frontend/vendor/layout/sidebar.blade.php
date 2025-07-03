@@ -6,31 +6,23 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link text-white">
+                <a href="{{ route('vendor.dashboard') }}" class="nav-link text-white">
                     <i class="fas fa-home text-warning me-2"></i> Dashboard
                 </a>
             </li>
+            <li>
+                <a class="nav-link text-white" href="{{route('products.index')}}">
+                    <i class="fas fa-shopping-bag text-warning me-2"></i>Products
+                </a>
+            </li>
 
-            <li>
-                <a class="nav-link text-white" href="#">
-                    <i class="fas fa-users text-warning me-2"></i>Users
-                </a>
-            </li>
-            <li>
-                <a class="nav-link text-white" href="{{route('admin.index')}}">
-                    <i class="fas fa-store text-warning me-2"></i> Vendor
-                </a>
-            </li>
+
             <li>
                 <a class="nav-link text-white" href="#">
                     <i class="fas fa-shopping-cart text-warning me-2"></i>Orders
                 </a>
             </li>
-            <li>
-                <a class="nav-link text-white" href="{{route('blogs.list')}}">
-                    <i class="fas fa-blog text-warning me-2"></i>Blogs
-                </a>
-            </li>
+
         </ul>
     </div>
 </nav>

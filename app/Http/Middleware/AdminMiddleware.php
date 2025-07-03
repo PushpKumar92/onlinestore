@@ -16,8 +16,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->is_admin) {
-            return redirect()->route('admin.login')->withErrors(['email' => 'Please login as admin']);
+         if (!Auth::guard('admin')->check()) {
+            return redirect()->route('admin.login')->withErrors([
+                'email' => 'Please login as admin.',
+            ]);
         }
 
         return $next($request);

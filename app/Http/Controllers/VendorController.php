@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VendorApproved;
+use Illuminate\Support\Facades\Auth;
 
 class VendorController extends Controller
 {
@@ -18,38 +19,31 @@ class VendorController extends Controller
 
 public function registerSubmit(Request $request)
 {
-    $request->validate([
-        'name' => 'required',
-        'email' => 'required|email|unique:vendors',
-        'mobile' => 'required',
-        'address' => 'required',
-        'shop_name' => 'required',
-        'shop_url' => 'required',
-        'password' => 'required|confirmed',
-        'profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:vendors,email',
+        'mobile' => 'required|string|max:15|unique:vendors,mobile',
+        'address' => 'required|string|max:255',
+        'shop_name' => 'required|string|max:100|unique:vendors,shop_name',
+        'shop_url' => 'required|string|max:100|unique:vendors,shop_url',
+        'password' => 'required|string|min:6|confirmed',
+        'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
     ]);
 
-    // Handle image upload
-    $profileImageName = null;
+    $vendor = new Vendor();
+    $vendor->fill($validatedData);
+    $vendor->password = bcrypt($request->password);
+
     if ($request->hasFile('profile_image')) {
-        $image = $request->file('profile_image');
-        $profileImageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('vendor'), $profileImageName);
+        $imageName = time() . '.' . $request->profile_image->extension();
+        $request->profile_image->move(public_path('vendor'), $imageName);
+        $vendor->profile_image = $imageName;
     }
 
-    // ✅ Make sure all fields are passed here
-    Vendor::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'mobile' => $request->mobile,
-        'address' => $request->address,
-        'shop_name' => $request->shop_name,
-        'shop_url' => $request->shop_url,
-        'password' => Hash::make($request->password),
-        'profile_image' => $profileImageName,
-    ]);
+    $vendor->is_approved = 0;
+    $vendor->save();
 
-    return back()->with('message', 'Registration successful. Awaiting admin approval.');
+    return redirect()->route('vendor.login')->with('message', 'Registration successful! Please wait for admin approval.');
 }
 
 public function showvendorlogin(){
@@ -69,9 +63,11 @@ public function showvendorlogin(){
         }
 
         session(['vendor_id' => $vendor->id]);
-        return redirect()->route('index');
+        return redirect()->route('vendor.dashboard');
     }
-
+public function showdashboard(){
+    return view('frontend.vendor.dashboard');
+}
     
     public function showPendingVendors()
     {
@@ -106,4 +102,37 @@ public function showvendorlogin(){
     $vendors = Vendor::where('is_approved', true)->get();
     return view('frontend.sellers', compact('vendors'));
 }
+
+
+public function showChangePasswordForm()
+{
+    return view('vendor.change-password');
+}
+
+public function changePassword(Request $request)
+{
+    $request->validate([
+        'current_password' => 'required',
+        'new_password' => 'required|string|min:8|confirmed',
+    ]);
+
+    $admin = Auth::guard('vendor')->user();
+
+    if (!Hash::check($request->current_password, $admin->password)) {
+        return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+    }
+
+    $admin->password = Hash::make($request->new_password);
+    $admin->save();
+
+    return back()->with('success', 'Password changed successfully.');
+}
+
+    
+
+    public function logout()
+    {
+        Auth::guard('vendor')->logout();
+        return redirect()->route('vendor.login');
+    }
 }

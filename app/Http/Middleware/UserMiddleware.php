@@ -16,8 +16,10 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::guard('user')->check()) {
-            return redirect()->route('login')->withErrors(['email' => 'Please login as User']);
+         if (!Auth::guard('admin')->check()) {
+            return redirect()->route('login')->withErrors([
+                'email' => 'Please login as user.',
+            ]);
         }
 
         return $next($request);
