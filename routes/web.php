@@ -58,9 +58,9 @@ Route::post('cart/update', [CartController::class, 'update'])->name('cart.update
 
 //watch list 
  Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
-Route::get('/wishlist/add/{id}', [WishlistController::class, 'add'])->name('wishlist.add');
-Route::get('/wishlist/remove/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
-Route::get('/wishlist/count', [WishlistController::class, 'count'])->name('wishlist.count');
+    Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
+    Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+    Route::get('/wishlist/count', [WishlistController::class, 'count'])->name('wishlist.count');
 
 Route::middleware('user.auth')->prefix('user')->group(function () {
    

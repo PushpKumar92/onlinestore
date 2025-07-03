@@ -4495,12 +4495,15 @@ form button[type="submit"] {
 form button[type="submit"]:hover {
     background-color: #004d3b;
 }
-.here{
-  margin-top: 3rem;
-  font-size: 16px;
-  font-weight: 500;
-  text-align: center;
-
+.here {
+    margin-top: 3rem;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .here a{
   color: #00674f !important;
@@ -4511,11 +4514,11 @@ form button[type="submit"]:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 10px;
     background: transparent;
     background-color: #333333;
     border-radius: 50px;
-   
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .vendorimage-section img {

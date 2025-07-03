@@ -75,42 +75,46 @@ public function addToCart(Request $request, $id)
     ]);
 }
 
-public function update(Request $request)
-{
-    $cart = session()->get('cart');
-    $id = $request->id;
-    $quantity = $request->quantity;
+  public function update(Request $request)
+    {
+        $cart = session()->get('cart');
+        $id = $request->id;
+        $quantity = (int) $request->quantity;
 
-    if (isset($cart[$id])) {
-        $cart[$id]['quantity'] = $quantity;
-        session()->put('cart', $cart);
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity'] = $quantity;
+            session()->put('cart', $cart);
 
-        $itemTotal = $cart[$id]['price'] * $quantity;
+            $originalPrice = (float) $cart[$id]['price'];
+            $discount = isset($cart[$id]['discount']) ? (float) $cart[$id]['discount'] : 0;
+            $discountedPrice = $discount > 0 ? round($originalPrice - ($originalPrice * $discount / 100), 2) : $originalPrice;
+            $itemTotal = round($discountedPrice * $quantity, 2);
 
-        $cartTotal = 0;
-        foreach ($cart as $item) {
-            $cartTotal += $item['price'] * $item['quantity'];
+            $cartTotal = 0;
+            foreach ($cart as $item) {
+                $price = (float) $item['price'];
+                $disc = isset($item['discount']) ? (float) $item['discount'] : 0;
+                $final = $disc > 0 ? round($price - ($price * $disc / 100), 2) : $price;
+                $cartTotal += $final * $item['quantity'];
+            }
+
+            return response()->json([
+                'item_total' => $itemTotal,
+                'cart_total' => round($cartTotal, 2)
+            ]);
         }
 
-        return response()->json([
-            'item_total' => $itemTotal,
-            'cart_total' => $cartTotal
-        ]);
+        return response()->json(['error' => 'Item not found'], 404);
     }
 
-    return response()->json(['error' => 'Item not found'], 404);
-}
+    public function remove($id)
+    {
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+        }
 
-
-public function remove($id)
-{
-    $cart = session()->get('cart');
-
-    if (isset($cart[$id])) {
-        unset($cart[$id]);
-        session()->put('cart', $cart);
+        return redirect()->route('cart.index');
     }
-
-    return redirect()->route('cart.show')->with('success', 'Product removed from cart!');
-}
 }

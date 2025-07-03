@@ -14,11 +14,15 @@ class Product extends Model
         'name',
         'description',
         'price',
+        'discount',    // ✅ include discount if you're using it
         'quantity',
         'image',
+        'category_id', // ✅ required for category relationship
     ];
+
+    // Define relationship with Category
     public function category()
-{
-    return $this->belongsTo(\App\Models\Category::class);
-}
+    {
+        return $this->belongsTo(\App\Models\Category::class);
+    }
 }

@@ -78,7 +78,7 @@ public function showdashboard(){
         $vendor->is_approved = true;
         $vendor->save();
 
-        Mail::to('pushpk0502@gmail.com')->send(new VendorApproved($vendor));
+        Mail::to('ashvanimaurya22@gmail.com')->send(new VendorApproved($vendor));
         // You can also send SMS here using Twilio or Fast2SMS
 
         return back()->with('success', 'Vendor approved successfully!');

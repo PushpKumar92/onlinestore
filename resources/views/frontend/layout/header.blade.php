@@ -35,11 +35,14 @@
                         </form>
                     </div>
 
-                    <div class="header-favourite">
-                        <a href="{{ route('wishlist.index') }}">
-                            <i class="fa fa-heart"></i>
-                            <span id="watchlist-badge" class="badge bg-danger">Watchlist</span>
-                        </a>
+                    <div class="header-favourite position-relative">
+                        <div class="header-favourite">
+                            <a href="{{ route('wishlist.index') }}">
+                                <i class="fa fa-heart"></i>
+                                <span id="watchlist-badge" class="cart-text">Watchlist (<span
+                                        id="wishlist-count">0</span>)</span>
+                            </a>
+                        </div>
                     </div>
                     <div class="header-cart position-relative">
                         <a href="{{ route('cart.show') }}" class="cart-item position-relative">
@@ -131,7 +134,6 @@
                     </div>
                     <div class="shop-btn">
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-
                         </button>
                     </div>
                 </div>
@@ -749,20 +751,21 @@
                                 <span class="list-text">shop</span>
                             </a>
                         </li>
-                        <a href="#">
-                            <span class="list-text">Pages</span>
-                            <span>
-                                <i class="fa-solid fa-plus" style="color:white; font-size:18px;"></i>
-                            </span>
-                        </a>
-                        <ul class="header-sub-menu">
-                            <li><a href="{{ route('product.info') }}">Product Details</a></li>
-                            <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
-                            <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
-                            <li><a href="{{ route('faq') }}">FAQ</a></li>
-                            <li><a href="{{ route('product.sidebar') }}">Shop Category Icon</a></li>
-                            <li><a href="{{ route('sellers') }}">Vendor</a></li>
-                        </ul>
+                        <li>
+                            <a href="#">
+                                <span class="list-text">Pages</span>
+                                <span>
+                                    <i class="fa-solid fa-plus" style="color:white; font-size:18px;"></i>
+                                </span>
+                            </a>
+                            <ul class="header-sub-menu">
+                                <li><a href="{{ route('product.info') }}">Product Details</a></li>
+                                <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                                <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
+                                <li><a href="{{ route('faq') }}">FAQ</a></li>
+                                <li><a href="{{ route('product.sidebar') }}">Shop Category Icon</a></li>
+                                <li><a href="{{ route('sellers') }}">Vendor</a></li>
+                            </ul>
 
                         </li>
                         <li>

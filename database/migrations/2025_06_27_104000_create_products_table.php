@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-        $table->id();
-         $table->foreignId('category_id')->constrained()->onDelete('cascade');
-        $table->string('name');
-        $table->text('description')->nullable();
-        $table->decimal('price', 10, 2);
-         $table->string('discount')->nullable();
-        $table->integer('quantity')->default(0);
-        $table->string('image')->nullable();
-        $table->timestamps();
-    });
+            $table->id();
+              $table->unsignedBigInteger('category_id');
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->decimal('price', 10, 2);
+            $table->string('discount')->nullable();
+            $table->integer('quantity')->default(0);
+            $table->string('image')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

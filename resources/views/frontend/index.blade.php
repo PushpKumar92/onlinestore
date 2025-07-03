@@ -272,12 +272,8 @@
                                             <i class="fas fa-arrows-alt text-dark"></i>
                                         </span>
                                     </a>
-                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
-                                        <span
-                                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
-                                            style="width: 40px; height: 40px;">
-                                            <i class="fas fa-heart text-success"></i>
-                                        </span>
+                                    <a href="javascript:void(0);" onclick="addToWishlist({{ $product->id }})">
+                                        <i class="fa fa-heart"></i>
                                     </a>
                                 </div>
                             </div>
