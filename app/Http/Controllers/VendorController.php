@@ -52,18 +52,15 @@ public function showvendorlogin(){
     
     public function login(Request $request)
     {
-        $vendor = Vendor::where('email', $request->email)->first();
+        $credentials = $request->only('email', 'password');
 
-        if (!$vendor || !Hash::check($request->password, $vendor->password)) {
-            return back()->withErrors(['Invalid credentials.']);
+        if (Auth::guard('vendor')->attempt($credentials)) {
+            return redirect()->route('vendor.dashboard');
         }
 
-        if (!$vendor->is_approved) {
-            return back()->withErrors(['Your account is not yet approved by admin.']);
-        }
-
-        session(['vendor_id' => $vendor->id]);
-        return redirect()->route('vendor.dashboard');
+        return redirect()->back()->withErrors([
+            'email' => 'Invalid credentials',
+        ]);
     }
 public function showdashboard(){
     return view('frontend.vendor.dashboard');

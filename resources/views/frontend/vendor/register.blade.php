@@ -1,10 +1,8 @@
 @extends('frontend.layout.main')
 @section('content')
 
-@if (session('message'))
-    <div class="alert alert-success custom-alert">
-        {{ session('message') }}
-    </div>
+@if(session('message'))
+<div class="alert alert-success alert2">{{ session('message') }}</div>
 @endif
 
 <main class="main-content">
@@ -25,61 +23,98 @@
     <!-- Registration Form Section -->
     <div class="form-wrapper">
         <div class="form-section">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Whoops! Something went wrong.</strong>
+                <ul class="mb-0 mt-1">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <form action="{{ route('vendor.register.submit') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-grid">
                     <div class="form-label-group">
                         <label>Name</label>
-                        <input name="name" placeholder="Name" required>
+                        <input name="name" value="{{ old('name') }}" placeholder="Name" required>
+                        @error('name')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-label-group">
                         <label>Email</label>
-                        <input name="email" type="email" placeholder="Email" required>
+                        <input name="email" type="email" value="{{ old('email') }}" placeholder="Email" required>
+                        @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+
                     <div class="form-label-group">
                         <label>Mobile</label>
-                        <input name="mobile" placeholder="Mobile" required>
+                        <input name="mobile" value="{{ old('mobile') }}" placeholder="Mobile" required>
+                        @error('mobile')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+
                     <div class="form-label-group">
                         <label>Address</label>
-                        <input name="address" placeholder="Address" required>
+                        <input name="address" value="{{ old('address') }}" placeholder="Address" required>
+                        @error('address')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+
                     <div class="form-label-group">
                         <label>Shop Name</label>
-                        <input name="shop_name" placeholder="Shop Name" required>
+                        <input name="shop_name" value="{{ old('shop_name') }}" placeholder="Shop Name" required>
+                        @error('shop_name')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+
                     <div class="form-label-group">
                         <label>Shop URL</label>
-                        <input name="shop_url" placeholder="Shop URL" required>
+                        <input name="shop_url" value="{{ old('shop_url') }}" placeholder="Shop URL" required>
+                        @error('shop_url')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+
                     <div class="form-label-group">
                         <label>Password</label>
                         <input name="password" type="password" placeholder="Password" required>
+                        @error('password')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+
                     <div class="form-label-group">
                         <label>Confirm Password</label>
                         <input name="password_confirmation" type="password" placeholder="Confirm Password" required>
                     </div>
 
                     <div class="form-label-group p-img">
-                        <label class="">Profile Image</label>
+                        <label>Profile Image</label>
                         <input type="file" name="profile_image" accept="image/*" class="form-control">
+                        @error('profile_image')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
-                <button type="submit" class="mt-5 p-3">Register</button>
+                <button type="submit">Register</button>
 
-                <!-- Login Redirect -->
-                <div class="here">
-                    Already have an account? <a href="{{ route('vendor.login') }}">Login here</a>
-                </div>
+                    <!-- Login Redirect -->
+                    <div class="here">
+                        Already have an account? <a href="{{ route('vendor.login') }}">Login here</a>
+                    </div>
             </form>
         </div>
 
-        <!-- Image Section -->
-        <div class="vendorimage-section">
-            <img src="{{ asset('assets/images/homepage-one/vendor image.jpeg') }}" alt="Register Illustration">
-        </div>
+
     </div>
 </main>
 

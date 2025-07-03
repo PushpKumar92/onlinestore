@@ -17,6 +17,11 @@
                 </a>
             </li>
             <li>
+                <a class="nav-link text-white" href="{{route('category.index')}}">
+                    <i class="fas fa-users text-warning me-2"></i>Category
+                </a>
+            </li>
+            <li>
                 <a class="nav-link text-white" href="{{route('admin.index')}}">
                     <i class="fas fa-store text-warning me-2"></i> Vendor
                 </a>

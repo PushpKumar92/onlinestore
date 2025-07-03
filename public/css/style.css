@@ -4415,13 +4415,10 @@
 .fa-heart.added {
     color: red; 
 }
-.custom-alert {
-  color: #000;
-  font-size: 1.6rem; 
+.alert2{
+  font-size: 18px;
   text-align: center;
-  font-family: 'Jost', sans-serif;
-  padding: 1rem 2rem;
-  border-radius: 0.4rem;
+  font-weight: 600;
 }
 /* VENDOR REGISTER SECTION START */
 /* Wrapper for form and image */
