@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VendorApproved;
+use Illuminate\Support\Facades\Auth;
 
 class VendorController extends Controller
 {
@@ -16,7 +17,7 @@ class VendorController extends Controller
     return view('frontend.vendor.register');
 }
 
-public function register(Request $request)
+public function registerSubmit(Request $request)
 {
     $validatedData = $request->validate([
         'name' => 'required|string|max:255',
@@ -62,9 +63,11 @@ public function showvendorlogin(){
         }
 
         session(['vendor_id' => $vendor->id]);
-        return redirect()->route('index');
+        return redirect()->route('vendor.dashboard');
     }
-
+public function showdashboard(){
+    return view('frontend.vendor.dashboard');
+}
     
     public function showPendingVendors()
     {
@@ -99,4 +102,37 @@ public function showvendorlogin(){
     $vendors = Vendor::where('is_approved', true)->get();
     return view('frontend.sellers', compact('vendors'));
 }
+
+
+public function showChangePasswordForm()
+{
+    return view('vendor.change-password');
+}
+
+public function changePassword(Request $request)
+{
+    $request->validate([
+        'current_password' => 'required',
+        'new_password' => 'required|string|min:8|confirmed',
+    ]);
+
+    $admin = Auth::guard('vendor')->user();
+
+    if (!Hash::check($request->current_password, $admin->password)) {
+        return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+    }
+
+    $admin->password = Hash::make($request->new_password);
+    $admin->save();
+
+    return back()->with('success', 'Password changed successfully.');
+}
+
+    
+
+    public function logout()
+    {
+        Auth::guard('vendor')->logout();
+        return redirect()->route('vendor.login');
+    }
 }

@@ -104,14 +104,7 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
      Route::put('blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
      Route::delete('blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
     
- Route::get('products', [ProductController::class, 'index'])->name('products.index');
-    Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
-    Route::post('products', [ProductController::class, 'store'])->name('products.store');
-    Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
-    Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
-    Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
-
-    
+ 
 
 Route::get('vendors', [VendorController::class, 'index'])->name('admin.index');
 Route::get('vendors/pending', [VendorController::class, 'showPendingVendors'])->name('admin.vendors');
@@ -126,3 +119,21 @@ Route::post('/vendor/register', [VendorController::class, 'registerSubmit'])->na
 Route::get('/vendor/login', [VendorController::class, 'showvendorlogin'])->name('vendor.login');
 Route::post('/vendor/login', [VendorController::class, 'login'])->name('vendor.login.submit');
 Route::get('/sellers', [VendorController::class, 'showVendor'])->name('sellers');
+
+Route::middleware('vendor.auth')->prefix('vendor')->group(function () {
+ Route::get('dashboard', [VendorController::class, 'showdashboard'])->name('vendor.dashboard');   
+
+   Route::get('change-password', [VendorController::class, 'showChangePasswordForm'])->name('vendor.change-password.form');
+    Route::post('change-password', [VendorController::class, 'changePassword'])->name('vendor.change-password');
+
+    Route::get('products', [ProductController::class, 'index'])->name('products.index');
+    Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+    
+
+     Route::get('logout', [VendorController::class, 'logout'])->name('vendor.logout');
+});

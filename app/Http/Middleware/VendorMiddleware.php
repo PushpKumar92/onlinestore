@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class VendorMiddleware
 {
@@ -15,10 +16,11 @@ class VendorMiddleware
      */
    public function handle(Request $request, Closure $next)
     {
-        if (!session()->has('vendor_id')) {
-            return redirect()->route('vendor.login')->withErrors(['Please login as vendor first.']);
+         if (!Auth::guard('vendor')->check()) {
+            return redirect()->route('vendor.login')->withErrors([
+                'email' => 'Please login as vendor.',
+            ]);
         }
-
         return $next($request);
     }
 }

@@ -10,7 +10,11 @@
                     <i class="fas fa-home text-warning me-2"></i> Dashboard
                 </a>
             </li>
-
+            <li>
+                <a class="nav-link text-white" href="{{route('products.index')}}">
+                    <i class="fas fa-shopping-bag text-warning me-2"></i>Products
+                </a>
+            </li>
             <li>
                 <a class="nav-link text-white" href="#">
                     <i class="fas fa-users text-warning me-2"></i>Users
