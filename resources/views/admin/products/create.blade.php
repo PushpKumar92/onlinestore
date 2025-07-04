@@ -1,6 +1,6 @@
-@extends('frontend.vendor.layout.main')
+@extends('admin.layout.main')
 @section('content')
-<h3>Add Product (Vendor)</h3>
+<h3>Add Product (Admin)</h3>
 @include('products.form', [
 'action' => route('products.store'),
 'product' => null,

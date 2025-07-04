@@ -25,4 +25,8 @@ class Product extends Model
     {
         return $this->belongsTo(\App\Models\Category::class);
     }
+    public function vendor()
+{
+    return $this->belongsTo(Vendor::class, 'vendor_id');
+}
 }

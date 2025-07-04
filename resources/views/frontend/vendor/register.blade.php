@@ -108,10 +108,11 @@
                         <button type="submit" class="btn btn-primary px-5">Register</button>
                     </div>
 
-                    <!-- Login Link -->
-                    <div class="here mt-3">
-                        Already have an account? <a href="{{ route('vendor.login') }}">Login here</a>
-                    </div>
+
+                </div>
+                <!-- Login Link -->
+                <div class="here">
+                    Already have an account? <a href="{{ route('vendor.login') }}">Login here</a>
                 </div>
             </form>
         </div>

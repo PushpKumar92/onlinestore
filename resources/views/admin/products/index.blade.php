@@ -10,9 +10,8 @@
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
-            <th>Discount</th>
+            <th>Discount</th> <!-- New Discount Column -->
             <th>Quantity</th>
-            <th>Status</th> <!-- 👈 Add Status Column -->
             <th>Actions</th>
         </tr>
     </thead>
@@ -31,15 +30,8 @@
             <td>{{ $product->name }}</td>
             <td>{{ $product->description }}</td>
             <td>{{ $product->price }}</td>
-            <td>{{ $product->discount ?? '0%' }}</td>
+            <td>{{ $product->discount ?? '0%' }}</td> <!-- Display Discount -->
             <td>{{ $product->quantity }}</td>
-            <td>
-                @if ($product->status === 'approved')
-                <span class="badge bg-success">Approved</span>
-                @else
-                <span class="badge bg-warning text-dark">Pending</span>
-                @endif
-            </td>
             <td>
                 <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
                 <form action="{{ route('products.destroy', $product->id) }}" method="POST"
