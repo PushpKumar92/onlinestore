@@ -1,7 +1,7 @@
 <nav id="sidebarMenu" class="sidebar d-none min-vh-100 d-lg-block">
     <div class="p-3">
         <a href="index.html" class="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none">
-            <img src="{{ asset('assets/images/logo/logowhite.png') }}" alt="Logo" width="150">
+            <img src="{{ asset('assets/images/logos/logo.png') }}" alt="Logo" width="150">
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
@@ -10,9 +10,10 @@
                     <i class="fas fa-home text-warning me-2"></i> Dashboard
                 </a>
             </li>
-            <li>
-                <a class="nav-link text-white" href="{{route('products.index')}}">
-                    <i class="fas fa-shopping-bag text-warning me-2"></i>Products
+            <li class="{{ request()->is('vendor/products*') ? 'active' : '' }}">
+                <a href="{{ route('vendor.products.index') }}">
+                    <i class="fas fa-box"></i>
+                    <span>Products</span>
                 </a>
             </li>
 

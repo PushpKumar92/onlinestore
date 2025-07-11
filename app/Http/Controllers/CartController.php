@@ -115,6 +115,6 @@ public function addToCart(Request $request, $id)
             session()->put('cart', $cart);
         }
 
-        return redirect()->route('cart.index');
+        return redirect()->route('cart.show');
     }
 }

@@ -1,32 +1,35 @@
 <?php
 
+// app/Models/Product.php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
     use HasFactory;
 
-    // Allow mass assignment for these fields
     protected $fillable = [
+        'category_id',
         'name',
         'description',
         'price',
-        'discount',    // ✅ include discount if you're using it
+        'discount',
         'quantity',
+        'status',
         'image',
-        'category_id', // ✅ required for category relationship
+        'added_by_type',
+        'added_by_id',
     ];
-
-    // Define relationship with Category
-    public function category()
-    {
-        return $this->belongsTo(\App\Models\Category::class);
+public function category() {
+        return $this->belongsTo(Category::class);
     }
-    public function vendor()
-{
-    return $this->belongsTo(Vendor::class, 'vendor_id');
-}
+
+    // Admin or Vendor relationship (polymorphic)
+    public function addedBy()
+    {
+        return $this->morphTo(null, 'added_by_type', 'added_by_id');
+    }
 }

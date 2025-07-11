@@ -45,4 +45,9 @@ class Vendor extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_approved' => 'boolean',
     ];
+
+    public function products()
+{
+    return $this->morphMany(Product::class, 'addedBy', 'added_by_type', 'added_by_id');
+}
 }

@@ -11,7 +11,7 @@
     <table class="table table-bordered table-hover">
         <thead class="table-light">
             <tr>
-                <th>#</th>
+                <th>ID</th>
                 <th>Vendor Name</th>
                 <th>Email</th>
                 <th>Mobile</th>

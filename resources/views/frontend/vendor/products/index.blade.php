@@ -1,25 +1,26 @@
 @extends('frontend.vendor.layout.main')
 @section('content')
-<h2>Product List</h2>
-<a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>
-<table class="table table-bordered mt-3">
+<h2>Vendor Products</h2>
+<a href="{{ route('products.create') }}" class="btn btn-success mb-2">Add Product</a>
+<table class="table">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Image</th>
             <th>Name</th>
+            <th>Image</th>
             <th>Description</th>
             <th>Price</th>
             <th>Discount</th>
             <th>Quantity</th>
-            <th>Status</th> <!-- 👈 Add Status Column -->
-            <th>Actions</th>
+            <th>Status</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($products as $product)
+        @foreach($products as $product)
         <tr>
             <td>{{ $product->id }}</td>
+            <td>{{ $product->name }}</td>
             <td>
                 @if($product->image)
                 <img src="{{ asset('uploads/products/' . $product->image) }}" alt="{{ $product->name }}" width="60"
@@ -28,25 +29,19 @@
                 <span>No Image</span>
                 @endif
             </td>
-            <td>{{ $product->name }}</td>
+
             <td>{{ $product->description }}</td>
             <td>{{ $product->price }}</td>
             <td>{{ $product->discount ?? '0%' }}</td>
             <td>{{ $product->quantity }}</td>
             <td>
-                @if ($product->status === 'approved')
-                <span class="badge bg-success">Approved</span>
-                @else
-                <span class="badge bg-warning text-dark">Pending</span>
-                @endif
-            </td>
+            <td>{{ ucfirst($product->status) }}</td>
             <td>
-                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                <form action="{{ route('products.destroy', $product->id) }}" method="POST"
-                    style="display:inline-block;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                <a href="{{ route('vendor.products.edit', $product->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                <form method="POST" action="{{ route('vendor.products.destroy', $product->id) }}"
+                    style="display:inline;">
+                    @csrf @method('DELETE')
+                    <button class="btn btn-sm btn-danger">Delete</button>
                 </form>
             </td>
         </tr>

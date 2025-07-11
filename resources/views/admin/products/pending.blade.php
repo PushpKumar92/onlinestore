@@ -1,43 +1,29 @@
-@extends('admin.layout.main') {{-- Adjust layout path as needed --}}
-
+@extends('admin.layout.main')
 @section('content')
 <h2>Pending Vendor Products</h2>
-<table class="table table-bordered mt-3">
+<table class="table">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Vendor</th>
             <th>Name</th>
-            <th>Category</th>
             <th>Price</th>
-            <th>Quantity</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @forelse ($pendingProducts as $product)
+        @foreach($products as $product)
         <tr>
-            <td>{{ $product->id }}</td>
-            <td>{{ $product->vendor->name ?? 'N/A' }}</td>
+            <th>{{$product->id}}</th>
             <td>{{ $product->name }}</td>
-            <td>{{ $product->category->name ?? 'N/A' }}</td>
-            <td>{{ $product->price }}</td>
-            <td>{{ $product->quantity }}</td>
-            <td><span class="badge bg-warning text-dark">Pending</span></td>
+            <td>₹{{ $product->price }}</td>
             <td>
-                <form action="{{ route('products.approve', $product->id) }}" method="POST">
+                <form method="POST" action="{{ route('admin.products.approve', $product->id) }}">
                     @csrf
-                    <!-- REMOVE: @method('PUT') -->
-                    <button type="submit">Approve</button>
+                    <button class="btn btn-sm btn-success">Approve</button>
                 </form>
             </td>
         </tr>
-        @empty
-        <tr>
-            <td colspan="8" class="text-center">No pending products</td>
-        </tr>
-        @endforelse
+        @endforeach
     </tbody>
 </table>
 @endsection

@@ -1,72 +1,62 @@
 @extends('frontend.vendor.layout.main')
-
 @section('content')
-<h2>Edit Product</h2>
-
-<form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+<h2>Edit Product (Vendor)</h2>
+<form action="{{ route('products.update') }}" method="POST" class="p-4 border rounded shadow-sm bg-white">
     @csrf
-    @method('PUT')
+    @if(isset($product)) @method('PUT') @endif
 
-    <!-- Category -->
-    <div class="form-group">
-        <label>Select Category</label>
-        <select name="category_id" class="form-control" required>
-            <option value="">-- Select Category --</option>
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <select name="category_id" class="form-select" required>
+            <option value="">Select Category</option>
             @foreach($categories as $category)
-            <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>
+            <option value="{{ $category->id }}" @if(isset($product) && $product->category_id == $category->id)
+                selected
+                @endif>
                 {{ $category->name }}
             </option>
             @endforeach
         </select>
-        @error('category_id') <small class="text-danger">{{ $message }}</small> @enderror
     </div>
 
-    <!-- Name -->
-    <div class="form-group">
-        <label>Name</label>
-        <input type="text" name="name" class="form-control" value="{{ $product->name }}">
-        @error('name') <small class="text-danger">{{ $message }}</small> @enderror
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" value="{{ old('name', $product->name ?? '') }}" required>
     </div>
 
-    <!-- Description -->
-    <div class="form-group">
-        <label>Description</label>
-        <textarea name="description" class="form-control">{{ $product->description }}</textarea>
-        @error('description') <small class="text-danger">{{ $message }}</small> @enderror
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="description" class="form-control" rows="4"
+            required>{{ old('description', $product->description ?? '') }}</textarea>
     </div>
 
-    <!-- Price -->
-    <div class="form-group">
-        <label>Price</label>
-        <input type="number" step="0.01" name="price" class="form-control" value="{{ $product->price }}">
-        @error('price') <small class="text-danger">{{ $message }}</small> @enderror
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input type="number" name="price" class="form-control" value="{{ old('price', $product->price ?? '') }}"
+            required>
     </div>
 
-    <!-- Discount -->
-    <div class="form-group">
-        <label>Discount (%)</label>
-        <input type="text" name="discount" class="form-control" value="{{ $product->discount }}">
-        @error('discount') <small class="text-danger">{{ $message }}</small> @enderror
+    <div class="mb-3">
+        <label class="form-label">Discount</label>
+        <input type="text" name="discount" class="form-control" value="{{ old('discount', $product->discount ?? '') }}">
     </div>
 
-    <!-- Quantity -->
-    <div class="form-group">
-        <label>Quantity</label>
-        <input type="number" name="quantity" class="form-control" value="{{ $product->quantity }}">
-        @error('quantity') <small class="text-danger">{{ $message }}</small> @enderror
+    <div class="mb-3">
+        <label class="form-label">Quantity</label>
+        <input type="number" name="quantity" class="form-control"
+            value="{{ old('quantity', $product->quantity ?? '') }}" required>
     </div>
 
-    <!-- Image -->
-    <div class="form-group">
-        <label>Image</label><br>
-        @if($product->image)
-        <img src="{{ asset('uploads/products/' . $product->image) }}" width="80"><br><br>
-        @endif
+    <div class="mb-3">
+        <label class="form-label">Image</label>
         <input type="file" name="image" class="form-control">
-        @error('image') <small class="text-danger">{{ $message }}</small> @enderror
+        @if(isset($product) && $product->image)
+        <div class="mt-2">
+            <img src="{{ asset('uploads/products/' . $product->image) }}" width="80" class="img-thumbnail">
+        </div>
+        @endif
     </div>
 
-    <!-- Submit -->
-    <button type="submit" class="btn btn-success mt-3 mb-3">Update Product</button>
+    <button type="submit" class="btn btn-primary mb-2">Save</button>
 </form>
 @endsection
