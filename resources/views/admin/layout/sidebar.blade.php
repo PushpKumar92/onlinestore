@@ -21,9 +21,9 @@
                     <i class="fas fa-users text-warning me-2"></i>Category
                 </a>
             </li>
-            <li class="{{ request()->is('admin/products*') ? 'active' : '' }}">
-                <a href="{{ route('admin.products.index') }}">
-                    <i class="fas fa-box"></i>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{{ route('admin.products.index') }}">
+                    <i class="fas fa-box text-warning"></i>
                     <span>All Products</span>
                 </a>
             </li>

@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
-
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
@@ -68,20 +67,17 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
     Route::post('vendors/approve/{id}', [VendorController::class, 'approveVendor'])->name('admin.vendor.approve');
     Route::post('/vendors/{id}/decline', [VendorController::class, 'decline'])->name('admin.vendor.decline');
 
- Route::get('products', [AdminProductController::class, 'index'])->name('admin.products.index');           // List all products
-    Route::get('products/create', [AdminProductController::class, 'create'])->name('products.create');  // Show form to create
-    Route::post('products', [AdminProductController::class, 'store'])->name('products.store');          // Store new product
-      // Show single product
-    Route::get('products/{product}/edit', [AdminProductController::class, 'edit'])->name('products.edit'); // Edit form
-    Route::put('products/{product}', [AdminProductController::class, 'update'])->name('products.update'); // Update product
-    Route::delete('products/{product}', [AdminProductController::class, 'destroy'])->name('products.destroy'); // Delete
+ // Admin Product CRUD
+    Route::get('/products', [AdminProductController::class, 'index'])->name('admin.products.index');
+    Route::get('/products/create', [AdminProductController::class, 'create'])->name('admin.products.create');
+    Route::post('/products', [AdminProductController::class, 'store'])->name('admin.products.store');
+    Route::get('/products/{product}/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('/products/{product}', [AdminProductController::class, 'update'])->name('admin.products.update');
+    Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 
-    // Custom Routes
-        Route::resource('products', AdminProductController::class)->except(['show']);
-
-
-    Route::get('products/pending', [AdminProductController::class, 'pending'])->name('products.pending');  
-    Route::post('products/{id}/approve', [AdminProductController::class, 'approve'])->name('products.approve');
+    // Approve Vendor Product
+    Route::get('/products/pending', [ProductController::class, 'pending'])->name('products.pending');
+    Route::post('/products/{id}/approve', [AdminProductController::class, 'approve'])->name('admin.products.approve');
 
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
@@ -98,15 +94,13 @@ Route::middleware('vendor.auth')->prefix('vendor')->group(function () {
    Route::get('change-password', [VendorController::class, 'showChangePasswordForm'])->name('vendor.change-password.form');
     Route::post('change-password', [VendorController::class, 'changePassword'])->name('vendor.change-password');
 
-    Route::get('products', [VendorProductController::class, 'index'])->name('vendor.products.index');           
-    Route::get('products/create', [VendorProductController::class, 'create'])->name('products.create');  
-    Route::post('products', [VendorProductController::class, 'store'])->name('products.store');         
-    
-    Route::get('products/{product}/edit', [VendorProductController::class, 'edit'])->name('products.edit'); // Edit form
-    Route::put('products/{product}', [VendorProductController::class, 'update'])->name('products.update'); // Update
-    Route::delete('products/{product}', [VendorProductController::class, 'destroy'])->name('products.destroy'); // Delete
-    
-    Route::resource('products', VendorProductController::class)->except(['show']);
+    // Vendor Product CRUD
+    Route::get('/products', [VendorProductController::class, 'index'])->name('vendor.products.index');
+    Route::get('/products/create', [VendorProductController::class, 'create'])->name('vendor.products.create');
+    Route::post('/products', [VendorProductController::class, 'store'])->name('vendor.products.store');
+    Route::get('/products/{product}/edit', [VendorProductController::class, 'edit'])->name('vendor.products.edit');
+    Route::put('/products/{product}', [VendorProductController::class, 'update'])->name('vendor.products.update');
+    Route::delete('/products/{product}', [VendorProductController::class, 'destroy'])->name('vendor.products.destroy');
     
 
      Route::get('logout', [VendorController::class, 'logout'])->name('vendor.logout');

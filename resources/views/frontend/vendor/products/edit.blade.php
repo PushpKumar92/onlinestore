@@ -1,7 +1,8 @@
 @extends('frontend.vendor.layout.main')
 @section('content')
 <h2>Edit Product (Vendor)</h2>
-<form action="{{ route('products.update') }}" method="POST" class="p-4 border rounded shadow-sm bg-white">
+<form action="{{ route('vendor.products.update') }}" method="POST" enctype="multipart/form-data"
+    class="p-4 border rounded shadow-sm bg-white">
     @csrf
     @if(isset($product)) @method('PUT') @endif
 

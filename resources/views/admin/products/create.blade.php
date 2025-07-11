@@ -1,7 +1,8 @@
 @extends('admin.layout.main')
 @section('content')
 <h2>Add Product (Admin)</h2>
-<form action="{{ route('products.store') }}" method="POST" class="p-4 border rounded shadow-sm bg-white">
+<form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="p-4 border rounded
+    shadow-sm bg-white">
     @csrf
     @if(isset($product)) @method('PUT') @endif
 

@@ -1,7 +1,7 @@
 @extends('frontend.vendor.layout.main')
 @section('content')
 <h2>Vendor Products</h2>
-<a href="{{ route('products.create') }}" class="btn btn-success mb-2">Add Product</a>
+<a href="{{ route('vendor.products.create') }}" class="btn btn-success mb-2">Add Product</a>
 <table class="table">
     <thead>
         <tr>

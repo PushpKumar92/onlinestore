@@ -5,7 +5,7 @@
     <h2 class="fw-bold mb-3">Admin Products</h2>
 
     <div class="mb-3 text-end">
-        <a href="{{ route('products.create') }}" class="btn btn-success">Add Product</a>
+        <a href="{{ route('admin.products.create') }}" class="btn btn-success">Add Product</a>
     </div>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
@@ -32,8 +32,9 @@
                         </span>
                     </td>
                     <td>
-                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                        <form method="POST" action="{{ route('products.destroy', $product->id) }}"
+                        <a href="{{ route('admin.products.edit', $product->id) }}"
+                            class="btn btn-sm btn-primary">Edit</a>
+                        <form method="POST" action="{{ route('admin.products.destroy', $product->id) }}"
                             style="display:inline;">
                             @csrf
                             @method('DELETE')

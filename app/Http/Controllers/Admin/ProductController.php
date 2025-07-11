@@ -5,78 +5,91 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class ProductController extends Controller
 {
-    public function index() {
-        $products = Product::where('added_by_type', 'admin')->get();
+    public function index()
+    {
+        $products = Product::all();
         return view('admin.products.index', compact('products'));
     }
 
-    public function create() {
+    public function create()
+    {
         $categories = Category::all();
-        return view('admin.products.create', compact('categories'));
+        return view('admin.products.create',compact('categories'));
     }
 
-    public function store(Request $request) {
-        $product = $this->saveProduct($request);
-        return redirect()->route('admin.products.index')->with('success', 'Product added successfully.');
+ public function store(Request $request)
+{
+    $data = $request->validate([
+        'title' => 'required',
+        'description' => 'nullable',
+        'price' => 'required|numeric',
+        'discount' => 'nullable|numeric|min:0|max:100',
+        'image' => 'nullable|image',
+    ]);
+
+    if ($request->hasFile('image')) {
+        $data['image'] = $request->file('image')->store('products', 'public');
     }
 
-    public function edit($id) {
+    $data['admin_id'] = Auth::guard('admin')->id();
+    $data['added_by'] = 'admin';
+    $data['is_approved'] = false;
+    $data['discount'] = $request->discount ?? 0;
+
+
+    Product::create($data);
+
+    return redirect()->route('admin.products.index')->with('success', 'Product submitted for approval.');
+}
+    public function edit($id)
+    {
         $product = Product::findOrFail($id);
-        $categories = Category::all();
-        return view('admin.products.edit', compact('product', 'categories'));
+        return view('admin.products.edit', compact('product'));
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $product = Product::findOrFail($id);
-        $this->saveProduct($request, $product);
-        return redirect()->route('admin.products.index')->with('success', 'Product updated.');
-    }
 
-    public function destroy($id) {
-        $product = Product::findOrFail($id);
-        $product->delete();
-        return redirect()->back()->with('success', 'Product deleted.');
-    }
-
-    protected function saveProduct(Request $request, $product = null) {
         $data = $request->validate([
-            'category_id' => 'required',
-            'name' => 'required',
+            'title' => 'required',
             'description' => 'nullable',
             'price' => 'required|numeric',
-            'discount' => 'nullable|string',
-            'quantity' => 'required|integer',
             'image' => 'nullable|image',
         ]);
 
-        if (!$product) $product = new Product();
-
-        $product->fill($data);
-        $product->status = 'approved';
-        $product->added_by_type = 'admin';
-        $product->added_by_id = Auth::guard('admin')->id();
-
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/products'), $imageName);
-            $product->image = $imageName;
+            $data['image'] = $request->file('image')->store('products', 'public');
         }
 
+        $product->update($data);
+
+        return redirect()->route('admin.products.index')->with('success', 'Product updated.');
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted.');
+    }
+
+    public function approve($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->is_approved = true;
         $product->save();
 
-        return $product;
+        return back()->with('success', 'Product approved.');
     }
     public function pending()
     {
-        $products = Product::where('status', 'pending')
-                           ->where('added_by_type', 'vendor')
-                           ->get();
 
-        return view('admin.products.pending', compact('products'));
     }
+    
 }

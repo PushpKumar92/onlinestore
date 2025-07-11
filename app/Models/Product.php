@@ -12,7 +12,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category_id',
+       
         'name',
         'description',
         'price',
@@ -23,13 +23,13 @@ class Product extends Model
         'added_by_type',
         'added_by_id',
     ];
-public function category() {
-        return $this->belongsTo(Category::class);
+ public function admin()
+    {
+        return $this->belongsTo(Admin::class);
     }
 
-    // Admin or Vendor relationship (polymorphic)
-    public function addedBy()
+    public function vendor()
     {
-        return $this->morphTo(null, 'added_by_type', 'added_by_id');
+        return $this->belongsTo(Vendor::class);
     }
 }

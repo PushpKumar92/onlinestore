@@ -10,9 +10,9 @@
                     <i class="fas fa-home text-warning me-2"></i> Dashboard
                 </a>
             </li>
-            <li class="{{ request()->is('vendor/products*') ? 'active' : '' }}">
-                <a href="{{ route('vendor.products.index') }}">
-                    <i class="fas fa-box"></i>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{{ route('vendor.products.index') }}">
+                    <i class="fas fa-box text-warning"></i>
                     <span>Products</span>
                 </a>
             </li>
