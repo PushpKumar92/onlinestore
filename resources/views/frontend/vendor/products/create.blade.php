@@ -58,7 +58,7 @@
         @endif
     </div>
 
-    <button type="submit" class="btn btn-primary mb-2">Save</button>
+    <button type="submit" class="btn btn-primary mb-2">Save Product</button>
 </form>
 
 @endsection

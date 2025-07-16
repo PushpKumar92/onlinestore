@@ -46,8 +46,5 @@ class Vendor extends Authenticatable
         'is_approved' => 'boolean',
     ];
 
-    public function products()
-{
-    return $this->morphMany(Product::class, 'addedBy', 'added_by_type', 'added_by_id');
-}
+ 
 }

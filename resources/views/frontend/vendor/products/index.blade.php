@@ -35,7 +35,17 @@
             <td>{{ $product->discount ?? '0%' }}</td>
             <td>{{ $product->quantity }}</td>
             <td>
-            <td>{{ ucfirst($product->status) }}</td>
+            <td>
+    @if ($product->status == 'approved')
+        <span class="badge bg-success">Approved</span>
+    @elseif ($product->status == 'pending')
+        <span class="badge bg-warning text-dark">Pending</span>
+    @elseif ($product->status == 'declined')
+        <span class="badge bg-danger">Declined</span>
+    @else
+        <span class="badge bg-secondary">{{ ucfirst($product->status) }}</span>
+    @endif
+</td>
             <td>
                 <a href="{{ route('vendor.products.edit', $product->id) }}" class="btn btn-sm btn-primary">Edit</a>
                 <form method="POST" action="{{ route('vendor.products.destroy', $product->id) }}"

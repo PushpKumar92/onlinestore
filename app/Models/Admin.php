@@ -18,8 +18,5 @@ class Admin extends Authenticatable
         'password', 'remember_token',
     ];
  
-    public function products()
-{
-    return $this->morphMany(Product::class, 'addedBy', 'added_by_type', 'added_by_id');
-}
+  
 }

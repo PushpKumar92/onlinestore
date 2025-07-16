@@ -76,8 +76,10 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
     Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 
     // Approve Vendor Product
-    Route::get('/products/pending', [ProductController::class, 'pending'])->name('products.pending');
+    Route::get('/products/pending', [AdminProductController::class, 'pending'])->name('products.pending');
     Route::post('/products/{id}/approve', [AdminProductController::class, 'approve'])->name('admin.products.approve');
+    Route::post('/products/{id}/decline', [AdminProductController::class, 'decline'])->name('admin.products.decline');
+
 
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 });

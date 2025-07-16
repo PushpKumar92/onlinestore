@@ -227,72 +227,61 @@
     <!--------------- category-section-end--------------->
 
     <!--------------- arrival-section--------------->
-    <section class="product arrival">
-        <div class="container">
-            <div class="section-title d-flex justify-content-between align-items-center mb-4">
-                <h5 class="mb-0">NEW ARRIVALS</h5>
-                <a href="{{ route('product.sidebar') }}" class="view">View All</a>
-            </div>
+  <section class="product arrival">
+    <div class="container">
+        <div class="section-title d-flex justify-content-between align-items-center mb-4">
+            <h5 class="mb-0">NEW ARRIVALS</h5>
+            <a href="" class="view">View All</a>
+        </div>
 
-            <div class="arrival-section">
-                <div class="row g-4">
-                    <div id="cart-alert"
-                        style="display:none; position: fixed; top: 20px; right: 20px; background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000;">
-                        Product added to cart successfully!
-                    </div>
-
-                    @foreach ($products as $product)
+        <div class="arrival-section">
+            <div class="row g-4">
+                @forelse ($products as $product)
                     @php
-                    $price = $product->price;
-                    $discount = $product->discount ?? 0;
-                    $hasDiscount = $discount > 0;
-                    $discountedPrice = $hasDiscount ? round($price - ($price * $discount / 100), 2) : $price;
+                        $price = $product->price;
+                        $discount = $product->discount ?? 0;
+                        $hasDiscount = $discount > 0;
+                        $discountedPrice = $hasDiscount ? round($price - ($price * $discount / 100), 2) : $price;
                     @endphp
 
                     <div class="col-lg-3 col-sm-6">
                         <div class="product-wrapper" data-aos="fade-up">
                             <div class="product-img position-relative">
-
-                                {{-- Discount Badge --}}
                                 @if($hasDiscount)
-                                <span
-                                    class="discount-badge position-absolute top-0 start-0 bg-danger text-white px-2 py-1 rounded-end">
-                                    {{ $discount }}% OFF
-                                </span>
+                                    <span class="discount-badge bg-danger text-white px-2 py-1 position-absolute top-0 start-0 rounded-end">
+                                        {{ $discount }}% OFF
+                                    </span>
                                 @endif
 
-                                <img src="{{ asset('uploads/products/' . $product->image) }}" alt="{{ $product->name }}"
-                                    class="img-fluid w-100" style="object-fit: cover; height: 300px;">
+                                <img src="{{ asset('uploads/products/' . $product->image) }}" class="img-fluid w-100"
+                                     style="object-fit: cover; height: 300px;" alt="{{ $product->name }}">
 
                                 <div class="product-cart-items position-absolute bottom-0 end-0 p-2 d-flex gap-2">
                                     <a href="#" class="cart cart-item">
-                                        <span
-                                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
-                                            style="width: 40px; height: 40px;">
+                                        <span class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
+                                              style="width: 40px; height: 40px;">
                                             <i class="fas fa-arrows-alt text-dark"></i>
                                         </span>
                                     </a>
                                     <a href="javascript:void(0);" onclick="addToWishlist({{ $product->id }})">
-                                        <i class="fa fa-heart"></i>
+                                        <i class="fa fa-heart text-danger"></i>
                                     </a>
                                 </div>
                             </div>
 
                             <div class="product-info mt-3">
-                                <div class="product-description">
-                                    <a href="{{ route('product.info', $product->id) }}"
-                                        class="product-details fw-bold text-dark d-block mb-2">
-                                        {{ $product->name }}
-                                    </a>
+                                <a href="{{ route('product.info', $product->id) }}"
+                                   class="product-details fw-bold text-dark d-block mb-2">
+                                    {{ $product->name }}
+                                </a>
 
-                                    <div class="price">
-                                        @if($hasDiscount)
+                                <div class="price">
+                                    @if($hasDiscount)
                                         <span class="new-price text-success fw-bold me-2">₹{{ $discountedPrice }}</span>
                                         <span class="price-cut text-muted"><del>₹{{ $price }}</del></span>
-                                        @else
+                                    @else
                                         <span class="new-price text-dark fw-bold">₹{{ $price }}</span>
-                                        @endif
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
 
@@ -303,12 +292,17 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
-
-                </div>
+                @empty
+                    <div class="col-12 text-center">
+                        <p class="text-muted">No approved new arrivals yet.</p>
+                    </div>
+                @endforelse
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
     <!--------------- arrival-section-end--------------->
 
     <!--------------- flash-section--------------->

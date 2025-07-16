@@ -20,17 +20,31 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($products as $product)
+                @forelse($allProducts as $product)
                 <tr>
                     <td>{{ $product->id }}</td>
-                    <td>{{ $product->vendor->name ?? 'Admin' }}</td> {{-- Assumes vendor relationship --}}
+                    <td>
+                        @if ($product->added_by_role == 'vendor')
+                        {{ $product->vendor->name ?? 'Unknown Vendor' }}
+                        @elseif ($product->added_by_role == 'admin')
+                        {{ $product->admin->name ?? 'Admin' }}
+                        @else
+                        Unknown
+                        @endif
+                    </td> {{-- Assumes vendor relationship --}}
                     <td>{{ $product->name }}</td>
                     <td>₹{{ number_format($product->price, 2) }}</td>
-                    <td>
-                        <span class="badge bg-{{ $product->status == 'approved' ? 'success' : 'warning' }}">
-                            {{ ucfirst($product->status) }}
-                        </span>
-                    </td>
+                   <td>
+    @if ($product->status == 'approved')
+        <span class="badge bg-success">Approved</span>
+    @elseif ($product->status == 'pending')
+        <span class="badge bg-warning text-dark">Pending</span>
+    @elseif ($product->status == 'declined')
+        <span class="badge bg-danger">Declined</span>
+    @else
+        <span class="badge bg-secondary">{{ ucfirst($product->status) }}</span>
+    @endif
+</td>
                     <td>
                         <a href="{{ route('admin.products.edit', $product->id) }}"
                             class="btn btn-sm btn-primary">Edit</a>

@@ -6,52 +6,73 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        $products = Product::where('vendor_id', Auth::guard('vendor')->id())->get();
-        return view('frontend.vendor.products.index', compact('products'));
+public function index()
+{
+    $vendorId = Auth::guard('vendor')->id(); // ✅ Use correct guard if vendors use a separate login
+
+    if (!$vendorId) {
+        return redirect()->route('vendor.login')->with('error', 'Please login as vendor.');
     }
 
+    $products = Product::where('added_by', $vendorId)
+        ->where('added_by_role', 'vendor')
+        ->latest()
+        ->paginate(10);
+
+    return view('frontend.vendor.products.index', compact('products'));
+}
     public function create()
     {
        $categories = Category::all();
         return view('frontend.vendor.products.create',compact('categories'));
     }
 
-  public function store(Request $request)
+public function store(Request $request)
 {
-    $data = $request->validate([
-        'title' => 'required',
-        'description' => 'nullable',
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'required|string',
         'price' => 'required|numeric',
-        'discount' => 'nullable|numeric|min:0|max:100',
-        'image' => 'nullable|image',
+        'quantity' => 'required|integer',
+        'category_id' => 'required|exists:categories,id',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
     ]);
 
+    $vendorId = Auth::guard('vendor')->id();
+
+    if (!$vendorId) {
+        return redirect()->back()->with('error', 'Unauthorized vendor.');
+    }
+
+    $product = new Product();
+    $product->name = $request->name;
+    $product->description = $request->description;
+    $product->price = $request->price;
+    $product->discount = $request->discount ?? 0;
+    $product->quantity = $request->quantity;
+    $product->category_id = $request->category_id;
+
+    // ✅ Vendor product is not auto-approved
+    $product->is_approved = false;
+    $product->added_by = $vendorId;
+    $product->added_by_role = 'vendor';
+
+    // ✅ Upload image
     if ($request->hasFile('image')) {
-        $data['image'] = $request->file('image')->store('products', 'public');
+        $file = $request->file('image');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('uploads/products'), $filename);
+        $product->image = $filename;
     }
 
-    $data['vendor_id'] = Auth::guard('vendor')->id();
-    $data['added_by'] = 'vendor';
-    $data['is_approved'] = false;
-    $data['discount'] = $request->discount ?? 0; // Set default discount to 0 if not given
+    $product->save();
 
-    Product::create($data);
-
-    return redirect()->route('vendor.products.index')->with('success', 'Product submitted for approval.');
+    return redirect()->route('vendor.products.index')->with('success', 'Product added and pending admin approval.');
 }
-
-    public function edit($id)
-    {
-        $product = Product::where('vendor_id', Auth::guard('vendor')->id())->findOrFail($id);
-        return view('frontend.vendor.products.edit', compact('product'));
-    }
-
     public function update(Request $request, $id)
     {
         $product = Product::where('vendor_id', Auth::guard('vendor')->id())->findOrFail($id);

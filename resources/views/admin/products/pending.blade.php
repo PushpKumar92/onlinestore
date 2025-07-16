@@ -21,6 +21,11 @@
                     @csrf
                     <button class="btn btn-sm btn-success">Approve</button>
                 </form>
+                <form method="POST" action="{{ route('admin.products.decline', $product->id) }}"
+                    style="display:inline;">
+                    @csrf
+                    <button class="btn btn-sm btn-danger">Decline</button>
+                </form>
             </td>
         </tr>
         @endforeach
