@@ -73,27 +73,38 @@ public function store(Request $request)
 
     return redirect()->route('vendor.products.index')->with('success', 'Product added and pending admin approval.');
 }
-    public function update(Request $request, $id)
-    {
-        $product = Product::where('vendor_id', Auth::guard('vendor')->id())->findOrFail($id);
 
-        $data = $request->validate([
-            'title' => 'required',
-            'description' => 'nullable',
-            'price' => 'required|numeric',
-            'image' => 'nullable|image',
-        ]);
+public function edit($id)
+{
+    $product = Product::findOrFail($id);
+    $categories = Category::all(); // ✅ Fetch all categories
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('products', 'public');
-        }
+    return view('frontend.vendor.products.edit', compact('product', 'categories'));
+}
+   public function update(Request $request, $id)
+{
+    $product = Product::where('vendor_id', Auth::guard('vendor')->id())
+                     ->where('id', $id)
+                     ->firstOrFail();
 
-        $data['is_approved'] = false;
+    $data = $request->validate([
+        'title' => 'required',
+        'description' => 'nullable',
+        'price' => 'required|numeric',
+        'image' => 'nullable|image',
+    ]);
 
-        $product->update($data);
-
-        return redirect()->route('vendor.products.index')->with('success', 'Product updated and pending approval.');
+    if ($request->hasFile('image')) {
+        $data['image'] = $request->file('image')->store('products', 'public');
     }
+
+    $data['is_approved'] = false;
+
+    $product->update($data);
+
+    return redirect()->route('vendor.products.index')->with('success', 'Product updated and pending approval.');
+}
+
 
     public function destroy($id)
     {

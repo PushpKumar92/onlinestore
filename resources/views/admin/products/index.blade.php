@@ -34,26 +34,24 @@
                     </td> {{-- Assumes vendor relationship --}}
                     <td>{{ $product->name }}</td>
                     <td>₹{{ number_format($product->price, 2) }}</td>
-                   <td>
-    @if ($product->status == 'approved')
-        <span class="badge bg-success">Approved</span>
-    @elseif ($product->status == 'pending')
-        <span class="badge bg-warning text-dark">Pending</span>
-    @elseif ($product->status == 'declined')
-        <span class="badge bg-danger">Declined</span>
-    @else
-        <span class="badge bg-secondary">{{ ucfirst($product->status) }}</span>
-    @endif
-</td>
+                    <td>
+                        @if ($product->status == 'approved')
+                        <span class="badge bg-success">Approved</span>
+                        @elseif ($product->status == 'pending')
+                        <span class="badge bg-warning text-dark">Pending</span>
+                        @elseif ($product->status == 'declined')
+                        <span class="badge bg-danger">Declined</span>
+                        @else
+                        <span class="badge bg-secondary">{{ ucfirst($product->status) }}</span>
+                        @endif
+                    </td>
                     <td>
                         <a href="{{ route('admin.products.edit', $product->id) }}"
                             class="btn btn-sm btn-primary">Edit</a>
-                        <form method="POST" action="{{ route('admin.products.destroy', $product->id) }}"
-                            style="display:inline;">
+                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger"
-                                onclick="return confirm('Are you sure?')">Delete</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
                 </tr>

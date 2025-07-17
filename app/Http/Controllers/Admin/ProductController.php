@@ -61,30 +61,33 @@ public function store(Request $request)
 
     return redirect()->route('admin.products.index')->with('success', 'Product added successfully and published.');
 }
-public function edit(Product $product)
+public function edit($id)
 {
-return view('admin.products.edit', compact('product'));
+    $product = Product::findOrFail($id);
+    $categories = Category::all(); // ✅ Fetch all categories
+
+    return view('admin.products.edit', compact('product', 'categories'));
 }
 
 public function update(Request $request, Product $product)
 {
-$data = $request->validate([
-'name' => 'required|string|max:255',
-'description' => 'nullable|string',
-'price' => 'required|numeric|min:0',
-'discount' => 'nullable|numeric|min:0|max:100',
-'quantity' => 'required|integer|min:0',
-'status' => 'required|in:active,inactive',
-'image' => 'nullable|image|max:2048',
-]);
+    $data = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'price' => 'required|numeric|min:0',
+        'discount' => 'nullable|numeric|min:0|max:100',
+        'quantity' => 'required|integer|min:0',
+        'status' => 'required|in:active,inactive',
+        'image' => 'nullable|image|max:2048',
+    ]);
 
-if ($request->hasFile('image')) {
-$data['image'] = $request->file('image')->store('products', 'public');
-}
+    if ($request->hasFile('image')) {
+        $data['image'] = $request->file('image')->store('products', 'public');
+    }
 
-$product->update($data);
+    $product->update($data);
 
-return redirect()->route('products.index')->with('success', 'Product updated successfully');
+    return redirect()->route('admin.products.index')->with('success', 'Product updated successfully');
 }
 
 public function destroy(Product $product)
