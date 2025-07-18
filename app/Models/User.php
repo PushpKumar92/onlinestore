@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Bookings::class);
     }
+ 
+public function cartItems()
+{
+    return $this->hasMany(\App\Models\CartItem::class); // Replace with your actual model
+}
 }

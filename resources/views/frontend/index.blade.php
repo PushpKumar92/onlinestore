@@ -227,39 +227,41 @@
     <!--------------- category-section-end--------------->
 
     <!--------------- arrival-section--------------->
-  <section class="product arrival">
-    <div class="container">
-        <div class="section-title d-flex justify-content-between align-items-center mb-4">
-            <h5 class="mb-0">NEW ARRIVALS</h5>
-            <a href="" class="view">View All</a>
-        </div>
+    <section class="product arrival">
+        <div class="container">
+            <div class="section-title d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">NEW ARRIVALS</h5>
+                <a href="" class="view">View All</a>
+            </div>
 
-        <div class="arrival-section">
-            <div class="row g-4">
-                @forelse ($products as $product)
+            <div class="arrival-section">
+                <div class="row g-4">
+                    @forelse ($products as $product)
                     @php
-                        $price = $product->price;
-                        $discount = $product->discount ?? 0;
-                        $hasDiscount = $discount > 0;
-                        $discountedPrice = $hasDiscount ? round($price - ($price * $discount / 100), 2) : $price;
+                    $price = $product->price;
+                    $discount = $product->discount ?? 0;
+                    $hasDiscount = $discount > 0;
+                    $discountedPrice = $hasDiscount ? round($price - ($price * $discount / 100), 2) : $price;
                     @endphp
 
                     <div class="col-lg-3 col-sm-6">
                         <div class="product-wrapper" data-aos="fade-up">
                             <div class="product-img position-relative">
                                 @if($hasDiscount)
-                                    <span class="discount-badge bg-danger text-white px-2 py-1 position-absolute top-0 start-0 rounded-end">
-                                        {{ $discount }}% OFF
-                                    </span>
+                                <span
+                                    class="discount-badge bg-danger text-white px-2 py-1 position-absolute top-0 start-0 rounded-end">
+                                    {{ $discount }}% OFF
+                                </span>
                                 @endif
 
                                 <img src="{{ asset('uploads/products/' . $product->image) }}" class="img-fluid w-100"
-                                     style="object-fit: cover; height: 300px;" alt="{{ $product->name }}">
+                                    style="object-fit: cover; height: 300px;" alt="{{ $product->name }}">
 
                                 <div class="product-cart-items position-absolute bottom-0 end-0 p-2 d-flex gap-2">
                                     <a href="#" class="cart cart-item">
-                                        <span class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
-                                              style="width: 40px; height: 40px;">
+                                        <span
+                                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
+                                            style="width: 40px; height: 40px;">
                                             <i class="fas fa-arrows-alt text-dark"></i>
                                         </span>
                                     </a>
@@ -271,16 +273,17 @@
 
                             <div class="product-info mt-3">
                                 <a href="{{ route('product.info', $product->id) }}"
-                                   class="product-details fw-bold text-dark d-block mb-2">
+                                    class="product-details fw-bold text-dark d-block mb-2">
                                     {{ $product->name }}
                                 </a>
 
-                                <div class="price">
+                                <div class="price d-flex flex-column align-items-start">
                                     @if($hasDiscount)
-                                        <span class="new-price text-success fw-bold me-2">₹{{ $discountedPrice }}</span>
-                                        <span class="price-cut text-muted"><del>₹{{ $price }}</del></span>
+                                    <span class="new-price text-success fw-bold">₹{{ $discountedPrice }}</span>
+                                    <span class="price-cut text-muted"
+                                        style="font-size: 15px;"><del>₹{{ $price }}</del></span>
                                     @else
-                                        <span class="new-price text-dark fw-bold">₹{{ $price }}</span>
+                                    <span class="new-price text-dark fw-bold">₹{{ $price }}</span>
                                     @endif
                                 </div>
                             </div>
@@ -292,15 +295,15 @@
                             </div>
                         </div>
                     </div>
-                @empty
+                    @empty
                     <div class="col-12 text-center">
                         <p class="text-muted">No approved new arrivals yet.</p>
                     </div>
-                @endforelse
+                    @endforelse
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
     <!--------------- arrival-section-end--------------->

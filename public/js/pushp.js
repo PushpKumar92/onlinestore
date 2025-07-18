@@ -103,4 +103,35 @@
             .then(data => {
                 document.getElementById('watchlist-badge').textContent = `Watchlist (${data.count})`;
             });
+
+
+   function addToWishlist(productId) {
+        fetch(`/wishlist/add/${productId}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                updateWishlistCount();
+            }
+        });
+    }
+
+    function updateWishlistCount() {
+        fetch(`/wishlist/count`)
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('wishlist-count').innerText = data.count;
+            });
+    }
+
+    // Initialize counter on page load
+    document.addEventListener("DOMContentLoaded", function() {
+        updateWishlistCount();
+    });
     }

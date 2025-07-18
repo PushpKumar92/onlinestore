@@ -49,7 +49,7 @@
                         </div>
                         <div class="service-content">
                             <h5 class="service-info service-title">Free Return</h5>
-                            <p class="service-info service-details">Get Return within 30 days</p>
+                            <p class="service-info service-details">Get Return within 3 days</p>
                         </div>
                     </div>
                 </div>

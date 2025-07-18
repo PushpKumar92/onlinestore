@@ -7,8 +7,8 @@
     <section class="blog about-blog">
         <div class="container">
             <div class="blog-bradcrum">
-                <span><a href="{{ route('index')}}">Home</a></span> /
-                <span>Cart</span>
+                <span><a href="{{ route('index')}}">Home</a></span> //
+                <span style="font-size:16px;">Cart</span>
             </div>
             <div class="blog-heading about-heading">
                 <h1 class="heading">Cart</h1>
@@ -82,12 +82,14 @@
 
         <div class="text-end mt-4">
             <h4>Total: ₹<span id="cart-total">{{ number_format($total, 2) }}</span></h4>
-            <a href="{{ route('checkout') }}" class="shop-btn mt-3">Proceed to Checkout</a>
+            <a href="{{ route('checkout.index') }}" class="btn btn-primary">
+                Proceed to Checkout
+            </a>
             <a href="{{ route('index') }}" class="shop-btn  mt-3">Continue Shopping</a>
         </div>
     </div>
     @else
-    <div class="container text-center">
+    <div class="container text-center mb-5">
         <h2>🛒 Your cart is empty!</h2>
         <a href="{{ route('index') }}" class="shop-btn mt-3">Continue Shopping</a>
     </div>

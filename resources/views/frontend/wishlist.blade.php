@@ -19,7 +19,7 @@
 
     <!--------------- wishlist-section---------------->
 
-    <div class="container py-5">
+    <div class="container py-5 mb-5">
         <h2>Your Wishlist</h2>
         <div class="row">
             @forelse ($wishlists as $item)

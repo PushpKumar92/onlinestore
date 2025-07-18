@@ -3,7 +3,7 @@
 <main class="main-content">
     <!--------------- cart-section---------------->
     <section class="blog about-blog footer-padding">
-        <div class="container">
+        <div class="container mb-5">
             <div class="blog-bradcrum">
                 <span><a href="{{ route('index')}}">Home</a></span>
                 <span class="devider">/</span>

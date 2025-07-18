@@ -7,6 +7,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Vendor\ProductController as VendorProductController;
 
@@ -28,6 +30,13 @@ Route::middleware('user.auth')->prefix('user')->group(function () {
   
    Route::get('payment', [PaymentController::class, 'payment'])->name('payment');
    Route::post('payment-store', [PaymentController::class, 'paymentStore'])->name('payment.store');
+
+   Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
+ Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
 
     Route::get('logout', [UserController::class, 'logout'])->name('user.logout');
     
