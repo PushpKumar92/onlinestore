@@ -73,7 +73,6 @@ public function store(Request $request)
 
     return redirect()->route('vendor.products.index')->with('success', 'Product added and pending admin approval.');
 }
-
 public function edit($id)
 {
     $product = Product::findOrFail($id);
@@ -81,36 +80,50 @@ public function edit($id)
 
     return view('frontend.vendor.products.edit', compact('product', 'categories'));
 }
-   public function update(Request $request, $id)
+
+
+public function update(Request $request, $id)
 {
-    $product = Product::where('vendor_id', Auth::guard('vendor')->id())
-                     ->where('id', $id)
-                     ->firstOrFail();
+    $vendorId = Auth::guard('vendor')->id();
+
+    $product = Product::where('added_by', $vendorId)
+                      ->where('added_by_role', 'vendor')
+                      ->where('id', $id)
+                      ->firstOrFail();
 
     $data = $request->validate([
-        'title' => 'required',
-        'description' => 'nullable',
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string',
         'price' => 'required|numeric',
-        'image' => 'nullable|image',
+        'discount' => 'nullable|numeric|min:0',
+        'quantity' => 'required|integer|min:0',
+        'category_id' => 'required|exists:categories,id',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
     ]);
 
+    // Handle image upload
     if ($request->hasFile('image')) {
-        $data['image'] = $request->file('image')->store('products', 'public');
+        $file = $request->file('image');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('uploads/products'), $filename);
+        $data['image'] = $filename;
     }
 
+    // Mark as not approved
     $data['is_approved'] = false;
 
     $product->update($data);
 
-    return redirect()->route('vendor.products.index')->with('success', 'Product updated and pending approval.');
+    return redirect()->route('vendor.products.index')
+                     ->with('success', 'Product updated and pending approval.');
 }
 
 
-    public function destroy($id)
-    {
-        $product = Product::where('vendor_id', Auth::guard('vendor')->id())->findOrFail($id);
-        $product->delete();
+   public function destroy(Product $product)
+{
+    $product->delete();
 
-        return redirect()->route('vendor.products.index')->with('success', 'Product deleted.');
-    }
+    return redirect()->route('vendor.products.index')
+                     ->with('success', 'Product deleted successfully.');
+}
 }

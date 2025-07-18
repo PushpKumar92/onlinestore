@@ -69,31 +69,48 @@ public function edit($id)
     return view('admin.products.edit', compact('product', 'categories'));
 }
 
-public function update(Request $request, Product $product)
+public function update(Request $request, $id)
 {
+    $adminId = Auth::guard('admin')->id();
+
+    $product = Product::where('added_by', $adminId)
+                      ->where('added_by_role', 'admin')
+                      ->where('id', $id)
+                      ->firstOrFail();
+
     $data = $request->validate([
         'name' => 'required|string|max:255',
         'description' => 'nullable|string',
-        'price' => 'required|numeric|min:0',
-        'discount' => 'nullable|numeric|min:0|max:100',
+        'price' => 'required|numeric',
+        'discount' => 'nullable|numeric|min:0',
         'quantity' => 'required|integer|min:0',
-        'status' => 'required|in:active,inactive',
-        'image' => 'nullable|image|max:2048',
+        'category_id' => 'required|exists:categories,id',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
     ]);
 
+    // Handle image upload
     if ($request->hasFile('image')) {
-        $data['image'] = $request->file('image')->store('products', 'public');
+        $file = $request->file('image');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('uploads/products'), $filename);
+        $data['image'] = $filename;
     }
+
+    // Mark as not approved
+    $data['is_approved'] = true;
 
     $product->update($data);
 
-    return redirect()->route('admin.products.index')->with('success', 'Product updated successfully');
+    return redirect()->route('admin.products.index')
+                     ->with('success', 'Product updated and pending approval.');
 }
 
 public function destroy(Product $product)
 {
-$product->delete();
-return redirect()->route('admin.products.destroy')->with('success', 'Product deleted successfully');
+    $product->delete();
+
+    return redirect()->route('admin.products.index')
+                     ->with('success', 'Product deleted successfully.');
 }
 
 public function pending()
