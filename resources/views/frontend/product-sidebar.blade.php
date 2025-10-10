@@ -13,47 +13,47 @@
                                 <div class="sidebar-item">
                                     <ul class="sidebar-list">
                                         <li>
-                                            <input type="checkbox" id="mobile" name="mobile">
+                                            <input type="checkbox" class="filter-checkbox" id="mobile" name="mobile">
                                             <label for="mobile">Mobile & Laptops</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="bags" name="bags">
+                                            <input type="checkbox" class="filter-checkbox" id="bags" name="bags">
                                             <label for="bags">Bags</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="sweatshirt" name="sweatshirt">
+                                            <input type="checkbox" class="filter-checkbox" id="sweatshirt" name="sweatshirt">
                                             <label for="sweatshirt">Sweatshirt</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="boots" name="boots">
+                                            <input type="checkbox" class="filter-checkbox" id="boots" name="boots">
                                             <label for="boots">Boots</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="accessories" name="accessories">
+                                            <input type="checkbox" class="filter-checkbox" id="accessories" name="accessories">
                                             <label for="accessories">Accessories</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="sneakers" name="sneakers">
+                                            <input type="checkbox" class="filter-checkbox" id="sneakers" name="sneakers">
                                             <label for="sneakers">Sneakers</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="outerwear" name="outerwear">
+                                            <input type="checkbox" class="filter-checkbox" id="outerwear" name="outerwear">
                                             <label for="outerwear">Outerwear</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="activewear" name="activewear">
+                                            <input type="checkbox" class="filter-checkbox" id="activewear" name="activewear">
                                             <label for="activewear">Activewear</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="grooming" name="grooming">
+                                            <input type="checkbox" class="filter-checkbox" id="grooming" name="grooming">
                                             <label for="grooming">Grooming</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="cosmatics" name="cosmatics">
+                                            <input type="checkbox" class="filter-checkbox" id="cosmatics" name="cosmatics">
                                             <label for="cosmatics">Cosmetics</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="watch" name="watch">
+                                            <input type="checkbox" class="filter-checkbox" id="watch" name="watch">
                                             <label for="watch">Watch</label>
                                         </li>
                                     </ul>
@@ -79,48 +79,48 @@
                                 <div class="sidebar-item">
                                     <ul class="sidebar-list">
                                         <li>
-                                            <input type="checkbox" id="thread" name="thread">
+                                            <input type="checkbox" class="filter-checkbox" id="thread" name="thread">
                                             <label for="thread">Refined Threads
                                             </label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="ethereal" name="ethereal">
+                                            <input type="checkbox" class="filter-checkbox" id="ethereal" name="ethereal">
                                             <label for="ethereal">Ethereal Chic</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="yellow" name="yellow">
+                                            <input type="checkbox" class="filter-checkbox" id="yellow" name="yellow">
                                             <label for="yellow">Yellow</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="esctasy" name="esctasy">
+                                            <input type="checkbox" class="filter-checkbox" id="esctasy" name="esctasy">
                                             <label for="esctasy">Esctasy</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="urban" name="urban">
+                                            <input type="checkbox" class="filter-checkbox" id="urban" name="urban">
                                             <label for="urban">Urban Hive</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="velvet" name="velvet">
+                                            <input type="checkbox" class="filter-checkbox" id="velvet" name="velvet">
                                             <label for="velvet">Velvet Vista</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="boldly" name="boldly">
+                                            <input type="checkbox" class="filter-checkbox" id="boldly" name="boldly">
                                             <label for="boldly">Boldly Blue</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="minted" name="minted">
+                                            <input type="checkbox" class="filter-checkbox" id="minted" name="minted">
                                             <label for="minted">Minted Mode</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="ensemble" name="ensemble">
+                                            <input type="checkbox" class="filter-checkbox" id="ensemble" name="ensemble">
                                             <label for="ensemble">Eclectic Ensemble</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="attire" name="attire">
+                                            <input type="checkbox" class="filter-checkbox" id="attire" name="attire">
                                             <label for="attire">BraveAlchemy Attire</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="couture" name="couture">
+                                            <input type="checkbox" class="filter-checkbox" id="couture" name="couture">
                                             <label for="couture">Cascade Couture</label>
                                         </li>
                                     </ul>
@@ -132,15 +132,15 @@
                                 <div class="sidebar-item">
                                     <ul class="sidebar-list">
                                         <li>
-                                            <input type="checkbox" id="red" name="red">
+                                            <input type="checkbox" class="filter-checkbox" id="red" name="red">
                                             <label for="red">Red</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="blue" name="blue">
+                                            <input type="checkbox" class="filter-checkbox" id="blue" name="blue">
                                             <label for="blue">blue</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="navy" name="navy">
+                                            <input type="checkbox" class="filter-checkbox" id="navy" name="navy">
                                             <label for="navy">Navy</label>
                                         </li>
 
@@ -153,23 +153,23 @@
                                 <div class="sidebar-item">
                                     <ul class="sidebar-list">
                                         <li>
-                                            <input type="checkbox" id="small" name="small">
+                                            <input type="checkbox" class="filter-checkbox" id="small" name="small">
                                             <label for="small">Small</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="medium" name="medium">
+                                            <input type="checkbox" class="filter-checkbox" id="medium" name="medium">
                                             <label for="medium">Medium</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="large" name="large">
+                                            <input type="checkbox" class="filter-checkbox" id="large" name="large">
                                             <label for="large">Large</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="xl" name="xl">
+                                            <input type="checkbox" class="filter-checkbox" id="xl" name="xl">
                                             <label for="xl">XL</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="2xl" name="2xl">
+                                            <input type="checkbox" class="filter-checkbox" id="2xl" name="2xl">
                                             <label for="2xl">2XL</label>
                                         </li>
                                     </ul>
@@ -866,5 +866,60 @@
     </section>
     <!--------------- products-sidebar-section-end--------------->
 </main>
+<script>
+$(document).ready(function () {
+    $(".filter-checkbox").on("change", function () {
+        applyFilters();
+    });
+
+    function applyFilters() {
+        let filters = {};
+
+        // Collect checked categories
+        let categories = [];
+        $("input[name='category']:checked").each(function () {
+            categories.push($(this).val());
+        });
+        if (categories.length) filters.category = categories;
+
+        // Collect checked brands
+        let brands = [];
+        $("input[name='brand']:checked").each(function () {
+            brands.push($(this).val());
+        });
+        if (brands.length) filters.brand = brands;
+
+        // Collect checked colors
+        let colors = [];
+        $("input[name='color']:checked").each(function () {
+            colors.push($(this).val());
+        });
+        if (colors.length) filters.color = colors;
+
+        // Collect checked sizes
+        let sizes = [];
+        $("input[name='size']:checked").each(function () {
+            sizes.push($(this).val());
+        });
+        if (sizes.length) filters.size = sizes;
+
+        // Example: price range
+        filters.min_price = $("#slider-margin-value-min").text();
+        filters.max_price = $("#slider-margin-value-max").text();
+
+        console.log("Filters:", filters);
+
+        // 🔥 Send filters via AJAX to backend
+        $.ajax({
+            url: "{{ route('products.sidebar') }}", // Laravel route
+            method: "GET",
+            data: filters,
+            success: function (response) {
+                $("#product-list").html(response); // Replace product grid
+            }
+        });
+    }
+});
+</script>
 
 @endsection

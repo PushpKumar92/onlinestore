@@ -3,75 +3,74 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
- public function index()
-    {
-        $user = Auth::user();
+public function index(Request $request)
+{
+    // Get the logged-in user
+    $user = Auth::user();
 
-        // Agar user ki cartItems relationship hai to load karo, warna empty collection
-        $cartItems = $user->cartItems ?? collect();
+    $user = Auth::guard('user')->user();
+    $cartItems = session()->get('cart', []);
 
-        if ($cartItems->isEmpty()) {
-            return redirect()->route('cart.show')->with('error', 'Your cart is empty.');
-        }
+    // Calculate total amount
+   $total = 0;
+foreach ($cartItems as $item) {
+    $itemPrice = $item['discount_price'] ?? $item['price']; // use discount_price if available
+    $total += $itemPrice * $item['quantity'];
+}
 
-        // Subtotal calculate
-        $subtotal = $cartItems->sum(function ($item) {
-            return $item->product->price * $item->quantity;
-        });
+    // Pass all required variables to the view
+    return view('frontend.checkout', compact('cartItems', 'total', 'user'));
+}
+  public function placeOrder(Request $request)
+{
+    $user = Auth::user();
 
-        $total = $subtotal;
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email',
+        'phone' => 'required',
+        'address' => 'required|string',
+        'country' => 'required|string',
+        'city' => 'required|string',
+        'zip' => 'required|string',
+        'payment_method' => 'required|string',
+        'total' => 'required|numeric',
+    ]);
 
-        return view('frontend.checkout', compact('user', 'cartItems', 'subtotal', 'total'));
-    }
+    $order = new Order();
+    $order->user_id = $user->id;
+    $order->billing_name = $request->name;
+    $order->billing_email = $request->email;
+    $order->billing_phone = $request->phone;
+    $order->billing_address = $request->address;
+    $order->billing_country = $request->country;
+    $order->billing_city = $request->city;
+    $order->billing_zip = $request->zip;
+    $order->payment_method = $request->payment_method;
+    $order->total_amount = $request->total;
+    $order->status = 'pending';
+    $order->order_number = 'ORD-' . strtoupper(uniqid());
+    $order->save();
 
-    public function placeOrder(Request $request)
-    {
-        $user = Auth::user();
-
-        $request->validate([
-            'fname' => 'required|string|max:255',
-            'lname' => 'required|string|max:255',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'address' => 'required|string',
-            'country' => 'required|string',
-            'city' => 'required|string',
-            'zip' => 'required|string',
-            'payment_method' => 'required|string',
+    $cartItems = CartItem::where('user_id', $user->id)->get();
+    foreach ($cartItems as $item) {
+        OrderItem::create([
+            'order_id' => $order->id,
+            'product_id' => $item->product_id,
+            'quantity' => $item->quantity,
+            'price' => $item->product->price,
         ]);
-
-        $order = new Order();
-        $order->user_id = $user->id;
-        $order->billing_name = $request->fname . ' ' . $request->lname;
-        $order->billing_email = $request->email;
-        $order->billing_phone = $request->phone;
-        $order->billing_address = $request->address;
-        $order->billing_country = $request->country;
-        $order->billing_city = $request->city;
-        $order->billing_zip = $request->zip;
-        $order->payment_method = $request->payment_method;
-        $order->total_amount = $request->total;
-        $order->save();
-
-        $cartItems = Cart::where('user_id', $user->id)->get();
-        foreach ($cartItems as $item) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $item->product_id,
-                'quantity' => $item->quantity,
-                'price' => $item->product->price,
-            ]);
-        }
-
-        Cart::where('user_id', $user->id)->delete();
-
-        return redirect()->route('index')->with('success', 'Order placed successfully!');
     }
+
+    CartItem::where('user_id', $user->id)->delete();
+
+    return redirect()->route('payment.page', ['order' => $order->id]);
+}
 }

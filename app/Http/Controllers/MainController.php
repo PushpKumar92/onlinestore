@@ -39,9 +39,6 @@ class MainController extends Controller
         return view('frontend.product-info');
     }
 
-    public function productSidebar() {
-        return view('frontend.product-sidebar');
-    }
 
     public function sellers() {
         return view('frontend.sellers');

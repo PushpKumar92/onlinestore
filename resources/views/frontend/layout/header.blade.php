@@ -10,7 +10,7 @@
                 <div class="header-contact d-none d-lg-block">
                     <a href="tel:+91 967-5700-765">
                         <span class="text-success">Need help? Call us:</span>
-                        <span class="contact-number text-dark">+91 967-5700-765</span>
+                        <span class="contact-number text-dark">91-8837810916</span>
                     </a>
                 </div>
             </div>
@@ -28,11 +28,13 @@
                 <div class="header-cart-items">
                     <!-- Centered Search Box -->
                     <div class="mx-auto my-2 my-lg-0" style="width: 500px;">
-                        <form class="d-flex">
-                            <input class="form-control me-2" style="border: 2px solid #00674f;" type="search"
-                                placeholder="Search" aria-label="Search">
-                            <button class=" w-auto px-5" type="submit">Search</button>
+                        <form action="{{ route('search') }}" method="GET" class="d-flex mx-auto my-2"
+                            style="width:500px;">
+                            <input class="form-control me-2" type="search" name="query" placeholder="Search products..."
+                                aria-label="Search" value="{{ request('query') }}" style="border:2px solid #00674f;">
+                            <button class="btn btn-success w-auto px-5" type="submit">Search</button>
                         </form>
+
                     </div>
 
                     <div class="header-favourite position-relative">
@@ -790,12 +792,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="header-vendor-btn">
-
-                    <a href="{{ route('vendor.register') }}" class="shop-btn">Become Vendor</a>
-
-                </div>
-
+               
             </div>
         </div>
     </div>

@@ -227,11 +227,11 @@
     <!--------------- category-section-end--------------->
 
     <!--------------- arrival-section--------------->
-    <section class="product arrival">
+    <section class="product arrival py-5">
         <div class="container">
             <div class="section-title d-flex justify-content-between align-items-center mb-4">
                 <h5 class="mb-0">NEW ARRIVALS</h5>
-                <a href="" class="view">View All</a>
+                <a href="#" class="view text-decoration-underline">View All</a>
             </div>
 
             <div class="arrival-section">
@@ -245,43 +245,47 @@
                     @endphp
 
                     <div class="col-lg-3 col-sm-6">
-                        <div class="product-wrapper" data-aos="fade-up">
+                        <div class="product-wrapper h-100 d-flex flex-column" data-aos="fade-up">
                             <div class="product-img position-relative">
                                 @if($hasDiscount)
-                                <span
-                                    class="discount-badge bg-danger text-white px-2 py-1 position-absolute top-0 start-0 rounded-end">
+                                <span class="discount-badge bg-danger text-white px-2 py-1 position-absolute top-0 start-0 rounded-end">
                                     {{ $discount }}% OFF
                                 </span>
                                 @endif
 
-                                <img src="{{ asset('uploads/products/' . $product->image) }}" class="img-fluid w-100"
-                                    style="object-fit: cover; height: 300px;" alt="{{ $product->name }}">
+                                <img src="{{ asset('uploads/products/' . $product->image) }}"
+                                    class="img-fluid w-100"
+                                    style="object-fit: cover; height: 300px;"
+                                    alt="{{ $product->name }}">
 
                                 <div class="product-cart-items position-absolute bottom-0 end-0 p-2 d-flex gap-2">
-                                    <a href="#" class="cart cart-item">
-                                        <span
-                                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
+                                    <a href="{{ route('product.info', $product->id) }}" class="cart cart-item">
+                                        <span class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
                                             style="width: 40px; height: 40px;">
                                             <i class="fas fa-arrows-alt text-dark"></i>
                                         </span>
                                     </a>
-                                    <a href="javascript:void(0);" onclick="addToWishlist({{ $product->id }})">
-                                        <i class="fa fa-heart text-danger"></i>
+                                    <a href="javascript:void(0);" onclick="addToWishlist()">
+                                        <span class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
+                                            style="width: 40px; height: 40px;">
+                                            <i class="fa fa-heart text-danger"></i>
+                                        </span>
                                     </a>
                                 </div>
                             </div>
 
-                            <div class="product-info mt-3">
+                            <div class="product-info mt-3 flex-grow-1">
                                 <a href="{{ route('product.info', $product->id) }}"
-                                    class="product-details fw-bold text-dark d-block mb-2">
+                                    class="product-details fw-bold text-dark d-block mb-2 text-truncate">
                                     {{ $product->name }}
                                 </a>
 
-                                <div class="price d-flex flex-column align-items-start">
+                                <div class="price d-flex flex-row align-items-center">
                                     @if($hasDiscount)
-                                    <span class="new-price text-success fw-bold">₹{{ $discountedPrice }}</span>
-                                    <span class="price-cut text-muted"
-                                        style="font-size: 15px;"><del>₹{{ $price }}</del></span>
+                                    <span class="new-price text-success fw-bold me-2">₹{{ $discountedPrice }}</span>
+                                    <span class="price-cut text-muted" style="font-size: 15px;">
+                                        <del>₹{{ $price }}</del>
+                                    </span>
                                     @else
                                     <span class="new-price text-dark fw-bold">₹{{ $price }}</span>
                                     @endif
@@ -304,6 +308,7 @@
             </div>
         </div>
     </section>
+
 
 
     <!--------------- arrival-section-end--------------->
@@ -977,8 +982,6 @@
                                             style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
                                             <i class="fas fa-arrows-alt" style="font-size: 20px; color: #181818;"></i>
                                         </span>
-
-
                                     </a>
                                     <a href="{{route('wishlist.index')}}" class="favourite cart-item">
                                         <span
@@ -1072,4 +1075,34 @@
     </section>
     <!--------------- weekly-section-end--------------->
 </main>
+<script>
+    // 🔥 Set your target date here
+    const targetDate = new Date("2025-12-31T23:59:59").getTime();
+
+    const countdown = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance <= 0) {
+            clearInterval(countdown);
+            document.getElementById("day").innerText = "0";
+            document.getElementById("hour").innerText = "0";
+            document.getElementById("minute").innerText = "0";
+            document.getElementById("second").innerText = "0";
+            alert("🎉 Countdown Finished!");
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("day").innerText = days;
+        document.getElementById("hour").innerText = hours;
+        document.getElementById("minute").innerText = minutes;
+        document.getElementById("second").innerText = seconds;
+    }, 1000);
+</script>
+
 @endsection

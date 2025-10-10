@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
-class CartController extends Controller
+class AddCartController extends Controller
 {
+    
     // Show Cart Page
     public function showCart()
     {

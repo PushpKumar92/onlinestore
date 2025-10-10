@@ -27,18 +27,7 @@
                     <span>All Products</span>
                 </a>
             </li>
-            <li>
-                <a class="nav-link text-white" href="{{route('products.pending')}}">
-
-                    <i class="fa-brands fa-product-hunt text-warning
-                        me-2"></i>Vendor Product
-                </a>
-            </li>
-            <li>
-                <a class="nav-link text-white" href="{{route('admin.index')}}">
-                    <i class="fas fa-store text-warning me-2"></i> Vendor
-                </a>
-            </li>
+           
             <li>
                 <a class="nav-link text-white" href="#">
                     <i class="fas fa-shopping-cart text-warning me-2"></i>Orders

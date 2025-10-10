@@ -2,8 +2,8 @@
 @section('content')
 <main class="main-content">
     <!--------------- products-info-section--------------->
-    <section class="product product-sidebar flash footer-padding">
-        <div class="container">
+    <section class=" product-sidebar flash footer-padding">
+        <div class="container-fluid">
             <div class="product-sidebar-section">
                 <div class="row g-5">
                     <div class="col-lg-12">
@@ -341,5 +341,33 @@
     <!--------------- products-info-end--------------->
 
 </main>
+<script>
+  // 🔥 Set your target date here
+  const targetDate = new Date("2025-12-31T23:59:59").getTime();
 
+  const countdown = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+      clearInterval(countdown);
+      document.getElementById("day").innerText = "0";
+      document.getElementById("hour").innerText = "0";
+      document.getElementById("minute").innerText = "0";
+      document.getElementById("second").innerText = "0";
+      alert("🎉 Countdown Finished!");
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("day").innerText = days;
+    document.getElementById("hour").innerText = hours;
+    document.getElementById("minute").innerText = minutes;
+    document.getElementById("second").innerText = seconds;
+  }, 1000);
+</script>
 @endsection

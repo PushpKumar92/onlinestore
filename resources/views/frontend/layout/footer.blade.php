@@ -179,7 +179,7 @@
                                 </div>
                                 <div class="details">
                                     <h4 class="footer-heading">Address:</h4>
-                                    <p>4517 Washington Ave. Manchester, Kentucky 39495</p>
+                                    <p>10149, 10th floor, Gaur City Mall, Greater Noida, 201318</p>
                                 </div>
                             </div>
                             <div class="phone address">
@@ -191,7 +191,7 @@
                                 </div>
                                 <div class="details">
                                     <h4 class="footer-heading">Phone:</h4>
-                                    <p>+880171889547</p>
+                                    <p>91-8837810916</p>
                                 </div>
                             </div>
                         </div>

@@ -302,7 +302,7 @@
 
  .product-wrapper .product-cart-btn {
    position: absolute;
-   bottom: 1rem;
+   bottom:0;
    right: 0;
    transition: all 0.4s;
  }

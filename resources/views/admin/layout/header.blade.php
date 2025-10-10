@@ -1,7 +1,7 @@
 <header class="navbar navbar-expand-lg navbar-dark px-3 py-3 border-bottom">
     <!-- Logo for Mobile -->
     <a class="navbar-brand d-lg-none" href="#">
-        <img src="{{ asset('assets/images/logo/logowhite.png') }}" height="40" alt="Brand">
+        <img src="{{ asset('assets/images/logos/logo.png') }}" height="40" alt="Brand">
     </a>
 
     <!-- Toggler for Mobile -->
