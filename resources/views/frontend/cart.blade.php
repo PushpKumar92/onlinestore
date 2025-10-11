@@ -24,54 +24,59 @@
 
             <div class="col-lg-6">
                 @foreach(session('cart') as $id => $details)
-                    @php
-                        $original = $details['price'];
-                        $discount = isset($details['discount']) ? (float)$details['discount'] : 0;
-                        $final = $discount > 0 ? round($original - ($original * $discount / 100), 2) : $original;
-                        $subtotal = $final * $details['quantity'];
-                        $total += $subtotal;
-                    @endphp
+                @php
+                $original = $details['price'];
+                $discount = isset($details['discount']) ? (float)$details['discount'] : 0;
+                $final = $discount > 0 ? round($original - ($original * $discount / 100), 2) : $original;
+                $subtotal = $final * $details['quantity'];
+                $total += $subtotal;
+                @endphp
 
-                    <div class="border rounded p-3 mb-3 d-flex gap-3 flex-wrap align-items-center" data-id="{{ $id }}">
-                        <div class="flex-shrink-0">
-                            @if(!empty($details['image']) && file_exists(public_path('uploads/products/' . $details['image'])))
-                                <img src="{{ asset('uploads/products/' . $details['image']) }}" 
-                                     style="width: 200px; height: 200px; object-fit: cover;">
-                            @else
-                                <img src="{{ asset('images/no-image.png') }}" 
-                                     style="width: 200px; height: 200px; object-fit: cover;">
-                            @endif
-                        </div>
-                        <div class="flex-grow-1">
-                            <h5>{{ $details['name'] ?? 'No name' }}</h5>
-                            <p>{{ $details['description'] ?? 'No description' }}</p>
-                            <p>
-                                Price: 
-                                @if($discount > 0)
-                                    <span class="text-danger">₹{{ number_format($final, 2) }}</span>
-                                    <small><del>₹{{ number_format($original, 2) }}</del></small>
-                                    <span class="text-success">({{ $discount }}% OFF)</span>
-                                @else
-                                    ₹{{ number_format($original, 2) }}
-                                @endif
-                            </p>
-
-                            <!-- Quantity Selector -->
-                            <div class="d-flex align-items-center gap-2 mt-2">
-                                <button class="btn btn-outline-secondary btn-decrease" type="button" data-id="{{ $id }}">−</button>
-                                <span class="form-control text-center quantity-display" id="quantity-{{ $id }}">{{ $details['quantity'] }}</span>
-                                <button class="btn btn-outline-secondary btn-increase" type="button" data-id="{{ $id }}">+</button>
-                            </div>
-
-                            <p class="mt-2">Subtotal: <span class="item-total" id="item-total-{{ $id }}">₹{{ number_format($subtotal, 2) }}</span></p>
-
-                            <!-- Remove Button -->
-                            <form method="POST" action="{{ route('cart.remove', $id) }}">
-                                @csrf
-                                <button class="btn btn-sm btn-danger">Remove</button>
-                            </form>
-                        </div>
+                <div class="border rounded p-3 mb-3 d-flex gap-3 flex-wrap align-items-center" data-id="{{ $id }}">
+                    <div class="flex-shrink-0">
+                        @if(!empty($details['image']) && file_exists(public_path('uploads/products/' .
+                        $details['image'])))
+                        <img src="{{ asset('uploads/products/' . $details['image']) }}"
+                            style="width: 200px; height: 200px; object-fit: cover;">
+                        @else
+                        <img src="{{ asset('images/no-image.png') }}"
+                            style="width: 200px; height: 200px; object-fit: cover;">
+                        @endif
                     </div>
+                    <div class="flex-grow-1">
+                        <h5>{{ $details['name'] ?? 'No name' }}</h5>
+                        <p>{{ $details['description'] ?? 'No description' }}</p>
+                        <p>
+                            Price:
+                            @if($discount > 0)
+                            <span class="text-danger">₹{{ number_format($final, 2) }}</span>
+                            <small><del>₹{{ number_format($original, 2) }}</del></small>
+                            <span class="text-success">({{ $discount }}% OFF)</span>
+                            @else
+                            ₹{{ number_format($original, 2) }}
+                            @endif
+                        </p>
+
+                        <!-- Quantity Selector -->
+                        <div class="d-flex align-items-center gap-2 mt-2">
+                            <button class="btn btn-outline-secondary btn-decrease" type="button"
+                                data-id="{{ $id }}">−</button>
+                            <span class="form-control text-center quantity-display"
+                                id="quantity-{{ $id }}">{{ $details['quantity'] }}</span>
+                            <button class="btn btn-outline-secondary btn-increase" type="button"
+                                data-id="{{ $id }}">+</button>
+                        </div>
+
+                        <p class="mt-2">Subtotal: <span class="item-total"
+                                id="item-total-{{ $id }}">₹{{ number_format($subtotal, 2) }}</span></p>
+
+                        <!-- Remove Button -->
+                        <form method="POST" action="{{ route('cart.remove', $id) }}">
+                            @csrf
+                            <button class="btn btn-sm btn-danger">Remove</button>
+                        </form>
+                    </div>
+                </div>
                 @endforeach
             </div>
 
@@ -81,17 +86,28 @@
                     <h4>Cart Summary</h4>
                     <hr>
                     <p>Total: <span id="cart-total">₹{{ number_format($total, 2) }}</span></p>
-                    
+
                     <div class="d-flex flex-column gap-3 mt-3">
                         @if($total > 0)
-                            @if(Auth::guard('user')->check())
-                                <a href="{{ route('checkout.index') }}" class="btn btn-primary">Proceed to Checkout</a>
-                            @else
-                                <a href="{{ route('vendor.login') }}" class="btn btn-warning">Login to Checkout</a>
-                            @endif
+                        @if(Auth::guard('user')->check())
+                        {{-- ✅ User logged in → Go to checkout --}}
+                        <a href="{{ route('checkout.index') }}" class="btn btn-primary">
+                            Proceed to Checkout
+                        </a>
+                        @else
+                        {{-- 🚪 Not logged in → Go to login --}}
+                        <a href="{{ route('login') }}" class="btn btn-warning">
+                            Login to Checkout
+                        </a>
                         @endif
-                        <a href="{{ route('index') }}" class="btn btn-outline-secondary">Continue Shopping</a>
+                        @endif
+
+                        {{-- 🛍 Continue shopping always visible --}}
+                        <a href="{{ route('index') }}" class="btn btn-outline-secondary">
+                            Continue Shopping
+                        </a>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -108,7 +124,7 @@
 <!-- Cart Quantity Update Script -->
 <script>
 document.querySelectorAll('.btn-increase, .btn-decrease').forEach(btn => {
-    btn.addEventListener('click', function () {
+    btn.addEventListener('click', function() {
         const id = this.dataset.id;
         const quantitySpan = document.getElementById(`quantity-${id}`);
         let quantity = parseInt(quantitySpan.innerText);
@@ -127,15 +143,24 @@ document.querySelectorAll('.btn-increase, .btn-decrease').forEach(btn => {
                 "Content-Type": "application/json",
                 "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
-            body: JSON.stringify({ id: id, quantity: quantity })
+            body: JSON.stringify({
+                id: id,
+                quantity: quantity
+            })
         })
         .then(res => res.json())
         .then(data => {
             if (data.item_total !== undefined && data.cart_total !== undefined) {
-                document.getElementById(`item-total-${id}`).innerText = `₹${data.item_total.toFixed(2)}`;
-                document.getElementById('cart-total').innerText = data.cart_total.toFixed(2);
+                // ✅ Update subtotal for item
+                const itemTotalElem = document.getElementById(`item-total-${id}`);
+                itemTotalElem.innerText = `₹${data.item_total.toFixed(2)}`;
+
+                // ✅ Update overall total
+                const cartTotalElem = document.getElementById('cart-total');
+                cartTotalElem.innerText = `₹${data.cart_total.toFixed(2)}`;
             }
-        });
+        })
+        .catch(err => console.error('Cart update error:', err));
     });
 });
 </script>

@@ -7,7 +7,7 @@
             <div class="blog-bradcrum">
                 <span><a href="{{ route('index')}}">Home</a></span>
                 <span class="devider">/</span>
-                <span><a href="{{ route('product.sidebar')}}">Shop</a></span>
+                <span><a href="{{ route('productall')}}">Shop</a></span>
                 <span class="devider">/</span>
                 <span><a href="#">Product Details</a></span>
             </div>

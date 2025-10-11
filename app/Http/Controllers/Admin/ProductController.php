@@ -106,32 +106,7 @@ class ProductController extends Controller
                          ->with('success', 'Product deleted successfully.');
     }
 
-    // Show pending products
-    public function pending()
-    {
-        $products = Product::where('status', 'pending')->latest()->get();
-        return view('admin.products.pending', compact('products'));
-    }
 
-    // Approve product
-    public function approve($id)
-    {
-        $product = Product::findOrFail($id);
-        $product->status = 'approved';
-        $product->save();
-
-        return back()->with('success', 'Product approved successfully.');
-    }
-
-    // Decline product
-    public function decline($id)
-    {
-        $product = Product::findOrFail($id);
-        $product->status = 'declined';
-        $product->save();
-
-        return back()->with('error', 'Product declined.');
-    }
     public function exportCsv()
     {
         $products = Product::all();

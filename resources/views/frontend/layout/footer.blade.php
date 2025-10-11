@@ -136,7 +136,7 @@
                                 </li>
                                 <li><a href="{{ route('faq') }}"> <i class="fa-solid fa-greater-than me-2"
                                             style="font-size:12px; color:white;"></i>FAQ</a></li>
-                                <li><a href="{{ route('product.sidebar') }}"> <i class="fa-solid fa-greater-than me-2"
+                                <li><a href="{{ route('productall') }}"> <i class="fa-solid fa-greater-than me-2"
                                             style="font-size:12px; color:white;"></i>shop</a></li>
                                 <li><a href="{{ route('blog') }}"> <i class="fa-solid fa-greater-than me-2"
                                             style="font-size:12px; color:white;"></i>Blog</a></li>
@@ -158,7 +158,7 @@
                                             style="font-size:12px; color:white;"></i>Privacy Policy</a></li>
                                 <li><a href="{{ route('terms') }}"> <i class="fa-solid fa-greater-than me-2"
                                             style="font-size:12px; color:white;"></i>Terms & Conditions</a></li>
-                                <li><a href="{{ route('product.sidebar') }}"> <i class="fa-solid fa-greater-than me-2"
+                                <li><a href="{{ route('productall') }}"> <i class="fa-solid fa-greater-than me-2"
                                             style="font-size:12px; color:white;"></i>Archived Products</a></li>
                             </ul>
 

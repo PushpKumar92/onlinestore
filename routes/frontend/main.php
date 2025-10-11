@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
 // use App\Http\Controllers\ForgotController;
-use App\Http\Controllers\AddCartController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductdetailController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\SearchController;
@@ -44,14 +44,6 @@ Route::get('/seller-sidebar', [MainController::class, 'sellerSidebar'])->name('s
 Route::get('/empty-wishlist', [MainController::class, 'emptyWishlist'])->name('empty.wishlist');
 Route::get('/flash-sale', [MainController::class, 'flashSale'])->name('flash.sale');
 
-// Cart routes
-Route::get('/cart', [AddCartController::class, 'showCart'])->name('cart.show');
-   Route::post('add-to-cart/{id}', [AddCartController::class, 'addToCart'])->name('cart.add');
-   Route::post('cart/remove/{id}', [AddCartController::class, 'remove'])->name('cart.remove');
-   Route::post('cart/update', [AddCartController::class, 'update'])->name('cart.update');
-   Route::get('/checkout', [AddCartController::class, 'index'])->name('checkout.index');
-   Route::post('/checkout/place-order', [AddCartController::class, 'placeOrder'])->name('checkout.placeOrder');
-
 
 //watch list 
  Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
@@ -60,7 +52,7 @@ Route::get('/cart', [AddCartController::class, 'showCart'])->name('cart.show');
     Route::get('/wishlist/count', [WishlistController::class, 'count'])->name('wishlist.count');
 
 
-    Route::get('/product-sidebar', [ProductdetailController::class, 'productSidebar'])->name('product.sidebar');
+    Route::get('/allproduct', [ProductdetailController::class, 'Allproducts'])->name('productall');
 
 
     Route::get('/search', [SearchController::class, 'index'])->name('search');

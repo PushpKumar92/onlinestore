@@ -34,6 +34,11 @@
                 </a>
             </li>
             <li>
+                <a class="nav-link text-white" href="{{route('brands.index')}}">
+                    <i class="fas fa-shopping-cart text-warning me-2"></i>Brands
+                </a>
+            </li>
+            <li>
                 <a class="nav-link text-white" href="{{route('blogs.list')}}">
                     <i class="fas fa-blog text-warning me-2"></i>Blogs
                 </a>

@@ -9,7 +9,9 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\SizeController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Vendor\ProductController as VendorProductController;
@@ -18,7 +20,10 @@ use App\Http\Controllers\Vendor\ProductController as VendorProductController;
 
 require __DIR__ . '/frontend/main.php';
 
-
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+   Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+   Route::post('cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+   Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
 
 
 
@@ -34,10 +39,7 @@ Route::middleware('user.auth')->prefix('user')->group(function () {
    Route::post('/payment/{order}', [PaymentController::class, 'processPayment'])->name('payment.process');
 
 
-   Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
-   Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
-   Route::post('cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-   Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
+   
    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
    Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
 
@@ -88,34 +90,14 @@ Route::post('products/import', [AdminProductController::class, 'import'])->name(
    Route::post('/products/{id}/approve', [AdminProductController::class, 'approve'])->name('admin.products.approve');
    Route::post('/products/{id}/decline', [AdminProductController::class, 'decline'])->name('admin.products.decline');
 
+   Route::resource('brands', BrandController::class);
+Route::post('brands/update-status', [BrandController::class, 'updateStatus'])->name('brands.updateStatus');
+// Sizes
+Route::resource('sizes', SizeController::class);
+
+// Colors
+Route::resource('colors', ColorController::class);
 
    Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
 
-Route::get('/vendor/register', [VendorController::class, 'register'])->name('vendor.register');
-Route::post('/vendor/register', [VendorController::class, 'registerSubmit'])->name('vendor.register.submit');
-Route::get('/vendor/login', [VendorController::class, 'showvendorlogin'])->name('vendor.login');
-Route::post('/vendor/login', [VendorController::class, 'login'])->name('vendor.login.submit');
-Route::get('/sellers', [VendorController::class, 'showVendor'])->name('sellers');
-
-Route::middleware('vendor.auth')->prefix('vendor')->group(function () {
-   Route::get('dashboard', [VendorController::class, 'showdashboard'])->name('vendor.dashboard');
-
-   Route::get('change-password', [VendorController::class, 'showChangePasswordForm'])->name('vendor.change-password.form');
-   Route::post('change-password', [VendorController::class, 'changePassword'])->name('vendor.change-password');
-
-   // Vendor Product CRUD
-   Route::get('/products', [VendorProductController::class, 'index'])->name('vendor.products.index');
-   Route::get('/products/create', [VendorProductController::class, 'create'])->name('vendor.products.create');
-   Route::post('/products', [VendorProductController::class, 'store'])->name('vendor.products.store');
-   Route::get('/products/{product}/edit', [VendorProductController::class, 'edit'])->name('vendor.products.edit');
-   Route::put('/products/{product}', [VendorProductController::class, 'update'])->name('vendor.products.update');
-   Route::delete('/products/{product}', [VendorProductController::class, 'destroy'])->name('vendor.products.destroy');
-
-   // List all orders for the logged-in user
-   Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-   Route::post('/orders/place', [OrderController::class, 'placeOrder'])->name('orders.place');
-   Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
-
-   Route::get('logout', [VendorController::class, 'logout'])->name('vendor.logout');
-});

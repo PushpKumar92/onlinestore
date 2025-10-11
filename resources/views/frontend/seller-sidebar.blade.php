@@ -232,7 +232,7 @@
                         <div class="sidebar-shop-section">
                             <span class="wrapper-subtitle">TRENDY</span>
                             <h5 class="wrapper-heading">Best wireless Shoes</h5>
-                            <a href="{{ route('product.sidebar')}}" class="shop-btn deal-btn">Shop Now </a>
+                            <a href="{{ route('productall')}}" class="shop-btn deal-btn">Shop Now </a>
                         </div>
                     </div>
                 </div>
@@ -620,7 +620,7 @@
                             <div class="col-lg-12">
                                 <div class="product-deal-section" data-aos="fade-up">
                                     <h5 class="wrapper-heading">Get the best deal for Headphones</h5>
-                                    <a href="{{ route('product.sidebar')}}" class="shop-btn">Shop Now</a>
+                                    <a href="{{ route('productall')}}" class="shop-btn">Shop Now</a>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-6">

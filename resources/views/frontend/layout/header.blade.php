@@ -149,7 +149,7 @@
                 <div class="category-dropdown">
                     <ul class="category-list">
                         <li class="category-list-item">
-                            <a href="{{ route('product.sidebar') }}">Link Text</a>
+                            <a href="{{ route('productall') }}">Link Text</a>
 
                             <div class="dropdown-item d-flex justify-content-between align-items-center">
                                 <div class="dropdown-list-item d-flex">
@@ -175,7 +175,7 @@
                             </a>
                         </li>
                         <li class="category-list-item">
-                            <a href="{{ route('product.sidebar') }}">
+                            <a href="{{ route('productall') }}">
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
@@ -200,7 +200,7 @@
                             </a>
                         </li>
                         <li class="category-list-item">
-                            <a href="{{ route('product.sidebar') }}">
+                            <a href="{{ route('productall') }}">
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
@@ -226,7 +226,7 @@
                             </a>
                         </li>
                         <li class="category-list-item">
-                            <a href="{{ route('product.sidebar') }}">
+                            <a href="{{ route('productall') }}">
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
@@ -252,7 +252,7 @@
                             </a>
                         </li>
                         <li class="category-list-item">
-                            <a href="{{ route('product.sidebar') }}">
+                            <a href="{{ route('productall') }}">
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
@@ -277,7 +277,7 @@
                             </a>
                         </li>
                         <li class="category-list-item">
-                            <a href="{{ route('product.sidebar') }}">
+                            <a href="{{ route('productall') }}">
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
@@ -303,7 +303,7 @@
                             </a>
                         </li>
                         <li class="category-list-item">
-                            <a href="{{ route('product.sidebar') }}">
+                            <a href="{{ route('productall') }}">
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
@@ -328,7 +328,7 @@
                             </a>
                         </li>
                         <li class="category-list-item">
-                            <a href="{{ route('product.sidebar') }}">
+                            <a href="{{ route('productall') }}">
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
@@ -353,7 +353,7 @@
                             </a>
                         </li>
                         <li class="category-list-item">
-                            <a href="{{ route('product.sidebar') }}">
+                            <a href="{{ route('productall') }}">
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
@@ -378,7 +378,7 @@
                             </a>
                         </li>
                         <li class="category-list-item">
-                            <a href="{{ route('product.sidebar') }}">
+                            <a href="{{ route('productall') }}">
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
@@ -403,7 +403,7 @@
                             </a>
                         </li>
                         <li class="category-list-item">
-                            <a href="{{ route('product.sidebar') }}">
+                            <a href="{{ route('productall') }}">
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                                     <div class="dropdown-list-item d-flex">
                                         <span class="dropdown-img">
@@ -454,7 +454,7 @@
                     <div class="category-dropdown position-absolute" id="subMenu">
                         <ul class="category-list">
                             <li class="category-list-item">
-                                <a href="{{ route('product.sidebar') }}">
+                                <a href="{{ route('productall') }}">
                                     <div class="dropdown-item">
                                         <div class="dropdown-list-item">
                                             <span class="dropdown-img">
@@ -480,7 +480,7 @@
                                 </a>
                             </li>
                             <li class="category-list-item">
-                                <a href="{{ route('product.sidebar') }}">
+                                <a href="{{ route('productall') }}">
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
@@ -506,7 +506,7 @@
                                 </a>
                             </li>
                             <li class="category-list-item">
-                                <a href="{{ route('product.sidebar') }}">
+                                <a href="{{ route('productall') }}">
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
@@ -532,7 +532,7 @@
                                 </a>
                             </li>
                             <li class="category-list-item">
-                                <a href="{{ route('product.sidebar') }}">
+                                <a href="{{ route('productall') }}">
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
@@ -558,7 +558,7 @@
                                 </a>
                             </li>
                             <li class="category-list-item">
-                                <a href="{{ route('product.sidebar') }}">
+                                <a href="{{ route('productall') }}">
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
@@ -584,7 +584,7 @@
                                 </a>
                             </li>
                             <li class="category-list-item">
-                                <a href="{{ route('product.sidebar') }}">
+                                <a href="{{ route('productall') }}">
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
@@ -610,7 +610,7 @@
                                 </a>
                             </li>
                             <li class="category-list-item">
-                                <a href="{{ route('product.sidebar') }}">
+                                <a href="{{ route('productall') }}">
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
@@ -636,7 +636,7 @@
                                 </a>
                             </li>
                             <li class="category-list-item">
-                                <a href="{{ route('product.sidebar') }}">
+                                <a href="{{ route('productall') }}">
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
@@ -662,7 +662,7 @@
                                 </a>
                             </li>
                             <li class="category-list-item">
-                                <a href="{{ route('product.sidebar') }}">
+                                <a href="{{ route('productall') }}">
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
@@ -687,7 +687,7 @@
                                 </a>
                             </li>
                             <li class="category-list-item">
-                                <a href="{{ route('product.sidebar') }}">
+                                <a href="{{ route('productall') }}">
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
@@ -713,7 +713,7 @@
                                 </a>
                             </li>
                             <li class="category-list-item">
-                                <a href="{{ route('product.sidebar') }}">
+                                <a href="{{ route('productall') }}">
                                     <div class="dropdown-item d-flex justify-content-between align-items-center">
                                         <div class="dropdown-list-item d-flex">
                                             <span class="dropdown-img">
@@ -749,7 +749,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('product.sidebar') }}">
+                            <a href="{{ route('productall') }}">
                                 <span class="list-text">shop</span>
                             </a>
                         </li>
@@ -765,7 +765,7 @@
                                 <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
                                 <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
                                 <li><a href="{{ route('faq') }}">FAQ</a></li>
-                                <li><a href="{{ route('product.sidebar') }}">Shop Category Icon</a></li>
+                                <li><a href="{{ route('productall') }}">Shop Category Icon</a></li>
                                 <li><a href="{{ route('sellers') }}">Vendor</a></li>
                             </ul>
 

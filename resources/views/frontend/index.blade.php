@@ -15,7 +15,7 @@
                                     </h5>
                                     <h1 class="wrapper-details">Fashion Collection
                                         Summer Sale</h1>
-                                    <a href="{{ route('product.sidebar')}}" class="shop-btn">Shop Now
+                                    <a href="{{ route('productall')}}" class="shop-btn">Shop Now
                                         <span>
                                             <i class="fa-solid fa-greater-than"></i>
 
@@ -84,7 +84,7 @@
                                 <h4 class="wrapper-details">Get 65% Offer
                                     <span class="wrapper-inner-title">& Make New</span> Fusion.
                                 </h4>
-                                <a href="{{ route('product.sidebar')}}" class="shop-btn">Shop Now
+                                <a href="{{ route('productall')}}" class="shop-btn">Shop Now
                                     <span>
                                         <i class="fa-solid fa-greater-than"></i>
 
@@ -102,7 +102,7 @@
                                     <span class="wrapper-inner-title">Styles with Our</span>
                                     Products
                                 </h4>
-                                <a href="{{ route('product.sidebar')}}" class="shop-btn">Shop Now
+                                <a href="{{ route('productall')}}" class="shop-btn">Shop Now
                                     <span>
                                         <i class="fa-solid fa-greater-than"></i>
 
@@ -122,7 +122,7 @@
         <div class="container">
             <div class="section-title">
                 <h5>Our Categories</h5>
-                <a href="{{ route('product.sidebar')}}" class="view">View All</a>
+                <a href="{{ route('productall')}}" class="view">View All</a>
             </div>
             <div class="category-section">
                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
@@ -130,7 +130,7 @@
                         <img src="{{ asset('assets/images/homepage-one/category-img/dresses.webp') }}" alt="dress">
                     </div>
                     <div class="wrapper-info">
-                        <a href="{{ route('product.sidebar')}}" class="wrapper-details">Dresses</a>
+                        <a href="{{ route('productall')}}" class="wrapper-details">Dresses</a>
                     </div>
                 </div>
                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="200">
@@ -138,7 +138,7 @@
                         <img src="{{ asset('assets/images/homepage-one/category-img/bags.webp') }}" alt="bags">
                     </div>
                     <div class="wrapper-info">
-                        <a href="{{ route('product.sidebar')}}" class="wrapper-details">Leather Bags</a>
+                        <a href="{{ route('productall')}}" class="wrapper-details">Leather Bags</a>
                     </div>
                 </div>
                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="300">
@@ -146,7 +146,7 @@
                         <img src="{{ asset('assets/images/homepage-one/category-img/sweaters.webp') }}" alt="sweaters">
                     </div>
                     <div class="wrapper-info">
-                        <a href="{{ route('product.sidebar')}}" class="wrapper-details">Sweaters</a>
+                        <a href="{{ route('productall')}}" class="wrapper-details">Sweaters</a>
                     </div>
                 </div>
                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="400">
@@ -154,7 +154,7 @@
                         <img src="{{ asset('assets/images/homepage-one/category-img/shoes.webp') }}" alt="shoes">
                     </div>
                     <div class="wrapper-info">
-                        <a href="{{ route('product.sidebar')}}" class="wrapper-details">Boots</a>
+                        <a href="{{ route('productall')}}" class="wrapper-details">Boots</a>
                     </div>
                 </div>
                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="500">
@@ -162,7 +162,7 @@
                         <img src="./assets/images/homepage-one/category-img/gift.webp" alt="dress">
                     </div>
                     <div class="wrapper-info">
-                        <a href="{{ route('product.sidebar')}}" class="wrapper-details">Gift for Him</a>
+                        <a href="{{ route('productall')}}" class="wrapper-details">Gift for Him</a>
                     </div>
                 </div>
                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="600">
@@ -170,7 +170,7 @@
                         <img src="{{ asset('assets/images/homepage-one/category-img/sneakers.webp') }}" alt="sneakers">
                     </div>
                     <div class="wrapper-info">
-                        <a href="{{ route('product.sidebar')}}" class="wrapper-details">Sneakers</a>
+                        <a href="{{ route('productall')}}" class="wrapper-details">Sneakers</a>
                     </div>
                 </div>
                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
@@ -178,7 +178,7 @@
                         <img src="{{ asset('assets/images/homepage-one/category-img/watch.webp') }}" alt="watch">
                     </div>
                     <div class="wrapper-info">
-                        <a href="{{ route('product.sidebar')}}" class="wrapper-details">Watch</a>
+                        <a href="{{ route('productall')}}" class="wrapper-details">Watch</a>
                     </div>
                 </div>
                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="200">
@@ -186,7 +186,7 @@
                         <img src="{{ asset('assets/images/homepage-one/category-img/ring.webp') }}" alt="dress">
                     </div>
                     <div class="wrapper-info">
-                        <a href="{{ route('product.sidebar')}}" class="wrapper-details">Gold Rings</a>
+                        <a href="{{ route('productall')}}" class="wrapper-details">Gold Rings</a>
                     </div>
                 </div>
                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="300">
@@ -194,7 +194,7 @@
                         <img src="{{ asset('assets/images/homepage-one/category-img/cap.webp') }}" alt="dress">
                     </div>
                     <div class="wrapper-info">
-                        <a href="{{ route('product.sidebar')}}" class="wrapper-details">Cap</a>
+                        <a href="{{ route('productall')}}" class="wrapper-details">Cap</a>
                     </div>
                 </div>
                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="400">
@@ -202,7 +202,7 @@
                         <img src="{{ asset('assets/images/homepage-one/category-img/glass.webp') }}" alt="dress">
                     </div>
                     <div class="wrapper-info">
-                        <a href="{{ route('product.sidebar')}}" class="wrapper-details">Sunglass</a>
+                        <a href="{{ route('productall')}}" class="wrapper-details">Sunglass</a>
                     </div>
                 </div>
                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="500">
@@ -210,7 +210,7 @@
                         <img src="{{ asset('assets/images/homepage-one/category-img/baby.webp') }}" alt="dress">
                     </div>
                     <div class="wrapper-info">
-                        <a href="{{ route('product.sidebar')}}" class="wrapper-details">Baby Shop</a>
+                        <a href="{{ route('productall')}}" class="wrapper-details">Baby Shop</a>
                     </div>
                 </div>
                 <div class="product-wrapper" data-aos="fade-right" data-aos-duration="200">
@@ -218,7 +218,7 @@
                         <img src="{{ asset('assets/images/homepage-one/category-img/bags.webp') }}" alt="dress">
                     </div>
                     <div class="wrapper-info">
-                        <a href="{{ route('product.sidebar')}}" class="wrapper-details">Leather Bags</a>
+                        <a href="{{ route('productall')}}" class="wrapper-details">Leather Bags</a>
                     </div>
                 </div>
             </div>
@@ -551,7 +551,7 @@
         <div class="container">
             <div class="section-title">
                 <h5>Top Selling Prodcuts</h5>
-                <a href="{{ route('product.sidebar')}}" class="view">View All</a>
+                <a href="{{ route('productall')}}" class="view">View All</a>
             </div>
             <div class="top-selling-section">
                 <div class="row g-5">
@@ -867,7 +867,7 @@
         <div class="container">
             <div class="section-title">
                 <h5>Best Sell in this Week</h5>
-                <a href="{{ route('product.sidebar')}}" class="view">View All</a>
+                <a href="{{ route('productall')}}" class="view">View All</a>
             </div>
             <div class="weekly-sale-section">
                 <div class="row g-5">

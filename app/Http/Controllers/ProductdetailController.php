@@ -4,51 +4,59 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Brand;
+use App\Models\Size;
+use App\Models\Color;
+
 class ProductdetailController extends Controller
 {
     
-   public function productSidebar(Request $request)
+  public function Allproducts(Request $request)
 {
-    $query = Product::query();
+    // Fetch all filters from DB
+    $categories = Category::all();
+    $brands = Brand::all();
+    $sizes = Size::all();
+    $colors = Color::all();
 
-    // ✅ Filter by categories
-    if ($request->has('category')) {
-        $query->whereIn('category_slug', (array)$request->category);
+    // Base query
+    $products = Product::query();
+
+    // Filter by categories
+    if ($request->has('categories')) {
+        $products->whereIn('category_id', $request->categories);
     }
 
-    // ✅ Filter by brands
-    if ($request->has('brand')) {
-        $query->whereIn('brand_slug', (array)$request->brand);
+    // Filter by brands
+    if ($request->has('brands')) {
+        $products->whereIn('brand_id', $request->brands);
     }
 
-    // ✅ Filter by colors
-    if ($request->has('color')) {
-        $query->whereIn('color', (array)$request->color);
+    // Filter by sizes
+    if ($request->has('sizes')) {
+        $products->whereHas('sizes', function($q) use ($request) {
+            $q->whereIn('size_id', $request->sizes);
+        });
     }
 
-    // ✅ Filter by sizes
-    if ($request->has('size')) {
-        $query->whereIn('size', (array)$request->size);
+    // Filter by colors
+    if ($request->has('colors')) {
+        $products->whereHas('colors', function($q) use ($request) {
+            $q->whereIn('color_id', $request->colors);
+        });
     }
 
-    // ✅ Filter by price range
-    if ($request->has('min_price') && $request->has('max_price')) {
-        $query->whereBetween('price', [
-            (int) $request->min_price,
-            (int) $request->max_price
-        ]);
+    // Filter by price range
+    if ($request->has('price_min') && $request->has('price_max')) {
+        $products->whereBetween('price', [$request->price_min, $request->price_max]);
     }
 
-    // ✅ Get products (with pagination for better UX)
-    $products = $query->paginate(12);
+    $products = $products->paginate(12);
 
-    // Return view
-    if ($request->ajax()) {
-        // When filtering via AJAX → return only products grid
-        return view('frontend.product-sidebar', compact('products'))->render();
-    }
-
-    // Default load → return full page
-    return view('frontend.product-sidebar', compact('products'));
+    return view('frontend.product-sidebar', compact('products', 'categories', 'brands', 'sizes', 'colors'));
 }
+
+
+
 }
