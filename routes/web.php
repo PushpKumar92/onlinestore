@@ -11,6 +11,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\SizeController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
@@ -38,7 +39,9 @@ Route::middleware('user.auth')->prefix('user')->group(function () {
    Route::get('/payment/{order}', [PaymentController::class, 'showPaymentPage'])->name('payment.page');
    Route::post('/payment/{order}', [PaymentController::class, 'processPayment'])->name('payment.process');
 
-
+ Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
    
    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
    Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
@@ -85,10 +88,8 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
    Route::get('products/export', [AdminProductController::class, 'exportCsv'])->name('products.export');
 Route::post('products/import', [AdminProductController::class, 'import'])->name('admin.products.import');
 
-   // Approve Vendor Product
-   Route::get('/products/pending', [AdminProductController::class, 'pending'])->name('products.pending');
-   Route::post('/products/{id}/approve', [AdminProductController::class, 'approve'])->name('admin.products.approve');
-   Route::post('/products/{id}/decline', [AdminProductController::class, 'decline'])->name('admin.products.decline');
+    Route::get('orders', [OrderController::class, 'adminIndex'])->name('admin.orders.index');
+    Route::post('orders/{id}/update', [OrderController::class, 'updateStatus'])->name('admin.orders.update');
 
    Route::resource('brands', BrandController::class);
 Route::post('brands/update-status', [BrandController::class, 'updateStatus'])->name('brands.updateStatus');

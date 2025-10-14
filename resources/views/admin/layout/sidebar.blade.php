@@ -29,7 +29,7 @@
             </li>
            
             <li>
-                <a class="nav-link text-white" href="#">
+                <a class="nav-link text-white" href="{{route('admin.orders.index')}}">
                     <i class="fas fa-shopping-cart text-warning me-2"></i>Orders
                 </a>
             </li>

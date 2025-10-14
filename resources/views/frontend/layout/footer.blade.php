@@ -3,7 +3,7 @@
     <div class="container">
         <div class="footer-service-section">
             <div class="row gy-4">
-                <div class="col-lg-3  col-sm-6">
+                <div class="col-lg-3  col-sm-6 mt-5">
                     <div class="service-wrapper free-shipping">
                         <div class="service-img">
                             <span>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="service-content">
                             <h5 class="service-info service-title">Free Shipping</h5>
-                            <p class="service-info service-details">When ordering over $100</p>
+                            <p class="service-info service-details">When ordering over Rs.299</p>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="service-content">
                             <h5 class="service-info service-title">Free Return</h5>
-                            <p class="service-info service-details">Get Return within 3 days</p>
+                            <p class="service-info service-details">Get Return within 48hrs</p>
                         </div>
                     </div>
                 </div>

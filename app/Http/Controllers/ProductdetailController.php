@@ -57,6 +57,6 @@ class ProductdetailController extends Controller
     return view('frontend.product-sidebar', compact('products', 'categories', 'brands', 'sizes', 'colors'));
 }
 
-
+ 
 
 }

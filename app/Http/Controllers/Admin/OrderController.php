@@ -10,17 +10,17 @@ use App\Models\OrderItem;
 class OrderController extends Controller
 {
     // Show all orders
-    public function index()
+    public function adminIndex()
     {
         $orders = Order::with('items')->latest()->paginate(15);
-        return view('admin.orders.index', compact('orders'));
+        return view('admin.order.index', compact('orders'));
     }
 
     // Show single order details
     public function show($id)
     {
         $order = Order::with('items')->findOrFail($id);
-        return view('admin.orders.show', compact('order'));
+        return view('admin.order.show', compact('order'));
     }
 
     // Update order status

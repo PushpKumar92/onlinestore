@@ -107,4 +107,41 @@ a{
                         .add-to-cart {
                             border-radius: 25px;
                         }
+                        
+                        /* category section css */
+.product-category {
+  background: #fff;
+}
 
+.category-box {
+  width: 120px;
+  height: 140px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  flex: 0 0 auto;
+  transition: transform 1.5s;
+  padding-top: 8px;
+}
+
+.category-box img {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.category-box p {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 8px 0 0;
+}
+
+.category-box:hover {
+  transform: scale(1.08);
+}
+
+/* Pause on hover */
+.slider-viewport:hover .slider-track {
+  animation-play-state: paused !important;
+}

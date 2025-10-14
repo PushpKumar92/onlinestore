@@ -51,3 +51,56 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
     });
 });
 
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const viewport = document.querySelector(".slider-viewport");
+    const track = document.getElementById("sliderTrack");
+    const items = Array.from(track.children);
+
+    if (items.length === 0) return;
+
+    // Duplicate items until track width >= viewport width * 2 (smooth looping)
+    function duplicateItems() {
+        const viewportWidth = viewport.offsetWidth;
+        let trackWidth = track.scrollWidth;
+        let count = 0;
+        while (trackWidth < viewportWidth * 2 && count < 10) {
+            items.forEach(item => track.appendChild(item.cloneNode(true)));
+            trackWidth = track.scrollWidth;
+            count++;
+        }
+    }
+
+    duplicateItems();
+
+    // Calculate width of one full set
+    const originalWidth = items.reduce((total, el) => total + el.offsetWidth + 16, 0); // +gap
+
+    // Animation speed (lower = faster)
+    const speed = 60; // pixels per second
+    const duration = originalWidth / speed;
+    const animationName = "scrollLeft_" + Math.floor(Math.random() * 100000);
+
+    // Create keyframes dynamically
+    const style = document.createElement("style");
+    style.innerHTML = `
+      @keyframes ${animationName} {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-${originalWidth}px); }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Apply animation
+    track.style.animation = `${animationName} ${duration}s linear infinite`;
+
+    // Hover → pause | mouseleave → resume
+    viewport.addEventListener("mouseenter", () => {
+        track.style.animationPlayState = "paused";
+    });
+
+    viewport.addEventListener("mouseleave", () => {
+        track.style.animationPlayState = "running";
+    });
+});

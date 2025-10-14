@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
-// use App\Http\Controllers\ForgotController;
+ use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductdetailController;
 use App\Http\Controllers\WishlistController;
@@ -45,14 +45,26 @@ Route::get('/empty-wishlist', [MainController::class, 'emptyWishlist'])->name('e
 Route::get('/flash-sale', [MainController::class, 'flashSale'])->name('flash.sale');
 
 
-//watch list 
- Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
-    Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
-    Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
-    Route::get('/wishlist/count', [WishlistController::class, 'count'])->name('wishlist.count');
+
+
+// Add to wishlist
+Route::post('/wishlist/add', [WishlistController::class, 'store'])->name('wishlist.add');
+
+// Get wishlist count
+Route::get('/wishlist/count', [WishlistController::class, 'getCount'])->name('wishlist.count');
+
+// Get wishlist items (product IDs)
+Route::get('/wishlist/items', [WishlistController::class, 'getItems'])->name('wishlist.items');
+
+// View wishlist page
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+
+// Remove from wishlist
+Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'destroy'])->name('wishlist.remove');
 
 
     Route::get('/allproduct', [ProductdetailController::class, 'Allproducts'])->name('productall');
+    Route::get('/category/{slug}', [ProductController::class, 'categoryProducts'])->name('category.products');
 
 
     Route::get('/search', [SearchController::class, 'index'])->name('search');

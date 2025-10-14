@@ -3,73 +3,79 @@
 <main class=" main-content">
     <!--------------- hero-section --------------->
 
-    <section id="hero" class="hero">
+    <section id="hero" class="hero position-relative">
         <div class="swiper hero-swiper">
             <div class="swiper-wrapper hero-wrapper">
-                <div class="swiper-slide hero-slider-one">
+
+                {{-- 🔹 Slide 1 --}}
+                <div class="swiper-slide hero-slider-one d-flex align-items-center">
                     <div class="container">
                         <div class="col-lg-6">
                             <div class="wrapper-section" data-aos="fade-up">
                                 <div class="wrapper-info">
-                                    <h5 class="wrapper-subtitle">UP TO <span class="wrapper-inner-title">70%</span> OFF
+                                    <h5 class="wrapper-subtitle">
+                                        UP TO <span class="wrapper-inner-title">70%</span> OFF
                                     </h5>
-                                    <h1 class="wrapper-details">Fashion Collection
-                                        Summer Sale</h1>
-                                    <a href="{{ route('productall')}}" class="shop-btn">Shop Now
-                                        <span>
-                                            <i class="fa-solid fa-greater-than"></i>
-
-                                        </span>
+                                    <h1 class="wrapper-details">Fashion Collection Summer Sale</h1>
+                                    <a href="{{ route('productall') }}" class="shop-btn">
+                                        Shop Now
+                                        <span><i class="fa-solid fa-greater-than"></i></span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide hero-slider-two">
+
+                {{-- 🔹 Slide 2 --}}
+                <div class="swiper-slide hero-slider-two d-flex align-items-center">
                     <div class="container">
                         <div class="col-lg-6">
-                            <div class="wrapper-section">
+                            <div class="wrapper-section" data-aos="fade-up">
                                 <div class="wrapper-info">
-                                    <h5 class="wrapper-subtitle">UP TO <span class="wrapper-inner-title">70%</span> OFF
+                                    <h5 class="wrapper-subtitle">
+                                        FLAT <span class="wrapper-inner-title">50%</span> DISCOUNT
                                     </h5>
-                                    <h1 class="wrapper-details">Fashion Collection
-                                        Summer Sale</h1>
-                                    <a href="#" class="shop-btn">Shop Now
-                                        <span>
-                                            <i class="fa-solid fa-greater-than"></i>
-
-                                        </span>
+                                    <h1 class="wrapper-details">New Arrival Trends</h1>
+                                    <a href="{{ route('productall') }}" class="shop-btn">
+                                        Shop Now
+                                        <span><i class="fa-solid fa-greater-than"></i></span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide hero-slider-three">
+
+                {{-- 🔹 Slide 3 --}}
+                <div class="swiper-slide hero-slider-three d-flex align-items-center">
                     <div class="container">
                         <div class="col-lg-6">
-                            <div class="wrapper-section">
+                            <div class="wrapper-section" data-aos="fade-up">
                                 <div class="wrapper-info">
-                                    <h5 class="wrapper-subtitle">UP TO <span class="wrapper-inner-title">70%</span> OFF
+                                    <h5 class="wrapper-subtitle">
+                                        UP TO <span class="wrapper-inner-title">60%</span> OFF
                                     </h5>
-                                    <h1 class="wrapper-details">Fashion Collection
-                                        Summer Sale</h1>
-                                    <a href="#" class="shop-btn">Shop Now
-                                        <span>
-                                            <i class="fa-solid fa-greater-than"></i>
-
-                                        </span>
+                                    <h1 class="wrapper-details">Exclusive Winter Collection</h1>
+                                    <a href="{{ route('productall') }}" class="shop-btn">
+                                        Shop Now
+                                        <span><i class="fa-solid fa-greater-than"></i></span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
+
+            {{-- ✅ Pagination & Navigation --}}
             <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
     </section>
+
     <!--------------- hero-section-end --------------->
 
     <!--------------- style-section --------------->
@@ -118,112 +124,47 @@
     <!--------------- style-section-end --------------->
 
     <!--------------- category-section--------------->
-    <section class="product-category ">
-        <div class="container">
-            <div class="section-title">
-                <h5>Our Categories</h5>
-                <a href="{{ route('productall')}}" class="view">View All</a>
-            </div>
-            <div class="category-section">
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
-                    <div class="wrapper-img">
-                        <img src="{{ asset('assets/images/homepage-one/category-img/dresses.webp') }}" alt="dress">
+<section class="product-category py-5">
+    <div class="container">
+        <div class="section-title d-flex justify-content-between align-items-center mb-4">
+            <h5 class="mb-0">Our Categories</h5>
+            <a href="{{ route('productall') }}" class="btn btn-link view">View All</a>
+        </div>
+
+        <div class="category-slider position-relative">
+            <div class="slider-viewport overflow-hidden">
+                <div class="slider-track d-flex align-items-center gap-3" id="sliderTrack">
+                    <!-- Original category items -->
+                    <div class="category-box text-center">
+                        <img src="https://via.placeholder.com/100x100?text=Sports" alt="Sports">
+                        <p>Sports</p>
                     </div>
-                    <div class="wrapper-info">
-                        <a href="{{ route('productall')}}" class="wrapper-details">Dresses</a>
+                    <div class="category-box text-center">
+                        <img src="https://via.placeholder.com/100x100?text=Tech" alt="Tech">
+                        <p>Tech</p>
                     </div>
-                </div>
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="200">
-                    <div class="wrapper-img">
-                        <img src="{{ asset('assets/images/homepage-one/category-img/bags.webp') }}" alt="bags">
+                    <div class="category-box text-center">
+                        <img src="https://via.placeholder.com/100x100?text=Fashion" alt="Fashion">
+                        <p>Fashion</p>
                     </div>
-                    <div class="wrapper-info">
-                        <a href="{{ route('productall')}}" class="wrapper-details">Leather Bags</a>
+                    <div class="category-box text-center">
+                        <img src="https://via.placeholder.com/100x100?text=Food" alt="Food">
+                        <p>Food</p>
                     </div>
-                </div>
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="300">
-                    <div class="wrapper-img">
-                        <img src="{{ asset('assets/images/homepage-one/category-img/sweaters.webp') }}" alt="sweaters">
+                    <div class="category-box text-center">
+                        <img src="https://via.placeholder.com/100x100?text=Travel" alt="Travel">
+                        <p>Travel</p>
                     </div>
-                    <div class="wrapper-info">
-                        <a href="{{ route('productall')}}" class="wrapper-details">Sweaters</a>
-                    </div>
-                </div>
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="400">
-                    <div class="wrapper-img">
-                        <img src="{{ asset('assets/images/homepage-one/category-img/shoes.webp') }}" alt="shoes">
-                    </div>
-                    <div class="wrapper-info">
-                        <a href="{{ route('productall')}}" class="wrapper-details">Boots</a>
-                    </div>
-                </div>
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="500">
-                    <div class="wrapper-img">
-                        <img src="./assets/images/homepage-one/category-img/gift.webp" alt="dress">
-                    </div>
-                    <div class="wrapper-info">
-                        <a href="{{ route('productall')}}" class="wrapper-details">Gift for Him</a>
-                    </div>
-                </div>
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="600">
-                    <div class="wrapper-img">
-                        <img src="{{ asset('assets/images/homepage-one/category-img/sneakers.webp') }}" alt="sneakers">
-                    </div>
-                    <div class="wrapper-info">
-                        <a href="{{ route('productall')}}" class="wrapper-details">Sneakers</a>
-                    </div>
-                </div>
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
-                    <div class="wrapper-img">
-                        <img src="{{ asset('assets/images/homepage-one/category-img/watch.webp') }}" alt="watch">
-                    </div>
-                    <div class="wrapper-info">
-                        <a href="{{ route('productall')}}" class="wrapper-details">Watch</a>
-                    </div>
-                </div>
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="200">
-                    <div class="wrapper-img">
-                        <img src="{{ asset('assets/images/homepage-one/category-img/ring.webp') }}" alt="dress">
-                    </div>
-                    <div class="wrapper-info">
-                        <a href="{{ route('productall')}}" class="wrapper-details">Gold Rings</a>
-                    </div>
-                </div>
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="300">
-                    <div class="wrapper-img">
-                        <img src="{{ asset('assets/images/homepage-one/category-img/cap.webp') }}" alt="dress">
-                    </div>
-                    <div class="wrapper-info">
-                        <a href="{{ route('productall')}}" class="wrapper-details">Cap</a>
-                    </div>
-                </div>
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="400">
-                    <div class="wrapper-img">
-                        <img src="{{ asset('assets/images/homepage-one/category-img/glass.webp') }}" alt="dress">
-                    </div>
-                    <div class="wrapper-info">
-                        <a href="{{ route('productall')}}" class="wrapper-details">Sunglass</a>
-                    </div>
-                </div>
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="500">
-                    <div class="wrapper-img">
-                        <img src="{{ asset('assets/images/homepage-one/category-img/baby.webp') }}" alt="dress">
-                    </div>
-                    <div class="wrapper-info">
-                        <a href="{{ route('productall')}}" class="wrapper-details">Baby Shop</a>
-                    </div>
-                </div>
-                <div class="product-wrapper" data-aos="fade-right" data-aos-duration="200">
-                    <div class="wrapper-img">
-                        <img src="{{ asset('assets/images/homepage-one/category-img/bags.webp') }}" alt="dress">
-                    </div>
-                    <div class="wrapper-info">
-                        <a href="{{ route('productall')}}" class="wrapper-details">Leather Bags</a>
+                    <div class="category-box text-center">
+                        <img src="https://via.placeholder.com/100x100?text=Music" alt="Music">
+                        <p>Music</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
     <!--------------- category-section-end--------------->
 
     <!--------------- arrival-section--------------->
@@ -248,27 +189,29 @@
                         <div class="product-wrapper h-100 d-flex flex-column" data-aos="fade-up">
                             <div class="product-img position-relative">
                                 @if($hasDiscount)
-                                <span class="discount-badge bg-danger text-white px-2 py-1 position-absolute top-0 start-0 rounded-end">
+                                <span
+                                    class="discount-badge bg-danger text-white px-2 py-1 position-absolute top-0 start-0 rounded-end">
                                     {{ $discount }}% OFF
                                 </span>
                                 @endif
 
-                                <img src="{{ asset('uploads/products/' . $product->image) }}"
-                                    class="img-fluid w-100"
-                                    style="object-fit: cover; height: 300px;"
-                                    alt="{{ $product->name }}">
+                                <img src="{{ asset('uploads/products/' . $product->image) }}" class="img-fluid w-100"
+                                    style="object-fit: cover; height: 300px;" alt="{{ $product->name }}">
 
                                 <div class="product-cart-items position-absolute bottom-0 end-0 p-2 d-flex gap-2">
                                     <a href="{{ route('product.info', $product->id) }}" class="cart cart-item">
-                                        <span class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
+                                        <span
+                                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
                                             style="width: 40px; height: 40px;">
-                                            <i class="fas fa-arrows-alt text-dark"></i>
+                                            <i class="fas fa-eye text-dark"></i>
                                         </span>
                                     </a>
-                                    <a href="javascript:void(0);" onclick="addToWishlist()">
-                                        <span class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
+                                    <a href="javascript:void(0);" onclick="addToWishlist({{ $product->id }})"
+                                        id="wishlist-btn-{{ $product->id }}" class="position-absolute top-0 end-0 m-2">
+                                        <span
+                                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle border shadow-sm"
                                             style="width: 40px; height: 40px;">
-                                            <i class="fa fa-heart text-danger"></i>
+                                            <i class="fa fa-heart text-secondary"></i>
                                         </span>
                                     </a>
                                 </div>
@@ -1076,33 +1019,137 @@
     <!--------------- weekly-section-end--------------->
 </main>
 <script>
-    // 🔥 Set your target date here
-    const targetDate = new Date("2025-12-31T23:59:59").getTime();
+// 🔥 Set your target date here
+const targetDate = new Date("2025-12-31T23:59:59").getTime();
 
-    const countdown = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+const countdown = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
 
-        if (distance <= 0) {
-            clearInterval(countdown);
-            document.getElementById("day").innerText = "0";
-            document.getElementById("hour").innerText = "0";
-            document.getElementById("minute").innerText = "0";
-            document.getElementById("second").innerText = "0";
-            alert("🎉 Countdown Finished!");
-            return;
+    if (distance <= 0) {
+        clearInterval(countdown);
+        document.getElementById("day").innerText = "0";
+        document.getElementById("hour").innerText = "0";
+        document.getElementById("minute").innerText = "0";
+        document.getElementById("second").innerText = "0";
+        alert("🎉 Countdown Finished!");
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("day").innerText = days;
+    document.getElementById("hour").innerText = hours;
+    document.getElementById("minute").innerText = minutes;
+    document.getElementById("second").innerText = seconds;
+}, 1000);
+
+
+// Add to Wishlist Function
+function addToWishlist(productId) {
+    console.log('Adding product:', productId);
+
+    $.ajax({
+        url: "/wishlist/add",
+        type: "POST",
+        data: {
+            _token: "{{ csrf_token() }}",
+            product_id: productId
+        },
+        success: function(res) {
+            console.log('Response:', res);
+
+            let icon = $('#wishlist-btn-' + productId).find('i');
+
+            if (res.status === 'added') {
+                icon.removeClass('text-secondary').addClass('text-danger');
+                updateWishlistCount();
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Added!',
+                    text: res.message,
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            } else if (res.status === 'exists') {
+                icon.removeClass('text-secondary').addClass('text-danger');
+
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Already Added',
+                    text: res.message,
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            }
+        },
+        error: function(xhr) {
+            console.error('Error:', xhr);
+
+            let message = 'Something went wrong!';
+
+            if (xhr.status === 419) {
+                message = 'Session expired. Please refresh the page.';
+            } else if (xhr.status === 404) {
+                message = 'Route not found. Please check configuration.';
+            } else if (xhr.status === 500) {
+                message = 'Server error occurred.';
+            }
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: message,
+            });
         }
+    });
+}
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+// Update Wishlist Count
+function updateWishlistCount() {
+    $.ajax({
+        url: "/wishlist/count",
+        type: "GET",
+        success: function(res) {
+            $('#wishlist-count').text(res.count);
 
-        document.getElementById("day").innerText = days;
-        document.getElementById("hour").innerText = hours;
-        document.getElementById("minute").innerText = minutes;
-        document.getElementById("second").innerText = seconds;
-    }, 1000);
+            if (res.count > 0) {
+                $('#wishlist-count').show();
+            } else {
+                $('#wishlist-count').hide();
+            }
+        }
+    });
+}
+
+// Initialize on page load
+$(document).ready(function() {
+    console.log('Initializing wishlist...');
+
+    // Update count
+    updateWishlistCount();
+
+    // Mark wishlisted items
+    $.ajax({
+        url: "/wishlist/items",
+        type: "GET",
+        success: function(res) {
+            console.log('Wishlist items:', res.wishlist_items);
+
+            if (res.wishlist_items && res.wishlist_items.length > 0) {
+                res.wishlist_items.forEach(function(productId) {
+                    $('#wishlist-btn-' + productId).find('i')
+                        .removeClass('text-secondary')
+                        .addClass('text-danger');
+                });
+            }
+        }
+    });
+});
 </script>
 
 @endsection

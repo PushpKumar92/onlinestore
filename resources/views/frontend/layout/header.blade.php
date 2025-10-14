@@ -753,23 +753,7 @@
                                 <span class="list-text">shop</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <span class="list-text">Pages</span>
-                                <span>
-                                    <i class="fa-solid fa-plus" style="color:white; font-size:18px;"></i>
-                                </span>
-                            </a>
-                            <ul class="header-sub-menu">
-                                <li><a href="{{ route('product.info') }}">Product Details</a></li>
-                                <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
-                                <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
-                                <li><a href="{{ route('faq') }}">FAQ</a></li>
-                                <li><a href="{{ route('productall') }}">Shop Category Icon</a></li>
-                                <li><a href="{{ route('sellers') }}">Vendor</a></li>
-                            </ul>
-
-                        </li>
+                       
                         <li>
                             <a href="{{ route('about') }}">
                                 <span class="list-text">About</span>
@@ -789,6 +773,20 @@
                             <a href="{{ route('contact.us') }}">
                                 <span class="list-text">Contact</span>
                             </a>
+                        </li>
+                         <li>
+                            <a href="#">
+                                <span class="list-text">Pages</span>
+                                <span>
+                                    <i class="fa-solid fa-plus" style="color:white; font-size:18px;"></i>
+                                </span>
+                            </a>
+                            <ul class="header-sub-menu">
+                                <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                                <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
+                                <li><a href="{{ route('faq') }}">FAQ</a></li> 
+                            </ul>
+
                         </li>
                     </ul>
                 </div>
