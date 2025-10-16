@@ -70,6 +70,7 @@ class UserController extends Controller
 }
 
 
+
 public function updatePassword(Request $request)
 {
     $request->validate([

@@ -4,14 +4,43 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class MainController extends Controller
 {
-    // Home Page
-    public function index() {
-            $products = Product::all();
-        return view('frontend.index', compact('products'));
-    }
+    public function index()
+{
+    // ✅ Flash Sale: products with discount > 0
+    $flashSaleProducts = Product::where('discount', '>', 0)
+        ->where('is_approved', 1)
+        ->orderBy('created_at', 'desc')
+        ->take(8)
+        ->get();
+
+
+    $newArrivalProducts = Product::where(function ($query) {
+            $query->whereNull('discount')
+                  ->orWhere('discount', '=', 0);
+        })
+        ->where('is_approved', 1)
+        ->orderBy('created_at', 'desc')
+        ->take(8)
+        ->get();
+      
+      $categories = Category::latest()->get();
+
+    return view('frontend.index', compact('flashSaleProducts', 'newArrivalProducts','categories'));
+}
+public function sales()
+{
+    // ✅ Fetch products having a discount greater than 0
+    $saleProducts = Product::where('discount', '>', 0)
+        ->where('is_approved', 1)
+        ->orderBy('created_at', 'desc')
+        ->paginate(12); // Paginate for better UX
+
+    return view('frontend.sales', compact('saleProducts'));
+}
 
     // Static Pages
     public function about() {
@@ -48,10 +77,7 @@ class MainController extends Controller
         return view('frontend.seller-sidebar');
     }
 
-    public function flashSale() {
-        return view('frontend.flash-sale');
-    }
-
+   
     // Blog Pages
     public function blog() {
         return view('frontend.blog');

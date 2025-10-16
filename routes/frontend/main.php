@@ -44,6 +44,7 @@ Route::get('/seller-sidebar', [MainController::class, 'sellerSidebar'])->name('s
 Route::get('/empty-wishlist', [MainController::class, 'emptyWishlist'])->name('empty.wishlist');
 Route::get('/flash-sale', [MainController::class, 'flashSale'])->name('flash.sale');
 
+Route::get('/sales', [MainController::class, 'sales'])->name('frontend.sales');
 
 
 

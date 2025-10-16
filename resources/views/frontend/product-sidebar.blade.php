@@ -95,131 +95,81 @@
                     <div class="product-sidebar-section" data-aos="fade-up">
 
                         <!-- Sorting Section -->
-                        <!-- Product Sorting Section -->
-                        <div class="product-sorting-section mb-4">
-                            <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+                        <div class="product-sorting-section mb-4 d-flex justify-content-between align-items-center">
+                            <div class="result">
+                                @php
+                                $from = ($products->currentPage() - 1) * $products->perPage() + 1;
+                                $to = $from + $products->count() - 1;
+                                @endphp
+                                <p class="mb-0 text-muted">
+                                    Showing <span class="fw-semibold">{{ $from }}–{{ $to }}</span> of
+                                    <span class="fw-semibold">{{ $products->total() }}</span> results
+                                </p>
+                            </div>
 
-                                <!-- Dynamic Result Count -->
-                                <div class="result">
-                                    @php
-                                    $from = ($products->currentPage() - 1) * $products->perPage() + 1;
-                                    $to = $from + $products->count() - 1;
-                                    @endphp
-                                    <p class="mb-0 text-muted">
-                                        Showing <span class="fw-semibold">{{ $from }}–{{ $to }}</span> of
-                                        <span class="fw-semibold">{{ $products->total() }}</span> results
-                                    </p>
-                                </div>
-
-                                <!-- Sort By Dropdown -->
-                                <div class="product-sorting d-flex align-items-center gap-2">
-                                    <span class="text-muted mx-5">Sort by:</span>
-                                    <form method="GET" id="sortForm">
-                                        <select name="sort" id="sortSelect" class="form-select form-select-sm">
-                                            <option value="">Default</option>
-                                            <option value="price_asc"
-                                                {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Price: Low to
-                                                High</option>
-                                            <option value="price_desc"
-                                                {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Price: High to
-                                                Low</option>
-                                            <option value="name_asc"
-                                                {{ request('sort') == 'name_asc' ? 'selected' : '' }}>Name: A–Z</option>
-                                            <option value="name_desc"
-                                                {{ request('sort') == 'name_desc' ? 'selected' : '' }}>Name: Z–A
-                                            </option>
-                                            <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>
-                                                Newest First</option>
-                                        </select>
-                                    </form>
-                                </div>
-
+                            <div class="product-sorting d-flex align-items-center gap-2">
+                                <span class="text-muted mx-2">Sort by:</span>
+                                <form method="GET" id="sortForm">
+                                    <select name="sort" id="sortSelect" class="form-select form-select-sm">
+                                        <option value="">Default</option>
+                                        <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>
+                                            Price: Low to High</option>
+                                        <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>
+                                            Price: High to Low</option>
+                                        <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>
+                                            Name: A–Z</option>
+                                        <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>
+                                            Name: Z–A</option>
+                                        <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>
+                                            Newest First</option>
+                                    </select>
+                                </form>
                             </div>
                         </div>
 
-                        <!-- Auto-submit when sorting changes -->
-                       
+                        <!-- Products Grid -->
+                        <div class="row g-4">
+                            @forelse($products as $product)
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="card border-0 shadow-sm h-100 position-relative product-card transition-all">
 
+                                    {{-- Product Image --}}
+                                    <a href="{{ route('product.info', $product->id) }}" class="overflow-hidden">
+                                        <img src="{{ asset('uploads/products/' . $product->image) }}"
+                                            alt="{{ $product->name }}" class="card-img-top img-fluid"
+                                            style="object-fit: cover; height: 250px;">
+                                    </a>
 
-                        <!-- Products Section -->
-                        <section class="py-5 bg-light">
-                            <div class="container">
-                                <!-- Section Title -->
-                                <div class="section-title text-center mb-5">
-                                    <h3 class="fw-bold text-uppercase">Our Latest Products</h3>
-                                    <p class="text-muted">Discover our newest arrivals and exclusive deals</p>
-                                </div>
+                                    {{-- Product Info --}}
+                                    <div class="card-body text-center">
+                                        <a href="{{ route('product.info', $product->id) }}"
+                                            class="text-decoration-none text-dark fw-semibold d-block mb-2 text-truncate">
+                                            {{ $product->name }}
+                                        </a>
 
-                                <!-- Products Grid -->
-                                <div class="row g-4">
-                                    @forelse($products as $product)
-                                    @php
-                                    $price = $product->price;
-                                    $discount = $product->discount ?? 0;
-                                    $hasDiscount = $discount > 0;
-                                    $discountedPrice = $hasDiscount ? round($price - ($price * $discount / 100), 2) :
-                                    $price;
-                                    @endphp
-
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <div
-                                            class="card border-0 shadow-sm h-100 position-relative product-card transition-all">
-
-                                            {{-- Discount Badge --}}
-                                            @if($hasDiscount)
-                                            <span
-                                                class="badge bg-danger position-absolute top-0 start-0 m-2 px-2 py-1 rounded">
-                                                {{ $discount }}% OFF
-                                            </span>
-                                            @endif
-
-                                            {{-- Product Image --}}
-                                            <a href="{{ route('product.info', $product->id) }}" class="overflow-hidden">
-                                                <img src="{{ asset('uploads/products/' . $product->image) }}"
-                                                    alt="{{ $product->name }}" class="card-img-top img-fluid"
-                                                    style="object-fit: cover; height: 250px;">
-                                            </a>
-
-                                            {{-- Product Info --}}
-                                            <div class="card-body text-center">
-                                                <a href="{{ route('product.info', $product->id) }}"
-                                                    class="text-decoration-none text-dark fw-semibold d-block mb-2 text-truncate">
-                                                    {{ $product->name }}
-                                                </a>
-
-                                                <div class="d-flex justify-content-center align-items-center mb-3">
-                                                    @if($hasDiscount)
-                                                    <span
-                                                        class="text-success fw-bold me-2 fs-5">₹{{ $discountedPrice }}</span>
-                                                    <del class="text-muted small">₹{{ $price }}</del>
-                                                    @else
-                                                    <span class="text-dark fw-bold fs-5">₹{{ $price }}</span>
-                                                    @endif
-                                                </div>
-
-                                                {{-- Add to Cart Button --}}
-                                                <button class="btn btn-primary w-100 add-to-cart fw-semibold"
-                                                    data-id="{{ $product->id }}">
-                                                    <i class="fas fa-shopping-cart me-2"></i> Add to Cart
-                                                </button>
-                                            </div>
+                                        {{-- Price (no discount) --}}
+                                        <div class="d-flex justify-content-center align-items-center mb-3">
+                                            <span class="text-dark fw-bold fs-5">₹{{ $product->price }}</span>
                                         </div>
+
+                                        {{-- Add to Cart Button --}}
+                                        <button class="btn btn-primary w-100 add-to-cart fw-semibold"
+                                            data-id="{{ $product->id }}">
+                                            <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                                        </button>
                                     </div>
-                                    @empty
-                                    <div class="col-12 text-center">
-                                        <p class="text-muted">No products found at the moment. Please check back later!
-                                        </p>
-                                    </div>
-                                    @endforelse
                                 </div>
                             </div>
-                        </section>
-
-
+                            @empty
+                            <div class="col-12 text-center">
+                                <p class="text-muted">No products found at the moment. Please check back later!</p>
+                            </div>
+                            @endforelse
+                        </div>
 
                         <!-- Pagination -->
-                        <div class="mt-4">
-                            {{ $products->withQueryString()->links() }}
+                        <div class="mt-4 d-flex justify-content-center">
+                            {{ $products->withQueryString()->links('pagination::bootstrap-5') }}
                         </div>
 
                     </div>
@@ -239,9 +189,9 @@ document.querySelectorAll('#filter-form input').forEach(input => {
     });
 });
 
-  document.getElementById('sortSelect').addEventListener('change', function() {
-                            document.getElementById('sortForm').submit();
-                        });
+document.getElementById('sortSelect').addEventListener('change', function() {
+    document.getElementById('sortForm').submit();
+});
 </script>
 
 @endsection

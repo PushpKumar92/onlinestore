@@ -6,60 +6,66 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\ProductsImport;
-use App\Exports\ProductsExport;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    // Display all products (admin can manage all, including )
+    // ✅ Display all products
     public function index()
     {
-        $allProducts = Product::latest()->paginate(10); // all products
+        $allProducts = Product::latest()->paginate(10);
         return view('admin.products.index', compact('allProducts'));
     }
 
-    // Show create product form
+    // ✅ Show create form
     public function create()
     {
         $categories = Category::all();
         return view('admin.products.create', compact('categories'));
     }
 
-    // Store new product
+    // ✅ Store new product
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'sku_code' => 'required|string|max:100|unique:products,sku_code',
+            'brand' => 'nullable|string|max:255',
+            'color' => 'nullable|string|max:100',
+            'sizes' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
             'price' => 'required|numeric',
-            'quantity' => 'required|integer',
+            'discount' => 'nullable|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'status' => 'required|in:active,inactive',
+            'image' => 'nullable|image|mimes:webp,avif,jpeg,png,jpg|max:2048',
         ]);
 
-        $product = new Product($request->only([
-            'name', 'description', 'price', 'discount', 'quantity', 'category_id'
-        ]));
+        $data = $request->only([
+            'name', 'sku_code', 'brand', 'color', 'sizes', 'description',
+            'price', 'discount', 'quantity', 'category_id', 'status'
+        ]);
 
-        // Admin settings
-        $product->is_approved = true;
+        // ✅ Assign vendor/admin details
+        $data['vendor_id'] = Auth::guard('admin')->id(); // current admin/vendor
+        $data['added_by_role'] = 'admin';
+        $data['is_approved'] = true;
 
-        // Handle image
+        // ✅ Handle image upload
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/products'), $filename);
-            $product->image = $filename;
+            $data['image'] = $filename;
         }
 
-        $product->save();
+        Product::create($data);
 
-        return redirect()->route('admin.products.index')
-                         ->with('success', 'Product added and published.');
+        return redirect()->route('admin.products.index')->with('success', '✅ Product added successfully!');
     }
 
-    // Show edit form
+    // ✅ Edit form
     public function edit($id)
     {
         $product = Product::findOrFail($id);
@@ -67,22 +73,27 @@ class ProductController extends Controller
         return view('admin.products.edit', compact('product', 'categories'));
     }
 
-    // Update product
+    // ✅ Update product
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
 
         $data = $request->validate([
             'name' => 'required|string|max:255',
+            'sku_code' => 'required|string|max:100|unique:products,sku_code,' . $product->id,
+            'brand' => 'nullable|string|max:255',
+            'color' => 'nullable|string|max:100',
+            'sizes' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'discount' => 'nullable|numeric|min:0',
             'quantity' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'status' => 'required|in:active,inactive',
+            'image' => 'nullable|image|mimes:webp,avif,jpeg,png,jpg|max:2048',
         ]);
 
-        // Handle image
+        // ✅ Handle image upload
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
@@ -92,28 +103,30 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        return redirect()->route('admin.products.index')
-                         ->with('success', 'Product updated successfully.');
+        return redirect()->route('admin.products.index')->with('success', '✅ Product updated successfully!');
     }
 
-    // Delete product
+    // ✅ Delete product
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+
+        // delete image if exists
+        if ($product->image && file_exists(public_path('uploads/products/' . $product->image))) {
+            unlink(public_path('uploads/products/' . $product->image));
+        }
+
         $product->delete();
 
-        return redirect()->route('admin.products.index')
-                         ->with('success', 'Product deleted successfully.');
+        return redirect()->route('admin.products.index')->with('success', '🗑️ Product deleted successfully!');
     }
 
-
+    // ✅ Export Products as CSV
     public function exportCsv()
     {
         $products = Product::all();
-
         $filename = "products_" . date('Y-m-d_H-i-s') . ".csv";
 
-        // Headers for browser
         $headers = [
             "Content-type" => "text/csv",
             "Content-Disposition" => "attachment; filename=$filename",
@@ -122,25 +135,26 @@ class ProductController extends Controller
             "Expires" => "0"
         ];
 
-        // Callback to write CSV
-        $callback = function() use ($products) {
+        $callback = function () use ($products) {
             $file = fopen('php://output', 'w');
-
-            // CSV header row
             fputcsv($file, [
-                'ID', 'Name', 'Description', 'Price', 'Discount', 'Quantity', 'Category ID', 'Approved'
+                'ID', 'Name', 'SKU', 'Brand', 'Color', 'Sizes', 'Price', 'Discount',
+                'Quantity', 'Category ID', 'Status', 'Approved'
             ]);
 
-            // CSV data rows
             foreach ($products as $product) {
                 fputcsv($file, [
                     $product->id,
                     $product->name,
-                    $product->description,
+                    $product->sku_code,
+                    $product->brand,
+                    $product->color,
+                    $product->sizes,
                     $product->price,
                     $product->discount,
                     $product->quantity,
                     $product->category_id,
+                    $product->status,
                     $product->is_approved ? 'Yes' : 'No'
                 ]);
             }
@@ -151,36 +165,39 @@ class ProductController extends Controller
         return response()->stream($callback, 200, $headers);
     }
 
-public function import(Request $request)
-{
-    $request->validate([
-        'file' => 'required|mimes:csv,txt',
-    ]);
+    // ✅ Import Products from CSV
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,txt',
+        ]);
 
-    $file = $request->file('file');
+        $file = $request->file('file');
 
-    if (($handle = fopen($file->getRealPath(), 'r')) !== false) {
-        $header = fgetcsv($handle); // skip header row
+        if (($handle = fopen($file->getRealPath(), 'r')) !== false) {
+            $header = fgetcsv($handle); // skip header
 
-        while (($row = fgetcsv($handle)) !== false) {
-            // Map columns by index (adjust according to your CSV)
-            \App\Models\Product::create([
-                'name' => $row[1] ?? '',            // 1st column = name
-                'description' => $row[2] ?? '',     // 2nd column = description
-                'price' => isset($row[3]) ? floatval($row[3]) : 0,    // 3rd column = price
-                'discount' => isset($row[4]) ? floatval($row[4]) : 0, // 4th column = discount
-                'quantity' => isset($row[5]) ? intval($row[5]) : 0,   // 5th column = quantity
-                'category_id' => isset($row[6]) ? intval($row[6]) : 1,// 6th column = category
-                'is_approved' => isset($row[7]) && strtolower($row[7]) == 'yes' ? 1 : 0, // 7th column = approved
-                'added_by_role' => 'admin',
-                'status' => $row[8] ?? 'active',  // 8th column = status
-            ]);
+            while (($row = fgetcsv($handle)) !== false) {
+                Product::create([
+                    'name' => $row[1] ?? '',
+                    'sku_code' => $row[2] ?? '',
+                    'brand' => $row[3] ?? '',
+                    'color' => $row[4] ?? '',
+                    'sizes' => $row[5] ?? '',
+                    'price' => isset($row[6]) ? floatval($row[6]) : 0,
+                    'discount' => isset($row[7]) ? floatval($row[7]) : 0,
+                    'quantity' => isset($row[8]) ? intval($row[8]) : 0,
+                    'category_id' => isset($row[9]) ? intval($row[9]) : 1,
+                    'status' => $row[10] ?? 'active',
+                    'is_approved' => isset($row[11]) && strtolower($row[11]) == 'yes' ? 1 : 0,
+                    'added_by_role' => 'admin',
+                    'vendor_id' => Auth::guard('admin')->id(),
+                ]);
+            }
+
+            fclose($handle);
         }
 
-        fclose($handle);
+        return redirect()->route('admin.products.index')->with('success', '✅ Products imported successfully!');
     }
-
-    return redirect()->route('admin.products.index')->with('success', 'Products imported successfully!');
-}
-
 }

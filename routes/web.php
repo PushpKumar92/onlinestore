@@ -15,7 +15,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
-use App\Http\Controllers\Vendor\ProductController as VendorProductController;
+
 
 
 

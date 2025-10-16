@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -21,11 +22,21 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:categories,slug',
+            'name'  => 'required|string|max:255',
+            'slug'  => 'required|string|max:255|unique:categories,slug',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
-        Category::create($request->only('name', 'slug'));
+        $data = $request->only('name', 'slug');
+
+        if ($request->hasFile('image')) {
+    $image = $request->file('image');
+    $imageName = time() . '_' . Str::slug($request->name) . '.' . $image->getClientOriginalExtension();
+    $image->move(public_path('uploads/categories'), $imageName);
+    $data['image'] = $imageName; // <- This saves in database
+}
+
+        Category::create($data);
 
         return redirect()->route('category.index')->with('success', 'Category created successfully!');
     }
@@ -41,18 +52,41 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:categories,slug,' . $id,
+            'name'  => 'required|string|max:255',
+            'slug'  => 'required|string|max:255|unique:categories,slug,' . $id,
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
-        $category->update($request->only('name', 'slug'));
+        $data = $request->only('name', 'slug');
+
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($category->image && file_exists(public_path('uploads/categories/' . $category->image))) {
+                unlink(public_path('uploads/categories/' . $category->image));
+            }
+
+            $image = $request->file('image');
+            $imageName = time() . '_' . Str::slug($request->name) . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/categories'), $imageName);
+            $data['image'] = $imageName; // Save new image in database
+        }
+
+        $category->update($data);
 
         return redirect()->route('category.index')->with('success', 'Category updated successfully!');
     }
 
     public function destroy($id)
     {
-        Category::findOrFail($id)->delete();
+        $category = Category::findOrFail($id);
+
+        // Delete image if exists
+        if ($category->image && file_exists(public_path('uploads/categories/' . $category->image))) {
+            unlink(public_path('uploads/categories/' . $category->image));
+        }
+
+        $category->delete();
+
         return redirect()->route('category.index')->with('success', 'Category deleted successfully!');
     }
 }

@@ -750,7 +750,13 @@
                         </li>
                         <li>
                             <a href="{{ route('productall') }}">
-                                <span class="list-text">shop</span>
+                                <span class="list-text">Shop</span>
+                            </a>
+                        </li>
+                       
+                        <li>
+                            <a href="{{ route('frontend.sales') }}">
+                                <span class="list-text">Sales</span>
                             </a>
                         </li>
                        
