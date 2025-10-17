@@ -8,39 +8,43 @@ use App\Models\Category;
 
 class MainController extends Controller
 {
+      // 🏠 Homepage (Flash Sale + New Arrivals)
     public function index()
-{
-    // ✅ Flash Sale: products with discount > 0
-    $flashSaleProducts = Product::where('discount', '>', 0)
-        ->where('is_approved', 1)
-        ->orderBy('created_at', 'desc')
-        ->take(8)
-        ->get();
+    {
+        // ⚡ Flash Sale Products (discount > 0)
+        $flashSaleProducts = Product::where('discount', '>', 0)
+            ->where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->take(8)
+            ->get();
 
+        // 🆕 New Arrival Products (discount == 0 or NULL)
+        $newArrivalProducts = Product::where(function ($query) {
+                $query->whereNull('discount')
+                      ->orWhere('discount', '=', 0);
+            })
+            ->where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->take(8)
+            ->get();
 
-    $newArrivalProducts = Product::where(function ($query) {
-            $query->whereNull('discount')
-                  ->orWhere('discount', '=', 0);
-        })
-        ->where('is_approved', 1)
-        ->orderBy('created_at', 'desc')
-        ->take(8)
-        ->get();
-      
-      $categories = Category::latest()->get();
+        // 📂 All Categories
+        $categories = Category::latest()->get();
 
-    return view('frontend.index', compact('flashSaleProducts', 'newArrivalProducts','categories'));
-}
-public function sales()
-{
-    // ✅ Fetch products having a discount greater than 0
-    $saleProducts = Product::where('discount', '>', 0)
-        ->where('is_approved', 1)
-        ->orderBy('created_at', 'desc')
-        ->paginate(12); // Paginate for better UX
+        return view('frontend.index', compact('flashSaleProducts', 'newArrivalProducts', 'categories'));
+    }
 
-    return view('frontend.sales', compact('saleProducts'));
-}
+    // 🛍️ Flash Sale Products Page
+    public function sales()
+    {
+        $saleProducts = Product::where('discount', '>', 0)
+            ->where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+        return view('frontend.sales', compact('saleProducts'));
+    }
+
 
     // Static Pages
     public function about() {
@@ -62,22 +66,6 @@ public function sales()
     public function contactUs() {
         return view('frontend.contact-us');
     }
-
-    // Product & Seller Info Pages
-    public function productInfo() {
-        return view('frontend.product-info');
-    }
-
-
-    public function sellers() {
-        return view('frontend.sellers');
-    }
-
-    public function sellerSidebar() {
-        return view('frontend.seller-sidebar');
-    }
-
-   
     // Blog Pages
     public function blog() {
         return view('frontend.blog');

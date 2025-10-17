@@ -124,35 +124,35 @@
     <!--------------- style-section-end --------------->
 
     <!--------------- category-section--------------->
-  <section class="product-category py-5">
-    <div class="container">
-        <div class="section-title d-flex justify-content-between align-items-center mb-4">
-            <h5 class="mb-0">Our Categories</h5>
-            <a href="{{ route('productall') }}" class="btn btn-link view">View All</a>
-        </div>
+    <section class="product-category py-5">
+        <div class="container">
+            <div class="section-title d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">Our Categories</h5>
+                <a href="{{ route('productall') }}" class="btn btn-link view">View All</a>
+            </div>
 
-        <div class="category-slider position-relative">
-            <div class="slider-viewport overflow-hidden">
-                <div class="slider-track d-flex align-items-center gap-3" id="sliderTrack">
-                    @forelse($categories as $category)
-                    <div class="category-box text-center">
-                        <a href="{{ route('productall', ['categories[]' => $category->id]) }}">
-                            @if($category->image)
-                                <img src="{{ asset('uploads/categories/' . $category->image) }}" 
-                                     alt="{{ $category->name }}" class="img-fluid rounded w-50">
-                            
-                            @endif
-                            <p class="mt-2">{{ $category->name }}</p>
-                        </a>
+            <div class="category-slider position-relative">
+                <div class="slider-viewport overflow-hidden">
+                    <div class="slider-track d-flex align-items-center gap-3" id="sliderTrack">
+                        @forelse($categories as $category)
+                        <div class="category-box text-center">
+                            <a href="{{ route('productall', ['categories[]' => $category->id]) }}">
+                                @if($category->image)
+                                <img src="{{ asset('uploads/categories/' . $category->image) }}"
+                                    alt="{{ $category->name }}" class="img-fluid rounded w-50">
+
+                                @endif
+                                <p class="mt-2">{{ $category->name }}</p>
+                            </a>
+                        </div>
+                        @empty
+                        <p class="text-muted">No categories available.</p>
+                        @endforelse
                     </div>
-                    @empty
-                    <p class="text-muted">No categories available.</p>
-                    @endforelse
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
     <!--------------- category-section-end--------------->
@@ -164,17 +164,23 @@
                 <h5 class="mb-0">NEW ARRIVALS</h5>
                 <a href="#" class="view text-decoration-underline">View All</a>
             </div>
-
-            <div class="arrival-section">
+            <div class="arrival-section mt-5">
+                <!-- <h3 class="mb-4 text-center text-primary">New Arrivals</h3> -->
                 <div class="row g-4">
                     @forelse ($newArrivalProducts as $product)
                     <div class="col-lg-3 col-sm-6">
                         <div class="product-wrapper h-100 d-flex flex-column" data-aos="fade-up">
                             <div class="product-img position-relative">
+                                @if($product->image)
                                 <img src="{{ asset('uploads/products/' . $product->image) }}" class="img-fluid w-100"
                                     style="object-fit: cover; height: 300px;" alt="{{ $product->name }}">
+                                @else
+                                <img src="{{ asset('images/no-image.png') }}" class="img-fluid w-100"
+                                    style="object-fit: cover; height: 300px;" alt="No Image">
+                                @endif
 
                                 <div class="product-cart-items position-absolute bottom-0 end-0 p-2 d-flex gap-2">
+
                                     <a href="{{ route('product.info', $product->id) }}" class="cart cart-item">
                                         <span
                                             class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
@@ -182,7 +188,6 @@
                                             <i class="fas fa-eye text-dark"></i>
                                         </span>
                                     </a>
-
                                     <a href="javascript:void(0);" onclick="addToWishlist({{ $product->id }})"
                                         id="wishlist-btn-{{ $product->id }}" class="position-absolute top-0 end-0 m-2">
                                         <span
@@ -254,7 +259,6 @@
 
                 <a href="{{ route('flash.sale') }}" class="view">View All</a>
             </div>
-
             <div class="flash-sale-section mt-5">
                 <!-- <h3 class="mb-4 text-center text-danger">Flash Sale</h3> -->
                 <div class="row g-4">
@@ -271,8 +275,15 @@
                                     class="discount-badge bg-danger text-white px-2 py-1 position-absolute top-0 start-0 rounded-end">
                                     {{ $discount }}% OFF
                                 </span>
+
+                                @if($product->image)
                                 <img src="{{ asset('uploads/products/' . $product->image) }}" class="img-fluid w-100"
                                     style="object-fit: cover; height: 300px;" alt="{{ $product->name }}">
+                                @else
+                                <img src="{{ asset('images/no-image.png') }}" class="img-fluid w-100"
+                                    style="object-fit: cover; height: 300px;" alt="No Image">
+                                @endif
+
                                 <div class="product-cart-items position-absolute bottom-0 end-0 p-2 d-flex gap-2">
                                     <a href="{{ route('product.info', $product->id) }}" class="cart cart-item">
                                         <span
@@ -281,12 +292,21 @@
                                             <i class="fas fa-eye text-dark"></i>
                                         </span>
                                     </a>
+
+                                    <a href="javascript:void(0);" onclick="addToWishlist({{ $product->id }})"
+                                        id="wishlist-btn-{{ $product->id }}" class="position-absolute top-0 end-0 m-2">
+                                        <span
+                                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle border shadow-sm"
+                                            style="width: 40px; height: 40px;">
+                                            <i class="fa fa-heart text-secondary"></i>
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
 
                             <div class="product-info mt-3 flex-grow-1 text-center">
                                 <a href="{{ route('product.info', $product->id) }}"
-                                    class="product-details fw-bold text-dark d-block mb-2 text-truncate">
+                                    class="product-details fw-bold text-dark d-block mb-2 ">
                                     {{ $product->name }}
                                 </a>
 
@@ -365,7 +385,7 @@
 
                                 </div>
                                 <div class="product-description">
-                                    <a href="{{ route('product.info')}}" class="product-details">Slim-Fit Shirt
+                                    <a href="#" class="product-details">Slim-Fit Shirt
                                     </a>
                                     <div class="price">
                                         <span class="price-cut">$14.99</span>
@@ -415,7 +435,7 @@
 
                                 </div>
                                 <div class="product-description">
-                                    <a href="{{ route('product.info')}}" class="product-details">Sequin Dress
+                                    <a href="#" class="product-details">Sequin Dress
                                     </a>
                                     <div class="price">
                                         <span class="price-cut">$30.99</span>
@@ -463,7 +483,7 @@
 
                                 </div>
                                 <div class="product-description">
-                                    <a href="{{ route('product.info')}}" class="product-details">Red Sequin Dress
+                                    <a href="#" class="product-details">Red Sequin Dress
                                     </a>
                                     <div class="price">
                                         <span class="price-cut">$20.99</span>
@@ -513,7 +533,7 @@
 
                                 </div>
                                 <div class="product-description">
-                                    <a href="{{ route('product.info')}}" class="product-details">Rainbow Sequin Dress
+                                    <a href="#" class="product-details">Rainbow Sequin Dress
                                     </a>
                                     <div class="price">
                                         <span class="price-cut">$19.99</span>

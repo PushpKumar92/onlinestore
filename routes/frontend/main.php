@@ -26,7 +26,10 @@ Route::post('/login', [UserController::class, 'login'])->name('login.submit');
 Route::get('/',[MainController::class,'index'])->name('index');
 Route::get('/about',[MainController::class,'about'])->name('about');
 
-Route::get('/product-info', [MainController::class, 'productInfo'])->name('product.info');
+
+
+
+
 Route::get('/privacy', [MainController::class, 'privacy'])->name('privacy');
 Route::get('/terms', [MainController::class, 'terms'])->name('terms');
 Route::get('/faq', [MainController::class, 'faq'])->name('faq');
@@ -65,7 +68,8 @@ Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'destroy'])->
 
 
     Route::get('/allproduct', [ProductdetailController::class, 'Allproducts'])->name('productall');
-    Route::get('/category/{slug}', [ProductController::class, 'categoryProducts'])->name('category.products');
-
+    
+        // Product detail by ID (alternative)
+        Route::get('/product-info/{id}', [ProductdetailController::class, 'productInfo'])->name('product.info');
 
     Route::get('/search', [SearchController::class, 'index'])->name('search');

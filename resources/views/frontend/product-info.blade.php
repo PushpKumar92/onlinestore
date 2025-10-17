@@ -2,256 +2,209 @@
 @section('content')
 <main class="main-content">
     <!--------------- products-info-section--------------->
+
     <section class="product product-info">
         <div class="container">
-            <div class="blog-bradcrum">
-                <span><a href="{{ route('index')}}">Home</a></span>
-                <span class="devider">/</span>
-                <span><a href="{{ route('productall')}}">Shop</a></span>
-                <span class="devider">/</span>
-                <span><a href="#">Product Details</a></span>
+            {{-- Check if product exists --}}
+            @if(!isset($product))
+            <div class="alert alert-danger">
+                <h4>Error: Product not found!</h4>
+                <p>The product data is missing. Please <a href="{{ route('productall') }}">go back to shop</a>.</p>
             </div>
+            @else
+
+            <div class="blog-bradcrum">
+                <span><a href="{{ route('index') }}">Home</a></span>
+                <span class="devider">/</span>
+                <span><a href="{{ route('productall') }}">Shop</a></span>
+                <span class="devider">/</span>
+                <span>Product Details</span>
+            </div>
+
             <div class="product-info-section">
-                <div class="row ">
+                <div class="row">
+                    <!-- Product Images -->
                     <div class="col-md-6">
-                        <div class="product-info-img" data-aos="fade-right">
+                        <div class="product-info-img">
                             <div class="swiper product-top">
+                                @if($product->discount > 0)
                                 <div class="product-discount-content">
-                                    <h4>-50%</h4>
+                                    <h4>-{{ $product->discount }}%</h4>
                                 </div>
+                                @endif
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide slider-top-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-14.webp') }}"
-                                            alt="product-img">
+                                        <img src="{{ asset('uploads/products/' . $product->image) }}"
+                                            alt="{{ $product->name }}">
+                                    </div>
 
-                                    </div>
-                                    <div class="swiper-slide slider-top-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-1.webp') }}"
-                                            alt="product-img">
-
-                                    </div>
-                                    <div class="swiper-slide slider-top-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-2.webp') }}"
-                                            alt="product-img">
-
-                                    </div>
-                                    <div class="swiper-slide slider-top-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-3.webp') }}"
-                                            alt="product-img">
-
-                                    </div>
-                                    <div class="swiper-slide slider-top-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-1.webp') }}"
-                                            alt="product-img">
-
-                                    </div>
-                                    <div class="swiper-slide slider-top-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-2.webp') }}"
-                                            alt="product-img">
-
-                                    </div>
-                                    <div class="swiper-slide slider-top-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-1.webp') }}"
-                                            alt="product-img">
-
-                                    </div>
-                                    <div class="swiper-slide slider-top-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-1.webp') }}"
-                                            alt="product-img">
-                                    </div>
-                                    <div class="swiper-slide slider-top-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-2.webp') }}"
-                                            alt="product-img">
-                                    </div>
-                                    <div class="swiper-slide slider-top-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-3.webp') }}"
-                                            alt="product-img">
-                                    </div>
                                 </div>
                             </div>
+
                             <div class="swiper product-bottom">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide slider-bottom-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-16.png') }}"
-                                            alt="product-img">
-                                    </div>
-                                    <div class="swiper-slide slider-bottom-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-img-17.png') }}"
-                                            alt="product-img">
-                                    </div>
-                                    <div class="swiper-slide slider-bottom-img">
-                                        <img src="{{ asset('assets/images/homepage-one/product-img/product-slider-img-1.webp') }}"
-                                            alt="product-img">
+                                        <img src="{{ asset('uploads/products/' . $product->image) }}"
+                                            alt="{{ $product->name }}">
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Product Info -->
                     <div class="col-md-6">
-                        <div class="product-info-content" data-aos="fade-left">
-                            <span class="wrapper-subtitle">BOY'S FASHION</span>
-                            <h5>Rainbow Sequin Profresonal Coat
-                            </h5>
+                        <div class="product-info-content">
+                            <span class="wrapper-subtitle">{{ strtoupper(optional($product->category)->name) }}</span>
+                            <h5>{{ $product->name }}</h5>
+
                             <div class="ratings">
                                 <span class="text-warning">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+                                    @for($i=0; $i<5; $i++) <i class="fas fa-star"></i>
+                                        @endfor
                                 </span>
-                                <span class="text">6 Reviews</span>
+                                <span class="text">(6 Reviews)</span>
                             </div>
-                            <div class="price">
-                                <span class="price-cut">$9.99</span>
-                                <span class="new-price">$6.99</span>
-                            </div>
-                            <p class="content-paragraph">It is a long established fact that a reader will be distracted
-                                by <span class="inner-text">the readable there content of a page.</span></p>
-                            <hr>
-                            <div class="product-availability">
-                                <span>Availabillity : </span>
-                                <span class="inner-text">132 Products Available</span>
-                            </div>
-                            <div class="product-size">
-                                <P class="size-title">Size</P>
-                                <div class="size-section">
-                                    <span class="size-text">Select your size</span>
-                                    <div class="toggle-btn">
-                                        <span class="toggle-btn2"></span>
-                                        <span class="chevron">
-                                            <i class="fas fa-chevron-down" style="color: #222222; font-size: 11px;"></i>
 
-                                        </span>
-                                    </div>
-                                </div>
-                                <ul class="size-option">
-                                    <li class="option">
-                                        <span class="option-text">Small</span>
-                                        <span class="option-measure">3”W x 3”D x 5”H</span>
-                                    </li>
-                                    <li class="option">
-                                        <span class="option-text">Medium</span>
-                                        <span class="option-measure">3”W x 3”D x 6”H</span>
-                                    </li>
-                                    <li class="option">
-                                        <span class="option-text">Large</span>
-                                        <span class="option-measure">6”W x 3”D x 7”H</span>
-                                    </li>
-                                    <li class="option">
-                                        <span class="option-text">Extra Large</span>
-                                        <span class="option-measure">8”W x 4”D x 8”H</span>
-                                    </li>
-                                    <li class="option">
-                                        <span class="option-text">2XL</span>
-                                        <span class="option-measure">10”W x 5”D x 9”H</span>
-                                    </li>
-                                </ul>
+                            <div class="price">
+                                @if($product->discount > 0)
+                                @php
+                                $discountedPrice = round($product->price - ($product->price * $product->discount / 100),
+                                2);
+                                @endphp
+                                <span class="price-cut">₹{{ number_format($product->price, 2) }}</span>
+                                <span class="new-price">₹{{ number_format($discountedPrice, 2) }}</span>
+                                @else
+                                <span class="new-price">₹{{ number_format($product->price, 2) }}</span>
+                                @endif
                             </div>
+
+                           <p class="content-paragraph">{{ Str::words(strip_tags($product->description), 17, '.') }}</p>
+
+
+                            <div class="product-availability">
+                                <span>Availability : </span>
+                                <span
+                                    class="inner-text">{{ $product->quantity > 0 ? $product->quantity . ' in stock' : 'Out of stock' }}</span>
+                            </div>
+                            @if(!empty($sizes))
+                            <div class="mb-3">
+                                <label for="size-select-{{ $product->id }}" class="form-label">Select Size:</label>
+                                <select id="size-select-{{ $product->id }}" class="form-select w-auto d-inline-block">
+                                    @foreach($sizes as $size)
+                                    <option value="{{ trim($size) }}">{{ strtoupper(trim($size)) }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @endif
+
+
                             <div class="product-quantity">
                                 <div class="quantity-wrapper">
                                     <div class="quantity">
-                                        <span class="minus">
-                                            -
-                                        </span>
+                                        <span class="minus">-</span>
                                         <span class="number">1</span>
-                                        <span class="plus">
-                                            +
-                                        </span>
+                                        <span class="plus">+</span>
                                     </div>
                                     <div class="wishlist">
-                                        <span>
-                                            <i class="fas fa-heart" style="color: #797979; font-size: 24px;"></i>
-
-                                        </span>
+                                        <button onclick="addToWishlist({{ $product->id }})">
+                                            <i class="fas fa-heart"></i>
+                                        </button>
                                     </div>
                                 </div>
-                                <a href="#" class="shop-btn">
-                                    <span>
-                                        <i class="fa-solid fa-plus" style="color:white; font-size:25px:"></i>
-                                    </span>
+                                <button class="shop-btn add-to-cart" data-id="{{ $product->id }}">
+                                    <span><i class="fa-solid fa-plus"></i></span>
                                     <span>Add to Cart</span>
-                                </a>
+                                </button>
                             </div>
-                            <hr>
+
                             <div class="product-details">
-                                <p class="category">Category : <span class="inner-text">Kitchen</span></p>
-                                <p class="tags">Tags : <span class="inner-text">Beer, Foamer</span></p>
-                                <p class="sku">SKU : <span class="inner-text">KE-91039</span></p>
-                            </div>
-                            <hr>
-                            <div class="product-report">
-                                <a href="#" class="report" onclick="modalAction('.action')">
-                                    <span>
-                                        <i class="fa-solid fa-flag" style="color: #EB5757; font-size: 16px;"></i>
-                                    </span>
-
-                                    <span>Report This Item</span>
-                                </a>
-                                <!-- modal -->
-                                <div class="modal-wrapper action">
-                                    <div onclick="modalAction('.action')" class="anywhere-away"></div>
-
-                                    <!-- change this -->
-                                    <div class="login-section account-section modal-main">
-                                        <div class="review-form">
-                                            <div class="review-content">
-                                                <h5 class="comment-title">Report Products</h5>
-                                                <div class="close-btn">
-                                                    <img src="./assets/images/homepage-one/close-btn.png"
-                                                        onclick="modalAction('.action')" alt="close-btn">
-                                                </div>
-                                            </div>
-                                            <div class="review-form-name address-form">
-                                                <label for="reporttitle" class="form-label">Enter Report Ttile*</label>
-                                                <input type="text" id="reporttitle" class="form-control"
-                                                    placeholder="Reports Headline here">
-                                            </div>
-                                            <div class="review-form-name address-form">
-                                                <label for="reportnote" class="form-label">Enter Report Note*</label>
-                                                <textarea name="ticketmassage" id="reportnote" cols="40" rows="3"
-                                                    class="form-control" placeholder="Type Here"></textarea>
-                                            </div>
-                                            <div class="login-btn text-center">
-                                                <a href="#" onclick="modalAction('.action')" class="shop-btn">Submit
-                                                    Report</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- change this -->
-
-                                </div>
-                            </div>
-                            <div class="product-share">
-                                <p>Share This:</p>
-                                <div class="social-icons">
-                                    <a href="#">
-                                        <span class="facebook">
-                                            <i class="fab fa-facebook-f" style="color: #3E75B2; font-size: 18px;"></i>
-                                        </span>
-
-                                    </a>
-                                    <a href="#">
-                                        <span class="pinterest">
-                                            <i class="fab fa-pinterest-p" style="color: #E12828; font-size: 18px;"></i>
-                                        </span>
-
-                                    </a>
-                                    <a href="#">
-                                        <span class="twitter">
-                                            <i class="fab fa-twitter" style="color: #3FD1FF; font-size: 18px;"></i>
-                                        </span>
-
-                                    </a>
-                                </div>
+                                <p>Category : <span>{{ optional($product->category)->name }}</span></p>
+                                <p>Tags : <span>{{ $product->tags ?? 'No tags' }}</span></p>
+                                <p>SKU : <span>{{ $product->sku_code ?? 'N/A' }}</span></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {{-- Related Products --}}
+            @if(isset($relatedProducts) && $relatedProducts->count())
+            <div class="related-products mt-5">
+                <h4 class="mb-4">Related Products</h4>
+                <div class="row g-4">
+                    @foreach($relatedProducts as $related)
+                    <div class="col-md-3 col-6">
+                        <div class="product-card text-center">
+                            {{-- Use slug if available, otherwise use ID --}}
+                            <a href="{{ route('product.info', $related->id) }}">
+                                <img src="{{ asset('uploads/products/' . $related->image) }}"
+                                    alt="{{ $related->name }}">
+                                <h6>{{ $related->name }}</h6>
+                            </a>
+                            <p class="price mb-0">
+                                ₹{{ $related->discount > 0 ? round($related->price - ($related->price * $related->discount / 100)) : $related->price }}
+                            </p>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
+
+            @endif {{-- End of product exists check --}}
         </div>
     </section>
+
+
+    @push('scripts')
+    <script>
+    function addToCart(productId) {
+        console.log('Adding product ' + productId + ' to cart');
+        alert('Product added to cart!');
+    }
+
+    function addToWishlist(productId) {
+        console.log('Adding product ' + productId + ' to wishlist');
+        alert('Product added to wishlist!');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const minusBtn = document.querySelector('.quantity .minus');
+        const plusBtn = document.querySelector('.quantity .plus');
+        const numberSpan = document.querySelector('.quantity .number');
+
+        if (minusBtn && plusBtn && numberSpan) {
+            minusBtn.addEventListener('click', function() {
+                let currentValue = parseInt(numberSpan.textContent);
+                if (currentValue > 1) {
+                    numberSpan.textContent = currentValue - 1;
+                }
+            });
+
+            plusBtn.addEventListener('click', function() {
+                let currentValue = parseInt(numberSpan.textContent);
+                @if(isset($product))
+                let stock = {
+                    {
+                        $product - > stock ?? 0
+                    }
+                };
+                if (currentValue < stock) {
+                    numberSpan.textContent = currentValue + 1;
+                } else {
+                    alert('Maximum stock reached!');
+                }
+                @endif
+            });
+        }
+    });
+    </script>
+    @endpush
+
+
+
     <!--------------- products-info-end--------------->
 
     <!--------------- products-details-section--------------->
@@ -276,36 +229,12 @@
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
                         tabindex="0" data-aos="fade-up">
                         <div class="product-intro-section">
-                            <h5 class="intro-heading">Introduction</h5>
+                            <h5 class="intro-heading">{{ $product->name }}</h5>
                             <p class="product-details">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                printer took a galley of type and scrambled it to make a type specimen book. It has
-                                survived not only five centuries but also the on leap into electronic typesetting,
-                                remaining essentially unchanged. It wasn’t popularised in the 1960s with the release of
-                                Letraset sheets containing Lorem Ipsum passages, andei more recently with desktop
-                                publishing software like Aldus PageMaker including versions of Lorem Ipsum to make a
-                                type specimen book.
+                                {{ $product->description }}
                             </p>
                         </div>
-                        <div class="product-feature">
-                            <h5 class="intro-heading">Features :</h5>
-                            <ul>
-                                <li>
-                                    <p>slim body with metal cover</p>
-                                </li>
-                                <li>
-                                    <p>latest Intel Core i5-1135G7 processor (4 cores / 8 threads)</p>
-                                </li>
-                                <li>
-                                    <p>8GB DDR4 RAM and fast 512GB PCIe SSD</p>
-                                </li>
-                                <li>
-                                    <p>NVIDIA GeForce MX350 2GB GDDR5 graphics card backlit keyboard, touchpad with
-                                        gesture support</p>
-                                </li>
-                            </ul>
-                        </div>
+                      
                     </div>
                     <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab"
                         tabindex="0">
@@ -385,7 +314,7 @@
 
 
                                     </a>
-                                   
+
                                 </div>
                             </div>
                             <div class="product-info">
@@ -400,7 +329,7 @@
 
                                 </div>
                                 <div class="product-description">
-                                    <a href="{{ route('product.info')}}" class="product-details">Sequin Dress
+                                    <a href="#" class="product-details">Sequin Dress
                                     </a>
                                     <div class="price">
                                         <span class="price-cut">$30.99</span>
@@ -435,7 +364,7 @@
 
 
                                     </a>
-                                   
+
                                 </div>
                             </div>
                             <div class="product-info">
@@ -450,7 +379,7 @@
 
                                 </div>
                                 <div class="product-description">
-                                    <a href="{{ route('product.info')}}" class="product-details">Sequin Dress
+                                    <a href="#" class="product-details">Sequin Dress
                                     </a>
                                     <div class="price">
                                         <span class="price-cut">$30.99</span>
@@ -485,7 +414,7 @@
 
 
                                     </a>
-                                   
+
                                 </div>
                             </div>
                             <div class="product-info">
@@ -500,7 +429,7 @@
 
                                 </div>
                                 <div class="product-description">
-                                    <a href="{{ route('product.info')}}" class="product-details">Sequin Dress
+                                    <a href="#" class="product-details">Sequin Dress
                                     </a>
                                     <div class="price">
                                         <span class="price-cut">$30.99</span>
@@ -535,7 +464,7 @@
 
 
                                     </a>
-                                   
+
                                 </div>
                             </div>
                             <div class="product-info">
@@ -550,7 +479,7 @@
 
                                 </div>
                                 <div class="product-description">
-                                    <a href="{{ route('product.info')}}" class="product-details">Sequin Dress
+                                    <a href="#" class="product-details">Sequin Dress
                                     </a>
                                     <div class="price">
                                         <span class="price-cut">$30.99</span>

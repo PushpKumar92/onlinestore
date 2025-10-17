@@ -72,21 +72,22 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->description }}</td>
                     <td>₹{{ number_format($product->price, 2) }}</td>
-                   <td>{{ number_format($product->discount, 2) }}%</td>
+                    <td>{{ number_format($product->discount, 2) }}%</td>
                     <td>
-                        <span class="badge {{ $product->status == 1 ? 'bg-success' : 'bg-danger' }}">
-                            {{ $product->status == 1 ? 'Active' : 'Inactive' }}
+                        <span class="badge {{ $product->status ? 'bg-success' : 'bg-danger' }}">
+                            {{ $product->status ? 'Active' : 'Inactive' }}
                         </span>
                     </td>
 
                     <td class="d-flex gap-1">
-                        <a href="{{ route('admin.products.edit', $product->id) }}"
-                            class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-primary"><i
+                                class="fa-solid fa-pen-to-square"></i></a>
                         <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST"
                             onsubmit="return confirm('Are you sure?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+                            <button type="submit" class="btn btn-sm btn-danger"><i
+                                    class="fa-solid fa-trash"></i></button>
                         </form>
                     </td>
                 </tr>

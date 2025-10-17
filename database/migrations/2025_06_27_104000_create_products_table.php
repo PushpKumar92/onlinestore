@@ -35,7 +35,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('added_by')->nullable();
             $table->enum('added_by_role', ['admin', 'vendor'])->default('admin');
-            $table->enum('status', ['active', 'inactive'])->default('active');
+           $table->boolean('status')->default(1);
             $table->timestamps();
 
             // ✅ Foreign key safely defined

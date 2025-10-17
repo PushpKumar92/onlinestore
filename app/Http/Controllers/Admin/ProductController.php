@@ -25,45 +25,48 @@ class ProductController extends Controller
     }
 
     // ✅ Store new product
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'sku_code' => 'required|string|max:100|unique:products,sku_code',
-            'brand' => 'nullable|string|max:255',
-            'color' => 'nullable|string|max:100',
-            'sizes' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'discount' => 'nullable|numeric|min:0',
-            'quantity' => 'required|integer|min:0',
-            'category_id' => 'required|exists:categories,id',
-            'status' => 'required|in:active,inactive',
-            'image' => 'nullable|image|mimes:webp,avif,jpeg,png,jpg|max:2048',
-        ]);
+   public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'sku_code' => 'required|string|max:100|unique:products,sku_code',
+        'brand' => 'nullable|string|max:255',
+        'color' => 'nullable|string|max:100',
+        'sizes' => 'nullable|string|max:255',
+        'description' => 'nullable|string',
+        'price' => 'required|numeric',
+        'discount' => 'nullable|numeric|min:0',
+        'quantity' => 'required|integer|min:0',
+        'category_id' => 'required|exists:categories,id',
+        'image' => 'nullable|image|mimes:webp,avif,jpeg,png,jpg|max:2048',
+    ]);
 
-        $data = $request->only([
-            'name', 'sku_code', 'brand', 'color', 'sizes', 'description',
-            'price', 'discount', 'quantity', 'category_id', 'status'
-        ]);
+    $data = $request->only([
+        'name', 'sku_code', 'brand', 'color', 'sizes', 'description',
+        'price', 'discount', 'quantity', 'category_id'
+    ]);
 
-        // ✅ Assign vendor/admin details
-        $data['vendor_id'] = Auth::guard('admin')->id(); // current admin/vendor
-        $data['added_by_role'] = 'admin';
-        $data['is_approved'] = true;
+    // ✅ Convert checkbox to boolean
+    $data['status'] = $request->has('status') ? 1 : 0;
 
-        // ✅ Handle image upload
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/products'), $filename);
-            $data['image'] = $filename;
-        }
+    // ✅ Assign vendor/admin details
+    $data['vendor_id'] = Auth::guard('admin')->id();
+    $data['added_by_role'] = 'admin';
+    $data['is_approved'] = true;
 
-        Product::create($data);
-
-        return redirect()->route('admin.products.index')->with('success', '✅ Product added successfully!');
+    // ✅ Handle image upload
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('uploads/products'), $filename);
+        $data['image'] = $filename;
     }
+
+    Product::create($data);
+
+    return redirect()->route('admin.products.index')->with('success', '✅ Product added successfully!');
+}
+
 
     // ✅ Edit form
     public function edit($id)
@@ -74,37 +77,44 @@ class ProductController extends Controller
     }
 
     // ✅ Update product
-    public function update(Request $request, $id)
-    {
-        $product = Product::findOrFail($id);
+  public function update(Request $request, $id)
+{
+    $product = Product::findOrFail($id);
 
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'sku_code' => 'required|string|max:100|unique:products,sku_code,' . $product->id,
-            'brand' => 'nullable|string|max:255',
-            'color' => 'nullable|string|max:100',
-            'sizes' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'discount' => 'nullable|numeric|min:0',
-            'quantity' => 'required|integer|min:0',
-            'category_id' => 'required|exists:categories,id',
-            'status' => 'required|in:active,inactive',
-            'image' => 'nullable|image|mimes:webp,avif,jpeg,png,jpg|max:2048',
-        ]);
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'sku_code' => 'required|string|max:100|unique:products,sku_code,' . $product->id,
+        'brand' => 'nullable|string|max:255',
+        'color' => 'nullable|string|max:100',
+        'sizes' => 'nullable|string|max:255',
+        'description' => 'nullable|string',
+        'price' => 'required|numeric',
+        'discount' => 'nullable|numeric|min:0',
+        'quantity' => 'required|integer|min:0',
+        'category_id' => 'required|exists:categories,id',
+        'image' => 'nullable|image|mimes:webp,avif,jpeg,png,jpg|max:2048',
+    ]);
 
-        // ✅ Handle image upload
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/products'), $filename);
-            $data['image'] = $filename;
-        }
+    $data = $request->only([
+        'name', 'sku_code', 'brand', 'color', 'sizes', 'description',
+        'price', 'discount', 'quantity', 'category_id'
+    ]);
 
-        $product->update($data);
+    // ✅ Convert checkbox to boolean
+    $data['status'] = $request->has('status') ? 1 : 0;
 
-        return redirect()->route('admin.products.index')->with('success', '✅ Product updated successfully!');
+    // ✅ Handle image upload
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('uploads/products'), $filename);
+        $data['image'] = $filename;
     }
+
+    $product->update($data);
+
+    return redirect()->route('admin.products.index')->with('success', '✅ Product updated successfully!');
+}
 
     // ✅ Delete product
     public function destroy($id)

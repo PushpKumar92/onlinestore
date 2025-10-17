@@ -88,4 +88,25 @@ class ProductdetailController extends Controller
 
     return view('frontend.product-sidebar', compact('products', 'categories', 'brands', 'sizes', 'colors'));
 }
+
+
+ // Product by ID
+ public function productInfo($id)
+ {
+     $product = Product::find($id); // singular
+ 
+     if(!$product) {
+         return redirect()->route('index')->with('error', 'Product not found');
+     }
+ 
+     $relatedProducts = Product::where('category_id', $product->category_id)
+         ->where('id', '!=', $product->id)
+         ->where('status', 1)
+         ->take(8)
+         ->get();
+ 
+           $sizes = $product->sizes ? explode(',', $product->sizes) : [];
+
+     return view('frontend.product-info', compact('product', 'relatedProducts','sizes')); // singular
+ }
 }
