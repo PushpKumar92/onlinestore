@@ -11,13 +11,13 @@ a {
     align-items: center;
 }
 .navbar-dark {
-    background-color: rgb(8, 102, 255);
+    background-color: rgb(201, 217, 244);
 }
 
 .sidebar {
     width: 220px !important;
-    background-color: rgb(8, 102, 255);
-    color: white;
+    background-color: rgb(201, 217, 244);
+    color: black;
 }
 .sidebar .nav-link.active,
 .sidebar .nav-link:hover {
@@ -109,6 +109,21 @@ footer {
 }
 
 /* category section css */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .product-category {
     background: #fff;
 }
@@ -145,3 +160,6 @@ footer {
 .slider-viewport:hover .slider-track {
     animation-play-state: paused !important;
 }
+
+
+

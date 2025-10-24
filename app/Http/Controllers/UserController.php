@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Wishlist;
+
 use DB;
 Use Storage;
 use Illuminate\Support\Facades\File;
@@ -102,7 +106,13 @@ public function updatePassword(Request $request)
     public function showProfile()
 {
     $user = Auth::guard('user')->user();
-    return view('frontend.profile.userprofile', compact('user'));
+     // Fetch user orders with products
+    $orders = Order::with('items.product')->where('user_id', $user->id)->get();
+
+    // Fetch wishlist products
+    $wishlistItems = Wishlist::with('product')->where('user_id', $user->id)->get();
+
+    return view('frontend.profile.userprofile', compact('user','orders','wishlistItems'));
 }
 
 public function editProfile()

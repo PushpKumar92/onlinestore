@@ -104,3 +104,57 @@ document.addEventListener("DOMContentLoaded", function() {
         track.style.animationPlayState = "running";
     });
 });
+
+
+document.getElementById('chatbot-toggle').addEventListener('click', () => {
+  document.getElementById('chatbot-box').classList.add('active');
+});
+
+document.getElementById('chatbot-close').addEventListener('click', () => {
+  document.getElementById('chatbot-box').classList.remove('active');
+});
+
+document.getElementById('chatbot-send').addEventListener('click', sendChatMessage);
+document.getElementById('chatbot-input-field').addEventListener('keypress', e => {
+  if (e.key === 'Enter') sendChatMessage();
+});
+
+function appendMessage(sender, text) {
+  const container = document.getElementById('chatbot-messages');
+  const msg = document.createElement('div');
+  msg.classList.add('chatbot-message', sender);
+  msg.textContent = text;
+  container.appendChild(msg);
+  container.scrollTop = container.scrollHeight;
+}
+
+function sendChatMessage() {
+  const input = document.getElementById('chatbot-input-field');
+  const message = input.value.trim();
+  if (!message) return;
+
+  appendMessage('user', message);
+  input.value = '';
+
+  appendMessage('bot', 'Typing...');
+
+  fetch('/chatbot', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    },
+    body: JSON.stringify({ message })
+  })
+  .then(res => res.json())
+  .then(data => {
+    document.querySelectorAll('.chatbot-message.bot').forEach(msg => {
+      if (msg.textContent === 'Typing...') msg.remove();
+    });
+    appendMessage('bot', data.reply);
+  })
+  .catch(() => {
+    appendMessage('bot', 'Error connecting to chatbot. Please try again.');
+  });
+}
+

@@ -23,8 +23,12 @@
         padding: 40px;
         border-radius: 15px;
         color: #fff;
-        background: linear-gradient(rgba(40, 57, 101, 0.8), rgba(40, 57, 101, 0.8)),
-            url('https://play.vsthemes.org/nova/1024576-1/66b/bf266b2c6537b5c2a30fa1c26b0ca9d3.webp') center center / cover no-repeat;
+       background: linear-gradient(
+  to bottom,
+  rgba(10, 20, 50, 0.9),
+  rgba(15, 30, 80, 0.9),
+  rgba(30, 40, 100, 0.9)
+);
         box-shadow: 0 12px 15px rgba(0, 0, 0, .2);
     }
 
@@ -106,6 +110,7 @@
 
             <div class="d-grid mt-4">
                 <button type="submit" class="btn btn-primary">Sign In</button>
+                <a href="{{route('admin.password.request')}}" class="text-light text-decoration-none mt-2">Forgot Password?</a>
             </div>
         </form>
     </div>

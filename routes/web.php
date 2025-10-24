@@ -14,18 +14,89 @@ use App\Http\Controllers\SizeController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\AdminForgotPasswordController;
+use App\Http\Controllers\MainController;
+ use App\Http\Controllers\UserForgotPasswordController;
+use App\Http\Controllers\ProductdetailController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\SearchController;
 
 
 
 
-require __DIR__ . '/frontend/main.php';
+Route::get('/register', [UserController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [UserController::class, 'register']);
+
+// Show login form
+Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [UserController::class, 'login'])->name('login.submit');
+ Route::get('user-forgot-password', [UserForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('user-forgot-password', [UserForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('user-reset-password/{token}', [UserForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('user-reset-password', [UserForgotPasswordController::class, 'reset'])->name('password.update');
+
+
+
+Route::get('/',[MainController::class,'index'])->name('index');
+Route::get('/about',[MainController::class,'about'])->name('about');
+
+
+
+
+
+Route::get('/privacy', [MainController::class, 'privacy'])->name('privacy');
+Route::get('/terms', [MainController::class, 'terms'])->name('terms');
+Route::get('/faq', [MainController::class, 'faq'])->name('faq');
+Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
+Route::get('/blog', [MainController::class, 'blog'])->name('blog');
+Route::get('/blog-details', [MainController::class, 'blogDetails'])->name('blog.details');
+Route::get('/create-account', [MainController::class, 'createAccount'])->name('create.account');
+Route::get('/order', [MainController::class, 'order'])->name('order');
+Route::get('/sellers', [MainController::class, 'sellers'])->name('sellers');
+Route::get('/user-profile', [MainController::class, 'userProfile'])->name('user.profile');
+Route::get('/contact-us', [MainController::class, 'contactUs'])->name('contact.us');
+Route::get('/empty-card', [MainController::class, 'emptyCard'])->name('empty.card');
+
+Route::get('/seller-sidebar', [MainController::class, 'sellerSidebar'])->name('seller.sidebar');
+Route::get('/empty-wishlist', [MainController::class, 'emptyWishlist'])->name('empty.wishlist');
+Route::get('/flash-sale', [MainController::class, 'flashSale'])->name('flash.sale');
+
+Route::get('/sales', [MainController::class, 'sales'])->name('frontend.sales');
+
+
+
+// Add to wishlist
+Route::post('/wishlist/add', [WishlistController::class, 'store'])->name('wishlist.add');
+
+// Get wishlist count
+Route::get('/wishlist/count', [WishlistController::class, 'getCount'])->name('wishlist.count');
+
+// Get wishlist items (product IDs)
+Route::get('/wishlist/items', [WishlistController::class, 'getItems'])->name('wishlist.items');
+
+// View wishlist page
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+
+// Remove from wishlist
+Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'destroy'])->name('wishlist.remove');
+
+
+    Route::get('/allproduct', [ProductdetailController::class, 'Allproducts'])->name('productall');
+    
+        // Product detail by ID (alternative)
+        Route::get('/product-info/{id}', [ProductdetailController::class, 'productInfo'])->name('product.info');
+
+    Route::get('/search', [SearchController::class, 'index'])->name('search');
+
+
+Route::post('/chatbot', [ChatbotController::class, 'handleChat'])->name('chatbot.handle');
 
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
    Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
    Route::post('cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
    Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
-
 
 
 Route::middleware('user.auth')->prefix('user')->group(function () {
@@ -52,6 +123,10 @@ Route::middleware('user.auth')->prefix('user')->group(function () {
 // Admin
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
+ Route::get('forgot-password', [AdminForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
+    Route::post('forgot-password', [AdminForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
+    Route::get('reset-password/{token}', [AdminForgotPasswordController::class, 'showResetForm'])->name('admin.password.reset');
+    Route::post('reset-password', [AdminForgotPasswordController::class, 'reset'])->name('admin.password.update');
 
 Route::middleware('admin.auth')->prefix('admin')->group(function () {
    Route::get('/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');

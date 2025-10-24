@@ -1,6 +1,30 @@
 @extends('frontend.layout.main')
 @section('content')
 <main class=" main-content">
+
+
+
+<!---------Chatbot-------->
+<!-- Chatbot Widget -->
+<div id="chatbot-container">
+  <button id="chatbot-toggle" class="chatbot-toggle-btn">💬</button>
+
+  <div id="chatbot-box" class="chatbot-box">
+    <div class="chatbot-header">
+      <span>EasyShop Assistant 🤖</span>
+      <button id="chatbot-close" class="chatbot-close">×</button>
+    </div>
+
+    <div class="chatbot-messages" id="chatbot-messages"></div>
+
+    <div class="chatbot-input">
+      <input type="text" id="chatbot-input-field" placeholder="Type a message..." />
+      <button id="chatbot-send">Send</button>
+    </div>
+  </div>
+</div>
+
+
     <!--------------- hero-section --------------->
 
     <section id="hero" class="hero position-relative">
