@@ -223,9 +223,9 @@
                                 </div>
                             </div>
 
-                            <div class="product-info mt-3 flex-grow-1 text-center">
+                            <div class="product-info mt-3 flex-grow-1">
                                 <a href="{{ route('product.info', $product->id) }}"
-                                    class="product-details fw-bold text-dark d-block mb-2 text-truncate">
+                                    class="product-details fw-bold text-dark d-block mb-2">
                                     {{ $product->name }}
                                 </a>
                                 <div class="price">
@@ -289,8 +289,9 @@
                     @forelse ($flashSaleProducts as $product)
                     @php
                     $price = $product->price;
-                    $discount = $product->discount;
-                    $discountedPrice = round($price - ($price * $discount / 100), 2);
+                      $discount = $product->discount ?? 0;
+                        $hasDiscount = $discount > 0;
+                        $discountedPrice = $hasDiscount ? round($price - ($price * $discount / 100), 2) : $price;
                     @endphp
                     <div class="col-lg-3 col-sm-6">
                         <div class="product-wrapper" data-aos="fade-up">
@@ -328,16 +329,22 @@
                                 </div>
                             </div>
 
-                            <div class="product-info mt-3 flex-grow-1 text-center">
+                            <div class="product-info mt-3 flex-grow-1">
                                 <a href="{{ route('product.info', $product->id) }}"
                                     class="product-details fw-bold text-dark d-block mb-2 ">
                                     {{ $product->name }}
                                 </a>
 
-                                <div class="price d-flex justify-content-center align-items-center">
+                                <div class="price">
                                     <span class="new-price text-success fw-bold me-2">₹{{ $discountedPrice }}</span>
                                     <del class="text-muted">₹{{ $price }}</del>
                                 </div>
+                                 <!-- Savings Info -->
+                                @if($hasDiscount)
+                                    <p class="text-success small mb-0">
+                                        <i class="fa fa-tag"></i> Save ₹{{ number_format($price - $discountedPrice, 2) }}
+                                    </p>
+                                @endif
                             </div>
 
                             <div class="product-cart-btn text-center mt-3">

@@ -9,18 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
 {
-  Schema::create('wishlists', function (Blueprint $table) {
-    $table->id();
-    $table->unsignedBigInteger('user_id');
-    $table->unsignedBigInteger('product_id');
-    $table->timestamps();
-
-    $table->unique(['user_id', 'product_id']);
-});
-
+    if (!Schema::hasTable('wishlists')) {
+        Schema::create('wishlists', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id');
+            $table->timestamps();
+        });
+    }
 }
+
 
     /**
      * Reverse the migrations.

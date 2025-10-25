@@ -14,11 +14,14 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique()->nullable();
             $table->text('content');
             $table->string('image')->nullable();
-             $table->string('meta_title')->nullable();
+            $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('meta_tags')->nullable();
+            $table->boolean('status')->default(1); // active by default
+            $table->softDeletes(); // adds deleted_at for soft deletes
             $table->timestamps();
         });
     }

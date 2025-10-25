@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,8 +12,11 @@ return new class extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-             $table->string('name');
+            $table->string('name');
+            $table->string('slug')->unique()->nullable();
             $table->string('image')->nullable();
+            $table->boolean('status')->default(1); // 1 = active, 0 = inactive
+            $table->softDeletes(); // This adds deleted_at column
             $table->timestamps();
         });
     }

@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+//chatbot
 
 document.getElementById('chatbot-toggle').addEventListener('click', () => {
   document.getElementById('chatbot-box').classList.add('active');
@@ -157,4 +158,5 @@ function sendChatMessage() {
     appendMessage('bot', 'Error connecting to chatbot. Please try again.');
   });
 }
+
 

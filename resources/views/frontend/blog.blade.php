@@ -16,243 +16,49 @@
 <!--------------- blog-tittle-section-end---------------->
 
 <!--------------- blog-news-section---------------->
-
 <section class="latest product footer-padding">
     <div class="container">
         <div class="blog-section latest-section">
             <div class="row g-5">
+                @forelse($blogs as $blog)
                 <div class="col-lg-4 col-sm-6">
                     <div class="blogs-wrapper product-wrapper" data-aos="fade-up">
                         <div class="wrapper-img">
-                            <img src="./assets/images/homepage-one/about/blog-img-1.webp" alt="img">
+                            <img src="{{ asset('uploads/blogs/' . $blog->image) }}" alt="{{ $blog->title }}"
+                                class="img-fluid">
                         </div>
                         <div class="wrapper-info">
-                            <div class="wrapper-data">
+                            <div class="wrapper-data d-flex justify-content-between">
                                 <div class="admin wrapper-item">
-                                    <span class="icon">
-                                        <i class="fas fa-user" style="color: #00674f; font-size: 20px;"></i>
-                                    </span>
-                                    <span class="text">
-                                        By Admin
-                                    </span>
+                                    <i class="fas fa-user text-success"></i>
+                                    <span>By {{ $blog->author ?? 'Admin' }}</span>
                                 </div>
                                 <div class="comments wrapper-item">
-                                    <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
-                                    </span>
-                                    <span class="text">
-                                        Comments
-                                    </span>
+                                    <i class="fa-regular fa-comment text-success"></i>
+                                    <span>{{ $blog->comments_count ?? 0 }} Comments</span>
                                 </div>
                             </div>
-                            <a href="{{ route('blog.details')}}" class="about-details wrapper-details">It’s official!
-                                The
-                                iPhone 14 Series is on its way! Rumors turned out
+                            <a href="{{ route('blog.details', $blog->slug) }}"
+                                class="about-details wrapper-details d-block mt-2">
+                                {{ Str::limit($blog->title, 80) }}
                             </a>
-                            <div class="divider"></div>
-
-                            <a href="#" class="shop-btn">
+                            <div class="divider my-2"></div>
+                            <a href="{{ route('blog.details', $blog->slug) }}" class="shop-btn">
                                 Learn More
-                                   <span>
-                                     <i class="fa-solid fa-arrow-right" style="color:#00674f ;font-size:20px;"></i>
-                                </span>
+                                <span><i class="fa-solid fa-arrow-right text-success"></i></span>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="blogs-wrapper product-wrapper" data-aos="fade-up">
-                        <div class="wrapper-img">
-                            <img src="./assets/images/homepage-one/about/blog-img-2.webp" alt="img">
-                        </div>
-                        <div class="wrapper-info">
-                            <div class="wrapper-data">
-                                <div class="admin wrapper-item">
-                                    <span class="icon">
-                                        <i class="fas fa-user" style="color: #00674f; font-size: 20px;"></i>
-                                    </span>
-                                    <span class="text">
-                                        By Admin
-                                    </span>
-                                </div>
-                                <div class="comments wrapper-item">
-                                    <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
-                                    </span>
-                                    <span class="text">
-                                        Comments
-                                    </span>
-                                </div>
-                            </div>
-                            <a href="{{ route('blog.details')}}" class="about-details wrapper-details">Must-Have
-                                WordPress
-                                Plugins for Ecommerce Websites in 2022
-                            </a>
-                            <div class="divider"></div>
-
-                            <a href="{{ route('blog.details')}}" class="shop-btn">
-                                Learn More
-                                   <span>
-                                     <i class="fa-solid fa-arrow-right" style="color:#00674f ;font-size:20px;"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
+                @empty
+                <div class="col-12 text-center">
+                    <p class="text-muted py-5">No blogs found.</p>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="blogs-wrapper product-wrapper" data-aos="fade-up">
-                        <div class="wrapper-img">
-                            <img src="./assets/images/homepage-one/about/blog-img-3.webp" alt="">
-                        </div>
-                        <div class="wrapper-info">
-                            <div class="wrapper-data">
-                                <div class="admin wrapper-item">
-                                    <span class="icon">
-                                        <i class="fas fa-user" style="color: #00674f; font-size: 20px;"></i>
-                                    </span>
-                                    <span class="text">
-                                        By Admin
-                                    </span>
-                                </div>
-                                <div class="comments wrapper-item">
-                                    <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
-                                    </span>
-                                    <span class="text">
-                                        Comments
-                                    </span>
-                                </div>
-                            </div>
-                            <a href="{{ route('blog.details')}}" class="about-details wrapper-details">15 Best WordPress
-                                Newspaper Themes to Look Out for in 2022
-                            </a>
-                            <div class="divider"></div>
-                            <a href="#" class="shop-btn">
-                                Learn More
-                                   <span>
-                                     <i class="fa-solid fa-arrow-right" style="color:#00674f ;font-size:20px;"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="blogs-wrapper product-wrapper" data-aos="fade-up">
-                        <div class="wrapper-img">
-                            <img src="./assets/images/homepage-one/about/blog-img-2.webp" alt="img">
-                        </div>
-                        <div class="wrapper-info">
-                            <div class="wrapper-data">
-                                <div class="admin wrapper-item">
-                                    <span class="icon">
-                                        <i class="fas fa-user" style="color: #00674f; font-size: 20px;"></i>
-                                    </span>
-                                    <span class="text">
-                                        By Admin
-                                    </span>
-                                </div>
-                                <div class="comments wrapper-item">
-                                    <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
-                                    </span>
-                                    <span class="text">
-                                        Comments
-                                    </span>
-                                </div>
-                            </div>
-                            <a href="{{ route('blog.details')}}" class="about-details wrapper-details">6 Best WordPress
-                                E-commerce Plugins for Online Stores in 2022
-                            </a>
-                            <div class="divider"></div>
-                            <a href="#" class="shop-btn">
-                                Learn More
-                                   <span>
-                                     <i class="fa-solid fa-arrow-right" style="color:#00674f ;font-size:20px;"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="blogs-wrapper product-wrapper" data-aos="fade-up">
-                        <div class="wrapper-img">
-                            <img src="./assets/images/homepage-one/about/blog-img-3.webp" alt="">
-                        </div>
-                        <div class="wrapper-info">
-                            <div class="wrapper-data">
-                                <div class="admin wrapper-item">
-                                    <span class="icon">
-                                        <i class="fas fa-user" style="color: #00674f; font-size: 20px;"></i>
-                                    </span>
-                                    <span class="text">
-                                        By Admin
-                                    </span>
-                                </div>
-                                <div class="comments wrapper-item">
-                                    <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
-                                    </span>
-                                    <span class="text">
-                                        Comments
-                                    </span>
-                                </div>
-                            </div>
-                            <a href="{{ route('blog.details')}}" class="about-details wrapper-details">Top 10 Best
-                                Professional Ecommerce Blogging Platforms for 2022
-                            </a>
-                            <div class="divider"></div>
-                            <a href="#" class="shop-btn">
-                                Learn More
-                                   <span>
-                                     <i class="fa-solid fa-arrow-right" style="color:#00674f ;font-size:20px;"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="blogs-wrapper product-wrapper" data-aos="fade-up">
-                        <div class="wrapper-img">
-                            <img src="./assets/images/homepage-one/about/blog-img-1.webp" alt="">
-                        </div>
-                        <div class="wrapper-info">
-                            <div class="wrapper-data">
-                                <div class="admin wrapper-item">
-                                    <span class="icon">
-                                        <i class="fas fa-user" style="color: #00674f; font-size: 20px;"></i>
-                                    </span>
-                                    <span class="text">
-                                        By Admin
-                                    </span>
-                                </div>
-                                <div class="comments wrapper-item">
-                                    <span class="icon">
-                                        <i class="fa-regular fa-comment" style="color: #00674f; font-size: 20px;"></i>
-                                    </span>
-                                    <span class="text">
-                                        Comments
-                                    </span>
-                                </div>
-                            </div>
-                            <a href="{{ route('blog.details')}}"
-                                class="about-details wrapper-details">Business-to-consumer Ecommerce that involves
-                                selling fight products
-                            </a>
-                            <div class="divider"></div>
-
-                            <a href="#" class="shop-btn">
-                                Learn More
-                                <span>
-                                     <i class="fa-solid fa-arrow-right" style="color:#00674f ;font-size:20px;"></i>
-                                </span>
-                              
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
+
         </div>
     </div>
 </section>
-<!--------------- blog-news-section---------------->
+<!--------------- blog-news-section-end---------------->
 @endsection

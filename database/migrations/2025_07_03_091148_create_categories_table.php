@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     
-     public function up(): void
+       public function up(): void
 {
     if (!Schema::hasTable('categories')) {
         Schema::create('categories', function (Blueprint $table) {
@@ -15,16 +15,16 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('image')->nullable();
+            $table->boolean('status')->default(1);
+            $table->softDeletes(); // adds deleted_at
             $table->timestamps();
         });
     }
 }
-   
+    
 
     public function down(): void
     {
-        
         Schema::dropIfExists('categories');
-       
     }
 };

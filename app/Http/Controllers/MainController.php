@@ -30,8 +30,9 @@ class MainController extends Controller
 
         // 📂 All Categories
         $categories = Category::latest()->get();
+         $products = Product::all(); 
 
-        return view('frontend.index', compact('flashSaleProducts', 'newArrivalProducts', 'categories'));
+        return view('frontend.index', compact('flashSaleProducts', 'newArrivalProducts', 'categories','products'));
     }
 
     // 🛍️ Flash Sale Products Page

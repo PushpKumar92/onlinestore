@@ -22,6 +22,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductdetailController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AllProductsController;
 
 
 
@@ -38,20 +39,13 @@ Route::post('/login', [UserController::class, 'login'])->name('login.submit');
     Route::post('user-reset-password', [UserForgotPasswordController::class, 'reset'])->name('password.update');
 
 
-
 Route::get('/',[MainController::class,'index'])->name('index');
 Route::get('/about',[MainController::class,'about'])->name('about');
-
-
-
-
 
 Route::get('/privacy', [MainController::class, 'privacy'])->name('privacy');
 Route::get('/terms', [MainController::class, 'terms'])->name('terms');
 Route::get('/faq', [MainController::class, 'faq'])->name('faq');
 Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
-Route::get('/blog', [MainController::class, 'blog'])->name('blog');
-Route::get('/blog-details', [MainController::class, 'blogDetails'])->name('blog.details');
 Route::get('/create-account', [MainController::class, 'createAccount'])->name('create.account');
 Route::get('/order', [MainController::class, 'order'])->name('order');
 Route::get('/sellers', [MainController::class, 'sellers'])->name('sellers');
@@ -66,24 +60,25 @@ Route::get('/flash-sale', [MainController::class, 'flashSale'])->name('flash.sal
 Route::get('/sales', [MainController::class, 'sales'])->name('frontend.sales');
 
 
+// BlogCOntroller
+Route::get('/blog-page', [BlogController::class, 'blogPage'])->name('blog.page');
+Route::get('/blog-detail/{slug}', [BlogController::class, 'blogDetails'])->name('blog.details');
 
-// Add to wishlist
+
+
+//WishlistCOntroller
+
 Route::post('/wishlist/add', [WishlistController::class, 'store'])->name('wishlist.add');
-
-// Get wishlist count
 Route::get('/wishlist/count', [WishlistController::class, 'getCount'])->name('wishlist.count');
-
-// Get wishlist items (product IDs)
 Route::get('/wishlist/items', [WishlistController::class, 'getItems'])->name('wishlist.items');
-
-// View wishlist page
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
-
-// Remove from wishlist
 Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'destroy'])->name('wishlist.remove');
 
 
-    Route::get('/allproduct', [ProductdetailController::class, 'Allproducts'])->name('productall');
+
+    Route::get('/shop-page', [ProductdetailController::class, 'Allproducts'])->name('productall');
+
+    Route::get('/all-product', [AllProductsController::class, 'Allproducts'])->name('allproducts');
     
         // Product detail by ID (alternative)
         Route::get('/product-info/{id}', [ProductdetailController::class, 'productInfo'])->name('product.info');
@@ -166,8 +161,11 @@ Route::post('products/import', [AdminProductController::class, 'import'])->name(
     Route::get('orders', [OrderController::class, 'adminIndex'])->name('admin.orders.index');
     Route::post('orders/{id}/update', [OrderController::class, 'updateStatus'])->name('admin.orders.update');
 
-   Route::resource('brands', BrandController::class);
-Route::post('brands/update-status', [BrandController::class, 'updateStatus'])->name('brands.updateStatus');
+  Route::get('/brands', [BrandController::class, 'index'])->name('brands.index');
+    Route::post('/brands', [BrandController::class, 'store'])->name('brands.store');
+    Route::put('/brands/{brand}', [BrandController::class, 'update'])->name('brands.update');
+    Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
+
 // Sizes
 Route::resource('sizes', SizeController::class);
 

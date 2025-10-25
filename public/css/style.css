@@ -2111,20 +2111,22 @@
    margin-bottom: 3rem;
  }
 
- .sidebar-section .sidebar-wrapper .sidebar-item .sidebar-list {
+ .sidebar-section .sidebar-wrapper h6 {
    display: flex;
    flex-direction: column;
    align-items: flex-start;
    justify-content: center;
    gap: 3rem;
+   font-size: 16px;
  }
 
- .sidebar-section .sidebar-wrapper .sidebar-item .sidebar-list li {
+ .sidebar-section .sidebar-wrapper  li {
    display: flex;
    flex-direction: row;
    align-items: center;
    justify-content: flex-start;
    gap: 1rem;
+   font-size: 15px;
  }
 
  .sidebar-section .sidebar-wrapper .sidebar-item .sidebar-list li label {
@@ -2242,8 +2244,8 @@
    margin-bottom: 2rem;
  }
 
- .product-sidebar-section .product-sorting-section p {
-   font-size: 1.3rem;
+ .product-sidebar-section .product-sorting-section .result p{
+   font-size: 1.8rem;
    color: #232532;
  }
 
@@ -2254,10 +2256,13 @@
    justify-content: center;
    gap: 1rem;
  }
-
+.product-sorting-section .form-select-sm{
+font-size: 16px;
+}
  .product-sidebar-section .product-sorting-section .product-sorting span {
-   font-size: 1.3rem;
+   font-size: 1.8rem;
  }
+
 
  @media (max-width:767px) {
    .product-sidebar-section .product-sorting-section {
@@ -4738,4 +4743,31 @@ form button[type="submit"]:hover {
 .form-control{
       padding: 0.375rem .75rem;
     font-size: 18px !important;
+}
+/* home page weekly section */
+.product-img {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.product-img:hover .product-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.icon-btn {
+    width: 45px;
+    height: 45px;
+    transition: transform 0.3s ease;
+}
+
+.icon-btn:hover {
+    transform: scale(1.15);
 }

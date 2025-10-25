@@ -2,141 +2,207 @@
 
 @section('content')
 <div class="container mt-4">
-    <h3>Brands</h3>
-    <button class="btn btn-primary mb-3" id="addBrandBtn">Add Brand</button>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">All Brands</h2>
+        <!-- Add Brand Button -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBrandModal">
+            Add New Brand
+        </button>
+    </div>
 
-    <table class="table table-bordered">
-        <thead>
+    @if(session('success'))
+    <div class="alert alert-success" id="success-alert">{{ session('success') }}</div>
+    @endif
+
+    <!-- Brands Table -->
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Action</th>
+                <th>Slug</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>Actions</th>
             </tr>
         </thead>
-        <tbody id="brandsTable">
-            @foreach($brands as $brand)
-            <tr id="brand_{{ $brand->id }}">
-                <td>{{ $brand->id }}</td>
+        <tbody>
+            @forelse($brands as $key => $brand)
+            <tr>
+                <td>{{ $key + 1 }}</td>
                 <td>{{ $brand->name }}</td>
-                <td>
-                    <button class="btn btn-sm btn-info editBrandBtn" data-id="{{ $brand->id }}">Edit</button>
-                    <button class="btn btn-sm btn-danger deleteBrandBtn" data-id="{{ $brand->id }}">Delete</button>
+                <td>{{ $brand->slug }}</td>
+                <td class="text-center">
+                    @if(!empty($brand->image) && file_exists(public_path('uploads/brands/' . $brand->image)))
+                    <img src="{{ asset('uploads/brands/' . $brand->image) }}" width="50" class="img-thumbnail"
+                        alt="{{ $brand->name }}">
+                    @else
+                    <span class="text-muted">No Image</span>
+                    @endif
+                </td>
+                <td class="text-center">
+                    <span class="badge {{ $brand->status == 1 ? 'bg-success' : 'bg-secondary' }}">
+                        {{ $brand->status == 1 ? 'Active' : 'Inactive' }}
+                    </span>
+                </td>
+                <td class="text-center">
+                    <!-- Edit Button -->
+                    <button type="button" class="btn btn-sm btn-warning me-1" data-bs-toggle="modal"
+                        data-bs-target="#editBrandModal{{ $brand->id }}">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+
+                    <!-- Delete Form -->
+                    <form action="{{ route('brands.destroy', $brand->id) }}" method="POST"
+                        style="display:inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button onclick="return confirm('Are you sure you want to delete this brand?')" 
+                                class="btn btn-sm btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
-            @endforeach
+
+            <!-- Edit Brand Modal -->
+            <div class="modal fade @if($errors->has('name.'.$brand->id) || $errors->has('slug.'.$brand->id)) show @endif"
+                id="editBrandModal{{ $brand->id }}" tabindex="-1" aria-hidden="true"
+                @if($errors->has('name.'.$brand->id) || $errors->has('slug.'.$brand->id)) style="display:block;" @endif>
+                <div class="modal-dialog">
+                    <form action="{{ route('brands.update', $brand->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit Brand</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Brand Name</label>
+                                    <input type="text" name="name" class="form-control"
+                                        value="{{ old('name.' . $brand->id, $brand->name) }}" required>
+                                    @error('name.' . $brand->id)
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Slug</label>
+                                    <input type="text" name="slug" class="form-control"
+                                        value="{{ old('slug.' . $brand->id, $brand->slug) }}" required>
+                                    @error('slug.' . $brand->id)
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Brand Image</label>
+                                    <input type="file" name="image" class="form-control">
+                                    @if($brand->image)
+                                    <img src="{{ asset('uploads/brands/' . $brand->image) }}" width="80"
+                                        class="mt-2 img-thumbnail">
+                                    @endif
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-switch switch-primary d-flex align-items-center gap-3">
+                                        <input class="form-check-input" type="checkbox" role="switch" 
+                                               id="editStatusSwitch{{ $brand->id }}" name="status" value="1"
+                                               {{ old('status.' . $brand->id, $brand->status) == 1 ? 'checked' : '' }}>
+                                        <label class="form-check-label fw-medium" for="editStatusSwitch{{ $brand->id }}">
+                                            Active Status
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Update Brand</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            @empty
+            <tr>
+                <td colspan="6" class="text-center text-muted">No brands found.</td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center mt-3">
+        {{ $brands->links() }}
+    </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="brandModal" tabindex="-1" aria-hidden="true">
+<!-- Add Brand Modal -->
+<div class="modal fade @if($errors->has('name') || $errors->has('slug')) show @endif" id="addBrandModal"
+    tabindex="-1" aria-hidden="true" @if($errors->has('name') || $errors->has('slug')) style="display:block;" @endif>
     <div class="modal-dialog">
-        <form id="brandForm">
+        <form action="{{ route('brands.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="brand_id" id="brand_id">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="brandModalLabel">Add Brand</h5>
+                    <h5 class="modal-title">Add New Brand</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label>Name</label>
-                        <input type="text" name="name" id="brandName" class="form-control" required>
+                        <label class="form-label fw-bold">Brand Name</label>
+                        <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+                        @error('name')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Slug</label>
+                        <input type="text" name="slug" class="form-control" value="{{ old('slug') }}" 
+                               placeholder="Leave empty for auto-generation">
+                        @error('slug')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Brand Image</label>
+                        <input type="file" name="image" class="form-control">
+                        @error('image')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-switch switch-primary d-flex align-items-center gap-3">
+                            <input class="form-check-input" type="checkbox" role="switch" 
+                                   id="statusSwitch" name="status" value="1" checked>
+                            <label class="form-check-label fw-medium" for="statusSwitch">
+                                Active Status
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="saveBrandBtn">Save</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Create Brand</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-@endsection
 
-@section('scripts')
+<!-- Auto-hide success alert -->
 <script>
-$(document).ready(function() {
+setTimeout(() => {
+    const alert = document.getElementById('success-alert');
+    if (alert) alert.remove();
+}, 3000);
 
-    // Open Add Brand Modal
-    $('#addBrandBtn').click(function(){
-        $('#brandForm')[0].reset();
-        $('#brand_id').val('');
-        $('#brandModalLabel').text('Add Brand');
-
-        // Open modal using Bootstrap 5 JS
-        var brandModal = new bootstrap.Modal(document.getElementById('brandModal'));
-        brandModal.show();
-    });
-
-});
-
-
-    // Submit Add/Edit Brand Form
-    $('#brandForm').submit(function(e){
-        e.preventDefault();
-
-        let id = $('#brand_id').val();
-        let url = id ? '/brands/' + id : '/brands';
-        let method = id ? 'PUT' : 'POST';
-
-        $.ajax({
-            url: url,
-            type: method,
-            data: $(this).serialize(),
-            success: function(res){
-                // Option 1: Reload table via AJAX (better)
-                // Option 2: Simple reload
-                location.reload();
-            },
-            error: function(xhr){
-                let errors = xhr.responseJSON?.errors;
-                if(errors){
-                    let msg = '';
-                    $.each(errors, function(key, value){
-                        msg += value[0] + "\n";
-                    });
-                    alert(msg);
-                } else {
-                    alert(xhr.responseJSON?.message || 'Something went wrong');
-                }
-            }
-        });
-    });
-
-    // Open Edit Brand Modal
-    $(document).on('click', '.editBrandBtn', function(){
-        let id = $(this).data('id');
-
-        $.get('/brands/' + id + '/edit', function(data){
-            $('#brand_id').val(data.id);
-            $('#brandName').val(data.name);
-            $('#brandModalLabel').text('Edit Brand');
-            brandModal.show();
-        });
-    });
-
-    // Delete Brand
-    $(document).on('click', '.deleteBrandBtn', function(){
-        if(confirm('Are you sure you want to delete this brand?')){
-            let id = $(this).data('id');
-
-            $.ajax({
-                url: '/brands/' + id,
-                type: 'DELETE',
-                data: {_token: '{{ csrf_token() }}'},
-                success: function(res){
-                    $('#brand_' + id).remove();
-                    alert('Brand deleted successfully!');
-                },
-                error: function(xhr){
-                    alert(xhr.responseJSON?.message || 'Delete failed');
-                }
-            });
-        }
-    });
-
-});
+// Auto-open modal on validation errors
+@if($errors->any())
+var addModal = new bootstrap.Modal(document.getElementById('addBrandModal'));
+addModal.show();
+@endif
 </script>
+
 @endsection

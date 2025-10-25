@@ -388,12 +388,12 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="{{ route('blog.details') }}" class="about-details wrapper-details">Top 10 Best
+                            <a href="#" class="about-details wrapper-details">Top 10 Best
                                 Professional Blogging Platforms for 2022
                             </a>
                             <div class="divider"></div>
 
-                            <a href="{{ route('blog.details') }}" class="shop-btn">
+                            <a href="#" class="shop-btn">
                                 Learn More
                                 <span>
                                     <i class="fas fa-chevron-right" style="color: #00674f; font-size: 11px;"></i>
@@ -426,13 +426,13 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="{{ route('blog.details') }}" class="about-details wrapper-details">Logistics of
+                            <a href="#" class="about-details wrapper-details">Logistics of
                                 container cargo into
                                 ship and cargo plane
                             </a>
                             <div class="divider"></div>
 
-                            <a href="{{ route('blog.details') }}" class="shop-btn">
+                            <a href="#" class="shop-btn">
                                 Learn More
                                 <span>
                                     <i class="fas fa-chevron-right" style="color: #00674f; font-size: 11px;"></i>
@@ -465,13 +465,13 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="{{ route('blog.details') }}" class="about-details wrapper-details">15 Best
+                            <a href="#" class="about-details wrapper-details">15 Best
                                 WordPress
                                 Newspaper Themes to Look Out
                             </a>
                             <div class="divider"></div>
 
-                            <a href="{{ route('blog.details') }}" class="shop-btn">
+                            <a href="#" class="shop-btn">
                                 Learn More
                                 <span>
                                     <i class="fas fa-chevron-right" style="color: #00674f; font-size: 11px;"></i>

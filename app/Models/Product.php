@@ -1,13 +1,13 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'category_id',
@@ -26,16 +26,18 @@ class Product extends Model
         'status',
     ];
 
+    protected $dates = ['deleted_at'];
+
     // Relationships
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-   public function admin()
-{
-    return $this->belongsTo(Admin::class, 'added_by');
-}
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'added_by');
+    }
 
     // Accessor for full image path
     public function getImageUrlAttribute()
@@ -43,9 +45,3 @@ class Product extends Model
         return $this->image ? asset('uploads/products/' . $this->image) : asset('uploads/no-image.png');
     }
 }
-
-
-
-
-
-

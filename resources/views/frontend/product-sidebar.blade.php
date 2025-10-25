@@ -112,13 +112,16 @@
                                 <form method="GET" id="sortForm">
                                     <select name="sort" id="sortSelect" class="form-select form-select-sm">
                                         <option value="">Default</option>
-                                        <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>
+                                        <option value="price_asc"
+                                            {{ request('sort') == 'price_asc' ? 'selected' : '' }}>
                                             Price: Low to High</option>
-                                        <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>
+                                        <option value="price_desc"
+                                            {{ request('sort') == 'price_desc' ? 'selected' : '' }}>
                                             Price: High to Low</option>
                                         <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>
                                             Name: A–Z</option>
-                                        <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>
+                                        <option value="name_desc"
+                                            {{ request('sort') == 'name_desc' ? 'selected' : '' }}>
                                             Name: Z–A</option>
                                         <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>
                                             Newest First</option>
@@ -130,42 +133,109 @@
                         <!-- Products Grid -->
                         <div class="row g-4">
                             @forelse($products as $product)
-                            <div class="col-lg-3 col-md-4 col-sm-6">
-                                <div class="card border-0 shadow-sm h-100 position-relative product-card transition-all">
+                            @php
+                            $price = $product->price;
+                            $discount = $product->discount ?? 0;
+                            $hasDiscount = $discount > 0;
+                            $discountedPrice = $hasDiscount ? round($price - ($price * $discount / 100), 2) : $price;
+                            @endphp
+
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <div class="product-wrapper h-100 d-flex flex-column" data-aos="fade-up">
 
                                     {{-- Product Image --}}
-                                    <a href="{{ route('product.info', $product->id) }}" class="overflow-hidden">
+                                    <div class="product-img position-relative">
+                                        @if($product->image)
                                         <img src="{{ asset('uploads/products/' . $product->image) }}"
-                                            alt="{{ $product->name }}" class="card-img-top img-fluid"
-                                            style="object-fit: cover; height: 250px;">
-                                    </a>
+                                            class="img-fluid w-100" style="object-fit: cover; height: 300px;"
+                                            alt="{{ $product->name }}">
+                                        @else
+                                        <img src="{{ asset('images/no-image.png') }}" class="img-fluid w-100"
+                                            style="object-fit: cover; height: 300px;" alt="No Image">
+                                        @endif
+
+                                        {{-- Discount Badge --}}
+                                        @if($hasDiscount)
+                                        <span class="badge bg-danger position-absolute top-0 start-0 m-2">
+                                            {{ $discount }}% OFF
+                                        </span>
+                                        @endif
+
+                                        {{-- Product Actions --}}
+                                        <div
+                                            class="product-cart-items position-absolute bottom-0 end-0 p-2 d-flex gap-2">
+                                            {{-- View Details --}}
+                                            <a href="{{ route('product.info', $product->id) }}" class="cart cart-item mx-2">
+                                                <span
+                                                    class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
+                                                    style="width: 40px; height: 40px;">
+                                                    <i class="fas fa-eye text-dark"></i>
+                                                </span>
+                                            </a>
+
+                                            {{-- Wishlist --}}
+                                            <a href="javascript:void(0);" onclick="addToWishlist({{ $product->id }})"
+                                                id="wishlist-btn-{{ $product->id }}"
+                                                class="position-absolute top-0 end-0 m-2 mx-2">
+                                                <span
+                                                    class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle border shadow-sm"
+                                                    style="width: 40px; height: 40px;">
+                                                    <i class="fa fa-heart text-secondary"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
 
                                     {{-- Product Info --}}
-                                    <div class="card-body text-center">
+                                    <div class="product-info mt-3 flex-grow-1">
                                         <a href="{{ route('product.info', $product->id) }}"
-                                            class="text-decoration-none text-dark fw-semibold d-block mb-2 text-truncate">
+                                            class="product-details fw-bold text-dark d-block mb-2">
                                             {{ $product->name }}
                                         </a>
-
-                                        {{-- Price (no discount) --}}
-                                        <div class="d-flex justify-content-center align-items-center mb-3">
-                                            <span class="text-dark fw-bold fs-5">₹{{ $product->price }}</span>
+                                        <div class="price">
+                                            <span
+                                                class="new-price fw-bold {{ $hasDiscount ? 'text-success' : 'text-dark' }}">
+                                                ₹{{ $discountedPrice }}
+                                            </span>
+                                            @if($hasDiscount)
+                                            <del class="text-muted ms-2">₹{{ $price }}</del>
+                                            @endif
                                         </div>
+                                    </div>
 
-                                        {{-- Add to Cart Button --}}
-                                        <button class="btn btn-primary w-100 add-to-cart fw-semibold"
-                                            data-id="{{ $product->id }}">
-                                            <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                                    {{-- Add to Cart Button --}}
+                                    <div class="product-cart-btn text-center mt-3">
+                                        <button class="product-btn add-to-cart" data-id="{{ $product->id }}">
+                                            Add to Cart
                                         </button>
                                     </div>
                                 </div>
                             </div>
                             @empty
                             <div class="col-12 text-center">
-                                <p class="text-muted">No products found at the moment. Please check back later!</p>
+                                <p class="text-muted">No products available.</p>
                             </div>
                             @endforelse
                         </div>
+
+                        <script>
+                        // Wishlist Function
+                        function addToWishlist(productId) {
+                            console.log('Add to Wishlist:', productId);
+                            // You can implement AJAX call here
+                        }
+
+                        // Add to Cart Function
+                        document.querySelectorAll('.add-to-cart').forEach(function(button) {
+                            button.addEventListener('click', function() {
+                                let productId = this.getAttribute('data-id');
+                                console.log('Add to Cart:', productId);
+                                // Implement AJAX call to add product to cart
+                            });
+                        });
+                        </script>
+
+
 
                         <!-- Pagination -->
                         <div class="mt-4 d-flex justify-content-center">

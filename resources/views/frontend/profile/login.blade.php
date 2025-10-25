@@ -12,7 +12,7 @@
 
     <style>
     body {
-        background-color: #c8c8c8;
+        background-color: #d5c1d5ac;
         font-family: 'Open Sans', sans-serif;
     }
 
@@ -23,8 +23,9 @@
         padding: 40px;
         border-radius: 15px;
         color: #fff;
-        background: linear-gradient(rgba(40, 57, 101, 0.8), rgba(40, 57, 101, 0.8)),
-            url('https://play.vsthemes.org/nova/1024576-1/66b/bf266b2c6537b5c2a30fa1c26b0ca9d3.webp') center center / cover no-repeat;
+    background: linear-gradient(rgba(40, 57, 101, 0.8), rgba(40, 57, 101, 0.8));
+
+
         box-shadow: 0 12px 15px rgba(0, 0, 0, .2);
     }
 

@@ -96,14 +96,13 @@
                 </div>
                 @endif
             </div>
-            <div class="col-md-6 d-flex align-items-center mt-2">
-                <div class="form-switch switch-primary d-flex align-items-center gap-3">
-                    <input class="form-check-input" type="checkbox" role="switch" id="switch1" name="status" value="1"
-                        {{ $product->status ? 'checked' : '' }}>
-                    <label class="form-check-label line-height-1 fw-medium text-secondary-light"
-                        for="switch1">Active</label>
+            <div class="col-md-6 d-flex align-items-center mt-2 bm-3">
+                <div class="form-switch switch-primary d-flex align-items-center gap-3 mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="switch1" name="status" value="1" {{ old('status', $blog->status) ? 'checked' : '' }}>
+                    <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch1">Status</label>
                 </div>
             </div>
+
         </div>
 
         <div class="mt-4">

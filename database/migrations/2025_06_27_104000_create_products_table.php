@@ -35,14 +35,16 @@ return new class extends Migration
 
             $table->unsignedBigInteger('added_by')->nullable();
             $table->enum('added_by_role', ['admin', 'vendor'])->default('admin');
-           $table->boolean('status')->default(1);
+            $table->boolean('status')->default(1);
+
+            $table->softDeletes(); // adds deleted_at column automatically
             $table->timestamps();
 
-            // ✅ Foreign key safely defined
+            // Foreign key safely defined
             $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
+                  ->references('id')
+                  ->on('categories')
+                  ->onDelete('cascade');
         });
     }
 

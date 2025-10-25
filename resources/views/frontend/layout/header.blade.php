@@ -753,13 +753,13 @@
                                 <span class="list-text">Shop</span>
                             </a>
                         </li>
-                       
+
                         <li>
                             <a href="{{ route('frontend.sales') }}">
                                 <span class="list-text">Sales</span>
                             </a>
                         </li>
-                       
+
                         <li>
                             <a href="{{ route('about') }}">
                                 <span class="list-text">About</span>
@@ -767,12 +767,19 @@
 
                         </li>
                         <li>
-                            <a href="{{ route('blog') }}">
+                            <a href="{{ route('blog.page') }}">
                                 <span class="list-text">Blog</span>
                             </a>
+                            @php
+                            $latestBlog = \App\Models\Blog::where('status', 1)->latest()->first();
+                            @endphp
+
                             <ul class="header-sub-menu">
-                                <li><a href="{{ route('blog.details') }}">blog details</a></li>
+                                @if($latestBlog)
+                                <li><a href="{{ route('blog.details', $latestBlog->slug) }}">Blog Details</a></li>
+                                @endif
                             </ul>
+
                         </li>
 
                         <li>
@@ -780,7 +787,7 @@
                                 <span class="list-text">Contact</span>
                             </a>
                         </li>
-                         <li>
+                        <li>
                             <a href="#">
                                 <span class="list-text">Pages</span>
                                 <span>
@@ -788,15 +795,16 @@
                                 </span>
                             </a>
                             <ul class="header-sub-menu">
+                                <li><a href="{{ route('allproducts') }}">All Products</a></li>
                                 <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
                                 <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
-                                <li><a href="{{ route('faq') }}">FAQ</a></li> 
+                                <li><a href="{{ route('faq') }}">FAQ</a></li>
                             </ul>
 
                         </li>
                     </ul>
                 </div>
-               
+
             </div>
         </div>
     </div>
