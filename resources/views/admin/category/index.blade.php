@@ -4,7 +4,7 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0">All Categories</h2>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+        <button type="button" class="btn-1" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
             Add New Category
         </button>
     </div>
@@ -51,7 +51,8 @@
                     <td class="text-center">
                         <button type="button" class="btn btn-sm btn-warning" 
                                 data-bs-toggle="modal" data-bs-target="#editCategoryModal{{ $category->id }}">
-                            Edit
+                            <i
+                                class="fa-solid fa-pen-to-square"></i>
                         </button>
                         <form action="{{ route('category.destroy', $category->id) }}" 
                               method="POST" class="d-inline">
@@ -59,7 +60,8 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger" 
                                     onclick="return confirm('Are you sure you want to delete this category?')">
-                                Delete
+                                <i
+                                    class="fa-solid fa-trash"></i>
                             </button>
                         </form>
                     </td>
@@ -108,8 +110,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Update Category</button>
+                                    <button type="button" class="btn btn-1" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-1">Update Category</button>
                                 </div>
                             </div>
                         </form>
@@ -169,8 +171,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Create Category</button>
+                    <button type="button" class="btn btn-1" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-1">Create Category</button>
                 </div>
             </div>
         </form>

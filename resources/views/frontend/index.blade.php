@@ -1,4 +1,15 @@
 @extends('frontend.layout.main')
+
+@section('meta_title', $meta->meta_title ?? 'Welcome to Lavanya Tech | Web & Digital Solutions')
+
+@section('meta_description', $meta->meta_description ?? 'Lavanya Tech offers innovative web development, digital marketing, and IT solutions to grow your business online.')
+
+@section('meta_keywords', $meta->meta_keywords ?? 'lavanya tech, web development, digital marketing, IT solutions, SEO, PPC, software development')
+
+@section('meta_tags')
+    {!! $meta->meta_tags ?? '' !!}
+@endsection
+
 @section('content')
 <main class=" main-content">
 

@@ -4,7 +4,7 @@
    <div class="d-flex justify-content-between align-items-center mb-3">
     <h2 class="fw-bold mb-0">All Blogs</h2>
 
-    <a href="{{ route('blogs.addblog') }}" class="btn btn-success">Add New Blog</a>
+    <a href="{{ route('blogs.addblog') }}" class="btn btn-1">Add New Blog</a>
 </div>
 
 @if(session('success'))

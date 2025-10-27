@@ -8,35 +8,44 @@ use App\Models\Brand;
 use App\Models\Size;
 use App\Models\Color;
 use App\Models\Category;
+use App\Models\MetaTag;
 
 class MainController extends Controller
 {
-      // 🏠 Homepage (Flash Sale + New Arrivals)
     public function index()
-    {
-        // ⚡ Flash Sale Products (discount > 0)
-        $flashSaleProducts = Product::where('discount', '>', 0)
-            ->where('status', 1)
-            ->orderBy('created_at', 'desc')
-            ->take(8)
-            ->get();
+{
+    // Fetch meta tag for homepage (set 'home' or '/' based on your DB entry)
+    $meta = MetaTag::where('page_name', 'home')->orWhere('page_name', '/')->first();
 
-        // 🆕 New Arrival Products (discount == 0 or NULL)
-        $newArrivalProducts = Product::where(function ($query) {
-                $query->whereNull('discount')
-                      ->orWhere('discount', '=', 0);
-            })
-            ->where('status', 1)
-            ->orderBy('created_at', 'desc')
-            ->take(8)
-            ->get();
+    // ⚡ Flash Sale Products
+    $flashSaleProducts = Product::where('discount', '>', 0)
+        ->where('status', 1)
+        ->latest()
+        ->take(8)
+        ->get();
 
-        // 📂 All Categories
-        $categories = Category::latest()->get();
-         $products = Product::all(); 
+    // 🆕 New Arrival Products
+    $newArrivalProducts = Product::where(function ($query) {
+            $query->whereNull('discount')->orWhere('discount', '=', 0);
+        })
+        ->where('status', 1)
+        ->latest()
+        ->take(8)
+        ->get();
 
-        return view('frontend.index', compact('flashSaleProducts', 'newArrivalProducts', 'categories','products'));
-    }
+    $categories = Category::latest()->get();
+    $products = Product::all();
+
+    return view('frontend.index', compact(
+        'flashSaleProducts',
+        'newArrivalProducts',
+        'categories',
+        'products',
+        'meta'
+    ));
+}
+
+
 
     // 🛍️ Flash Sale Products Page
     public function sales(Request $request)

@@ -195,7 +195,7 @@
         </div>
 
         <div class="mt-4">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-1">
                 {{ isset($product) ? 'Update Product' : 'Save Product' }}
             </button>
         </div>

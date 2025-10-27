@@ -12,9 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('meta_tags', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        $table->id();
+        $table->string('page_name')->unique(); // e.g. home, about, contact, product
+        $table->string('meta_title')->nullable();
+        $table->string('meta_tags')->nullable();
+        $table->text('meta_description')->nullable();
+        $table->text('meta_keywords')->nullable();
+        $table->timestamps();
+    });
     }
 
     /**

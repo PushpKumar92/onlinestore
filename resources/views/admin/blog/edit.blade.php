@@ -100,8 +100,8 @@
         </div>
 
         <div class="mt-4">
-            <button type="submit" class="btn btn-primary">Update Blog</button>
-            <a href="{{ route('blogs.list') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-1">Update Blog</button>
+            <a href="{{ route('blogs.list') }}" class="btn btn-1">Cancel</a>
         </div>
     </form>
 </div>

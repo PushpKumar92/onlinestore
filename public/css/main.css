@@ -146,6 +146,13 @@ footer {
 .slider-viewport:hover .slider-track {
     animation-play-state: paused !important;
 }
+.btn-1{
+     background: linear-gradient(135deg,  #00674f, #4CAF50);
+     padding: 10px;
+     color:white !important;
+     border-radius: 20px;
+     font-size: 15px;
+}
 
 
 

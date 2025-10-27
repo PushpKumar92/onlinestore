@@ -17,6 +17,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\AdminForgotPasswordController;
+use App\Http\Controllers\Admin\MetaTagController;
 use App\Http\Controllers\MainController;
  use App\Http\Controllers\UserForgotPasswordController;
 use App\Http\Controllers\ProductdetailController;
@@ -158,6 +159,12 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
    Route::post('/brands', [BrandController::class, 'store'])->name('brands.store');
    Route::put('/brands/{brand}', [BrandController::class, 'update'])->name('brands.update');
    Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
+
+Route::get('meta-tags', [MetaTagController::class, 'index'])->name('meta-tags.index');
+    Route::post('meta-tags/store', [MetaTagController::class, 'store'])->name('meta-tags.store');
+    Route::get('meta-tags/{id}/edit', [MetaTagController::class, 'edit'])->name('meta-tags.edit');
+    Route::put('meta-tags/{id}/update', [MetaTagController::class, 'update'])->name('meta-tags.update');
+    Route::delete('meta-tags/{id}/delete', [MetaTagController::class, 'destroy'])->name('meta-tags.destroy');
 
 // Sizes  
    Route::resource('sizes', SizeController::class);

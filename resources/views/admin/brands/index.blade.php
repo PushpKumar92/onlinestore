@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0">All Brands</h2>
         <!-- Add Brand Button -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBrandModal">
+        <button type="button" class="btn btn-1" data-bs-toggle="modal" data-bs-target="#addBrandModal">
             Add New Brand
         </button>
     </div>
@@ -116,8 +116,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success">Update Brand</button>
+                                <button type="button" class="btn btn-1" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-1">Update Brand</button>
                             </div>
                         </div>
                     </form>
@@ -183,8 +183,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Create Brand</button>
+                    <button type="button" class="btn btn-1" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-1">Create Brand</button>
                 </div>
             </div>
         </form>

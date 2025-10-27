@@ -8,9 +8,9 @@
     <div class="mb-3 d-flex justify-content-between align-items-center">
         <h4 class="mb-0">All Products</h4>
         <div class="d-flex gap-2">
-            <a href="{{ route('admin.products.create') }}" class="btn btn-success">Add Product</a>
-            <a href="{{ route('products.export') }}" class="btn btn-success">📤 Export Products</a>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importModal">
+            <a href="{{ route('admin.products.create') }}" class="btn btn-1">Add Product</a>
+            <a href="{{ route('products.export') }}" class="btn btn-1">📤 Export Products</a>
+            <button type="button" class="btn btn-1" data-bs-toggle="modal" data-bs-target="#importModal">
                 📥 Import Products
             </button>
         </div>
@@ -33,8 +33,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Import</button>
+                        <button type="button" class="btn btn-1" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-1">Import</button>
                     </div>
                 </form>
             </div>

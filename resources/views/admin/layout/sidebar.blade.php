@@ -24,7 +24,7 @@
             <li class="nav-item">
                 <a class="nav-link text-dark" href="{{ route('admin.products.index') }}">
                     <i class="fas fa-box text-warning"></i>
-                    <span>All Products</span>
+                    <span>Products</span>
                 </a>
             </li>
            
@@ -41,6 +41,11 @@
             <li>
                 <a class="nav-link text-dark" href="{{route('blogs.list')}}">
                     <i class="fas fa-blog text-warning me-2"></i>Blogs
+                </a>
+            </li>
+            <li>
+                <a class="nav-link text-dark" href="{{route('meta-tags.index')}}">
+                    <i class="fas fa-blog text-warning me-2"></i>Meta-Tags
                 </a>
             </li>
         </ul>
