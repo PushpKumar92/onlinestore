@@ -12,7 +12,7 @@
             </li>
 
             <li>
-                <a class="nav-link text-dark" href="#">
+                <a class="nav-link text-dark" href="{{ route('users.index') }}">
                     <i class="fas fa-users text-warning me-2"></i>Users
                 </a>
             </li>

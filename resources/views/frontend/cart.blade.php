@@ -116,7 +116,12 @@
     <!-- Empty Cart Message -->
     <div class="container text-center my-5 mb-5">
         <h2>🛒 Your cart is empty!</h2>
-        <a href="{{ route('index') }}" class="btn btn-outline-primary mt-3 mb-5">Continue Shopping</a>
+        <a href="{{ route('index') }}" class="btn btn-1 mt-3 mb-5">Continue Shopping
+             <span>
+                                        <i class="fa-solid fa-greater-than"></i>
+
+                                    </span>
+        </a>
     </div>
     @endif
 </main>

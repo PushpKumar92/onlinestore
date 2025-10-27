@@ -3,9 +3,9 @@
         <div class="text-muted small">
             &copy; {{ date('Y') }} <strong>YourAdminPanel</strong>. All rights reserved.
         </div>
-        <div class="text-muted small">
+        <!-- <div class="text-muted small">
             <a href="#" class="text-decoration-none text-muted me-3">Privacy Policy</a>
             <a href="#" class="text-decoration-none text-muted">Terms & Conditions</a>
-        </div>
+        </div> -->
     </div>
 </footer>

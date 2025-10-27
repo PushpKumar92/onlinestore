@@ -1,126 +1,196 @@
 @extends('frontend.layout.main')
+
+@section('title', 'Contact Us')
+
 @section('content')
-<main class="main-content">
-    <!--------------- blog-tittle-section---------------->
-    <section class="blog about-blog">
-        <div class="container">
-            <div class="blog-bradcrum">
-                <span><a href="{{ route('index')}}">Home</a></span>
-                <span class="devider">/</span>
-                <span><a href="#">Contact</a></span>
-            </div>
-            <div class="blog-heading about-heading">
-                <h1 class="heading">Contact</h1>
-            </div>
+
+
+<section class="contact-section">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+            <h2 class="section-title-1">Get In Touch</h2>
+            <p class="section-subtitle">Have questions? We'd love to hear from you. Send us a message and we'll respond
+                as soon as possible.</p>
         </div>
-    </section>
-    <!--------------- blog-tittle-section-end---------------->
 
-    <!--------------- contact-section---------------->
-    <section class="contact product footer-padding">
-        <div class="container">
-            <div class="contact-section">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="contact-info-section">
-                            <div class="contact-information">
-                                <h5 class="wrapper-heading">Contact Information</h5>
-                                <p class="paragraph">Fill the form below or write us .We will help you as soon as
-                                    possible.</p>
-                                <div class="contact-wrapper">
-                                    <div class="row gy-5">
-                                        <div class="col-sm-6">
-                                            <div class="wrapper phone">
-                                                <div class="wrapper-img">
-                                                    <div class="wrapper-img">
-                                                        <span>
-                                                            <i class="fa-solid fa-phone-volume"
-                                                                style="font-size: 50px; color: #00674f;"></i>
-                                                        </span>
+        @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fa-solid fa-check-circle me-2"></i>{{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        @endif
 
-                                                    </div>
-
-                                                </div>
-                                                <div class="wrapper-content">
-                                                    <h5 class="wrapper-heading">Phone</h5>
-                                                    <p class="paragraph">+1347-430-9510</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="wrapper phone">
-                                                <div class="wrapper-img">
-                                                    <span>
-                                                        <i class="fa-solid fa-envelope"
-                                                            style="font-size: 50px; color: #00674f;"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="wrapper-content">
-                                                    <h5 class="wrapper-heading">Email</h5>
-                                                    <p class="paragraph">User@gmail.com</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="address">
-                                                <div class="contact-address">
-                                                    <div class="address-icon">
-                                                        <i class="fa-solid fa-location-dot"
-                                                            style="font-size: 50px; color: #00674f;"></i>
-                                                    </div>
-                                                    <div class="address-content">
-                                                        <h5 class="wrapper-heading">Address</h5>
-                                                        <p class="paragraph">2140 W Thunderbird Rd, Phoenix, Arkansas
-                                                            85023, United States</p>
-                                                    </div>
-                                                </div>
-                                                <div class="contact-map">
-                                                    <iframe
-                                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.2527999867!2d-74.14448761897569!3d40.6976312333577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1691924335610!5m2!1sen!2sbd"
-                                                        width="524" height="206" allowfullscreen="" loading="lazy"
-                                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <div class="row g-4">
+            <!-- Contact Information Column -->
+            <div class="col-lg-5">
+                <div class="contact-info-wrapper">
+                    <!-- Phone Card -->
+                    <div class="contact-card" data-aos="fade-right" data-aos-delay="100">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Phone</h5>
+                            <p>91-8837810916</p>
+                            <p class="text-muted small">Mon-Fri: 10AM - 6PM</p>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="question-section login-section ">
-                            <div class="review-form">
-                                <h5 class="comment-title">Get In Touch</h5>
-                                <div class=" account-inner-form">
-                                    <div class="review-form-name">
-                                        <label for="fname" class="form-label">Name*</label>
-                                        <input type="text" id="fname" class="form-control" placeholder="Name">
-                                    </div>
-                                    <div class="review-form-name">
-                                        <label for="email" class="form-label">Email*</label>
-                                        <input type="email" id="email" class="form-control"
-                                            placeholder="user@gmail.com">
-                                    </div>
-                                    <div class="review-form-name">
-                                        <label for="subject" class="form-label">Subject*</label>
-                                        <input type="text" id="subject" class="form-control" placeholder="Subject">
-                                    </div>
-                                </div>
-                                <div class="review-textarea">
-                                    <label for="floatingTextarea">Massage*</label>
-                                    <textarea class="form-control" placeholder="Write Massage..........."
-                                        id="floatingTextarea" rows="3"></textarea>
-                                </div>
-                                <div class="login-btn">
-                                    <a href="#" class="shop-btn">Send Now</a>
-                                </div>
-                            </div>
+
+                    <!-- Email Card -->
+                    <div class="contact-card" data-aos="fade-right" data-aos-delay="200">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Email</h5>
+                            <p>support@yourstore.com</p>
+                            <p class="text-muted small">We reply within 24 hours</p>
+                        </div>
+                    </div>
+
+                    <!-- Address Card -->
+                    <div class="contact-card" data-aos="fade-right" data-aos-delay="300">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Address</h5>
+                            <p>10149, 10th floor, Gaur City Mall </p>
+                            <p>Greater Noida, 201318</p>
                         </div>
                     </div>
                 </div>
+
+                <!-- Map -->
+                <div class="map-container" data-aos="fade-up">
+
+                    <!-- Option 1: New Delhi, India (Capital) -->
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224357.8066978043!2d77.04417084707599!3d28.52758200617607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x52c2b7494e204dce!2sNew%20Delhi%2C%20Delhi%2C%20India!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+
+                    <!-- Option 2: Mumbai, India -->
+                    <!-- <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.71637536858896!3d19.08219783873968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe> -->
+
+                    <!-- Option 3: Bangalore, India -->
+                    <!-- <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248849.8862419672!2d77.49085447890879!3d12.953945613661024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka%2C%20India!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe> -->
+
+                    <!-- Option 4: Ghaziabad, Uttar Pradesh (Your Current Location) -->
+                    <!-- <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224317.67785691446!2d77.30032654746135!3d28.671787899508656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf1bb41c50fdf%3A0xe6732119ce20be71!2sGhaziabad%2C%20Uttar%20Pradesh%2C%20India!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe> -->
+
+                    <!-- Option 5: Hyderabad, India -->
+                    <!-- <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243647.3159928039!2d78.26449087156551!3d17.412608636728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana%2C%20India!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe> -->
+
+                    <!-- Option 6: Pune, India -->
+                    <!-- <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d242118.02763643936!2d73.69815320676856!3d18.524564297132016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe> -->
+                </div>
+            </div>
+
+            <!-- Contact Form Column -->
+            <div class="col-lg-7">
+                <div class="contact-form-wrapper" data-aos="fade-left">
+                    <h3 class="form-title">Send Us A Message</h3>
+                    <form action="#" method="POST">
+                        @csrf
+                        <div class="row g-3">
+                            <!-- Name -->
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                                    name="name" value="{{ old('name') }}" placeholder="John Doe" required>
+                                @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Email -->
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                    name="email" value="{{ old('email') }}" placeholder="john@example.com" required>
+                                @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control @error('phone') is-invalid @enderror" id="phone"
+                                    name="phone" value="{{ old('phone') }}" placeholder="+1 (234) 567-8900">
+                                @error('phone')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Subject -->
+                            <div class="col-md-6">
+                                <label for="subject" class="form-label">Subject *</label>
+                                <select class="form-select @error('subject') is-invalid @enderror" id="subject"
+                                    name="subject" required>
+                                    <option value="">Choose a subject</option>
+                                    <option value="general" {{ old('subject') == 'general' ? 'selected' : '' }}>General
+                                        Inquiry</option>
+                                    <option value="support" {{ old('subject') == 'support' ? 'selected' : '' }}>Customer
+                                        Support</option>
+                                    <option value="order" {{ old('subject') == 'order' ? 'selected' : '' }}>Order Issue
+                                    </option>
+                                    <option value="feedback" {{ old('subject') == 'feedback' ? 'selected' : '' }}>
+                                        Feedback</option>
+                                    <option value="other" {{ old('subject') == 'other' ? 'selected' : '' }}>Other
+                                    </option>
+                                </select>
+                                @error('subject')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Message -->
+                            <div class="col-12">
+                                <label for="message" class="form-label">Your Message *</label>
+                                <textarea class="form-control @error('message') is-invalid @enderror" id="message"
+                                    name="message" rows="5" placeholder="Write your message here..."
+                                    required>{{ old('message') }}</textarea>
+                                @error('message')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="col-12">
+                                <button type="submit" class="submit-btn">
+                                    Send Message
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </section>
-    <!--------------- contact-section-end---------------->
-</main>
+    </div>
+</section>
 @endsection

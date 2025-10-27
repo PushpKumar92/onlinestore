@@ -3,14 +3,14 @@
         <div class="container">
             <div class="header-top">
                 <div class="header-profile">
-                    <li><a href="{{ route('user.profile') }}" class="text-success">Account</a></li>
-                    <li><a href="{{ route('order') }}" class="text-success"> Track order</a></li>
-                    <li><a href="{{ route('faq') }}" class="text-success">Support</a></li>
+                    <li><a href="{{ route('user.profile') }}" class="text-white">Account</a></li>
+                    <li><a href="{{ route('order') }}" class="text-white"> Track order</a></li>
+                    <li><a href="{{ route('faq') }}" class="text-white">Support</a></li>
                 </div>
                 <div class="header-contact d-none d-lg-block">
                     <a href="tel:+91 967-5700-765">
-                        <span class="text-success">Need help? Call us:</span>
-                        <span class="contact-number text-dark">91-8837810916</span>
+                        <span class="text-success text-white">Need help? Call us:</span>
+                        <span class="contact-number text-white">91-8837810916</span>
                     </a>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                             style="width:500px;">
                             <input class="form-control me-2" type="search" name="query" placeholder="Search products..."
                                 aria-label="Search" value="{{ request('query') }}" style="border:2px solid #00674f;">
-                            <button class="btn btn-success w-auto px-5" type="submit">Search</button>
+                            <button class="btn-1 btn-success w-auto px-5" type="submit">Search</button>
                         </form>
 
                     </div>
@@ -41,7 +41,7 @@
                         <div class="header-favourite">
                             <a href="{{ route('wishlist.index') }}">
                                 <i class="fa fa-heart"></i>
-                                <span id="watchlist-badge" class="cart-text">Watchlist (<span
+                                <span id="watchlist-badge" class="cart-text text-success">Watchlist (<span
                                         id="wishlist-count">0</span>)</span>
                             </a>
                         </div>
@@ -49,7 +49,7 @@
                     <div class="header-cart position-relative">
                         <a href="{{ route('cart.show') }}" class="cart-item position-relative">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="cart-text">Cart</span>
+                            <span class="cart-text text-success">Cart</span>
                             @php
                             $cartCount = 0;
                             if (Auth::check()) {
@@ -148,42 +148,19 @@
 
                 <div class="category-dropdown">
                     <ul class="category-list">
+                        @forelse($categories as $category)
                         <li class="category-list-item">
-                            <a href="{{ route('productall') }}">Link Text</a>
-
-                            <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                <div class="dropdown-list-item d-flex">
-                                    <span class="dropdown-img">
-                                        <img src="./assets/images/homepage-one/category-img/dresses.webp" alt="dress">
-                                    </span>
-                                    <span class="dropdown-text">
-                                        Dresses
-                                    </span>
-                                </div>
-                                <div class="drop-down-list-icon">
-                                    <span>
-                                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                transform="rotate(45 1.5 0.818359)" />
-                                            <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                transform="rotate(135 5.58984 4.90918)" />
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="{{ route('productall') }}">
+                            <a href="{{ route('productall', ['category' => $category->id]) }}">
                                 <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="./assets/images/homepage-one/category-img/bags.webp" alt="Bags">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Bags
-                                        </span>
+                                    <div class="dropdown-list-item d-flex align-items-center">
+                                        @if($category->image)
+                                        <img src="{{ asset('uploads/categories/' . $category->image) }}"
+                                            alt="{{ $category->name }}" class="img-fluid rounded">
+                                        @else
+                                        <img src="{{ asset('assets/images/default-category.png') }}" alt="No Image"
+                                            class="img-fluid rounded">
+                                        @endif
+                                        <span class="dropdown-text">{{ $category->name }}</span>
                                     </div>
                                     <div class="drop-down-list-icon">
                                         <span>
@@ -199,235 +176,24 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="category-list-item">
-                            <a href="{{ route('productall') }}">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="./assets/images/homepage-one/category-img/sweaters.webp"
-                                                alt="sweaters">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Sweaters
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="{{ route('productall') }}">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="./assets/images/homepage-one/category-img/shoes.webp"
-                                                alt="sweaters">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Boots
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="{{ route('productall') }}">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="./assets/images/homepage-one/category-img/gift.webp" alt="gift">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Gifts
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="{{ route('productall') }}">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="./assets/images/homepage-one/category-img/sneakers.webp"
-                                                alt="sneakers">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Sneakers
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="{{ route('productall') }}">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="./assets/images/homepage-one/category-img/watch.webp" alt="watch">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Watches
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="{{ route('productall') }}">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="./assets/images/homepage-one/category-img/ring.webp" alt="ring">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Gold Ring
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="{{ route('productall') }}">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="./assets/images/homepage-one/category-img/cap.webp" alt="cap">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Cap
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="{{ route('productall') }}">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="./assets/images/homepage-one/category-img/glass.webp" alt="glass">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Sunglasses
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="{{ route('productall') }}">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="./assets/images/homepage-one/category-img/baby.webp" alt="baby">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Baby Shop
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                        @empty
+                        <li class="text-muted text-center py-3">No categories available.</li>
+                        @endforelse
                     </ul>
+                    🧠 What This Does
+                    ✅ Dynamically shows all categories from your $categories variable.
+                    ✅ Uses the same design layout as your existing hardcoded items.
+                    ✅ Adds a scrollbar after 10–12 items (depending on height).
+                    ✅ Keeps it clean, responsive, and visually consistent.
+                    ✅ Automatically handles cases where category images might be missing.
+
+                    💡 Optional Enhancement
+                    If you want to limit the initial view to 10 categories and reveal the rest with a “Show More”
+                    button, I can give you a short JS snippet for that version too — do you want that version instead of
+                    scroll?
+
+
+
                 </div>
             </div>
         </div>
@@ -452,293 +218,39 @@
                         </span>
                     </button>
                     <div class="category-dropdown position-absolute" id="subMenu">
-                        <ul class="category-list">
-                            <li class="category-list-item">
-                                <a href="{{ route('productall') }}">
-                                    <div class="dropdown-item">
-                                        <div class="dropdown-list-item">
-                                            <span class="dropdown-img">
-                                                <img src="./assets/images/homepage-one/category-img/dresses.webp"
-                                                    alt="dress">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Dresses
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" fill="#1D1D1D" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" fill="#1D1D1D" />
-                                                </svg>
-                                            </span>
-                                        </div>
+                      <ul class="category-list">
+                        @forelse($categories as $category)
+                        <li class="category-list-item">
+                            <a href="{{ route('productall', ['category' => $category->id]) }}">
+                                <div class="dropdown-item d-flex justify-content-between align-items-center">
+                                    <div class="dropdown-list-item d-flex align-items-center">
+                                        @if($category->image)
+                                        <img src="{{ asset('uploads/categories/' . $category->image) }}"
+                                            alt="{{ $category->name }}" class="img-fluid rounded" width="25">
+                                        @else
+                                        <img src="{{ asset('assets/images/default-category.png') }}" alt="No Image"
+                                            class="img-fluid rounded">
+                                        @endif
+                                        <span class="dropdown-text">{{ $category->name }}</span>
                                     </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="{{ route('productall') }}">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="./assets/images/homepage-one/category-img/bags.webp"
-                                                    alt="Bags">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Bags
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
+                                    <div class="drop-down-list-icon">
+                                        <span>
+                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
+                                                    transform="rotate(45 1.5 0.818359)" />
+                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
+                                                    transform="rotate(135 5.58984 4.90918)" />
+                                            </svg>
+                                        </span>
                                     </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="{{ route('productall') }}">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="./assets/images/homepage-one/category-img/sweaters.webp"
-                                                    alt="sweaters">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Sweaters
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="{{ route('productall') }}">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="./assets/images/homepage-one/category-img/shoes.webp"
-                                                    alt="sweaters">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Boots
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="{{ route('productall') }}">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="./assets/images/homepage-one/category-img/gift.webp"
-                                                    alt="gift">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Gifts
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="{{ route('productall') }}">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="./assets/images/homepage-one/category-img/sneakers.webp"
-                                                    alt="sneakers">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Sneakers
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" fill="#1D1D1D" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" fill="#1D1D1D" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="{{ route('productall') }}">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="./assets/images/homepage-one/category-img/watch.webp"
-                                                    alt="watch">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Watches
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="{{ route('productall') }}">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="./assets/images/homepage-one/category-img/ring.webp"
-                                                    alt="ring">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Gold Ring
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="{{ route('productall') }}">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="./assets/images/homepage-one/category-img/cap.webp" alt="cap">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Cap
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="{{ route('productall') }}">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="./assets/images/homepage-one/category-img/glass.webp"
-                                                    alt="glass">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Sunglasses
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="category-list-item">
-                                <a href="{{ route('productall') }}">
-                                    <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                        <div class="dropdown-list-item d-flex">
-                                            <span class="dropdown-img">
-                                                <img src="./assets/images/homepage-one/category-img/baby.webp"
-                                                    alt="baby">
-                                            </span>
-                                            <span class="dropdown-text">
-                                                Baby Shop
-                                            </span>
-                                        </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
+                                </div>
+                            </a>
+                        </li>
+                        @empty
+                        <li class="text-muted text-center py-3">No categories available.</li>
+                        @endforelse
+                    </ul>
                     </div>
                 </div>
                 <div class="header-nav-menu">

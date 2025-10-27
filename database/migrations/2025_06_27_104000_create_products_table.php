@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('color')->nullable();
             $table->string('sizes')->nullable();
             $table->text('description')->nullable();
+            $table->text('short_description')->nullable();
+            $table->string('tags')->nullable();
             $table->decimal('price', 10, 2);
             $table->decimal('discount', 10, 2)->default(0);
             $table->integer('quantity')->default(0);

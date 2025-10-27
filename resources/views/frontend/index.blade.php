@@ -152,7 +152,7 @@
         <div class="container">
             <div class="section-title d-flex justify-content-between align-items-center mb-4">
                 <h5 class="mb-0">Our Categories</h5>
-                <a href="{{ route('productall') }}" class="btn btn-link view">View All</a>
+                <a href="{{ route('productall') }}" class="btn-2 btn-link view">View All</a>
             </div>
 
             <div class="category-slider position-relative">
@@ -186,7 +186,7 @@
         <div class="container">
             <div class="section-title d-flex justify-content-between align-items-center mb-4">
                 <h5 class="mb-0">NEW ARRIVALS</h5>
-                <a href="#" class="view text-decoration-underline">View All</a>
+                <a href="#" class=" btn-2 view">View All</a>
             </div>
             <div class="arrival-section mt-5">
                 <!-- <h3 class="mb-4 text-center text-primary">New Arrivals</h3> -->
@@ -281,7 +281,7 @@
                     </div>
                 </div>
 
-                <a href="{{ route('flash.sale') }}" class="view">View All</a>
+                <a href="{{ route('flash.sale') }}" class="btn-2 view">View All</a>
             </div>
             <div class="flash-sale-section mt-5">
                 <!-- <h3 class="mb-4 text-center text-danger">Flash Sale</h3> -->
@@ -375,7 +375,7 @@
         <div class="container">
             <div class="section-title">
                 <h5>Best Sell in this Week</h5>
-                <a href="{{ route('productall')}}" class="view">View All</a>
+                <a href="{{ route('productall')}}" class="btn-2 view">View All</a>
             </div>
             <div class="weekly-sale-section">
                 <div class="row g-5">

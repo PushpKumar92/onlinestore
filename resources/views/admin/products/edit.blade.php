@@ -55,7 +55,7 @@
             </div>
 
             {{-- Quantity --}}
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label class="form-label fw-bold">Quantity</label>
                 <input type="number" name="quantity" class="form-control"
                     value="{{ old('quantity', $product->quantity ?? '') }}" required>
@@ -78,6 +78,15 @@
                 <label class="form-label fw-bold">Sizes</label>
                 <input type="text" name="sizes" class="form-control" value="{{ old('sizes', $product->sizes ?? '') }}">
             </div>
+            <div class="col-md-4">
+                <label class="form-label fw-bold">Tags</label>
+                <input type="text" name="tags" class="form-control" value="{{ old('tags', $product->tags ?? '') }}">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold">Short Description</label>
+                <input name="short_description" class="form-control"
+                    required>{{ old('short_description', $product->short_description ?? '') }}</input>
+            </div>
 
             {{-- Description --}}
             <div class="col-md-12">
@@ -98,8 +107,10 @@
             </div>
             <div class="col-md-6 d-flex align-items-center mt-2 bm-3">
                 <div class="form-switch switch-primary d-flex align-items-center gap-3 mb-3">
-                    <input class="form-check-input" type="checkbox" role="switch" id="switch1" name="status" value="1" {{ old('status', $blog->status) ? 'checked' : '' }}>
-                    <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch1">Status</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="switch1" name="status" value="1"
+                        {{ old('status', $blog->status) ? 'checked' : '' }}>
+                    <label class="form-check-label line-height-1 fw-medium text-secondary-light"
+                        for="switch1">Status</label>
                 </div>
             </div>
 

@@ -161,32 +161,11 @@ public function updateProfile(Request $request)
     return redirect()->route('user.profile')->with('success', 'Profile updated successfully!');
 }
 
+ public function index()
+    {
+        $users = User::all(); // fetch all users
+        return view('admin.user.index', compact('users'));
+    }
 
 
-
-public function userdetail()
-{
-    $users = User::all();
-    return view('admin.user.userdetail', compact('users'));
-}
-
-public function edit($id)
-{
-    $user = User::findOrFail($id);
-    return view('admin.user.edit', compact('user'));
-}
-
-public function update(Request $request, $id)
-{
-    $user = User::findOrFail($id);
-    $user->update($request->only(['name', 'email']));
-    return redirect()->route('userdetail')->with('success', 'User updated successfully.');
-}
-
-public function destroy($id)
-{
-    $user = User::findOrFail($id);
-    $user->delete();
-    return redirect()->route('userdetail')->with('success', 'User deleted successfully.');
-}
 }

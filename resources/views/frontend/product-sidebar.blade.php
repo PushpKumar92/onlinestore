@@ -30,7 +30,6 @@
                                         @endforeach
                                     </ul>
 
-                                    <!-- Brands Filter -->
                                     <h6 class="mb-2">Brands</h6>
                                     <ul class="list-unstyled mb-3">
                                         @foreach($brands as $brand)
@@ -41,6 +40,7 @@
                                         </li>
                                         @endforeach
                                     </ul>
+
 
                                     <!-- Sizes Filter -->
                                     <h6 class="mb-2">Sizes</h6>
@@ -75,7 +75,7 @@
                                             value="{{ request('price_max') }}">
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+                                    <button type="submit" class="btn-1 btn-primary w-100">Apply Filters</button>
                                 </form>
                             </div>
                         </div>
@@ -165,7 +165,8 @@
                                         <div
                                             class="product-cart-items position-absolute bottom-0 end-0 p-2 d-flex gap-2">
                                             {{-- View Details --}}
-                                            <a href="{{ route('product.info', $product->id) }}" class="cart cart-item mx-2">
+                                            <a href="{{ route('product.info', $product->id) }}"
+                                                class="cart cart-item mx-2">
                                                 <span
                                                     class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
                                                     style="width: 40px; height: 40px;">

@@ -4,21 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class Category extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
+    protected $table = 'categories';
+    
     protected $fillable = [
         'name',
         'slug',
         'image',
         'status',
     ];
-
-    protected $dates = ['deleted_at'];
 
     // Auto-generate slug from name
     protected static function boot()

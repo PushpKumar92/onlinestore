@@ -12,11 +12,16 @@
     </div>
     
     @if($wishlists->isEmpty())
-        <div class="alert alert-info text-center py-5 mb-5">
+        <div class="alert  text-center py-5 mb-5">
             <i class="fa fa-heart fa-3x mb-3 text-muted"></i>
             <h4>Your wishlist is empty</h4>
             <p class="text-muted">Start adding products you love!</p>
-            <a href="{{ url('/') }}" class="btn btn-primary mt-3">Continue Shopping</a>
+            <a href="{{ url('/') }}" class="btn btn-1 mt-3">Continue Shopping
+                 <span>
+                                        <i class="fa-solid fa-greater-than"></i>
+
+                                    </span>
+            </a>
         </div>
     @else
         <div class="arrival-section">

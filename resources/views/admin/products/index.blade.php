@@ -100,9 +100,6 @@
         </table>
     </div>
 
-    {{-- Pagination --}}
-    <div class="d-flex justify-content-center mt-3 mx-2">
-        {{ $allProducts->links('pagination::bootstrap-5') }}
-    </div>
+    
 </div>
 @endsection

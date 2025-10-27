@@ -15,10 +15,13 @@ class Product extends Model
         'name',
         'sku_code',
         'brand',
+        'tags',
         'color',
         'sizes',
+        'short_description',
         'description',
         'price',
+        'tags',
         'discount',
         'quantity',
         'image',
@@ -43,5 +46,15 @@ class Product extends Model
     public function getImageUrlAttribute()
     {
         return $this->image ? asset('uploads/products/' . $this->image) : asset('uploads/no-image.png');
+    }
+    // Get all image URLs
+    public function getImageUrlsAttribute()
+    {
+        if (!$this->images) {
+            return [];
+        }
+        return array_map(function($img) {
+            return asset('uploads/products/' . $img);
+        }, $this->images);
     }
 }

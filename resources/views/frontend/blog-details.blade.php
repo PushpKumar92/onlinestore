@@ -126,7 +126,7 @@
                                     <ul class="category-list">
                                         @foreach($categories as $category)
                                         <li><a
-                                                href="{{ route('blog.category', $category->slug) }}">{{ $category->name }}</a>
+                                                href="#">{{ $category->name }}</a>
                                         </li>
                                         @endforeach
                                     </ul>

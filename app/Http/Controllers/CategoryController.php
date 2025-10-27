@@ -10,11 +10,19 @@ use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
     // Display all categories
-   public function index()
-{
-   $categories = Category::all(); // or paginate(10)
-    return view('admin.category.index', compact('categories'));
-}
+    public function index()
+    {
+        // Get all categories including soft deleted ones (for debugging)
+        // If you want ONLY non-deleted: use Category::latest()->get()
+        // If you want to include soft deleted: use Category::withTrashed()->latest()->get()
+        
+        $categories = Category::latest()->get(); 
+        
+        // Debug: Check what's being retrieved
+        // dd($categories->toArray());
+        
+        return view('admin.category.index', compact('categories'));
+    }
 
     // Store new category
     public function store(Request $request)
@@ -28,6 +36,7 @@ class CategoryController extends Controller
         $data = [
             'name' => $request->name,
             'slug' => $request->slug ?: Str::slug($request->name),
+            'status' => $request->has('status') ? 1 : 0,
         ];
 
         if ($request->hasFile('image')) {
@@ -35,9 +44,6 @@ class CategoryController extends Controller
             $request->image->move(public_path('uploads/categories'), $imageName);
             $data['image'] = $imageName;
         }
-
-        // Set status: 1 = Active, 0 = Inactive
-        $data['status'] = $request->has('status') ? 1 : 0;
 
         Category::create($data);
 
@@ -58,6 +64,7 @@ class CategoryController extends Controller
         $data = [
             'name' => $request->name,
             'slug' => $request->slug,
+            'status' => $request->has('status') ? 1 : 0,
         ];
 
         if ($request->hasFile('image')) {
@@ -70,9 +77,6 @@ class CategoryController extends Controller
             $data['image'] = $imageName;
         }
 
-        // Set status: 1 = Active, 0 = Inactive
-        $data['status'] = $request->has('status') ? 1 : 0;
-
         $category->update($data);
 
         return redirect()->route('category.index')->with('success', 'Category updated successfully!');
@@ -82,36 +86,17 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
-        $category->delete(); // Soft deletes the category
+        $category->delete();
         return redirect()->back()->with('success', 'Category deleted successfully!');
     }
 
-    // Optional: Restore soft deleted category
+    // Restore soft deleted category
     public function restore($id)
     {
-        $category = Category::withTrashed()->findOrFail($id);
+        $category = Category::findOrFail($id);
         $category->restore();
         return redirect()->back()->with('success', 'Category restored successfully!');
     }
 
-    // Optional: Permanently delete
-    public function forceDelete($id)
-    {
-        $category = Category::withTrashed()->findOrFail($id);
-        
-        // Delete image file
-        if ($category->image && File::exists(public_path('uploads/categories/' . $category->image))) {
-            File::delete(public_path('uploads/categories/' . $category->image));
-        }
-        
-        $category->forceDelete(); // Permanently deletes
-        return redirect()->back()->with('success', 'Category permanently deleted!');
-    }
-
-    // Optional: View trashed categories
-    public function trashed()
-    {
-        $categories = Category::onlyTrashed()->get();
-        return view('admin.categories.trashed', compact('categories'));
-    }
+   
 }

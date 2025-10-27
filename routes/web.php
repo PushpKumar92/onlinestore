@@ -32,16 +32,14 @@ Route::post('/register', [UserController::class, 'register']);
 
 // Show login form
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [UserController::class, 'login'])->name('login.submit');
- Route::get('user-forgot-password', [UserForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-    Route::post('user-forgot-password', [UserForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-    Route::get('user-reset-password/{token}', [UserForgotPasswordController::class, 'showResetForm'])->name('password.reset');
-    Route::post('user-reset-password', [UserForgotPasswordController::class, 'reset'])->name('password.update');
+Route::post('/login', [UserController::class, 'login'])->name('login.submit'); Route::get('user-forgot-password', [UserForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('user-forgot-password', [UserForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('user-reset-password/{token}', [UserForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('user-reset-password', [UserForgotPasswordController::class, 'reset'])->name('password.update');
 
-
+   //  Main Controller
 Route::get('/',[MainController::class,'index'])->name('index');
 Route::get('/about',[MainController::class,'about'])->name('about');
-
 Route::get('/privacy', [MainController::class, 'privacy'])->name('privacy');
 Route::get('/terms', [MainController::class, 'terms'])->name('terms');
 Route::get('/faq', [MainController::class, 'faq'])->name('faq');
@@ -56,7 +54,6 @@ Route::get('/empty-card', [MainController::class, 'emptyCard'])->name('empty.car
 Route::get('/seller-sidebar', [MainController::class, 'sellerSidebar'])->name('seller.sidebar');
 Route::get('/empty-wishlist', [MainController::class, 'emptyWishlist'])->name('empty.wishlist');
 Route::get('/flash-sale', [MainController::class, 'flashSale'])->name('flash.sale');
-
 Route::get('/sales', [MainController::class, 'sales'])->name('frontend.sales');
 
 
@@ -75,23 +72,21 @@ Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.in
 Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'destroy'])->name('wishlist.remove');
 
 
+ Route::get('/shop-page', [ProductdetailController::class, 'Allproducts'])->name('productall');
+  Route::get('/product-info/{id}', [ProductdetailController::class, 'productInfo'])->name('product.info');
 
-    Route::get('/shop-page', [ProductdetailController::class, 'Allproducts'])->name('productall');
-
-    Route::get('/all-product', [AllProductsController::class, 'Allproducts'])->name('allproducts');
+Route::get('/all-product', [AllProductsController::class, 'Allproducts'])->name('allproducts');
     
-        // Product detail by ID (alternative)
-        Route::get('/product-info/{id}', [ProductdetailController::class, 'productInfo'])->name('product.info');
-
-    Route::get('/search', [SearchController::class, 'index'])->name('search');
+     
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 
 Route::post('/chatbot', [ChatbotController::class, 'handleChat'])->name('chatbot.handle');
 
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
-   Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
-   Route::post('cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-   Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
 
 
 Route::middleware('user.auth')->prefix('user')->group(function () {
@@ -105,7 +100,7 @@ Route::middleware('user.auth')->prefix('user')->group(function () {
    Route::get('/payment/{order}', [PaymentController::class, 'showPaymentPage'])->name('payment.page');
    Route::post('/payment/{order}', [PaymentController::class, 'processPayment'])->name('payment.process');
 
- Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
     Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
    
@@ -118,10 +113,10 @@ Route::middleware('user.auth')->prefix('user')->group(function () {
 // Admin
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
- Route::get('forgot-password', [AdminForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
-    Route::post('forgot-password', [AdminForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
-    Route::get('reset-password/{token}', [AdminForgotPasswordController::class, 'showResetForm'])->name('admin.password.reset');
-    Route::post('reset-password', [AdminForgotPasswordController::class, 'reset'])->name('admin.password.update');
+Route::get('forgot-password', [AdminForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
+Route::post('forgot-password', [AdminForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
+Route::get('reset-password/{token}', [AdminForgotPasswordController::class, 'showResetForm'])->name('admin.password.reset');
+Route::post('reset-password', [AdminForgotPasswordController::class, 'reset'])->name('admin.password.update');
 
 Route::middleware('admin.auth')->prefix('admin')->group(function () {
    Route::get('/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
@@ -129,10 +124,8 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
    Route::get('change-password', [AdminController::class, 'showChangePasswordForm'])->name('admin.change-password.form');
    Route::post('change-password', [AdminController::class, 'changePassword'])->name('admin.change-password');
 
-   Route::get('/users', [UserController::class, 'userdetail'])->name('userdetail');
-   Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('useredit');
-   Route::post('/users/{id}', [UserController::class, 'update'])->name('userupdate');
-   Route::delete('users/{id}', [UserController::class, 'destroy'])->name('userdestroy');
+     Route::get('users', [UserController::class, 'index'])->name('users.index');
+
 
    Route::get('blogs', [BlogController::class, 'index'])->name('blogs.list');
    Route::get('blogs/create', [BlogController::class, 'create'])->name('blogs.addblog');
@@ -156,21 +149,21 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
    Route::put('/products/{product}', [AdminProductController::class, 'update'])->name('admin.products.update');
    Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
    Route::get('products/export', [AdminProductController::class, 'exportCsv'])->name('products.export');
-Route::post('products/import', [AdminProductController::class, 'import'])->name('admin.products.import');
+   Route::post('products/import', [AdminProductController::class, 'import'])->name('admin.products.import');
 
-    Route::get('orders', [OrderController::class, 'adminIndex'])->name('admin.orders.index');
-    Route::post('orders/{id}/update', [OrderController::class, 'updateStatus'])->name('admin.orders.update');
+   Route::get('orders', [OrderController::class, 'adminIndex'])->name('admin.orders.index');
+   Route::post('orders/{id}/update', [OrderController::class, 'updateStatus'])->name('admin.orders.update');
 
-  Route::get('/brands', [BrandController::class, 'index'])->name('brands.index');
-    Route::post('/brands', [BrandController::class, 'store'])->name('brands.store');
-    Route::put('/brands/{brand}', [BrandController::class, 'update'])->name('brands.update');
-    Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
+   Route::get('/brands', [BrandController::class, 'index'])->name('brands.index');
+   Route::post('/brands', [BrandController::class, 'store'])->name('brands.store');
+   Route::put('/brands/{brand}', [BrandController::class, 'update'])->name('brands.update');
+   Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
 
-// Sizes
-Route::resource('sizes', SizeController::class);
+// Sizes  
+   Route::resource('sizes', SizeController::class);
 
-// Colors
-Route::resource('colors', ColorController::class);
+// Colors  
+   Route::resource('colors', ColorController::class);
 
    Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 });

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->boolean('status')->default(1);
-            $table->softDeletes(); // adds deleted_at
+           // $table->softDeletes(); // adds deleted_at
             $table->timestamps();
         });
     }
