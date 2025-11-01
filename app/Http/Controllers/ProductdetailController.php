@@ -12,47 +12,49 @@ use App\Models\Color;
 class ProductdetailController extends Controller
 {
     
-  public function Allproducts(Request $request)
+ public function Allproducts(Request $request)
 {
     $query = Product::query();
-
-    // ✅ Show only products that have NO discount
-    $query->where(function ($q) {
-        $q->whereNull('discount')->orWhere('discount', '=', 0);
-    });
-
-    // ✅ Product must be approved
-    $query->where('is_approved', 1);
-
+    
+    // ✅ Show only ACTIVE products (status = 1)
+    $query->where('status', 1);
+    
+   
+    
     // ✅ Filters (categories, brands, sizes, colors, price)
     if ($request->filled('categories')) {
         $query->whereIn('category_id', $request->categories);
     }
-
+    
     if ($request->filled('brands')) {
         $query->whereIn('brand_id', $request->brands);
     }
-
+    
     if ($request->filled('sizes')) {
         $query->whereHas('sizes', function ($q) use ($request) {
             $q->whereIn('sizes.id', $request->sizes);
         });
     }
-
+    
     if ($request->filled('colors')) {
         $query->whereHas('colors', function ($q) use ($request) {
             $q->whereIn('colors.id', $request->colors);
         });
     }
-
+    
     if ($request->filled('price_min')) {
         $query->where('price', '>=', $request->price_min);
     }
-
+    
     if ($request->filled('price_max')) {
         $query->where('price', '<=', $request->price_max);
     }
-
+    
+    // ✅ NEW: Discount filter (optional - only if user wants to filter by discount)
+    if ($request->filled('discount_only') && $request->discount_only == 1) {
+        $query->where('discount', '>', 0);
+    }
+    
     // ✅ Sorting options
     if ($request->filled('sort')) {
         switch ($request->sort) {
@@ -71,22 +73,25 @@ class ProductdetailController extends Controller
             case 'newest':
                 $query->orderBy('created_at', 'desc');
                 break;
+            case 'discount':
+                $query->orderBy('discount', 'desc');
+                break;
             default:
                 $query->latest();
         }
     } else {
         $query->latest();
     }
-
+    
     $products = $query->paginate(12);
-
-    // Pass filters data
-    $categories = Category::all();
-    $brands = Brand::all();
+    
+    // Pass filters data - also filter only active categories and brands
+    $categories = Category::where('status', 1)->get();
+    $brands = Brand::where('status', 1)->get();
     $sizes = Size::all();
     $colors = Color::all();
-
-    return view('frontend.product-sidebar', compact('products', 'categories', 'brands', 'sizes', 'colors'));
+    
+    return view('frontend.shop-page', compact('products', 'categories', 'brands', 'sizes', 'colors'));
 }
 
 

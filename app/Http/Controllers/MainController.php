@@ -33,7 +33,7 @@ class MainController extends Controller
         ->take(8)
         ->get();
 
-    $categories = Category::latest()->get();
+    $categories = Category::all();
     $products = Product::all();
 
     return view('frontend.index', compact(
@@ -135,7 +135,8 @@ class MainController extends Controller
 
     // Static Pages
     public function about() {
-        return view('frontend.about');
+            $categories = Category::all();
+        return view('frontend.about',compact('categories'));
     }
 
     public function privacy() {
@@ -151,7 +152,9 @@ class MainController extends Controller
     }
 
     public function contactUs() {
-        return view('frontend.contact-us');
+        
+           $categories = Category::all();
+        return view('frontend.contact-us',compact('categories'));
     }
     // Blog Pages
     public function blog() {
@@ -173,10 +176,6 @@ class MainController extends Controller
     // Cart & Order Pages
     public function card() {
         return view('frontend.cart');
-    }
-
-    public function emptyCard() {
-        return view('frontend.empty-card');
     }
 
     public function checkout() {

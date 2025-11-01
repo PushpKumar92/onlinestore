@@ -12,8 +12,9 @@ class BlogController extends Controller
     // Show active blogs on frontend
     public function blogPage()
     {
+            $categories = Category::all();
         $blogs = Blog::where('status', 1)->latest()->take(9)->get();
-        return view('frontend.blog', compact('blogs'));
+        return view('frontend.blog', compact('blogs','categories'));
     }
 
     // Admin: list all non-deleted blogs

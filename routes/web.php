@@ -149,8 +149,13 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
    Route::get('/products/{product}/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
    Route::put('/products/{product}', [AdminProductController::class, 'update'])->name('admin.products.update');
    Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
-   Route::get('products/export', [AdminProductController::class, 'exportCsv'])->name('products.export');
-   Route::post('products/import', [AdminProductController::class, 'import'])->name('admin.products.import');
+   
+  // Export Routes
+Route::get('products/export/csv', [AdminProductController::class, 'exportCSV'])->name('products.export.csv');
+// Route::get('products/export/excel', [AdminProductController::class, 'exportExcel'])->name('products.export.excel');
+
+// Import Route
+Route::post('products/import', [AdminProductController::class, 'importProducts'])->name('products.import');
 
    Route::get('orders', [OrderController::class, 'adminIndex'])->name('admin.orders.index');
    Route::post('orders/{id}/update', [OrderController::class, 'updateStatus'])->name('admin.orders.update');

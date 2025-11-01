@@ -29,7 +29,7 @@ class Product extends Model
         'status',
     ];
 
-    protected $dates = ['deleted_at'];
+
 
     // Relationships
     public function category()
@@ -40,6 +40,10 @@ class Product extends Model
     public function admin()
     {
         return $this->belongsTo(Admin::class, 'added_by');
+    }
+ public function brand()
+ {
+     return $this->belongsTo(Brand::class); 
     }
 
     // Accessor for full image path

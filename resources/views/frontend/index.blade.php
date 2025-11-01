@@ -15,25 +15,7 @@
 
 
 
-<!---------Chatbot-------->
-<!-- Chatbot Widget -->
-<div id="chatbot-container">
-  <button id="chatbot-toggle" class="chatbot-toggle-btn">💬</button>
 
-  <div id="chatbot-box" class="chatbot-box">
-    <div class="chatbot-header">
-      <span>EasyShop Assistant 🤖</span>
-      <button id="chatbot-close" class="chatbot-close">×</button>
-    </div>
-
-    <div class="chatbot-messages" id="chatbot-messages"></div>
-
-    <div class="chatbot-input">
-      <input type="text" id="chatbot-input-field" placeholder="Type a message..." />
-      <button id="chatbot-send">Send</button>
-    </div>
-  </div>
-</div>
 
 
     <!--------------- hero-section --------------->
@@ -168,16 +150,16 @@
 
             <div class="category-slider position-relative">
                 <div class="slider-viewport overflow-hidden">
-                    <div class="slider-track d-flex align-items-center gap-3" id="sliderTrack">
+                    <div class="slider-track d-flex align-items-center" id="sliderTrack">
                         @forelse($categories as $category)
                         <div class="category-box text-center">
                             <a href="{{ route('productall', ['categories[]' => $category->id]) }}">
                                 @if($category->image)
                                 <img src="{{ asset('uploads/categories/' . $category->image) }}"
-                                    alt="{{ $category->name }}" class="img-fluid rounded w-50">
+                                    alt="{{ $category->name }}" class="img-fluid rounded w-60">
 
                                 @endif
-                                <p class="mt-2">{{ $category->name }}</p>
+                                <p class="mt-2 prince">{{ $category->name }}</p>
                             </a>
                         </div>
                         @empty
@@ -382,216 +364,67 @@
 
 
     <!--------------- weekly-section--------------->
-    <section class="product weekly-sale">
-        <div class="container">
-            <div class="section-title">
-                <h5>Best Sell in this Week</h5>
-                <a href="{{ route('productall')}}" class="btn-2 view">View All</a>
-            </div>
-            <div class="weekly-sale-section">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-wrapper" data-aos="fade-up">
-                            <div class="product-img">
-                                <img src="{{ asset('assets/images/homepage-one/product-img/product-img-5.webp') }}"
-                                    alt="Product Image">
-                                <div class="product-cart-items">
-                                    <a href="#" class="cart cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-arrows-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
+<section class="product weekly-sale">
+    <div class="container">
+        <div class="section-title">
+            <h5>Best Sell in this Week</h5>
+            <a href="{{ route('productall') }}" class="btn-2 view">View All</a>
+        </div>
+        <div class="weekly-sale-section">
+            <div class="row g-5">
 
-
-                                    </a>
-                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
-                                        </span>
-
-
-                                    </a>
-
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="ratings">
-                                    <span class="text-warning">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                @foreach($products as $product)
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-wrapper" data-aos="fade-up">
+                        <div class="product-img">
+                            <img src="{{ asset('uploads/products/' . $product->image) }}" alt="{{ $product->name }}">
+                            <div class="product-cart-items">
+                                <a href="#" class="cart cart-item">
+                                    <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background-color:white;border-radius:50%;">
+                                        <i class="fas fa-arrows-alt" style="font-size:20px;color:#181818;"></i>
                                     </span>
-
-                                </div>
-                                <div class="product-description">
-                                    <a href="#" class="product-details">Slim-Fit Shirt
-                                    </a>
-                                    <div class="price">
-                                        <span class="price-cut">$14.99</span>
-                                        <span class="new-price">$6.99</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-cart-btn">
-                                <a href="{{ route('cart.show')}}" class="product-btn">Add To Cart</a>
+                                </a>
+                                <a href="{{ route('wishlist.index') }}" class="favourite cart-item">
+                                    <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background-color:white;border-radius:50%;">
+                                        <i class="fas fa-heart" style="font-size:20px;color:#00674f;"></i>
+                                    </span>
+                                </a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-wrapper" data-aos="fade-up">
-                            <div class="product-img">
-                                <img src="{{ asset('assets/images/homepage-one/product-img/product-img-3.webp') }}"
-                                    alt="Product Image">
-                                <div class="product-cart-items">
-                                    <a href="#" class="cart cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-arrows-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
 
-
-                                    </a>
-                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
-                                        </span>
-
-
-                                    </a>
-
-                                </div>
+                        <div class="product-info">
+                            <div class="ratings">
+                                <span class="text-warning">
+                                    @for($i=0; $i<5; $i++)
+                                        <i class="fas fa-star" ></i>
+                                    @endfor
+                                </span>
                             </div>
-                            <div class="product-info">
-                                <div class="ratings">
-                                    <span class="text-warning">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </span>
-
+                            <div class="product-description">
+                                <a href="{{ route('product.info', $product->id) }}" class="product-details">
+                                    {{ $product->name }}
+                                </a>
+                                <div class="price">
+                                    @if($product->old_price)
+                                        <span class="price-cut">₹{{ $product->old_price }}</span>
+                                    @endif
+                                    <span class="new-price">₹{{ $product->price }}</span>
                                 </div>
-                                <div class="product-description">
-                                    <a href="#" class="product-details">Sequin Dress
-                                    </a>
-                                    <div class="price">
-                                        <span class="price-cut">$30.99</span>
-                                        <span class="new-price">$15.99</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-cart-btn">
-                                <a href="{{ route('cart.show')}}" class="product-btn">Add To Cart</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-wrapper" data-aos="fade-up">
-                            <div class="product-img">
-                                <img src="{{ asset('assets/images/homepage-one/product-img/product-img-6.webp') }}"
-                                    alt="Product Image">
-                                <div class="product-cart-items">
-                                    <a href="#" class="cart cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-arrows-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
-                                    </a>
-                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
-                                        </span>
 
-
-                                    </a>
-
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="ratings">
-                                    <span class="text-warning">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </span>
-
-                                </div>
-                                <div class="product-description">
-                                    <a href="#" class="product-details">Red Sequin Dress
-                                    </a>
-                                    <div class="price">
-                                        <span class="price-cut">$20.99</span>
-                                        <span class="new-price">$13.99</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-cart-btn">
-                                <a href="{{ route('cart.show')}}" class="product-btn">Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-wrapper" data-aos="fade-up">
-                            <div class="product-img">
-                                <img src="{{ asset('assets/images/homepage-one/product-img/product-img-9.webp') }}"
-                                    alt="Product Image">
-                                <div class="product-cart-items">
-                                    <a href="#" class="cart cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-arrows-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
-
-
-                                    </a>
-                                    <a href="{{route('wishlist.index')}}" class="favourite cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
-                                        </span>
-
-
-                                    </a>
-
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="ratings">
-                                    <span class="text-warning">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </span>
-
-                                </div>
-                                <div class="product-description">
-                                    <a href="#" class="product-details">Rainbow Sequin Dress
-                                    </a>
-                                    <div class="price">
-                                        <span class="price-cut">$19.99</span>
-                                        <span class="new-price">$16.99</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-cart-btn">
-                                <a href="{{ route('cart.show')}}" class="product-btn">Add To Cart</a>
-                            </div>
+                        <div class="product-cart-btn">
+                            <a href="{{ route('cart.add', $product->id) }}" class="product-btn">Add To Cart</a>
                         </div>
                     </div>
                 </div>
+                @endforeach
+
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
     <!--------------- weekly-section-end--------------->
 </main>
 <script>

@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
+
 class Brand extends Model
 {
-    use HasFactory, SoftDeletes;
+   
+
+    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -18,7 +21,7 @@ class Brand extends Model
         'status',
     ];
 
-    protected $dates = ['deleted_at'];
+  
 
     // Auto-generate slug from name
     protected static function boot()
