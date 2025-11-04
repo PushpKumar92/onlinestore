@@ -372,54 +372,77 @@
         </div>
         <div class="weekly-sale-section">
             <div class="row g-5">
-
                 @foreach($products as $product)
+                @php
+                $price = $product->price;
+                $discount = $product->discount ?? 0;
+                $hasDiscount = $discount > 0;
+                $discountedPrice = $hasDiscount ? round($price - ($price * $discount / 100), 2) : $price;
+                @endphp
                 <div class="col-lg-3 col-md-6">
                     <div class="product-wrapper" data-aos="fade-up">
-                        <div class="product-img">
-                            <img src="{{ asset('uploads/products/' . $product->image) }}" alt="{{ $product->name }}">
+                        <div class="product-img position-relative">
+                            @if($product->image)
+                            <img src="{{ asset('uploads/products/' . $product->image) }}" 
+                                class="img-fluid w-100" style="object-fit: cover; height: 300px;"
+                                alt="{{ $product->name }}">
+                            @else
+                            <img src="{{ asset('images/no-image.png') }}" 
+                                class="img-fluid w-100" style="object-fit: cover; height: 300px;" 
+                                alt="No Image">
+                            @endif
+
+                            {{-- Discount Badge - Only show if discount exists --}}
+                            @if($hasDiscount)
+                            <span class="badge bg-danger position-absolute top-0 start-0 m-2">
+                                {{ $discount }}% OFF
+                            </span>
+                            @endif
+
                             <div class="product-cart-items">
-                                <a href="#" class="cart cart-item">
+                                <a href="{{ route('product.info', $product->id) }}" class="cart cart-item">
                                     <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background-color:white;border-radius:50%;">
-                                        <i class="fas fa-arrows-alt" style="font-size:20px;color:#181818;"></i>
+                                        <i class="fas fa-eye" style="font-size:20px;color:#181818;"></i>
                                     </span>
                                 </a>
-                                <a href="{{ route('wishlist.index') }}" class="favourite cart-item">
+                                <a href="javascript:void(0);" onclick="addToWishlist({{ $product->id }})" 
+                                    id="wishlist-btn-{{ $product->id }}" class="favourite cart-item">
                                     <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background-color:white;border-radius:50%;">
                                         <i class="fas fa-heart" style="font-size:20px;color:#00674f;"></i>
                                     </span>
                                 </a>
                             </div>
                         </div>
-
                         <div class="product-info">
                             <div class="ratings">
                                 <span class="text-warning">
                                     @for($i=0; $i<5; $i++)
-                                        <i class="fas fa-star" ></i>
+                                        <i class="fas fa-star"></i>
                                     @endfor
                                 </span>
                             </div>
                             <div class="product-description">
                                 <a href="{{ route('product.info', $product->id) }}" class="product-details">
-                                    {{ $product->name }}
+                               {{ Str::limit($product->name, 20) }}
                                 </a>
                                 <div class="price">
-                                    @if($product->old_price)
-                                        <span class="price-cut">₹{{ $product->old_price }}</span>
+                                    @if($hasDiscount)
+                                        <del class="text-muted">₹{{ $price }}</del>
+                                        <span class="new-price text-success fw-bold">₹{{ $discountedPrice }}</span>
+                                    @else
+                                        <span class="new-price text-dark fw-bold">₹{{ $price }}</span>
                                     @endif
-                                    <span class="new-price">₹{{ $product->price }}</span>
                                 </div>
                             </div>
                         </div>
-
                         <div class="product-cart-btn">
-                            <a href="{{ route('cart.add', $product->id) }}" class="product-btn">Add To Cart</a>
+                            <button class="product-btn add-to-cart" data-id="{{ $product->id }}">
+                                Add To Cart
+                            </button>
                         </div>
                     </div>
                 </div>
                 @endforeach
-
             </div>
         </div>
     </div>

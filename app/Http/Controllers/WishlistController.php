@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Wishlist;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
@@ -29,7 +30,9 @@ class WishlistController extends Controller
                 ->get();
         }
 
-        return view('frontend.wishlist', compact('wishlists'));
+         $categories=Category::all();
+
+        return view('frontend.wishlist', compact('wishlists','categories'));
     }
 
     /**

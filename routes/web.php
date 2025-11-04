@@ -24,6 +24,8 @@ use App\Http\Controllers\ProductdetailController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AllProductsController;
+use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\Admin\ContactUsAdminController;
 
 
 
@@ -49,7 +51,7 @@ Route::get('/create-account', [MainController::class, 'createAccount'])->name('c
 Route::get('/order', [MainController::class, 'order'])->name('order');
 Route::get('/sellers', [MainController::class, 'sellers'])->name('sellers');
 Route::get('/user-profile', [MainController::class, 'userProfile'])->name('user.profile');
-Route::get('/contact-us', [MainController::class, 'contactUs'])->name('contact.us');
+
 Route::get('/empty-card', [MainController::class, 'emptyCard'])->name('empty.card');
 
 Route::get('/seller-sidebar', [MainController::class, 'sellerSidebar'])->name('seller.sidebar');
@@ -63,6 +65,8 @@ Route::get('/blog-page', [BlogController::class, 'blogPage'])->name('blog.page')
 Route::get('/blog-detail/{slug}', [BlogController::class, 'blogDetails'])->name('blog.details');
 
 
+Route::get('/contact', [ContactUsController::class, 'index'])->name('contact.us');
+Route::post('/contact/submit', [ContactUsController::class, 'store'])->name('contact.submit');
 
 //WishlistCOntroller
 
@@ -107,6 +111,11 @@ Route::middleware('user.auth')->prefix('user')->group(function () {
    
    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
    Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
+
+ Route::post('/reviews/store', [ReviewController::class, 'store'])->name('reviews.store');
+
+
+Route::get('/reviews/product/{productId}', [ReviewController::class, 'getProductReviews'])->name('reviews.product');
 
    Route::get('logout', [UserController::class, 'logout'])->name('user.logout');
 });
@@ -176,6 +185,13 @@ Route::get('meta-tags', [MetaTagController::class, 'index'])->name('meta-tags.in
 
 // Colors  
    Route::resource('colors', ColorController::class);
+
+
+
+    Route::get('/contacts', [ContactUsAdminController::class, 'index'])->name('admin.contacts.index');
+    Route::get('/contacts/{id}', [ContactUsAdminController::class, 'show'])->name('admin.contacts.show');
+    Route::post('/contacts/{id}/replied', [ContactUsAdminController::class, 'markReplied'])->name('admin.contacts.replied');
+    Route::delete('/contacts/{id}', [ContactUsAdminController::class, 'destroy'])->name('admin.contacts.destroy');
 
    Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 });

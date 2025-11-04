@@ -113,14 +113,15 @@
             <div class="col-lg-7">
                 <div class="contact-form-wrapper" data-aos="fade-left">
                     <h3 class="form-title">Send Us A Message</h3>
-                    <form action="#" method="POST">
+                     <form action="{{ route('contact.submit') }}" method="POST">
                         @csrf
                         <div class="row g-3">
                             <!-- Name -->
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Full Name *</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                    name="name" value="{{ old('name') }}" placeholder="John Doe" required>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                                    id="name" name="name" value="{{ old('name') }}" 
+                                    placeholder="John Doe" required>
                                 @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -129,8 +130,9 @@
                             <!-- Email -->
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email Address *</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                                    name="email" value="{{ old('email') }}" placeholder="john@example.com" required>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" 
+                                    id="email" name="email" value="{{ old('email') }}" 
+                                    placeholder="john@example.com" required>
                                 @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -139,8 +141,9 @@
                             <!-- Phone -->
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control @error('phone') is-invalid @enderror" id="phone"
-                                    name="phone" value="{{ old('phone') }}" placeholder="+1 (234) 567-8900">
+                                <input type="tel" class="form-control @error('phone') is-invalid @enderror" 
+                                    id="phone" name="phone" value="{{ old('phone') }}" 
+                                    placeholder="+1 (234) 567-8900">
                                 @error('phone')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -149,18 +152,23 @@
                             <!-- Subject -->
                             <div class="col-md-6">
                                 <label for="subject" class="form-label">Subject *</label>
-                                <select class="form-select @error('subject') is-invalid @enderror" id="subject"
-                                    name="subject" required>
+                                <select class="form-select @error('subject') is-invalid @enderror" 
+                                    id="subject" name="subject" required>
                                     <option value="">Choose a subject</option>
-                                    <option value="general" {{ old('subject') == 'general' ? 'selected' : '' }}>General
-                                        Inquiry</option>
-                                    <option value="support" {{ old('subject') == 'support' ? 'selected' : '' }}>Customer
-                                        Support</option>
-                                    <option value="order" {{ old('subject') == 'order' ? 'selected' : '' }}>Order Issue
+                                    <option value="general" {{ old('subject') == 'general' ? 'selected' : '' }}>
+                                        General Inquiry
+                                    </option>
+                                    <option value="support" {{ old('subject') == 'support' ? 'selected' : '' }}>
+                                        Customer Support
+                                    </option>
+                                    <option value="order" {{ old('subject') == 'order' ? 'selected' : '' }}>
+                                        Order Issue
                                     </option>
                                     <option value="feedback" {{ old('subject') == 'feedback' ? 'selected' : '' }}>
-                                        Feedback</option>
-                                    <option value="other" {{ old('subject') == 'other' ? 'selected' : '' }}>Other
+                                        Feedback
+                                    </option>
+                                    <option value="other" {{ old('subject') == 'other' ? 'selected' : '' }}>
+                                        Other
                                     </option>
                                 </select>
                                 @error('subject')
@@ -171,9 +179,11 @@
                             <!-- Message -->
                             <div class="col-12">
                                 <label for="message" class="form-label">Your Message *</label>
-                                <textarea class="form-control @error('message') is-invalid @enderror" id="message"
-                                    name="message" rows="5" placeholder="Write your message here..."
+                                <textarea class="form-control @error('message') is-invalid @enderror" 
+                                    id="message" name="message" rows="5" 
+                                    placeholder="Write your message here..." 
                                     required>{{ old('message') }}</textarea>
+                                <small class="text-muted">Minimum 10 characters, maximum 1000 characters</small>
                                 @error('message')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -181,9 +191,9 @@
 
                             <!-- Submit Button -->
                             <div class="col-12">
-                                <button type="submit" class="submit-btn">
-                                    Send Message
-                                    <i class="fa-solid fa-paper-plane"></i>
+                                <button type="submit" class="submit-btn btn btn-primary w-100">
+                                    <span>Send Message</span>
+                                    <i class="fa-solid fa-paper-plane ms-2"></i>
                                 </button>
                             </div>
                         </div>

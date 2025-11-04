@@ -131,93 +131,77 @@
                         </div>
 
                         <!-- Products Grid -->
-                        <div class="row g-4">
-                            @forelse($products as $product)
-                            @php
-                            $price = $product->price;
-                            $discount = $product->discount ?? 0;
-                            $hasDiscount = $discount > 0;
-                            $discountedPrice = $hasDiscount ? round($price - ($price * $discount / 100), 2) : $price;
-                            @endphp
+<div class="row g-4">
+    @forelse($products as $product)
+    @php
+    $discount = $product->discount ?? 0;
+    @endphp
 
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="product-wrapper h-100 d-flex flex-column" data-aos="fade-up">
+    @if($discount == 0)
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="product-wrapper h-100 d-flex flex-column" data-aos="fade-up">
 
-                                    {{-- Product Image --}}
-                                    <div class="product-img position-relative">
-                                        @if($product->image)
-                                        <img src="{{ asset('uploads/products/' . $product->image) }}"
-                                            class="img-fluid w-100" style="object-fit: cover; height: 300px;"
-                                            alt="{{ $product->name }}">
-                                        @else
-                                        <img src="{{ asset('images/no-image.png') }}" class="img-fluid w-100"
-                                            style="object-fit: cover; height: 300px;" alt="No Image">
-                                        @endif
+            {{-- Product Image --}}
+            <div class="product-img position-relative">
+                @if($product->image)
+                <img src="{{ asset('uploads/products/' . $product->image) }}"
+                    class="img-fluid w-100" style="object-fit: cover; height: 300px;"
+                    alt="{{ $product->name }}">
+                @else
+                <img src="{{ asset('images/no-image.png') }}" class="img-fluid w-100"
+                    style="object-fit: cover; height: 300px;" alt="No Image">
+                @endif
 
-                                        {{-- Discount Badge --}}
-                                        @if($hasDiscount)
-                                        <span class="badge bg-danger position-absolute top-0 start-0 m-2">
-                                            {{ $discount }}% OFF
-                                        </span>
-                                        @endif
+                {{-- Product Actions --}}
+                <div class="product-cart-items position-absolute bottom-0 end-0 p-2 d-flex gap-2">
+                    {{-- View Details --}}
+                    <a href="{{ route('product.info', $product->id) }}" class="cart cart-item">
+                        <span
+                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
+                            style="width: 40px; height: 40px;">
+                            <i class="fas fa-eye text-dark"></i>
+                        </span>
+                    </a>
 
-                                        {{-- Product Actions --}}
-                                        <div
-                                            class="product-cart-items position-absolute bottom-0 end-0 p-2 d-flex gap-2">
-                                            {{-- View Details --}}
-                                            <a href="{{ route('product.info', $product->id) }}"
-                                                class="cart cart-item mx-2">
-                                                <span
-                                                    class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
-                                                    style="width: 40px; height: 40px;">
-                                                    <i class="fas fa-eye text-dark"></i>
-                                                </span>
-                                            </a>
+                    {{-- Wishlist --}}
+                    <a href="javascript:void(0);" onclick="addToWishlist({{ $product->id }})"
+                        id="wishlist-btn-{{ $product->id }}"
+                        class="position-absolute top-0 end-0 m-2">
+                        <span
+                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle border shadow-sm"
+                            style="width: 40px; height: 40px;">
+                            <i class="fa fa-heart text-secondary"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
 
-                                            {{-- Wishlist --}}
-                                            <a href="javascript:void(0);" onclick="addToWishlist({{ $product->id }})"
-                                                id="wishlist-btn-{{ $product->id }}"
-                                                class="position-absolute top-0 end-0 m-2 mx-2">
-                                                <span
-                                                    class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle border shadow-sm"
-                                                    style="width: 40px; height: 40px;">
-                                                    <i class="fa fa-heart text-secondary"></i>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
+            {{-- Product Info --}}
+            <div class="product-info mt-3 flex-grow-1">
+                <a href="{{ route('product.info', $product->id) }}"
+                    class="product-details fw-bold text-dark d-block mb-2">
+                    {{ $product->name }}
+                </a>
+                <div class="price">
+                    <span class="new-price text-dark fw-bold">₹{{ $product->price }}</span>
+                </div>
+            </div>
 
-                                    {{-- Product Info --}}
-                                    <div class="product-info mt-3 flex-grow-1">
-                                        <a href="{{ route('product.info', $product->id) }}"
-                                            class="product-details fw-bold text-dark d-block mb-2">
-                                            {{ $product->name }}
-                                        </a>
-                                        <div class="price">
-                                            <span
-                                                class="new-price fw-bold {{ $hasDiscount ? 'text-success' : 'text-dark' }}">
-                                                ₹{{ $discountedPrice }}
-                                            </span>
-                                            @if($hasDiscount)
-                                            <del class="text-muted ms-2">₹{{ $price }}</del>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    {{-- Add to Cart Button --}}
-                                    <div class="product-cart-btn text-center mt-3">
-                                        <button class="product-btn add-to-cart" data-id="{{ $product->id }}">
-                                            Add to Cart
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            @empty
-                            <div class="col-12 text-center">
-                                <p class="text-muted">No products available.</p>
-                            </div>
-                            @endforelse
-                        </div>
+            {{-- Add to Cart Button --}}
+            <div class="product-cart-btn text-center mt-3">
+                <button class="product-btn add-to-cart" data-id="{{ $product->id }}">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+    @endif
+    @empty
+    <div class="col-12 text-center">
+        <p class="text-muted">No products available.</p>
+    </div>
+    @endforelse
+</div>
 
                         <script>
                         // Wishlist Function

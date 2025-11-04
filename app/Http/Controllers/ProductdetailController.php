@@ -112,6 +112,10 @@ class ProductdetailController extends Controller
  
            $sizes = $product->sizes ? explode(',', $product->sizes) : [];
 
-     return view('frontend.product-info', compact('product', 'relatedProducts','sizes')); // singular
+        $categories = Category::where('status', 1)->get();  
+
+          $products = Product::all();
+
+     return view('frontend.product-info', compact('product','products', 'relatedProducts','sizes','categories')); // singular
  }
 }

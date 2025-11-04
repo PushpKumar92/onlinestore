@@ -2,7 +2,6 @@
 @section('content')
 <main class="main-content">
     <!--------------- products-info-section--------------->
-
     <section class="product product-info">
         <div class="container">
             {{-- Check if product exists --}}
@@ -24,7 +23,7 @@
             <div class="product-info-section">
                 <div class="row">
                     <!-- Product Images -->
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="product-info-img">
                             <div class="swiper product-top">
                                 @if($product->discount > 0)
@@ -54,7 +53,7 @@
                     </div>
 
                     <!-- Product Info -->
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <div class="product-info-content">
                             <span class="wrapper-subtitle">{{ strtoupper(optional($product->category)->name) }}</span>
                             <h5>{{ $product->name }}</h5>
@@ -80,7 +79,8 @@
                                 @endif
                             </div>
 
-                           <p class="content-paragraph">{{ Str::words(strip_tags($product->description), 17, '.') }}</p>
+                            <p class="content-paragraph">{{ Str::words(strip_tags($product->description), 17, '.') }}
+                            </p>
 
 
                             <div class="product-availability">
@@ -89,35 +89,35 @@
                                     class="inner-text">{{ $product->quantity > 0 ? $product->quantity . ' in stock' : 'Out of stock' }}</span>
                             </div>
                             @if(!empty($sizes))
-                            <div class="mb-3">
-                                <label for="size-select-{{ $product->id }}" class="form-label">Select Size:</label>
-                                <select id="size-select-{{ $product->id }}" class="form-select w-auto d-inline-block">
+                            <div class="mb-3 d-flex align-items-center gap-3">
+                                <label for="size-select-{{ $product->id }}" class="form-label me-2 mb-0">Select
+                                    Size:</label>
+
+                                <select id="size-select-{{ $product->id }}" class="form-select w-autos d-inline-block">
                                     @foreach($sizes as $size)
                                     <option value="{{ trim($size) }}">{{ strtoupper(trim($size)) }}</option>
                                     @endforeach
                                 </select>
+
+                                
                             </div>
+
                             @endif
 
 
                             <div class="product-quantity">
-                                <div class="quantity-wrapper">
-                                    <div class="quantity">
-                                        <span class="minus">-</span>
-                                        <span class="number">1</span>
-                                        <span class="plus">+</span>
-                                    </div>
-                                    <div class="wishlist">
-                                        <button onclick="addToWishlist({{ $product->id }})">
-                                            <i class="fas fa-heart"></i>
-                                        </button>
-                                    </div>
+                                <div class="button-row">
+                                    <button class="shop-btn add-to-cart" data-id="{{ $product->id }}">
+                                        <span><i class="fa-solid fa-plus"></i></span>
+                                        <span>Add to Cart</span>
+                                    </button>
+                                    <a href="{{route('checkout.index')}}" class="shop-btn">
+                                        <span><i class="fa-solid fa-plus"></i></span>
+                                        <span>Buy Now</span>
+                                    </a>
                                 </div>
-                                <button class="shop-btn add-to-cart" data-id="{{ $product->id }}">
-                                    <span><i class="fa-solid fa-plus"></i></span>
-                                    <span>Add to Cart</span>
-                                </button>
                             </div>
+
 
                             <div class="product-details">
                                 <p>Category : <span>{{ optional($product->category)->name }}</span></p>
@@ -129,48 +129,107 @@
                 </div>
             </div>
 
-            {{-- Related Products --}}
+            <!--------------- products-related section--------------->
             @if(isset($relatedProducts) && $relatedProducts->count())
             <div class="related-products mt-5">
-                <h4 class="mb-4">Related Products</h4>
+                <div class="section-title mb-4">
+                    <h4>Related Products</h4>
+                </div>
                 <div class="row g-4">
                     @foreach($relatedProducts as $related)
-                    <div class="col-md-3 col-6">
-                        <div class="product-card text-center">
-                            {{-- Use slug if available, otherwise use ID --}}
-                            <a href="{{ route('product.info', $related->id) }}">
-                                <img src="{{ asset('uploads/products/' . $related->image) }}"
-                                    alt="{{ $related->name }}">
-                                <h6>{{ $related->name }}</h6>
-                            </a>
-                            <p class="price mb-0">
-                                ₹{{ $related->discount > 0 ? round($related->price - ($related->price * $related->discount / 100)) : $related->price }}
-                            </p>
+                    @php
+                    $relatedPrice = $related->price;
+                    $relatedDiscount = $related->discount ?? 0;
+                    $hasRelatedDiscount = $relatedDiscount > 0;
+                    $relatedDiscountedPrice = $hasRelatedDiscount ? round($relatedPrice - ($relatedPrice *
+                    $relatedDiscount / 100), 2) : $relatedPrice;
+                    @endphp
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="product-wrapper h-100 d-flex flex-column" data-aos="fade-up">
+                            {{-- Product Image --}}
+                            <div class="product-img position-relative">
+                                <a href="{{ route('product.info', $related->id) }}">
+                                    @if($related->image)
+                                    <img src="{{ asset('uploads/products/' . $related->image) }}"
+                                        class="img-fluid w-100" style="object-fit: cover; height: 250px;"
+                                        alt="{{ $related->name }}">
+                                    @else
+                                    <img src="{{ asset('images/no-image.png') }}" class="img-fluid w-100"
+                                        style="object-fit: cover; height: 250px;" alt="No Image">
+                                    @endif
+                                </a>
+
+                                {{-- Discount Badge --}}
+                                @if($hasRelatedDiscount)
+                                <span class="badge bg-danger position-absolute top-0 start-0 m-2">
+                                    {{ $relatedDiscount }}% OFF
+                                </span>
+                                @endif
+
+                                {{-- Product Actions --}}
+                                <div class="product-cart-items position-absolute bottom-0 end-0 p-2 d-flex gap-2">
+                                    {{-- View Details --}}
+                                    <a href="{{ route('product.info', $related->id) }}" class="cart cart-item">
+                                        <span
+                                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle"
+                                            style="width: 40px; height: 40px;">
+                                            <i class="fas fa-eye text-dark"></i>
+                                        </span>
+                                    </a>
+
+                                    {{-- Wishlist --}}
+                                    <a href="javascript:void(0);" onclick="addToWishlist({{ $related->id }})"
+                                        id="wishlist-btn-{{ $related->id }}" class="position-absolute top-0 end-0 m-2">
+                                        <span
+                                            class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle border shadow-sm"
+                                            style="width: 40px; height: 40px;">
+                                            <i class="fa fa-heart text-secondary"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            {{-- Product Info --}}
+                            <div class="product-info mt-3 flex-grow-1">
+                                <a href="{{ route('product.info', $related->id) }}"
+                                    class="product-details fw-bold text-dark d-block mb-2" title="{{ $related->name }}">
+                                    {{ Str::limit($related->name, 40) }}
+                                </a>
+                                <div class="price">
+                                    @if($hasRelatedDiscount)
+                                    <span class="new-price fw-bold text-success">
+                                        ₹{{ number_format($relatedDiscountedPrice, 2) }}
+                                    </span>
+                                    <del class="text-muted ms-2">₹{{ number_format($relatedPrice, 2) }}</del>
+                                    @else
+                                    <span
+                                        class="new-price text-dark fw-bold">₹{{ number_format($relatedPrice, 2) }}</span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            {{-- Add to Cart Button --}}
+                            <div class="product-cart-btn text-center mt-3">
+                                <button class="product-btn add-to-cart" data-id="{{ $related->id }}">
+                                    Add to Cart
+                                </button>
+                            </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
             </div>
             @endif
+            <!--------------- products-related section end--------------->
 
             @endif {{-- End of product exists check --}}
         </div>
     </section>
 
-
     @push('scripts')
     <script>
-    function addToCart(productId) {
-        console.log('Adding product ' + productId + ' to cart');
-        alert('Product added to cart!');
-    }
-
-    function addToWishlist(productId) {
-        console.log('Adding product ' + productId + ' to wishlist');
-        alert('Product added to wishlist!');
-    }
-
     document.addEventListener('DOMContentLoaded', function() {
+        // Quantity selector functionality for main product
         const minusBtn = document.querySelector('.quantity .minus');
         const plusBtn = document.querySelector('.quantity .plus');
         const numberSpan = document.querySelector('.quantity .number');
@@ -188,7 +247,7 @@
                 @if(isset($product))
                 let stock = {
                     {
-                        $product - > stock ?? 0
+                        $product - > quantity ?? 0
                     }
                 };
                 if (currentValue < stock) {
@@ -199,13 +258,113 @@
                 @endif
             });
         }
+
+        // Main product add to cart
+        const mainAddToCartBtn = document.querySelector('.product-quantity .add-to-cart');
+        if (mainAddToCartBtn) {
+            mainAddToCartBtn.addEventListener('click', function() {
+                const productId = this.getAttribute('data-id');
+                const quantity = numberSpan ? parseInt(numberSpan.textContent) : 1;
+                const sizeSelect = document.getElementById('size-select-' + productId);
+                const size = sizeSelect ? sizeSelect.value : null;
+
+                addToCartWithDetails(productId, quantity, size);
+            });
+        }
+
+        // Related products add to cart
+        const relatedAddToCartBtns = document.querySelectorAll('.related-products .add-to-cart');
+        relatedAddToCartBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const productId = this.getAttribute('data-id');
+                addToCartWithDetails(productId, 1, null);
+            });
+        });
     });
+
+    // Add to cart function
+    function addToCartWithDetails(productId, quantity, size) {
+        console.log('Adding product ' + productId + ' to cart with quantity: ' + quantity);
+
+        fetch('/cart/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    quantity: quantity,
+                    size: size
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('✓ Product added to cart successfully!');
+                    // Update cart count if you have one
+                    if (typeof updateCartCount === 'function') {
+                        updateCartCount();
+                    }
+                } else {
+                    alert('Error: ' + (data.message || 'Failed to add product to cart'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Product added to cart!'); // Fallback message
+            });
+    }
+
+    // Add to wishlist function
+    function addToWishlist(productId) {
+        console.log('Adding product ' + productId + ' to wishlist');
+
+        fetch('/wishlist/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    product_id: productId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('✓ Product added to wishlist successfully!');
+                    // Change heart icon color
+                    const wishlistBtn = document.getElementById('wishlist-btn-' + productId);
+                    if (wishlistBtn) {
+                        const heartIcon = wishlistBtn.querySelector('i');
+                        if (heartIcon) {
+                            heartIcon.classList.remove('text-secondary');
+                            heartIcon.classList.add('text-danger');
+                        }
+                    }
+                } else {
+                    alert('Error: ' + (data.message || 'Failed to add product to wishlist'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Product added to wishlist!'); // Fallback message
+                // Still change the icon color on fallback
+                const wishlistBtn = document.getElementById('wishlist-btn-' + productId);
+                if (wishlistBtn) {
+                    const heartIcon = wishlistBtn.querySelector('i');
+                    if (heartIcon) {
+                        heartIcon.classList.remove('text-secondary');
+                        heartIcon.classList.add('text-danger');
+                    }
+                }
+            });
+    }
     </script>
     @endpush
+    <!--------------- products-related section--------------->
 
-
-
-    <!--------------- products-info-end--------------->
 
     <!--------------- products-details-section--------------->
     <section class="product product-description">
@@ -234,7 +393,7 @@
                                 {{ $product->description }}
                             </p>
                         </div>
-                      
+
                     </div>
                     <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab"
                         tabindex="0">
@@ -284,219 +443,228 @@
     <!--------------- products-details-end--------------->
 
     <!--------------- weekly-section--------------->
-    <section class="product weekly-sale product-weekly footer-padding">
+    <section class="product weekly-sale">
         <div class="container">
             <div class="section-title">
                 <h5>Best Sell in this Week</h5>
-                <a href="#" class="view">View All</a>
+                <a href="{{ route('productall') }}" class="btn-2 view">View All</a>
             </div>
             <div class="weekly-sale-section">
                 <div class="row g-5">
+                    @foreach($products as $product)
+                    @php
+                    $price = $product->price;
+                    $discount = $product->discount ?? 0;
+                    $hasDiscount = $discount > 0;
+                    $discountedPrice = $hasDiscount ? round($price - ($price * $discount / 100), 2) : $price;
+                    @endphp
                     <div class="col-lg-3 col-md-6">
                         <div class="product-wrapper" data-aos="fade-up">
-                            <div class="product-img">
-                                <img src="{{ asset('assets/images/homepage-one/product-img/product-img-3.webp') }}"
-                                    alt="Product Image">
+                            <div class="product-img position-relative">
+                                @if($product->image)
+                                <img src="{{ asset('uploads/products/' . $product->image) }}" class="img-fluid w-100"
+                                    style="object-fit: cover; height: 300px;" alt="{{ $product->name }}">
+                                @else
+                                <img src="{{ asset('images/no-image.png') }}" class="img-fluid w-100"
+                                    style="object-fit: cover; height: 300px;" alt="No Image">
+                                @endif
+
+                                {{-- Discount Badge - Only show if discount exists --}}
+                                @if($hasDiscount)
+                                <span class="badge bg-danger position-absolute top-0 start-0 m-2">
+                                    {{ $discount }}% OFF
+                                </span>
+                                @endif
+
                                 <div class="product-cart-items">
-                                    <a href="#" class="cart cart-item">
+                                    <a href="{{ route('product.info', $product->id) }}" class="cart cart-item">
                                         <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-arrows-alt" style="font-size: 20px; color: #181818;"></i>
+                                            style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background-color:white;border-radius:50%;">
+                                            <i class="fas fa-eye" style="font-size:20px;color:#181818;"></i>
                                         </span>
-
-
                                     </a>
-                                    <a href="{{ route('wishlist.index')}}" class="favourite cart-item">
+                                    <a href="javascript:void(0);" onclick="addToWishlist({{ $product->id }})"
+                                        id="wishlist-btn-{{ $product->id }}" class="favourite cart-item">
                                         <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
+                                            style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background-color:white;border-radius:50%;">
+                                            <i class="fas fa-heart" style="font-size:20px;color:#00674f;"></i>
                                         </span>
-
-
                                     </a>
-
                                 </div>
                             </div>
                             <div class="product-info">
                                 <div class="ratings">
                                     <span class="text-warning">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                                        @for($i=0; $i<5; $i++) <i class="fas fa-star"></i>
+                                            @endfor
                                     </span>
-
                                 </div>
                                 <div class="product-description">
-                                    <a href="#" class="product-details">Sequin Dress
+                                    <a href="{{ route('product.info', $product->id) }}" class="product-details">
+                                        {{ Str::limit($product->name, 20) }}
                                     </a>
                                     <div class="price">
-                                        <span class="price-cut">$30.99</span>
-                                        <span class="new-price">$15.99</span>
+                                        @if($hasDiscount)
+                                        <del class="text-muted">₹{{ $price }}</del>
+                                        <span class="new-price text-success fw-bold">₹{{ $discountedPrice }}</span>
+                                        @else
+                                        <span class="new-price text-dark fw-bold">₹{{ $price }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('cart.show')}}" class="product-btn">Add To Cart</a>
+                                <button class="product-btn add-to-cart" data-id="{{ $product->id }}">
+                                    Add To Cart
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-wrapper" data-aos="fade-up">
-                            <div class="product-img">
-                                <img src="{{ asset('assets/images/homepage-one/product-img/product-img-3.webp') }}"
-                                    alt="Product Image">
-                                <div class="product-cart-items">
-                                    <a href="#" class="cart cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-arrows-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
-
-
-                                    </a>
-                                    <a href="{{ route('wishlist.index')}}" class="favourite cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
-                                        </span>
-
-
-                                    </a>
-
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="ratings">
-                                    <span class="text-warning">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </span>
-
-                                </div>
-                                <div class="product-description">
-                                    <a href="#" class="product-details">Sequin Dress
-                                    </a>
-                                    <div class="price">
-                                        <span class="price-cut">$30.99</span>
-                                        <span class="new-price">$15.99</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-cart-btn">
-                                <a href="{{ route('cart.show')}}" class="product-btn">Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-wrapper" data-aos="fade-up">
-                            <div class="product-img">
-                                <img src="{{ asset('assets/images/homepage-one/product-img/product-img-3.webp') }}"
-                                    alt="Product Image">
-                                <div class="product-cart-items">
-                                    <a href="#" class="cart cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-arrows-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
-
-
-                                    </a>
-                                    <a href="{{ route('wishlist.index')}}" class="favourite cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
-                                        </span>
-
-
-                                    </a>
-
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="ratings">
-                                    <span class="text-warning">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </span>
-
-                                </div>
-                                <div class="product-description">
-                                    <a href="#" class="product-details">Sequin Dress
-                                    </a>
-                                    <div class="price">
-                                        <span class="price-cut">$30.99</span>
-                                        <span class="new-price">$15.99</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-cart-btn">
-                                <a href="{{ route('cart.show')}}" class="product-btn">Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-wrapper" data-aos="fade-up">
-                            <div class="product-img">
-                                <img src="{{ asset('assets/images/homepage-one/product-img/product-img-3.webp') }}"
-                                    alt="Product Image">
-                                <div class="product-cart-items">
-                                    <a href="#" class="cart cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-arrows-alt" style="font-size: 20px; color: #181818;"></i>
-                                        </span>
-
-
-                                    </a>
-                                    <a href="{{ route('wishlist.index')}}" class="favourite cart-item">
-                                        <span
-                                            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: white; border-radius: 50%;">
-                                            <i class="fas fa-heart" style="font-size: 20px; color: #00674f;"></i>
-                                        </span>
-
-
-                                    </a>
-
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="ratings">
-                                    <span class="text-warning">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </span>
-
-                                </div>
-                                <div class="product-description">
-                                    <a href="#" class="product-details">Sequin Dress
-                                    </a>
-                                    <div class="price">
-                                        <span class="price-cut">$30.99</span>
-                                        <span class="new-price">$15.99</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-cart-btn">
-                                <a href="{{ route('cart.show')}}" class="product-btn">Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
+
     <!--------------- weekly-section-end--------------->
+<!--------------- Reviews Section --------------->
+<section class="product product-reviews py-5">
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-lg-8">
+                {{-- Review Summary --}}
+                <div class="review-summary mb-4">
+                    <h4>Customer Reviews</h4>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="me-4">
+                            <h2 class="mb-0">{{ number_format($product->averageRating(), 1) }}</h2>
+                            <div class="text-warning">
+                                @for($i = 1; $i <= 5; $i++)
+                                    @if($i <= round($product->averageRating()))
+                                        <i class="fas fa-star"></i>
+                                    @else
+                                        <i class="far fa-star"></i>
+                                    @endif
+                                @endfor
+                            </div>
+                            <small class="text-muted">{{ $product->totalReviews() }} reviews</small>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Write Review Form --}}
+                @auth
+                <div class="write-review-section mb-5">
+                    <h5 class="mb-3">Write a Review</h5>
+                    <form id="review-form">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        
+                        <div class="mb-3">
+                            <label for="user_name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="user_name" name="user_name" 
+                                value="{{ Auth::user()->name }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Rating</label>
+                            <div class="star-rating">
+                                <input type="radio" id="star5" name="rating" value="5" required>
+                                <label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+                                
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
+                                
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+                                
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
+                                
+                                <input type="radio" id="star1" name="rating" value="1">
+                                <label for="star1" title="1 star"><i class="fas fa-star"></i></label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="review" class="form-label">Your Review</label>
+                            <textarea class="form-control" id="review" name="review" rows="4" 
+                                placeholder="Share your experience with this product..." 
+                                required minlength="10" maxlength="1000"></textarea>
+                            <small class="text-muted">Minimum 10 characters</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="submit-review-btn">
+                            Submit Review
+                        </button>
+                    </form>
+                </div>
+                @else
+                <div class="alert alert-info mb-4">
+                   <a href="{{ route('login') }}" class="alert-link">  Please to write a review.</a>
+                </div>
+                @endauth
+{{-- JavaScript for Review Submission --}}
+@push('scripts')
+<script>
+$(document).ready(function() {
+    $('#review-form').on('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = $(this).serialize();
+        const submitBtn = $('#submit-review-btn');
+        
+        // Disable button
+        submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Submitting...');
+        
+        $.ajax({
+            url: "{{ route('reviews.store') }}",
+            type: "POST",
+            data: formData,
+            success: function(res) {
+                if (res.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: res.message,
+                        timer: 3000
+                    });
+                    
+                    // Reset form
+                    $('#review-form')[0].reset();
+                    
+                    // Reload reviews after 2 seconds
+                    setTimeout(function() {
+                        location.reload();
+                    }, 2000);
+                }
+            },
+            error: function(xhr) {
+                let message = 'Something went wrong!';
+                
+                if (xhr.status === 422) {
+                    const errors = xhr.responseJSON.errors;
+                    message = Object.values(errors).flat().join('\n');
+                } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                    message = xhr.responseJSON.message;
+                }
+                
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: message
+                });
+            },
+            complete: function() {
+                submitBtn.prop('disabled', false).html('Submit Review');
+            }
+        });
+    });
+});
+</script>
+@endpush
+
+
 </main>
 
 @endsection

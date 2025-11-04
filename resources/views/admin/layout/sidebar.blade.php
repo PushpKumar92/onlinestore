@@ -48,6 +48,11 @@
                     <i class="fas fa-blog text-warning me-2"></i>Meta-Tags
                 </a>
             </li>
+            <li>
+                <a class="nav-link text-dark" href="{{route('admin.contacts.index')}}">
+                    <i class="fas fa-blog text-warning me-2"></i>Contact-Data
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

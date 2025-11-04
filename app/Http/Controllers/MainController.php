@@ -151,11 +151,7 @@ class MainController extends Controller
         return view('frontend.faq');
     }
 
-    public function contactUs() {
-        
-           $categories = Category::all();
-        return view('frontend.contact-us',compact('categories'));
-    }
+  
     // Blog Pages
     public function blog() {
         return view('frontend.blog');

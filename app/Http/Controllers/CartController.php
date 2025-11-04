@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class CartController extends Controller
 {
@@ -17,7 +18,9 @@ class CartController extends Controller
             $total += $item['price'] * $item['quantity'];
         }
 
-        return view('frontend.cart', compact('cart', 'total'));
+        $categories = Category::all();
+
+        return view('frontend.cart', compact('cart', 'total','categories'));
     }
 
     // Add to Cart

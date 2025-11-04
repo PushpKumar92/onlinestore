@@ -1377,11 +1377,17 @@
  .arrival {
    background: rgba(174, 28, 154, 0.08);
  }
-
+.w-autos{
+width: 50px !important;
+}
  .flash-sale {
    background: linear-gradient(90deg, #f7fffd 0%, #025a3f 100%);
  }
-
+.button-row {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    align-items: center;
+}
  .countdown-section {
    display: flex;
    flex-direction: row;
@@ -1947,13 +1953,6 @@
    transform: rotate(-180deg);
  }
 
- .product-info-content .product-quantity {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: center;
-   gap: 2rem;
- }
 
  .product-info-content .product-quantity .quantity-wrapper {
    display: flex;
@@ -4878,5 +4877,37 @@ form button[type="submit"]:hover {
         }
     }
 
+/* review css */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+}
 
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #ddd;
+    transition: color 0.2s;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input[type="radio"]:checked ~ label {
+    color: #ffc107;
+}
+
+.review-item {
+    background-color: #f8f9fa;
+}
+
+.review-item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s;
+}
     

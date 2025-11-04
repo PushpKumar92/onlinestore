@@ -61,4 +61,24 @@ class Product extends Model
             return asset('uploads/products/' . $img);
         }, $this->images);
     }
+    
+public function reviews()
+{
+    return $this->hasMany(Review::class);
+}
+
+public function approvedReviews()
+{
+    return $this->hasMany(Review::class)->where('is_approved', true);
+}
+
+public function averageRating()
+{
+    return $this->approvedReviews()->avg('rating') ?? 0;
+}
+
+public function totalReviews()
+{
+    return $this->approvedReviews()->count();
+}
 }
