@@ -64,10 +64,11 @@
                 </a>
                 <ul class=" dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                     <li>
-                        <a class="dropdown-item" href="{{ route('admin.change-password.form') }}">
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
                             Change Password
                         </a>
                     </li>
+
                     <li>
                         <hr class="dropdown-divider">
                     </li>
@@ -76,4 +77,48 @@
             </li>
         </ul>
     </div>
+    <!-- Change Password Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form action="{{ route('admin.change-password') }}" method="POST">
+          @csrf
+          
+          <div class="mb-3 position-relative">
+            <label for="current_password" class="form-label">Current Password</label>
+            <input type="password" id="current_password" name="current_password" class="form-control" required>
+          </div>
+
+          <div class="mb-3 position-relative">
+            <label for="new_password" class="form-label">New Password</label>
+            <input type="password" id="new_password" name="new_password" class="form-control" required>
+          </div>
+
+          <div class="mb-3 position-relative">
+            <label for="new_password_confirmation" class="form-label">Confirm New Password</label>
+            <input type="password" id="new_password_confirmation" name="new_password_confirmation" class="form-control" required>
+          </div>
+
+          <button type="submit" class="btn btn-1 w-100">Update Password</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function togglePassword(fieldId) {
+    let field = document.getElementById(fieldId);
+    field.type = field.type === "password" ? "text" : "password";
+}
+</script>
+
 </header>

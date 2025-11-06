@@ -8,19 +8,19 @@
     
     <div class="btn-group" role="group">
         {{-- Add New Product --}}
-        <a href="{{ route('admin.products.create') }}" class="btn btn-primary">
+        <a href="{{ route('admin.products.create') }}" class="btn btn-1 me-2 rounded">
             <i class="fas fa-plus"></i> Add Product
         </a>
         
        
         
         {{-- Import Button (Fix Here) --}}
-<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#importModal">
+<button type="button" class="btn btn-1 me-2 rounded" data-bs-toggle="modal" data-bs-target="#importModal">
     <i class="fas fa-file-import"></i> Import
 </button>
         
         {{-- Download Template --}}
-       <a href="{{ route('products.export.csv') }}" class="btn btn-primary">Download CSV</a>
+       <a href="{{ route('products.export.csv') }}" class="btn btn-1 rounded">Download CSV</a>
 
     </div>
 </div>
@@ -43,8 +43,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Import</button>
+                    <button type="button" class="btn btn-1" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-1">Import</button>
                 </div>
             </form>
         </div>

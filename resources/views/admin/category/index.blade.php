@@ -4,7 +4,7 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0">All Categories</h2>
-        <button type="button" class="btn-1" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+        <button type="button" class="btn-1 rounded" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
             Add New Category
         </button>
     </div>

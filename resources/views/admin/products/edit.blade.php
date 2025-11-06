@@ -181,10 +181,10 @@
         </div>
 
         <div class="mt-4">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-1">
                 <i class="fas fa-save"></i> {{ isset($product) ? 'Update Product' : 'Save Product' }}
             </button>
-            <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">
+            <a href="{{ route('admin.products.index') }}" class="btn btn-1">
                 <i class="fas fa-arrow-left"></i> Back to List
             </a>
         </div>

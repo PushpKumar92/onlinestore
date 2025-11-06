@@ -4,7 +4,7 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0">All Meta Tags</h2>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMetaTagModal">
+        <button type="button" class="btn btn-1" data-bs-toggle="modal" data-bs-target="#addMetaTagModal">
             Add New Meta Tag
         </button>
     </div>
@@ -99,9 +99,9 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
+                                    <button type="button" class="btn btn-1"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-1">Update</button>
                                 </div>
                             </div>
                         </form>

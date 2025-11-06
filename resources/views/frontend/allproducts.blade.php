@@ -9,7 +9,7 @@
             <div class="row g-5">
 
                 <!-- Products List -->
-                <div class="col-lg-9">
+                <div class="col-lg-12">
                     <div class="product-sidebar-section" data-aos="fade-up">
 
 
@@ -22,7 +22,7 @@
                             $hasDiscount = $discount > 0;
                             $discountedPrice = $hasDiscount ? round($price - ($price * $discount / 100), 2) : $price;
                             @endphp
-                            <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="product-wrapper h-100 d-flex flex-column" data-aos="fade-up">
 
                                     {{-- Product Image --}}

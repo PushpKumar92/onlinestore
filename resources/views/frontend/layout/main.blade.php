@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- ✅ Dynamic Meta Sections --}}
-    <title>@yield('meta_title', 'Online Shopping | Lavanya Tech')</title>
-    <meta name="description" content="@yield('meta_description', 'Lavanya Tech offers innovative web development, digital marketing, and IT solutions to grow your business online.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'lavanya tech, web development, digital marketing, IT solutions, SEO, PPC, software development')">
-    <meta name="meta_tags" content="@yield('meta_tags', 'lavanya tech default tags')">
+   {{-- ✅ Dynamic Meta Sections for Online Store --}}
+<title>@yield('meta_title', 'Online Shopping Site | Best Deals on Fashion, Electronics & More')</title>
+
+<meta name="description" content="@yield('meta_description', 'Shop online at our store for the latest fashion, electronics, accessories, and home essentials at unbeatable prices with fast delivery and secure payments.')">
+
+<meta name="keywords" content="@yield('meta_keywords', 'online shopping, buy online, fashion store, electronics, clothing, mobile phones, best deals, discounts, e-commerce website')">
+
+<meta name="meta_tags" content="@yield('meta_tags', 'online store, shopping website, trending products, offers, sale, secure payment, fast delivery')">
 
     {{-- ✅ Styles --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
