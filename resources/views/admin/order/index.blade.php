@@ -6,7 +6,7 @@
     <table class="table table-striped mt-3">
         <thead>
             <tr>
-                <th>#</th>
+                <th>Id</th>
                 <th>Order No</th>
                 <th>User</th>
                 <th>Total</th>
