@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Wishlist;
-
+use App\Models\Category;
 use DB;
 Use Storage;
 use Illuminate\Support\Facades\File;
@@ -111,8 +111,9 @@ public function updatePassword(Request $request)
 
     // Fetch wishlist products
     $wishlistItems = Wishlist::with('product')->where('user_id', $user->id)->get();
+     $categories = Category::all();
 
-    return view('frontend.profile.userprofile', compact('user','orders','wishlistItems'));
+    return view('frontend.profile.userprofile', compact('user','orders','wishlistItems','categories'));
 }
 
 public function editProfile()

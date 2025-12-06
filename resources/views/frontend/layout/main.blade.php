@@ -45,6 +45,42 @@
     <script src="{{ asset('js/shopus.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/pushp.js') }}"></script>
+
+   <script>
+function toggleMenu() {
+    let menu = document.getElementById('subMenu');
+    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+}
+
+// Mobile Menu
+function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+}
+
+function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+}
+
+window.addEventListener("scroll", function() {
+    let header = document.getElementById("stickyHeader");
+    if (window.scrollY > 80) {
+        header.classList.add("fixed-header");
+    } else {
+        header.classList.remove("fixed-header");
+    }
+});
+
+</script>
+
+<script>
+document.querySelectorAll(".mobile-footer a").forEach(item => {
+    item.addEventListener("click", function() {
+        document.querySelectorAll(".mobile-footer a").forEach(i => i.classList.remove("active"));
+        this.classList.add("active");
+    });
+});
+</script>
+
 </body>
 
 </html>

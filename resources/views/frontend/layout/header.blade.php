@@ -191,128 +191,97 @@
                     If you want to limit the initial view to 10 categories and reveal the rest with a “Show More”
                     button, I can give you a short JS snippet for that version too — do you want that version instead of
                     scroll?
-
-
-
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="header-bottom d-lg-block d-none">
+
+   <!-- MAIN HEADER WRAPPER -->
+<div class="main-header-wrapper">
+
+    <!-- ──────────────────────────────── -->
+    <!-- STICKY MOBILE HEADER (Amazon Style) -->
+    <!-- ──────────────────────────────── -->
+    <header class="mobile-header d-lg-none">
+        <div class="mobile-top">
+            <button class="menu-btn text-white" onclick="openMobileMenu()">☰</button>
+
+            <a href="{{ route('index') }}" class="logo-wrap">
+                <img src="{{ asset('assets/images/logos/logo.png') }}" alt="Logo">
+            </a>
+
+            <a href="{{ route('cart.show') }}" class="cart-btn position-relative">
+                🛒
+                <span class="badge-count">
+                    {{ session('cart_count', 0) }}
+                </span>
+            </a>
+        </div>
+
+        <!-- <div class="mobile-search">
+            <form action="{{ route('productall') }}" method="GET">
+                <input type="text" name="search" placeholder="Search products...">
+                <button>🔍</button>
+            </form>
+        </div> -->
+    </header>
+
+
+    <!-- ──────────────────────────────── -->
+    <!-- DESKTOP HEADER (Your Existing Code) -->
+    <!-- ──────────────────────────────── -->
+    <div class="header-bottom bg-dark text-white py-2 d-none d-lg-block" id="stickyHeader">
         <div class="container">
-            <div class="header-nav">
+            <div class="d-flex align-items-center justify-content-between">
+
+                <!-- Category Menu Desktop -->
                 <div class="category-menu-section position-relative">
-                    <div class="empty position-fixed" onclick="tooglmenu()"></div>
-                    <button class="dropdown-btn" onclick="tooglmenu()">
-                        <span class="dropdown-icon">
-                            <svg width="14" height="9" viewBox="0 0 14 9" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                    <button class="dropdown-btn d-flex align-items-center" onclick="toggleMenu()">
+                        <span class="dropdown-icon me-2">
+                            <svg width="20" height="13" viewBox="0 0 14 9" fill="white">
                                 <rect width="14" height="1" />
                                 <rect y="8" width="14" height="1" />
                                 <rect y="4" width="10" height="1" />
                             </svg>
                         </span>
-                        <span class="list-text">
-                            All Categories
-                        </span>
+                        <span class="list-text fw-bold text-white">All Categories</span>
                     </button>
-                    <div class="category-dropdown position-absolute" id="subMenu">
-                      <ul class="category-list">
-                        @forelse($categories as $category)
-                        <li class="category-list-item">
-                            <a href="{{ route('productall', ['category' => $category->id]) }}">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex align-items-center">
-                                        @if($category->image)
-                                        <img src="{{ asset('uploads/categories/' . $category->image) }}"
-                                            alt="{{ $category->name }}" class="img-fluid rounded" width="25">
-                                        @else
-                                        <img src="{{ asset('assets/images/default-category.png') }}" alt="No Image"
-                                            class="img-fluid rounded">
-                                        @endif
-                                        <span class="dropdown-text">{{ $category->name }}</span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        @empty
-                        <li class="text-muted text-center py-3">No categories available.</li>
-                        @endforelse
-                    </ul>
+
+                    <div class="category-dropdown shadow-lg rounded bg-white position-absolute mt-2" id="subMenu">
+                        <ul class="category-list p-0 m-0">
+                            @foreach($categories as $category)
+                                <li class="category-list-item">
+                                    <a href="{{ route('productall',['category'=>$category->id]) }}" class="d-flex align-items-center justify-content-between p-2 text-dark">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ $category->image ? asset('uploads/categories/'.$category->image) : asset('assets/images/default-category.png') }}" class="rounded me-2" width="28" alt="">
+                                            <span>{{ $category->name }}</span>
+                                        </div>
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
+
+                <!-- Desktop Navigation -->
                 <div class="header-nav-menu">
-                    <ul class="menu-list">
-                        <li>
-                            <a href="{{ route('index') }}">
-                                <span class="list-text">Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('productall') }}">
-                                <span class="list-text">Shop</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{{ route('frontend.sales') }}">
-                                <span class="list-text">Sales</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{{ route('about') }}">
-                                <span class="list-text">About</span>
-                            </a>
-
-                        </li>
-                        <li>
-                            <a href="{{ route('blog.page') }}">
-                                <span class="list-text">Blog</span>
-                            </a>
-                            @php
-                            $latestBlog = \App\Models\Blog::where('status', 1)->latest()->first();
-                            @endphp
-
-                            <ul class="header-sub-menu">
-                                @if($latestBlog)
-                                <li><a href="{{ route('blog.details', $latestBlog->slug) }}">Blog Details</a></li>
-                                @endif
-                            </ul>
-
-                        </li>
-
-                        <li>
-                            <a href="{{ route('contact.us') }}">
-                                <span class="list-text">Contact</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="list-text">Pages</span>
-                                <span>
-                                    <i class="fa-solid fa-plus" style="color:white; font-size:18px;"></i>
-                                </span>
-                            </a>
-                            <ul class="header-sub-menu">
+                    <ul class="menu-list d-flex gap-4 m-0">
+                        <li><a href="{{ route('index') }}" class="text-white">Home</a></li>
+                        <li><a href="{{ route('productall') }}" class="text-white">Shop</a></li>
+                        <li><a href="{{ route('frontend.sales') }}" class="text-white">Sales</a></li>
+                        <li><a href="{{ route('about') }}" class="text-white">About</a></li>
+                        <li><a href="{{ route('blog.page') }}" class="text-white">Blog</a></li>
+                        <li><a href="{{ route('contact.us') }}" class="text-white">Contact</a></li>
+                        <li class="position-relative">
+                            <a href="#" class="text-white">Pages</a>
+                            <ul class="header-sub-menu shadow rounded py-3">
                                 <li><a href="{{ route('allproducts') }}">All Products</a></li>
-                                <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
-                                <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
+                                <li><a href="{{ route('privacy') }}">Privacy</a></li>
+                                <li><a href="{{ route('terms') }}">Terms</a></li>
                                 <li><a href="{{ route('faq') }}">FAQ</a></li>
                             </ul>
-
                         </li>
                     </ul>
                 </div>
@@ -320,4 +289,29 @@
             </div>
         </div>
     </div>
+
+</div>
+
+
+<!-- MOBILE SLIDE MENU -->
+<div id="mobileMenu" class="mobile-menu bg-white">
+    <div class="p-3 border-bottom d-flex justify-content-between">
+        <h5 class="m-0">Menu</h5>
+        <button class="btn" onclick="closeMobileMenu()"><i class="fa-solid fa-xmark fs-3"></i></button>
+    </div>
+
+    <ul class="mobile-nav list-unstyled p-3">
+        <li><a href="{{ route('index') }}">Home</a></li>
+        <li><a href="{{ route('productall') }}">Shop</a></li>
+        <li><a href="{{ route('frontend.sales') }}">Sales</a></li>
+        <li><a href="{{ route('about') }}">About</a></li>
+        <li><a href="{{ route('blog.page') }}">Blog</a></li>
+        <li><a href="{{ route('contact.us') }}">Contact</a></li>
+        <li><a href="{{ route('allproducts') }}">All Products</a></li>
+        <li><a href="{{ route('privacy') }}">Privacy</a></li>
+        <li><a href="{{ route('terms') }}">Terms</a></li>
+        <li><a href="{{ route('faq') }}">FAQ</a></li>
+    </ul>
+</div>
+
 </header>

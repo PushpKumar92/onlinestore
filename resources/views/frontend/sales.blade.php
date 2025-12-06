@@ -7,13 +7,13 @@
     <h2 class="text-center mb-5 fw-bold">🔥 Flash Sale</h2>
 
     <div class="row g-4">
-        <!-- Sidebar Filters -->
-        <div class="col-lg-3">
+        <!-- Sidebar Filters (Desktop Only) -->
+        <div class="col-lg-3 d-none d-lg-block">
             <div class="sidebar" data-aos="fade-right">
                 <div class="sidebar-section mb-5">
                     <div class="sidebar-wrapper">
                         <h5 class="wrapper-heading mb-3">Filters</h5>
-                        <form id="filter-form" method="GET" action="{{ route('productall') }}">
+                        <form id="desktop-filter-form" method="GET" action="{{ route('productall') }}">
 
                             <!-- Categories Filter -->
                             <h6 class="mb-2">Categories</h6>
@@ -81,8 +81,8 @@
 
         <!-- Products Section -->
         <div class="col-lg-9">
-            <!-- Sorting Section -->
-            <div class="product-sorting-section mb-4 d-flex justify-content-between align-items-center">
+            <!-- Sorting Section (Desktop Only) -->
+            <div class="product-sorting-section mb-4 d-none d-lg-flex justify-content-between align-items-center">
                 <div class="result">
                     @php
                     $from = ($saleProducts->currentPage() - 1) * $saleProducts->perPage() + 1;
@@ -96,7 +96,7 @@
 
                 <div class="product-sorting d-flex align-items-center gap-2">
                     <span class="text-muted mx-2">Sort by:</span>
-                    <form method="GET" id="sortForm">
+                    <form method="GET" id="desktopSortForm">
                         <select name="sort" id="sortSelect" class="form-select form-select-sm">
                             <option value="">Default</option>
                             <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>
@@ -177,7 +177,6 @@
                 <div class="col-12 text-center py-5">
                     <i class="fas fa-tag fa-3x text-muted mb-3"></i>
                     <p class="text-muted fs-5">No products are currently on sale.</p>
-                    
                 </div>
                 @endforelse
             </div>
@@ -192,10 +191,255 @@
     </div>
 </div>
 
-<!-- Auto-submit sort form -->
+<!-- Sticky Footer (Mobile Only) -->
+<div class="sticky-footer d-lg-none">
+    <div class="container">
+        <div class="d-flex gap-3">
+            <button class="btn-footer flex-fill" onclick="toggleFilterPopup()">
+                <i class="fas fa-filter"></i> Filters
+            </button>
+            <button class="btn-footer flex-fill" onclick="toggleSortPopup()">
+                <i class="fas fa-sort"></i> Sort By
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Filter Popup (Mobile Only) -->
+<div class="popup-overlay d-lg-none" id="filterOverlay" onclick="toggleFilterPopup()"></div>
+<div class="popup-container d-lg-none" id="filterPopup">
+    <div class="popup-header">
+        <h5 class="mb-0">Filters</h5>
+        <button class="btn-close-popup" onclick="toggleFilterPopup()">×</button>
+    </div>
+    <div class="popup-body">
+        <form id="mobile-filter-form" method="GET" action="{{ route('productall') }}">
+            
+            <!-- Preserve sort parameter -->
+            @if(request('sort'))
+            <input type="hidden" name="sort" value="{{ request('sort') }}">
+            @endif
+            
+            <!-- Categories Filter -->
+            <div class="filter-section">
+                <h6 class="filter-heading">Categories</h6>
+                <ul class="filter-list">
+                    @foreach($categories as $category)
+                    <li>
+                        <label class="filter-label">
+                            <input type="checkbox" name="categories[]" value="{{ $category->id }}"
+                                {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }}>
+                            <span>{{ $category->name }}</span>
+                        </label>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <!-- Brands Filter -->
+            <div class="filter-section">
+                <h6 class="filter-heading">Brands</h6>
+                <ul class="filter-list">
+                    @foreach($brands as $brand)
+                    <li>
+                        <label class="filter-label">
+                            <input type="checkbox" name="brands[]" value="{{ $brand->id }}"
+                                {{ in_array($brand->id, request('brands', [])) ? 'checked' : '' }}>
+                            <span>{{ $brand->name }}</span>
+                        </label>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <!-- Sizes Filter -->
+            <div class="filter-section">
+                <h6 class="filter-heading">Sizes</h6>
+                <ul class="filter-list">
+                    @foreach($sizes as $size)
+                    <li>
+                        <label class="filter-label">
+                            <input type="checkbox" name="sizes[]" value="{{ $size->id }}"
+                                {{ in_array($size->id, request('sizes', [])) ? 'checked' : '' }}>
+                            <span>{{ $size->name }}</span>
+                        </label>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <!-- Colors Filter -->
+            <div class="filter-section">
+                <h6 class="filter-heading">Colors</h6>
+                <ul class="filter-list">
+                    @foreach($colors as $color)
+                    <li>
+                        <label class="filter-label">
+                            <input type="checkbox" name="colors[]" value="{{ $color->id }}"
+                                {{ in_array($color->id, request('colors', [])) ? 'checked' : '' }}>
+                            <span>{{ $color->name }}</span>
+                        </label>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <!-- Price Range -->
+            <div class="filter-section">
+                <h6 class="filter-heading">Price Range</h6>
+                <div class="d-flex gap-2">
+                    <input type="number" name="price_min" class="form-control" placeholder="Min"
+                        value="{{ request('price_min') }}">
+                    <input type="number" name="price_max" class="form-control" placeholder="Max"
+                        value="{{ request('price_max') }}">
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="popup-footer">
+        <button type="button" class="btn-secondary-popup" onclick="clearFilters()">Clear All</button>
+        <button type="submit" form="mobile-filter-form" class="btn-primary-popup">Apply Filters</button>
+    </div>
+</div>
+
+<!-- Sort Popup (Mobile Only) -->
+<div class="popup-overlay d-lg-none" id="sortOverlay" onclick="toggleSortPopup()"></div>
+<div class="popup-container d-lg-none" id="sortPopup">
+    <div class="popup-header">
+        <h5 class="mb-0">Sort By</h5>
+        <button class="btn-close-popup" onclick="toggleSortPopup()">×</button>
+    </div>
+    <div class="popup-body">
+        <form method="GET" id="mobileSortForm">
+            
+            <!-- Preserve all filter parameters -->
+            @if(request('categories'))
+                @foreach(request('categories') as $cat)
+                <input type="hidden" name="categories[]" value="{{ $cat }}">
+                @endforeach
+            @endif
+            
+            @if(request('brands'))
+                @foreach(request('brands') as $brand)
+                <input type="hidden" name="brands[]" value="{{ $brand }}">
+                @endforeach
+            @endif
+            
+            @if(request('sizes'))
+                @foreach(request('sizes') as $size)
+                <input type="hidden" name="sizes[]" value="{{ $size }}">
+                @endforeach
+            @endif
+            
+            @if(request('colors'))
+                @foreach(request('colors') as $color)
+                <input type="hidden" name="colors[]" value="{{ $color }}">
+                @endforeach
+            @endif
+            
+            @if(request('price_min'))
+            <input type="hidden" name="price_min" value="{{ request('price_min') }}">
+            @endif
+            
+            @if(request('price_max'))
+            <input type="hidden" name="price_max" value="{{ request('price_max') }}">
+            @endif
+            
+            <div class="sort-options">
+                <label class="sort-option">
+                    <input type="radio" name="sort" value="" {{ request('sort') == '' ? 'checked' : '' }}>
+                    <span>Default</span>
+                </label>
+                <label class="sort-option">
+                    <input type="radio" name="sort" value="price_asc" {{ request('sort') == 'price_asc' ? 'checked' : '' }}>
+                    <span>Price: Low to High</span>
+                </label>
+                <label class="sort-option">
+                    <input type="radio" name="sort" value="price_desc" {{ request('sort') == 'price_desc' ? 'checked' : '' }}>
+                    <span>Price: High to Low</span>
+                </label>
+                <label class="sort-option">
+                    <input type="radio" name="sort" value="name_asc" {{ request('sort') == 'name_asc' ? 'checked' : '' }}>
+                    <span>Name: A–Z</span>
+                </label>
+                <label class="sort-option">
+                    <input type="radio" name="sort" value="name_desc" {{ request('sort') == 'name_desc' ? 'checked' : '' }}>
+                    <span>Name: Z–A</span>
+                </label>
+                <label class="sort-option">
+                    <input type="radio" name="sort" value="newest" {{ request('sort') == 'newest' ? 'checked' : '' }}>
+                    <span>Newest First</span>
+                </label>
+            </div>
+        </form>
+    </div>
+    <div class="popup-footer">
+        <button type="submit" form="mobileSortForm" class="btn-primary-popup w-100">Apply Sort</button>
+    </div>
+</div>
+
+
 <script>
-document.getElementById('sortSelect')?.addEventListener('change', function() {
-    document.getElementById('sortForm').submit();
+function toggleFilterPopup() {
+    const overlay = document.getElementById('filterOverlay');
+    const popup = document.getElementById('filterPopup');
+    
+    overlay.classList.toggle('active');
+    popup.classList.toggle('active');
+    
+    if (popup.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+}
+
+function toggleSortPopup() {
+    const overlay = document.getElementById('sortOverlay');
+    const popup = document.getElementById('sortPopup');
+    
+    overlay.classList.toggle('active');
+    popup.classList.toggle('active');
+    
+    if (popup.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+}
+
+function clearFilters() {
+    const form = document.getElementById('mobile-filter-form');
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+    const numberInputs = form.querySelectorAll('input[type="number"]');
+    
+    checkboxes.forEach(checkbox => checkbox.checked = false);
+    numberInputs.forEach(input => input.value = '');
+}
+
+// Desktop sort auto-submit
+document.addEventListener('DOMContentLoaded', function() {
+    const desktopSortForm = document.getElementById('desktopSortForm');
+    if (desktopSortForm) {
+        const sortSelect = document.getElementById('sortSelect');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function() {
+                desktopSortForm.submit();
+            });
+        }
+    }
+    
+    // Mobile sort auto-submit
+    const mobileSortForm = document.getElementById('mobileSortForm');
+    if (mobileSortForm) {
+        const radioButtons = mobileSortForm.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', function() {
+                mobileSortForm.submit();
+            });
+        });
+    }
 });
 </script>
 @endsection

@@ -219,9 +219,9 @@
 
                                                 <!-- Submit Buttons -->
                                                 <div class="submit-btn">
-                                                    <a href="{{ route('user.profile') }}"
-                                                        class="shop-btn cancel-btn">Cancel</a>
-                                                    <button type="submit" class="shop-btn update-btn">Update
+                                                    <!-- <a href="{{ route('user.profile') }}"
+                                                        class="shop-btn cancel-btn">Cancel</a> -->
+                                                    <button type="submit" class="btn-1">Update
                                                         Profile</button>
                                                 </div>
                                             </form>

@@ -40,8 +40,11 @@
                             <input type="file" name="profile_image" class="form-control">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Update Profile</button>
-                        <a href="{{ route('user.profile') }}" class="btn btn-secondary">Cancel</a>
+                       <div class="d-flex gap-2">
+    <button type="submit" class="btn-1 btn-primary">Update Profile</button>
+    <a href="{{ route('user.profile') }}" class="btn btn-secondary">Cancel</a>
+</div>
+
                     </form>
                 </div>
             </div>

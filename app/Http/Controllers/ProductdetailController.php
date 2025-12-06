@@ -83,7 +83,7 @@ class ProductdetailController extends Controller
         $query->latest();
     }
     
-    $products = $query->paginate(12);
+   $products = $query->paginate(12)->withQueryString();
     
     // Pass filters data - also filter only active categories and brands
     $categories = Category::where('status', 1)->get();

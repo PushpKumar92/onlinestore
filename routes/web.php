@@ -105,13 +105,17 @@ Route::middleware('user.auth')->prefix('user')->group(function () {
    Route::get('/payment/{order}', [PaymentController::class, 'showPaymentPage'])->name('payment.page');
    Route::post('/payment/{order}', [PaymentController::class, 'processPayment'])->name('payment.process');
 
+   // Checkout
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
+    
+    // Thank you page
+    Route::get('/thank-you/{order}', [CheckoutController::class, 'thankYou'])->name('thankyou');
+    
+    // Orders
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
-    Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
-   
-   Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-   Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
-
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::post('/orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
  Route::post('/reviews/store', [ReviewController::class, 'store'])->name('reviews.store');
 
 

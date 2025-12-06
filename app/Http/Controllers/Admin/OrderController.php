@@ -48,4 +48,9 @@ class OrderController extends Controller
         return redirect()->route('admin.orders.index')
                          ->with('success', 'Order deleted successfully.');
     }
+    public function thankYou()
+{
+    $order = session('order');
+    return view('frontend.thankyou', compact('order'));
+}
 }

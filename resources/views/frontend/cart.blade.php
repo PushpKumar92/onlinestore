@@ -58,10 +58,10 @@
                         </p>
 
                         <!-- Quantity Selector -->
-                        <div class="d-flex align-items-center gap-2 mt-2">
+                        <div class="d-flex align-items-center gap-2 mt-2" >
                             <button class="btn btn-outline-secondary btn-decrease" type="button"
                                 data-id="{{ $id }}">−</button>
-                            <span class="form-control text-center quantity-display"
+                            <span class="text-center form-control quantity-display w-50" 
                                 id="quantity-{{ $id }}">{{ $details['quantity'] }}</span>
                             <button class="btn btn-outline-secondary btn-increase" type="button"
                                 data-id="{{ $id }}">+</button>
@@ -73,7 +73,7 @@
                         <!-- Remove Button -->
                         <form method="POST" action="{{ route('cart.remove', $id) }}">
                             @csrf
-                            <button class="btn btn-sm btn-danger">Remove</button>
+                            <button class="btn-1 btn-sm">Empty Cart</button>
                         </form>
                     </div>
                 </div>
@@ -91,21 +91,21 @@
                         @if($total > 0)
                         @if(Auth::guard('user')->check())
                         {{-- ✅ User logged in → Go to checkout --}}
-                        <a href="{{ route('checkout.index') }}" class="btn btn-primary">
+                        <a href="{{ route('checkout.index') }}" class="btn-1 text-center btn-primary">
                             Proceed to Checkout
                         </a>
                         @else
                         {{-- 🚪 Not logged in → Go to login --}}
-                        <a href="{{ route('login') }}" class="btn btn-warning">
+                        <a href="{{ route('login') }}" class="btn-1 text-center btn-warning">
                             Login to Checkout
                         </a>
                         @endif
                         @endif
 
                         {{-- 🛍 Continue shopping always visible --}}
-                        <a href="{{ route('index') }}" class="btn btn-outline-secondary">
+                        <!-- <a href="{{ route('index') }}" class="btn-1 text-center btn-outline-secondary">
                             Continue Shopping
-                        </a>
+                        </a> -->
                     </div>
 
                 </div>

@@ -230,5 +230,7 @@
     <hr style="border: 1px solid white;" />
     <div class="footer-text">shopUs ecommerce © Pvt. Ltd. 2021</div>
 
+  
+
 </section>
 <!--------------- footer-section-end--------------->

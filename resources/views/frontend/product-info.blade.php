@@ -23,34 +23,28 @@
             <div class="product-info-section">
                 <div class="row">
                     <!-- Product Images -->
-                    <div class="col-md-5">
-                        <div class="product-info-img">
-                            <div class="swiper product-top">
-                                @if($product->discount > 0)
-                                <div class="product-discount-content">
-                                    <h4>-{{ $product->discount }}%</h4>
-                                </div>
-                                @endif
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide slider-top-img">
-                                        <img src="{{ asset('uploads/products/' . $product->image) }}"
-                                            alt="{{ $product->name }}">
-                                    </div>
+            <div class="col-md-5">
+    <div class="product-info-img">
 
-                                </div>
-                            </div>
+        @if($product->discount > 0)
+        <div class="product-discount-content">
+            <h4>-{{ $product->discount }}%</h4>
+        </div>
+        @endif
 
-                            <div class="swiper product-bottom">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide slider-bottom-img">
-                                        <img src="{{ asset('uploads/products/' . $product->image) }}"
-                                            alt="{{ $product->name }}">
-                                    </div>
+        <div class="product-main-image">
+            <img src="{{ asset('uploads/products/' . $product->image) }}" 
+                 alt="{{ $product->name }}">
+        </div>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="product-thumbnail">
+            <img src="{{ asset('uploads/products/' . $product->image) }}" 
+                 alt="{{ $product->name }}">
+        </div>
+
+    </div>
+</div>
+
 
                     <!-- Product Info -->
                     <div class="col-md-7">
@@ -664,7 +658,236 @@ $(document).ready(function() {
 </script>
 @endpush
 
+<!-- Sticky Footer for Product Detail Page (Mobile Only) -->
+<div class="sticky-cart-footer d-lg-none">
+    <div class="container">
+        <div class="d-flex align-items-center gap-3">
+            <div class="product-price-info">
+                <span class="current-price" id="stickyPrice">${{ $product->price }}</span>
+                @if(isset($product->original_price) && $product->original_price)
+                <span class="original-price">${{ $product->original_price }}</span>
+                @endif
+            </div>
+            <button class="btn-add-to-cart" id="addToCartBtn" onclick="openCartOptions()">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+            <button class="btn-go-to-cart d-none" id="goToCartBtn" onclick="window.location.href='{{ route('cart.show') }}'">
+                <i class="fas fa-shopping-bag"></i> Go to Cart
+            </button>
+        </div>
+    </div>
+</div>
 
+<!-- Cart Options Popup -->
+<div class="popup-overlay" id="cartOverlay" onclick="closeCartOptions()"></div>
+<div class="popup-container" id="cartPopup">
+    <div class="popup-header">
+        <h5 class="mb-0">Select Options</h5>
+        <button class="btn-close-popup" onclick="closeCartOptions()">×</button>
+    </div>
+    <div class="popup-body">
+        <form id="addToCartForm" method="POST" action="{{ route('cart.add', $product->id) }}">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
+            
+            <!-- Product Info -->
+            <div class="product-info-section">
+                <div class="product-image">
+                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
+                </div>
+                <div class="product-details">
+                    <h6 class="product-name">{{ $product->name }}</h6>
+                    <p class="product-price" id="popupPrice">${{ $product->price }}</p>
+                </div>
+            </div>
+
+            <!-- Size Selection -->
+            @if(isset($product->sizes) && is_countable($product->sizes) && count($product->sizes) > 0)
+            <div class="option-section">
+                <label class="option-label">Size <span class="required">*</span></label>
+                <div class="size-options">
+                    @foreach($product->sizes as $size)
+                    <label class="size-option">
+                        <input type="radio" name="size" value="{{ $size->id }}" required>
+                        <span>{{ $size->name }}</span>
+                    </label>
+                    @endforeach
+                </div>
+                <span class="error-message d-none" id="sizeError">Please select a size</span>
+            </div>
+            @endif
+
+            <!-- Color Selection -->
+            @if(isset($product->colors) && is_countable($product->colors) && count($product->colors) > 0)
+            <div class="option-section">
+                <label class="option-label">Color <span class="required">*</span></label>
+                <div class="color-options">
+                    @foreach($product->colors as $color)
+                    <label class="color-option" title="{{ $color->name }}">
+                        <input type="radio" name="color" value="{{ $color->id }}" required>
+                        <span class="color-swatch" style="background-color: {{ $color->code }}"></span>
+                        <span class="color-name">{{ $color->name }}</span>
+                    </label>
+                    @endforeach
+                </div>
+                <span class="error-message d-none" id="colorError">Please select a color</span>
+            </div>
+            @endif
+
+            <!-- Quantity Selection -->
+            <div class="option-section">
+                <label class="option-label">Quantity</label>
+                <div class="quantity-selector">
+                    <button type="button" class="qty-btn" onclick="decreaseQty()">-</button>
+                    <input type="number" name="quantity" id="quantity" value="1" min="1" max="{{ $product->stock ?? 99 }}" readonly>
+                    <button type="button" class="qty-btn" onclick="increaseQty()">+</button>
+                </div>
+                <span class="stock-info">{{ $product->stock ?? 'In' }} Stock</span>
+            </div>
+
+            <!-- Total Price -->
+            <div class="total-section">
+                <span class="total-label">Total:</span>
+                <span class="total-price" id="totalPrice">${{ $product->price }}</span>
+            </div>
+
+        </form>
+    </div>
+    <div class="popup-footer">
+        <button type="button" class="btn-secondary-popup" onclick="closeCartOptions()">Cancel</button>
+        <button type="button" class="btn-primary-popup" onclick="submitAddToCart()">
+            <i class="fas fa-shopping-cart"></i> Add to Cart
+        </button>
+    </div>
+</div>
+
+<!-- Success Toast -->
+<div class="success-toast" id="successToast">
+    <i class="fas fa-check-circle"></i>
+    <span>Product added to cart successfully!</span>
+</div>
+
+<script>
+let basePrice = {{ $product->price }};
+let maxStock = {{ $product->stock ?? 99 }};
+
+function openCartOptions() {
+    document.getElementById('cartOverlay').classList.add('active');
+    document.getElementById('cartPopup').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCartOptions() {
+    document.getElementById('cartOverlay').classList.remove('active');
+    document.getElementById('cartPopup').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function increaseQty() {
+    const input = document.getElementById('quantity');
+    let currentValue = parseInt(input.value);
+    if (currentValue < maxStock) {
+        input.value = currentValue + 1;
+        updateTotalPrice();
+    }
+}
+
+function decreaseQty() {
+    const input = document.getElementById('quantity');
+    let currentValue = parseInt(input.value);
+    if (currentValue > 1) {
+        input.value = currentValue - 1;
+        updateTotalPrice();
+    }
+}
+
+function updateTotalPrice() {
+    const quantity = parseInt(document.getElementById('quantity').value);
+    const total = (basePrice * quantity).toFixed(2);
+    document.getElementById('totalPrice').textContent = '$' + total;
+}
+
+function submitAddToCart() {
+    const form = document.getElementById('addToCartForm');
+    
+    // Validate size selection if exists
+    const sizeInputs = form.querySelectorAll('input[name="size"]');
+    if (sizeInputs.length > 0) {
+        const sizeChecked = Array.from(sizeInputs).some(input => input.checked);
+        if (!sizeChecked) {
+            document.getElementById('sizeError').classList.remove('d-none');
+            return;
+        } else {
+            document.getElementById('sizeError').classList.add('d-none');
+        }
+    }
+    
+    // Validate color selection if exists
+    const colorInputs = form.querySelectorAll('input[name="color"]');
+    if (colorInputs.length > 0) {
+        const colorChecked = Array.from(colorInputs).some(input => input.checked);
+        if (!colorChecked) {
+            document.getElementById('colorError').classList.remove('d-none');
+            return;
+        } else {
+            document.getElementById('colorError').classList.add('d-none');
+        }
+    }
+    
+    // Get form data
+    const formData = new FormData(form);
+    
+    // Submit via AJAX
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Close popup
+            closeCartOptions();
+            
+            // Show success toast
+            const toast = document.getElementById('successToast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+            
+            // Change button to "Go to Cart"
+            document.getElementById('addToCartBtn').classList.add('d-none');
+            document.getElementById('goToCartBtn').classList.remove('d-none');
+            
+            // Update cart count if you have a cart counter
+            if (typeof updateCartCount === 'function') {
+                updateCartCount();
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to add product to cart. Please try again.');
+    });
+}
+
+// Close popup when clicking outside
+document.getElementById('cartOverlay').addEventListener('click', closeCartOptions);
+
+// Prevent quantity input manual change
+document.getElementById('quantity').addEventListener('input', function() {
+    let value = parseInt(this.value);
+    if (isNaN(value) || value < 1) {
+        this.value = 1;
+    } else if (value > maxStock) {
+        this.value = maxStock;
+    }
+    updateTotalPrice();
+});
+</script>
 </main>
 
 @endsection
